@@ -6,10 +6,7 @@
     "required": ["model_id", "provider", "model_name"],
     "properties": {
       "model_id": {"type": "string"},
-      "provider": {
-        "type": "string",
-        "enum": ["openai", "anthropic", "google", "deepseek", "mistral", "meta", "other"]
-      },
+      "provider": {"type": "string"},
       "model_name": {"type": "string"},
       "version": {"type": "string"},
       "release_date": {"type": "string", "format": "date"},
@@ -18,23 +15,61 @@
       "ideal_use_cases": {"type": "array", "items": {"type": "string"}},
       "pricing": {
         "type": "object",
+        "description": "OpenRouter pricing (what we pay via OpenRouter)",
         "properties": {
-          "model": {"type": "string"},
           "input_per_mtok": {"type": "number"},
           "output_per_mtok": {"type": "number"},
+          "cache_read_per_mtok": {"type": "number"},
+          "cache_write_per_mtok": {"type": "number"},
           "notes": {"type": "string"}
+        }
+      },
+      "direct_pricing": {
+        "type": "object",
+        "description": "Provider-direct pricing (what we'd pay bypassing OpenRouter)",
+        "properties": {
+          "input_per_mtok": {"type": "number"},
+          "output_per_mtok": {"type": "number"},
+          "cache_read_per_mtok": {"type": "number"},
+          "batch_input_per_mtok": {"type": "number"},
+          "batch_output_per_mtok": {"type": "number"},
+          "markup_vs_openrouter_pct": {"type": "number", "description": "Negative = direct is cheaper"},
+          "api_url": {"type": "string"},
+          "dashboard_url": {"type": "string"},
+          "direct_available": {"type": "boolean"},
+          "notes": {"type": "string"},
+          "researched_at": {"type": "string", "format": "date"}
+        }
+      },
+      "spend": {
+        "type": "object",
+        "description": "Actual spend data imported from provider activity exports",
+        "properties": {
+          "total_cost_usd": {"type": "number"},
+          "total_input_mtok": {"type": "number"},
+          "total_output_mtok": {"type": "number"},
+          "total_cache_read_mtok": {"type": "number"},
+          "call_count": {"type": "integer"},
+          "avg_cost_per_call_usd": {"type": "number"},
+          "period_start": {"type": "string"},
+          "period_end": {"type": "string"},
+          "source": {"type": "string", "description": "openrouter | anthropic-direct | openai-direct | google-direct"},
+          "imported_at": {"type": "string"}
         }
       },
       "context_window": {"type": "integer"},
       "modalities": {"type": "array", "items": {"type": "string"}},
       "performance_notes": {"type": "string"},
       "routing_tags": {"type": "array", "items": {"type": "string"}},
+      "openrouter_slug": {"type": "string"},
       "_meta": {
         "type": "object",
         "properties": {
-          "last_updated": {"type": "string", "format": "date-time"},
+          "last_updated": {"type": "string"},
           "source": {"type": "string"},
-          "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "auto_ingested": {"type": "boolean"},
+          "needs_review": {"type": "boolean"}
         }
       }
     }

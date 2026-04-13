@@ -46,6 +46,20 @@
       "last_updated": "2026-04-13",
       "source": "openrouter-api",
       "confidence": 0.95
+    },
+    "direct_pricing": {
+      "input_per_mtok": 3.0,
+      "output_per_mtok": 15.0,
+      "cache_read_per_mtok": 0.3,
+      "cache_write_per_mtok": 3.75,
+      "batch_input_per_mtok": 1.5,
+      "batch_output_per_mtok": 7.5,
+      "markup_vs_openrouter_pct": 0,
+      "direct_available": true,
+      "api_url": "https://api.anthropic.com/v1/messages",
+      "dashboard_url": "https://console.anthropic.com/settings/usage",
+      "notes": "Direct = same list price but unlocks native Prompt Caching (cache_read 90% off) and Batch API (50% off). High-value switch for agent heartbeat patterns.",
+      "researched_at": "2026-04-13"
     }
   },
   {
@@ -92,6 +106,12 @@
       "last_updated": "2026-04-13",
       "source": "openrouter-api",
       "confidence": 0.92
+    },
+    "direct_pricing": {
+      "direct_available": false,
+      "markup_vs_openrouter_pct": 0,
+      "notes": "MiniMax is only accessible via OpenRouter or their own API (api.minimax.chat) \u2014 no meaningful advantage to going direct unless usage scales significantly. Evaluate when monthly spend on this model exceeds 00.",
+      "researched_at": "2026-04-13"
     }
   },
   {
@@ -181,6 +201,18 @@
       "last_updated": "2026-04-13",
       "source": "production-observation",
       "confidence": 0.85
+    },
+    "direct_pricing": {
+      "input_per_mtok": 1.5,
+      "output_per_mtok": 6.0,
+      "batch_input_per_mtok": 0.75,
+      "batch_output_per_mtok": 3.0,
+      "markup_vs_openrouter_pct": 0,
+      "direct_available": true,
+      "api_url": "https://api.openai.com/v1/chat/completions",
+      "dashboard_url": "https://platform.openai.com/usage",
+      "notes": "Direct gives Batch API access (50% off for non-real-time jobs). Alexander cron tasks are good candidates. No temperature support either way via codex provider.",
+      "researched_at": "2026-04-13"
     }
   },
   {
@@ -226,6 +258,17 @@
       "last_updated": "2026-04-13",
       "source": "openrouter-api",
       "confidence": 0.88
+    },
+    "direct_pricing": {
+      "input_per_mtok": 0.1,
+      "output_per_mtok": 0.4,
+      "cache_read_per_mtok": 0.025,
+      "markup_vs_openrouter_pct": 0,
+      "direct_available": true,
+      "api_url": "https://generativelanguage.googleapis.com/v1beta/models",
+      "dashboard_url": "https://console.cloud.google.com/apis/api/generativelanguage.googleapis.com",
+      "notes": "Google AI Studio direct has a free tier (15 req/min, 1M tokens/day). For low-volume cron tasks this could be /bin/bash. Context Caching API available direct only.",
+      "researched_at": "2026-04-13"
     }
   },
   {
@@ -270,6 +313,17 @@
       "last_updated": "2026-04-13",
       "source": "openrouter-api",
       "confidence": 0.85
+    },
+    "direct_pricing": {
+      "input_per_mtok": 0.3,
+      "output_per_mtok": 2.5,
+      "cache_read_per_mtok": 0.075,
+      "markup_vs_openrouter_pct": 0,
+      "direct_available": true,
+      "api_url": "https://generativelanguage.googleapis.com/v1beta/models",
+      "dashboard_url": "https://console.cloud.google.com/apis/api/generativelanguage.googleapis.com",
+      "notes": "Same as Flash-Lite \u2014 free tier via Google AI Studio. Direct also unlocks Grounding with Search feature not available via OpenRouter.",
+      "researched_at": "2026-04-13"
     }
   },
   {
@@ -312,6 +366,16 @@
       "last_updated": "2026-04-13",
       "source": "openrouter-api",
       "confidence": 0.76
+    },
+    "direct_pricing": {
+      "input_per_mtok": 0.14,
+      "output_per_mtok": 0.28,
+      "markup_vs_openrouter_pct": 0,
+      "direct_available": true,
+      "api_url": "https://api.deepseek.com/chat/completions",
+      "dashboard_url": "https://platform.deepseek.com/usage",
+      "notes": "DeepSeek direct API is OpenAI-compatible. Pricing matches OpenRouter. Not a priority switch unless reliability becomes a concern.",
+      "researched_at": "2026-04-13"
     }
   },
   {
@@ -355,6 +419,20 @@
       "last_updated": "2026-04-13",
       "source": "openrouter-api",
       "confidence": 0.82
+    },
+    "direct_pricing": {
+      "input_per_mtok": 0.8,
+      "output_per_mtok": 4.0,
+      "cache_read_per_mtok": 0.08,
+      "cache_write_per_mtok": 1.0,
+      "batch_input_per_mtok": 0.4,
+      "batch_output_per_mtok": 2.0,
+      "markup_vs_openrouter_pct": 0,
+      "direct_available": true,
+      "api_url": "https://api.anthropic.com/v1/messages",
+      "dashboard_url": "https://console.anthropic.com/settings/usage",
+      "notes": "Same Batch API and caching benefits as Sonnet. Worth consolidating under direct if already using Anthropic SDK.",
+      "researched_at": "2026-04-13"
     }
   },
   {

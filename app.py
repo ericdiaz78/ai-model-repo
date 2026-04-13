@@ -676,13 +676,31 @@ function renderCatalog(models) {
       ${m.spend?.total_cost_usd > 0 ? `
       <div class="spend-bar">
         <div class="spend-row">
-          <span class="spend-label">Total spend</span>
+          <span class="spend-label">Total spend (OpenRouter)</span>
           <span class="spend-val">$${m.spend.total_cost_usd.toFixed(4)}</span>
         </div>
         <div class="spend-row">
           <span class="spend-label">${m.spend.call_count.toLocaleString()} calls · avg $${m.spend.avg_cost_per_call_usd.toFixed(5)}/call</span>
           <span class="spend-sub">${m.spend.total_input_mtok.toFixed(2)}M in · ${m.spend.total_output_mtok.toFixed(2)}M out${m.spend.total_cache_read_mtok > 0 ? ` · ${m.spend.total_cache_read_mtok.toFixed(2)}M cached` : ''}</span>
         </div>
+      </div>` : ''}
+      ${m.direct_pricing ? `
+      <div class="spend-bar" style="border-top-style:${m.direct_pricing.direct_available ? 'solid' : 'dashed'}">
+        <div class="spend-row">
+          <span class="spend-label" style="color:${m.direct_pricing.direct_available ? 'var(--green)' : 'var(--muted)'}">
+            ${m.direct_pricing.direct_available ? '⚡ Direct API available' : '⛔ OpenRouter only'}
+          </span>
+        </div>
+        ${m.direct_pricing.batch_input_per_mtok ? `
+        <div class="spend-row">
+          <span class="spend-label">Batch API (50% off)</span>
+          <span class="spend-val" style="color:var(--green)">$${m.direct_pricing.batch_input_per_mtok}/M in</span>
+        </div>` : ''}
+        ${m.direct_pricing.cache_read_per_mtok ? `
+        <div class="spend-row">
+          <span class="spend-label">Cache reads (direct)</span>
+          <span class="spend-val" style="color:var(--green)">$${m.direct_pricing.cache_read_per_mtok}/M</span>
+        </div>` : ''}
       </div>` : ''}
     </div>`;
   }).join('');
