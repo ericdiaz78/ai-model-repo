@@ -176,3 +176,28 @@ All notable changes to the AI Model Knowledge Repository are documented here.
 - Gemini 2.5 Flash (Google) — mid-tier balanced
 - DeepSeek Chat — budget coding
 - Claude Haiku 4.5 (Anthropic) — fast lightweight Anthropic option
+
+## 2026-04-13 — Routing Engine + Direct Provider Integration
+
+### Added
+- `scripts/routing_engine.py` — decision engine: openrouter vs direct vs batch vs free-tier
+  - Returns endpoint, estimated cost, savings %, confidence, and routing_tags
+  - Batch path: 50% off Anthropic/OpenAI (triggers when `--batch` flag or `real_time=False`)
+  - Cache path: uses direct native caching when `--cacheable` + `prompt_tokens > 10k`
+  - Google free tier detection
+  - CLI: `python3 scripts/routing_engine.py --model X --prompt-tokens N [--batch] [--cacheable]`
+- `GET /api/route` — HTTP wrapper on routing engine for agent use
+  - Params: `model`, `prompt_tokens`, `output_tokens`, `cacheable`, `batch`, `task`
+- `scripts/fetch_direct_usage.py` — multi-provider direct API usage fetcher
+  - Anthropic: `/v1/organizations/usage` (needs `ANTHROPIC_ADMIN_KEY`)
+  - OpenAI: `/v1/organization/usage/completions` (needs `OPENAI_ADMIN_KEY` w/ `api.usage.read`)
+  - Google: placeholder key validator (no usage API from AI Studio yet)
+  - Graceful fallback with provisioning instructions when keys missing
+- Daily cron job (6am ET): `ai-model-repo-direct-usage-sync` runs `fetch_direct_usage.py` via Alexander
+
+### Changed
+- `openclaw.json env`: Added `ANTHROPIC_ADMIN_KEY`, `OPENAI_ADMIN_KEY`, `GOOGLE_AI_KEY` placeholders — fill these in to enable direct provider cost tracking
+
+### Next
+- Provision admin keys (Eric action): console.anthropic.com → Admin Key, platform.openai.com → Usage: Read key
+- Wire agents to call `/api/route` before each model call for automated routing decisions
