@@ -210,6 +210,11 @@ button.danger:hover { background: #991b1b; }
 .card-notes { font-size: 12px; color: var(--sub); margin-top: 8px; line-height: 1.5;
   border-top: 1px solid var(--border); padding-top: 8px;
   display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.spend-bar { margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); }
+.spend-row { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 3px; }
+.spend-label { color: var(--muted); }
+.spend-val { font-weight: 600; color: var(--amber); }
+.spend-sub { color: var(--muted); font-size: 10px; }
 .compare-cb-wrap { position: absolute; top: 12px; right: 12px; /* overridden by JS if needed */ }
 .compare-cb { display: flex; align-items: center; gap: 5px; cursor: pointer; font-size: 11px; color: var(--muted); }
 .compare-cb input { width: 14px; height: 14px; cursor: pointer; accent-color: var(--accent); }
@@ -494,6 +499,12 @@ function renderStats() {
   const effScores = curated.map(m => computeEff(m));
   const avgEff = effScores.length ? Math.round(effScores.reduce((a,b)=>a+b,0)/effScores.length) : 0;
 
+  // Spend totals
+  const withSpend = allModels.filter(m => m.spend?.total_cost_usd > 0);
+  const totalSpend = withSpend.reduce((s, m) => s + (m.spend?.total_cost_usd || 0), 0);
+  const topSpender = withSpend.sort((a,b) => (b.spend?.total_cost_usd||0) - (a.spend?.total_cost_usd||0))[0];
+  const spendPct = topSpender && totalSpend > 0 ? Math.round((topSpender.spend.total_cost_usd / totalSpend) * 100) : 0;
+
   document.getElementById('stat-row').innerHTML = `
     <div class="stat-card">
       <div class="donut-wrap">${donut(Math.min(100, allModels.length/3.5), '#2563eb')}</div>
@@ -526,7 +537,16 @@ function renderStats() {
         <div class="stat-label">Cheapest Input</div>
         <div class="stat-sub">${cheapest?.model_name?.split(' ').slice(0,2).join(' ') ?? ''}</div>
       </div>
-    </div>`;
+    </div>
+    ${totalSpend > 0 ? `
+    <div class="stat-card">
+      <div class="donut-wrap">${donut(spendPct, '#f87171')}</div>
+      <div class="stat-info">
+        <div class="stat-val">$${totalSpend.toFixed(2)}</div>
+        <div class="stat-label">Total Spend</div>
+        <div class="stat-sub">${topSpender?.model_name?.split(' ').slice(0,2).join(' ')} ${spendPct}%</div>
+      </div>
+    </div>` : ''}`;
 
   // Populate provider filter
   const pf = document.getElementById('catalog-provider');
@@ -653,6 +673,17 @@ function renderCatalog(models) {
       <div class="ctx-bar"><div class="ctx-fill" style="width:${ctxPct}%"></div></div>
       <div class="card-meta">ctx ${ctx} · out $${out}/MTok${m.release_date ? ' · ' + m.release_date : ''}</div>
       ${m.performance_notes ? `<div class="card-notes">${m.performance_notes}</div>` : ''}
+      ${m.spend?.total_cost_usd > 0 ? `
+      <div class="spend-bar">
+        <div class="spend-row">
+          <span class="spend-label">Total spend</span>
+          <span class="spend-val">$${m.spend.total_cost_usd.toFixed(4)}</span>
+        </div>
+        <div class="spend-row">
+          <span class="spend-label">${m.spend.call_count.toLocaleString()} calls · avg $${m.spend.avg_cost_per_call_usd.toFixed(5)}/call</span>
+          <span class="spend-sub">${m.spend.total_input_mtok.toFixed(2)}M in · ${m.spend.total_output_mtok.toFixed(2)}M out${m.spend.total_cache_read_mtok > 0 ? ` · ${m.spend.total_cache_read_mtok.toFixed(2)}M cached` : ''}</span>
+        </div>
+      </div>` : ''}
     </div>`;
   }).join('');
 }
@@ -842,6 +873,10 @@ async function runCompare() {
       <div class="cmp-row"><span class="cmp-label">Efficiency</span><span class="cmp-val ${effWinA?'win':''}">${effA}/100</span></div>
       <div class="cmp-row"><span class="cmp-label">Strengths</span><span class="cmp-val">${(ma.strengths||[]).slice(0,3).join(', ')||'—'}</span></div>
       <div class="cmp-row"><span class="cmp-label">Tags</span><span class="cmp-val">${(ma.routing_tags||[]).join(', ')||'—'}</span></div>
+      ${ma.spend?.total_cost_usd > 0 ? `
+      <div class="cmp-row"><span class="cmp-label">Total spent</span><span class="cmp-val spend-val">$${ma.spend.total_cost_usd.toFixed(2)}</span></div>
+      <div class="cmp-row"><span class="cmp-label">Calls · avg/call</span><span class="cmp-val">${ma.spend.call_count.toLocaleString()} · $${ma.spend.avg_cost_per_call_usd.toFixed(5)}</span></div>
+      <div class="cmp-row"><span class="cmp-label">Cache read</span><span class="cmp-val">${ma.spend.total_cache_read_mtok?.toFixed(2)||'0'}M tok</span></div>` : ''}
     </div>
     <div class="compare-col">
       <h3>${mb.model_name}</h3>
@@ -852,6 +887,10 @@ async function runCompare() {
       <div class="cmp-row"><span class="cmp-label">Efficiency</span><span class="cmp-val ${!effWinA?'win':''}">${effB}/100</span></div>
       <div class="cmp-row"><span class="cmp-label">Strengths</span><span class="cmp-val">${(mb.strengths||[]).slice(0,3).join(', ')||'—'}</span></div>
       <div class="cmp-row"><span class="cmp-label">Tags</span><span class="cmp-val">${(mb.routing_tags||[]).join(', ')||'—'}</span></div>
+      ${mb.spend?.total_cost_usd > 0 ? `
+      <div class="cmp-row"><span class="cmp-label">Total spent</span><span class="cmp-val spend-val">$${mb.spend.total_cost_usd.toFixed(2)}</span></div>
+      <div class="cmp-row"><span class="cmp-label">Calls · avg/call</span><span class="cmp-val">${mb.spend.call_count.toLocaleString()} · $${mb.spend.avg_cost_per_call_usd.toFixed(5)}</span></div>
+      <div class="cmp-row"><span class="cmp-label">Cache read</span><span class="cmp-val">${mb.spend.total_cache_read_mtok?.toFixed(2)||'0'}M tok</span></div>` : ''}
     </div>
   </div>
   ${data.recommendation ? `<div class="rec-box">🏆 ${data.recommendation}</div>` : ''}`;
