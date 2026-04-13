@@ -60,6 +60,18 @@
       "dashboard_url": "https://console.anthropic.com/settings/usage",
       "notes": "Direct = same list price but unlocks native Prompt Caching (cache_read 90% off) and Batch API (50% off). High-value switch for agent heartbeat patterns.",
       "researched_at": "2026-04-13"
+    },
+    "spend": {
+      "total_cost_usd": 578.064768,
+      "total_input_mtok": 402.0597,
+      "total_output_mtok": 2.4768,
+      "total_cache_read_mtok": 0.0,
+      "call_count": 7902,
+      "avg_cost_per_call_usd": 0.073154,
+      "period_start": "2026-03-13",
+      "period_end": "2026-04-12",
+      "source": "openrouter-api",
+      "imported_at": "2026-04-13 13:58 UTC"
     }
   },
   {
@@ -112,6 +124,18 @@
       "markup_vs_openrouter_pct": 0,
       "notes": "MiniMax is only accessible via OpenRouter or their own API (api.minimax.chat) \u2014 no meaningful advantage to going direct unless usage scales significantly. Evaluate when monthly spend on this model exceeds 00.",
       "researched_at": "2026-04-13"
+    },
+    "spend": {
+      "total_cost_usd": 8.561546,
+      "total_input_mtok": 71.8341,
+      "total_output_mtok": 0.4262,
+      "total_cache_read_mtok": 0.0,
+      "call_count": 1662,
+      "avg_cost_per_call_usd": 0.005151,
+      "period_start": "2026-03-13",
+      "period_end": "2026-04-12",
+      "source": "openrouter-api",
+      "imported_at": "2026-04-13 13:58 UTC"
     }
   },
   {
@@ -157,6 +181,18 @@
       "last_updated": "2026-04-13",
       "source": "openrouter-activity",
       "confidence": 0.8
+    },
+    "spend": {
+      "total_cost_usd": 31.527069,
+      "total_input_mtok": 426.8623,
+      "total_output_mtok": 1.1686,
+      "total_cache_read_mtok": 0.0,
+      "call_count": 8966,
+      "avg_cost_per_call_usd": 0.003516,
+      "period_start": "2026-03-13",
+      "period_end": "2026-04-12",
+      "source": "openrouter-api",
+      "imported_at": "2026-04-13 13:58 UTC"
     }
   },
   {
@@ -269,6 +305,18 @@
       "dashboard_url": "https://console.cloud.google.com/apis/api/generativelanguage.googleapis.com",
       "notes": "Google AI Studio direct has a free tier (15 req/min, 1M tokens/day). For low-volume cron tasks this could be /bin/bash. Context Caching API available direct only.",
       "researched_at": "2026-04-13"
+    },
+    "spend": {
+      "total_cost_usd": 5.896158,
+      "total_input_mtok": 103.4697,
+      "total_output_mtok": 1.0637,
+      "total_cache_read_mtok": 0.0,
+      "call_count": 2764,
+      "avg_cost_per_call_usd": 0.002133,
+      "period_start": "2026-03-13",
+      "period_end": "2026-04-12",
+      "source": "openrouter-api",
+      "imported_at": "2026-04-13 13:58 UTC"
     }
   },
   {
@@ -324,6 +372,18 @@
       "dashboard_url": "https://console.cloud.google.com/apis/api/generativelanguage.googleapis.com",
       "notes": "Same as Flash-Lite \u2014 free tier via Google AI Studio. Direct also unlocks Grounding with Search feature not available via OpenRouter.",
       "researched_at": "2026-04-13"
+    },
+    "spend": {
+      "total_cost_usd": 1.582435,
+      "total_input_mtok": 8.0103,
+      "total_output_mtok": 0.135,
+      "total_cache_read_mtok": 0.0,
+      "call_count": 470,
+      "avg_cost_per_call_usd": 0.003367,
+      "period_start": "2026-03-13",
+      "period_end": "2026-04-12",
+      "source": "openrouter-api",
+      "imported_at": "2026-04-13 13:58 UTC"
     }
   },
   {
@@ -433,6 +493,18 @@
       "dashboard_url": "https://console.anthropic.com/settings/usage",
       "notes": "Same Batch API and caching benefits as Sonnet. Worth consolidating under direct if already using Anthropic SDK.",
       "researched_at": "2026-04-13"
+    },
+    "spend": {
+      "total_cost_usd": 10.660948,
+      "total_input_mtok": 7.8713,
+      "total_output_mtok": 0.5579,
+      "total_cache_read_mtok": 0.0,
+      "call_count": 412,
+      "avg_cost_per_call_usd": 0.025876,
+      "period_start": "2026-03-13",
+      "period_end": "2026-04-12",
+      "source": "openrouter-api",
+      "imported_at": "2026-04-13 13:58 UTC"
     }
   },
   {
@@ -1190,6 +1262,18 @@
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true
+    },
+    "spend": {
+      "total_cost_usd": 0.621801,
+      "total_input_mtok": 2.3034,
+      "total_output_mtok": 0.0135,
+      "total_cache_read_mtok": 0.0,
+      "call_count": 102,
+      "avg_cost_per_call_usd": 0.006096,
+      "period_start": "2026-03-13",
+      "period_end": "2026-04-12",
+      "source": "openrouter-api",
+      "imported_at": "2026-04-13 13:58 UTC"
     }
   },
   {
@@ -1966,6 +2050,18 @@
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true
+    },
+    "spend": {
+      "total_cost_usd": 0.42032,
+      "total_input_mtok": 0.0049,
+      "total_output_mtok": 0.0121,
+      "total_cache_read_mtok": 0.0,
+      "call_count": 2,
+      "avg_cost_per_call_usd": 0.21016,
+      "period_start": "2026-03-13",
+      "period_end": "2026-04-12",
+      "source": "openrouter-api",
+      "imported_at": "2026-04-13 13:58 UTC"
     }
   },
   {
@@ -2136,6 +2232,18 @@
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true
+    },
+    "spend": {
+      "total_cost_usd": 20.798572,
+      "total_input_mtok": 13.3598,
+      "total_output_mtok": 0.4781,
+      "total_cache_read_mtok": 0.0,
+      "call_count": 470,
+      "avg_cost_per_call_usd": 0.044252,
+      "period_start": "2026-03-13",
+      "period_end": "2026-04-12",
+      "source": "openrouter-api",
+      "imported_at": "2026-04-13 13:58 UTC"
     }
   },
   {
@@ -2944,6 +3052,18 @@
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true
+    },
+    "spend": {
+      "total_cost_usd": 19.206555,
+      "total_input_mtok": 1.0233,
+      "total_output_mtok": 0.0514,
+      "total_cache_read_mtok": 0.0,
+      "call_count": 39,
+      "avg_cost_per_call_usd": 0.492476,
+      "period_start": "2026-03-13",
+      "period_end": "2026-04-12",
+      "source": "openrouter-api",
+      "imported_at": "2026-04-13 13:58 UTC"
     }
   },
   {
