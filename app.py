@@ -290,7 +290,9 @@ button.danger:hover { background: #991b1b; }
 .modal-section { }
 .modal-section-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--muted); font-weight: 700; margin-bottom: 8px; }
-.modal-notes { font-size: 13px; color: var(--sub); line-height: 1.6; }
+.modal-notes { font-size: 13px; color: var(--sub); line-height: 1.6;
+  overflow: visible; display: block;
+  -webkit-line-clamp: unset; -webkit-box-orient: unset; }
 .modal-list { list-style: none; }
 .modal-list li { font-size: 12px; color: var(--sub); padding: 3px 0;
   border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 6px; }
@@ -574,16 +576,52 @@ async function loadModels() {
   renderCatalog(filterModels());
 }
 
-// ── Donut SVG ──────────────────────────────────────────────────────────
+// ── Donut SVG — only for genuine 0-100 values ─────────────────────────
+// Rule: use donut only when value is naturally 0-100 (score, %, confidence).
+// For counts/dollars/prices with no defined ceiling, use plainStat instead.
 function donut(pct, color='#2563eb', size=44) {
   const r = 15.9155, c = 2 * Math.PI * r;
-  const dash = (pct / 100) * c;
+  const dash = (Math.min(100, Math.max(0, pct)) / 100) * c;
   return `<svg width="${size}" height="${size}" viewBox="0 0 36 36">
     <circle cx="18" cy="18" r="${r}" fill="none" stroke="var(--border)" stroke-width="3.5"/>
     <circle cx="18" cy="18" r="${r}" fill="none" stroke="${color}" stroke-width="3.5"
       stroke-dasharray="${dash} ${c}" stroke-dashoffset="${c * 0.25}" transform="rotate(-90 18 18)"
       stroke-linecap="round"/>
   </svg>`;
+}
+
+// ── Plain Stat — for values without a natural 0-100% ceiling ──────────
+// Renders a colored top-border tile instead of a misleading ring.
+function plainStat(value, label, sub='', color='#2563eb') {
+  return `<div class="stat-card plain-stat" style="border-top:3px solid ${color};padding-top:13px">
+    <div class="stat-info">
+      <div class="stat-val">${value}</div>
+      <div class="stat-label">${label}</div>
+      ${sub ? `<div class="stat-sub">${sub}</div>` : ''}
+    </div>
+  </div>`;
+}
+
+// Same but for the modal grid (slightly different container)
+function modalPlainStat(value, label, sub='', color='#2563eb') {
+  return `<div class="modal-stat plain-stat" style="border-top:3px solid ${color};padding-top:11px;align-items:flex-start">
+    <div class="stat-info modal-stat-info">
+      <div class="stat-val">${value}</div>
+      <div class="stat-label">${label}</div>
+      ${sub ? `<div class="stat-sub">${sub}</div>` : ''}
+    </div>
+  </div>`;
+}
+
+function modalDonutStat(pct, color, value, label, sub='') {
+  return `<div class="modal-stat">
+    <div class="donut-wrap">${donut(pct, color, 44)}</div>
+    <div class="stat-info modal-stat-info">
+      <div class="stat-val">${value}</div>
+      <div class="stat-label">${label}</div>
+      ${sub ? `<div class="stat-sub">${sub}</div>` : ''}
+    </div>
+  </div>`;
 }
 
 // ── Stats ──────────────────────────────────────────────────────────────
@@ -604,48 +642,42 @@ function renderStats() {
   const topSpender = withSpend.sort((a,b) => (b.spend?.total_cost_usd||0) - (a.spend?.total_cost_usd||0))[0];
   const spendPct = topSpender && totalSpend > 0 ? Math.round((topSpender.spend.total_cost_usd / totalSpend) * 100) : 0;
 
-  document.getElementById('stat-row').innerHTML = `
-    <div class="stat-card">
-      <div class="donut-wrap">${donut(Math.min(100, allModels.length/3.5), '#2563eb')}</div>
-      <div class="stat-info">
-        <div class="stat-val">${allModels.length}</div>
-        <div class="stat-label">Total Models</div>
-        <div class="stat-sub">${providers.length} providers</div>
-      </div>
-    </div>
-    <div class="stat-card">
+  document.getElementById('stat-row').innerHTML = [
+    // Count: no natural ceiling → plain
+    plainStat(allModels.length, 'Total Models', `${providers.length} providers`, '#2563eb'),
+    // Curated %: genuine 0-100% → donut
+    `<div class="stat-card">
       <div class="donut-wrap">${donut(curatedPct, '#34d399')}</div>
       <div class="stat-info">
-        <div class="stat-val">${curated.length}</div>
+        <div class="stat-val">${curatedPct}%</div>
         <div class="stat-label">Curated</div>
-        <div class="stat-sub">${curatedPct}% reviewed</div>
+        <div class="stat-sub">${curated.length} of ${allModels.length} reviewed</div>
       </div>
-    </div>
-    <div class="stat-card">
+    </div>`,
+    // Avg efficiency: 0-100 score → donut
+    `<div class="stat-card">
       <div class="donut-wrap">${donut(avgEff, '#fbbf24')}</div>
       <div class="stat-info">
-        <div class="stat-val">${avgEff}</div>
+        <div class="stat-val">${avgEff}<span style="font-size:13px;font-weight:400;color:var(--muted)">/100</span></div>
         <div class="stat-label">Avg Efficiency</div>
-        <div class="stat-sub">curated models only</div>
+        <div class="stat-sub">capability ÷ cost score</div>
       </div>
-    </div>
-    <div class="stat-card">
-      <div class="donut-wrap">${donut(100, '#34d399')}</div>
-      <div class="stat-info">
-        <div class="stat-val">$${cheapest?.pricing?.input_per_mtok ?? '?'}</div>
-        <div class="stat-label">Cheapest Input</div>
-        <div class="stat-sub">${cheapest?.model_name?.split(' ').slice(0,2).join(' ') ?? ''}</div>
-      </div>
-    </div>
-    ${totalSpend > 0 ? `
-    <div class="stat-card">
-      <div class="donut-wrap">${donut(spendPct, '#f87171')}</div>
-      <div class="stat-info">
-        <div class="stat-val">$${totalSpend.toFixed(2)}</div>
-        <div class="stat-label">Total Spend</div>
-        <div class="stat-sub">${topSpender?.model_name?.split(' ').slice(0,2).join(' ')} ${spendPct}%</div>
-      </div>
-    </div>` : ''}`;
+    </div>`,
+    // Cheapest input: dollar amount, no ceiling → plain
+    plainStat(
+      `$${cheapest?.pricing?.input_per_mtok ?? '?'}<span style="font-size:11px;font-weight:400;color:var(--muted)">/M</span>`,
+      'Cheapest Input',
+      cheapest?.model_name?.split(' ').slice(0,3).join(' ') ?? '',
+      '#34d399'
+    ),
+    // Total spend: dollar amount, no ceiling → plain
+    totalSpend > 0 ? plainStat(
+      `$${totalSpend.toFixed(2)}`,
+      'Total Spend',
+      topSpender ? `${topSpender.model_name?.split(' ').slice(0,2).join(' ')} leads` : '',
+      '#f87171'
+    ) : '',
+  ].join('');
 
   // Populate provider filter
   const pf = document.getElementById('catalog-provider');
@@ -1098,7 +1130,10 @@ function lineChart(dates, series, accessor, w=680, h=160, fmtY=v=>v.toFixed(2)) 
   }
 
   const allAvged = series.map(s => {
-    const lookup = Object.fromEntries((s.data||[]).map(d => [d.date, accessor(d)||0]));
+    // Per-series accessor overrides the shared one; allows mixed metrics on one chart
+    const acc = s.accessor || accessor;
+    if (!acc) return visDates.map(() => 0);
+    const lookup = Object.fromEntries((s.data||[]).map(d => [d.date, acc(d)||0]));
     const raw = visDates.map(d => lookup[d] ?? 0);
     return rollingAvg(raw);
   });
@@ -1185,34 +1220,31 @@ async function openModelDetail(modelId) {
 
   // Donuts
   const ctxPct = Math.min(100, (ctx||0)/12000);
-  const spendPct = spend?.total_cost_usd > 0 ? Math.min(100, spend.total_cost_usd/10*100) : 0;
-  document.getElementById('modal-donuts').innerHTML = `
-    <div class="modal-stat">
-      <div class="donut-wrap">${donut(eff, effColor(eff), 44)}</div>
-      <div class="stat-info modal-stat-info"><div class="stat-val">${eff}</div><div class="stat-label">Efficiency</div></div>
-    </div>
-    <div class="modal-stat">
-      <div class="donut-wrap">${donut(inp ? Math.max(5, 100 - inp*5) : 0, '#34d399', 44)}</div>
-      <div class="stat-info modal-stat-info"><div class="stat-val">$${inp??'?'}</div><div class="stat-label">Input /MTok</div></div>
-    </div>
-    <div class="modal-stat">
-      <div class="donut-wrap">${donut(ctxPct, '#2563eb', 44)}</div>
-      <div class="stat-info modal-stat-info"><div class="stat-val">${ctx ? (ctx>=1e6?(ctx/1e6).toFixed(1)+'M':Math.round(ctx/1000)+'k') : '?'}</div><div class="stat-label">Context</div></div>
-    </div>
-    ${spend?.total_cost_usd > 0 ? `
-    <div class="modal-stat">
-      <div class="donut-wrap">${donut(spendPct, '#f87171', 44)}</div>
-      <div class="stat-info modal-stat-info"><div class="stat-val">$${spend.total_cost_usd.toFixed(2)}</div><div class="stat-label">Total Spend</div></div>
-    </div>
-    <div class="modal-stat">
-      <div class="donut-wrap">${donut(Math.min(100, spend.call_count/100), '#fbbf24', 44)}</div>
-      <div class="stat-info modal-stat-info"><div class="stat-val">${spend.call_count.toLocaleString()}</div><div class="stat-label">API Calls</div></div>
-    </div>` : ''}
-    ${m._meta?.confidence ? `
-    <div class="modal-stat">
-      <div class="donut-wrap">${donut(m._meta.confidence*100, '#a78bfa', 44)}</div>
-      <div class="stat-info modal-stat-info"><div class="stat-val">${Math.round(m._meta.confidence*100)}%</div><div class="stat-label">Confidence</div></div>
-    </div>` : ''}`;
+  // Donut rule: only use ring when value is a genuine 0-100 score or %.
+  // Prices, counts, context size have no natural ceiling — use plain stat tile.
+  const ctxLabel = ctx ? (ctx>=1e6?(ctx/1e6).toFixed(1)+'M':Math.round(ctx/1000)+'k') : '?';
+  const avgCostPerCall = spend?.call_count > 0
+    ? '$' + (spend.total_cost_usd / spend.call_count).toFixed(5) + '/call' : '';
+  document.getElementById('modal-donuts').innerHTML = [
+    // Efficiency 0-100 → donut ✓
+    modalDonutStat(eff, effColor(eff), `${eff}<span style="font-size:12px;font-weight:400;color:var(--muted)">/100</span>`, 'Efficiency', 'capability ÷ cost'),
+    // Input price: $ amount, no ceiling → plain
+    modalPlainStat(inp != null ? `$${inp}/M` : '?', 'Input Price', m.pricing?.output_per_mtok != null ? `$${m.pricing.output_per_mtok}/M out` : '', '#34d399'),
+    // Context: token count, no ceiling → plain
+    modalPlainStat(ctxLabel, 'Context Window', '', '#2563eb'),
+    // Spend: dollar amount → plain
+    spend?.total_cost_usd > 0
+      ? modalPlainStat(`$${spend.total_cost_usd.toFixed(2)}`, 'Total Spend', avgCostPerCall, '#f87171')
+      : '',
+    // Call count: no ceiling → plain
+    spend?.call_count > 0
+      ? modalPlainStat(spend.call_count.toLocaleString(), 'API Calls', spend.period_start ? `${spend.period_start} → ${spend.period_end}` : '', '#fbbf24')
+      : '',
+    // Confidence 0-100% → donut ✓
+    m._meta?.confidence
+      ? modalDonutStat(m._meta.confidence * 100, '#a78bfa', `${Math.round(m._meta.confidence * 100)}%`, 'Data Confidence', '')
+      : '',
+  ].join('');
 
   // Body: notes + strengths/weaknesses
   const strengths = m.strengths || [];
@@ -1276,49 +1308,24 @@ async function openModelDetail(modelId) {
   }
 
   const dates = modelHist.map(d => d.date);
-  const costSeries = [{label:'Daily Cost', color:'#f87171', data: modelHist}];
-  const inputSeries = [{label:'Input Tokens (M)', color:'#2563eb', data: modelHist.map(d=>({...d, input_tokens: d.input_tokens/1e6}))}];
-  const outputSeries = [{label:'Output Tokens (M)', color:'#34d399', data: modelHist.map(d=>({...d, output_tokens: d.output_tokens/1e6}))}];
+
+  // Each series carries its own accessor — no shared null accessor needed
+  const costSeries = [{label:'Cost', color:'#f87171', data:modelHist, accessor: d => d.cost_usd}];
+  const tokenSeries = [
+    {label:'Input', color:'#2563eb', data:modelHist, accessor: d => (d.input_tokens||0)/1e6},
+    {label:'Output', color:'#34d399', data:modelHist, accessor: d => (d.output_tokens||0)/1e6},
+  ];
 
   chartsEl.innerHTML = `
-    <div style="display:grid;gap:20px;margin-top:20px">
+    <div style="display:grid;gap:24px;margin-top:20px">
       <div>
         <div class="chart-title">Daily Cost (USD) — 7-day rolling avg</div>
-        ${lineChart(dates, costSeries, d => d.cost_usd, 780, 160, v=>'$'+v.toFixed(3))}
+        ${lineChart(dates, costSeries, null, 780, 160, v=>'$'+v.toFixed(3))}
       </div>
       <div>
         <div class="chart-title">Daily Token Volume (Millions) — 7-day rolling avg</div>
-        ${lineChart(dates,
-          [{label:'Input', color:'#2563eb', data:modelHist}, {label:'Output', color:'#34d399', data:modelHist}],
-          null, 780, 160, v=>v.toFixed(2)+'M')}
-        <div class="chart-legend">
-          <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#2563eb"></div>Input tokens</div>
-          <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#34d399"></div>Output tokens</div>
-        </div>
-      </div>
-    </div>`;
-
-  // Fix token chart: pass two series with correct accessors
-  chartsEl.querySelector('div > div:last-child > svg, div > div:last-child > .chart-no-data')?.remove?.();
-  const tokenChart = lineChart(dates,
-    [{label:'Input', color:'#2563eb', data:modelHist}, {label:'Output', color:'#34d399', data:modelHist}],
-    null, 780, 160, v=>v.toFixed(2)+'M');
-  // Rebuild properly
-  chartsEl.innerHTML = `
-    <div style="display:grid;gap:20px;margin-top:20px">
-      <div>
-        <div class="chart-title">Daily Cost (USD) — 7-day rolling avg</div>
-        ${lineChart(dates, costSeries, d => d.cost_usd, 780, 160, v=>'$'+v.toFixed(3))}
-      </div>
-      <div>
-        <div class="chart-title">Daily Token Volume (Millions) — 7-day rolling avg</div>
-        ${lineChart(dates,
-          [{label:'Input', color:'#2563eb', data:modelHist}, {label:'Output', color:'#34d399', data:modelHist}],
-          d => (d.input_tokens||0)/1e6, 780, 160, v=>v.toFixed(2)+'M')}
-        <div style="margin-top:4px">${lineChart(dates,
-          [{label:'Output', color:'#34d399', data:modelHist}],
-          d => (d.output_tokens||0)/1e6, 780, 140, v=>v.toFixed(2)+'M')}</div>
-        <div class="chart-legend">
+        ${lineChart(dates, tokenSeries, null, 780, 180, v=>v.toFixed(2)+'M')}
+        <div class="chart-legend" style="margin-top:6px">
           <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#2563eb"></div>Input</div>
           <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#34d399"></div>Output</div>
         </div>
