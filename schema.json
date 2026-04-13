@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["model_id", "provider", "model_name"],
+    "properties": {
+      "model_id": {"type": "string"},
+      "provider": {
+        "type": "string",
+        "enum": ["openai", "anthropic", "google", "deepseek", "mistral", "meta", "other"]
+      },
+      "model_name": {"type": "string"},
+      "version": {"type": "string"},
+      "release_date": {"type": "string", "format": "date"},
+      "strengths": {"type": "array", "items": {"type": "string"}},
+      "weaknesses": {"type": "array", "items": {"type": "string"}},
+      "ideal_use_cases": {"type": "array", "items": {"type": "string"}},
+      "pricing": {
+        "type": "object",
+        "properties": {
+          "model": {"type": "string"},
+          "input_per_mtok": {"type": "number"},
+          "output_per_mtok": {"type": "number"},
+          "notes": {"type": "string"}
+        }
+      },
+      "context_window": {"type": "integer"},
+      "modalities": {"type": "array", "items": {"type": "string"}},
+      "performance_notes": {"type": "string"},
+      "routing_tags": {"type": "array", "items": {"type": "string"}},
+      "_meta": {
+        "type": "object",
+        "properties": {
+          "last_updated": {"type": "string", "format": "date-time"},
+          "source": {"type": "string"},
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1}
+        }
+      }
+    }
+  }
+}

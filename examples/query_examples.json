@@ -1,0 +1,14 @@
+[
+  {
+    "query": "Best model for coding with low cost",
+    "response": "DeepSeek Chat — best for low-cost coding. $0.14/$0.28 per MTok. Tags: [code, low-cost, reasoning]. Context: 128K."
+  },
+  {
+    "query": "Compare GPT-4o vs Claude Sonnet for reasoning",
+    "response": "Claude Sonnet 4.6 wins on reasoning depth. GPT-4o is broader multimodal and usually faster."
+  },
+  {
+    "query": "Give me a fast model under $1/MTok output",
+    "response": "Gemini 2.5 Flash-Lite — low-cost, fast-response, summarization oriented."
+  }
+]
