@@ -258,9 +258,12 @@ def main():
         slug = or_model.get("canonical_slug") or mid
         pricing = or_model.get("pricing", {})
 
-        # Skip free/zero-price models (experimental endpoints, not production)
+        # Skip free/zero-price models AND suspiciously long model names (test/junk entries)
         input_price = price_per_mtok(pricing.get("prompt", "0"))
         if input_price <= MIN_PRICE_THRESHOLD:
+            skipped += 1
+            continue
+        if len(mid) > 120:
             skipped += 1
             continue
 
