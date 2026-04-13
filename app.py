@@ -469,8 +469,14 @@ button.danger:hover { background: #991b1b; }
     <div>
       <div class="section-title">Import Spend Data</div>
       <div class="feedback-form">
-        <label>OpenRouter Activity CSV</label>
-        <p style="font-size:12px;color:var(--muted);margin-bottom:10px">Download from <a href="https://openrouter.ai/activity" target="_blank" style="color:var(--accent)">openrouter.ai/activity</a> → Export CSV. Drag it here or click to select.</p>
+        <label>Provider Activity CSV</label>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:10px">
+          Auto-detects format. Drop any of:
+          <strong>OpenRouter</strong> (openrouter.ai/activity → Export CSV) ·
+          <strong>Anthropic</strong> (console.anthropic.com/settings/usage → Export) ·
+          <strong>OpenAI</strong> (platform.openai.com/usage → Export)<br>
+          Backfills daily trend chart history from your full export history.
+        </p>
         <div id="csv-drop" style="border:2px dashed var(--border);border-radius:8px;padding:32px;text-align:center;cursor:pointer;transition:border-color 0.15s"
           ondragover="event.preventDefault();this.style.borderColor='var(--accent)'"
           ondragleave="this.style.borderColor='var(--border)'"
@@ -1460,6 +1466,7 @@ async function uploadCsv() {
     document.getElementById('csv-status').innerHTML =
       `<div class="status ok">✓ ${data.message}</div>`;
     clearCsvUpload();
+    spendHistory = null; // invalidate cache so modal re-fetches updated history
     await loadModels();
     renderSpendChart();
     renderSpendTable();
@@ -1732,9 +1739,12 @@ def api_recommend():
 
 @app.route("/api/import-spend", methods=["POST"])
 def api_import_spend():
-    """Upload an OpenRouter activity CSV and merge spend data into models.json."""
+    """
+    Upload a provider activity CSV (OpenRouter, Anthropic, or OpenAI).
+    Auto-detects format. Writes totals to models.json AND daily breakpoints
+    to spend_history.json — backfilling trend chart history from the export.
+    """
     import tempfile
-    from werkzeug.utils import secure_filename
 
     if "file" not in request.files:
         return jsonify({"ok": False, "error": "No file provided"}), 400
@@ -1756,11 +1766,11 @@ def api_import_spend():
         if result.returncode != 0:
             return jsonify({"ok": False, "error": result.stderr[:500] or result.stdout[:500]})
 
-        # Parse summary from output
         lines = result.stdout.strip().splitlines()
-        matched_line = next((l for l in lines if "models updated" in l), "")
-        return jsonify({"ok": True, "message": matched_line or "Spend data imported successfully",
-                        "output": result.stdout[:1000]})
+        models_line = next((l for l in lines if "models updated" in l or "models.json" in l), "")
+        history_line = next((l for l in lines if "spend_history" in l or "model-day" in l), "")
+        msg = " · ".join(filter(None, [models_line.strip(), history_line.strip()])) or "Import complete"
+        return jsonify({"ok": True, "message": msg, "output": result.stdout[:1200]})
     except Exception as e:
         return jsonify({"ok": False, "error": str(e)}), 500
 
