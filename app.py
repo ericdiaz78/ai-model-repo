@@ -21,6 +21,7 @@ MODELS_FILE = REPO_DIR / "models.json"
 GENERATED_FILE = REPO_DIR / "models.generated.json"
 FEEDBACK_FILE = REPO_DIR / "feedback.json"
 CHANGELOG_FILE = REPO_DIR / "CHANGELOG.md"
+SPEND_HISTORY_FILE = REPO_DIR / "spend_history.json"
 SCRIPTS_DIR = REPO_DIR / "scripts"
 
 
@@ -254,10 +255,11 @@ button.danger:hover { background: #991b1b; }
 .fb-btn.down.voted { background: #2d0a0a; border-color: var(--red); }
 
 /* COMPARE PANEL */
-.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
-.compare-col { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
-.compare-col h3 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 14px; }
-.cmp-row { display: flex; justify-content: space-between; padding: 7px 0;
+.compare-scroll { overflow-x: auto; margin-top: 14px; }
+.compare-grid { display: grid; gap: 10px; min-width: 600px; }
+.compare-col { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px; min-width: 200px; }
+.compare-col h3 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 12px; line-height: 1.3; }
+.cmp-row { display: flex; justify-content: space-between; padding: 6px 0;
   border-bottom: 1px solid var(--border); font-size: 12px; gap: 8px; }
 .cmp-row:last-child { border-bottom: none; }
 .cmp-label { color: var(--muted); flex-shrink: 0; }
@@ -266,6 +268,44 @@ button.danger:hover { background: #991b1b; }
 .rec-box { margin-top: 14px; padding: 14px 18px; border-radius: 10px;
   background: #052e16; border: 1px solid #166534; color: #4ade80; font-size: 14px; }
 [data-theme="light"] .rec-box { background: #f0fdf4; border-color: #86efac; color: #15803d; }
+
+/* MODEL DETAIL MODAL */
+.modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65);
+  z-index: 500; overflow-y: auto; padding: 24px; }
+.modal-backdrop.open { display: flex; align-items: flex-start; justify-content: center; }
+.modal { background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+  width: 100%; max-width: 860px; padding: 28px; position: relative; margin: auto; }
+.modal-close { position: absolute; top: 16px; right: 16px; background: none; border: 1px solid var(--border);
+  color: var(--muted); font-size: 18px; width: 32px; height: 32px; border-radius: 50%;
+  cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0; line-height: 1; }
+.modal-close:hover { border-color: var(--red); color: var(--red); background: none; }
+.modal-header { margin-bottom: 20px; padding-right: 40px; }
+.modal-name { font-size: 22px; font-weight: 800; color: var(--text); }
+.modal-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.modal-donuts { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 20px; }
+.modal-stat { background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px 14px; display: flex; gap: 10px; align-items: center; }
+.modal-stat-info .stat-val { font-size: 18px; }
+.modal-body-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
+.modal-section { }
+.modal-section-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 700; margin-bottom: 8px; }
+.modal-notes { font-size: 13px; color: var(--sub); line-height: 1.6; }
+.modal-list { list-style: none; }
+.modal-list li { font-size: 12px; color: var(--sub); padding: 3px 0;
+  border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 6px; }
+.modal-list li:last-child { border-bottom: none; }
+.modal-list li::before { content: "→"; color: var(--accent); font-size: 10px; flex-shrink: 0; }
+.modal-list li.weak::before { content: "✗"; color: var(--red); }
+.chart-wrap { margin-top: 20px; }
+.chart-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 700; margin-bottom: 10px; }
+.chart-svg { width: 100%; overflow: visible; }
+.chart-no-data { font-size: 12px; color: var(--muted); padding: 20px; text-align: center;
+  border: 1px dashed var(--border); border-radius: 8px; }
+.chart-legend { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+.chart-legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
+.chart-legend-dot { width: 10px; height: 3px; border-radius: 2px; }
 
 /* CHANGELOG */
 .changelog-body { background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
@@ -369,10 +409,12 @@ button.danger:hover { background: #991b1b; }
 
 <!-- COMPARE -->
 <div class="panel" id="panel-compare">
-  <p style="font-size:13px;color:var(--muted);margin-bottom:14px">Select models from the Catalog (checkboxes) or choose manually below.</p>
-  <div class="row" style="margin-bottom:14px;flex-wrap:wrap">
-    <select id="compare-a" style="flex:1;min-width:180px"><option value="">Model A…</option></select>
-    <select id="compare-b" style="flex:1;min-width:180px"><option value="">Model B…</option></select>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px">Select up to 5 models from the Catalog (checkboxes) or choose manually below.</p>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin-bottom:14px">
+    <div id="compare-selects" style="display:flex;gap:8px;flex-wrap:wrap;flex:1">
+      <!-- Selects injected by JS -->
+    </div>
+    <button class="ghost" onclick="addCompareSelect()" id="compare-add-btn" style="font-size:12px;padding:7px 12px;white-space:nowrap">+ Add Model</button>
     <select id="compare-task" style="min-width:140px">
       <option value="general">General</option>
       <option value="coding">Coding</option>
@@ -469,6 +511,20 @@ button.danger:hover { background: #991b1b; }
   <div id="ingest-results"></div>
 </div>
 
+<!-- MODEL DETAIL MODAL -->
+<div class="modal-backdrop" id="model-modal" onclick="handleModalBackdropClick(event)">
+  <div class="modal" id="modal-inner">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-header">
+      <div class="modal-name" id="modal-name"></div>
+      <div class="modal-sub" id="modal-sub"></div>
+    </div>
+    <div class="modal-donuts" id="modal-donuts"></div>
+    <div class="modal-body-grid" id="modal-body"></div>
+    <div class="chart-wrap" id="modal-charts"></div>
+  </div>
+</div>
+
 <!-- COMPARE TRAY -->
 <div id="compare-tray">
   <span style="font-size:12px;font-weight:600;color:var(--muted);white-space:nowrap">Compare:</span>
@@ -510,7 +566,6 @@ async function loadModels() {
   renderStats();
   renderTagChips();
   renderCatalog(filterModels());
-  populateCompareSelects();
 }
 
 // ── Donut SVG ──────────────────────────────────────────────────────────
@@ -688,9 +743,9 @@ function renderCatalog(models) {
       (needsReview ? '<span class="tag needs-review">needs review</span>' : '');
     const checked = compareSet.has(m.model_id) ? 'checked' : '';
     const comparing = compareSet.has(m.model_id) ? 'comparing' : '';
-    return `<div class="card ${comparing}" id="card-${CSS.escape(m.model_id)}">
+    return `<div class="card ${comparing}" id="card-${CSS.escape(m.model_id)}" onclick="handleCardClick(event,'${m.model_id}')" style="cursor:pointer">
       <div style="position:absolute;top:10px;right:10px">
-        <label class="compare-cb" title="Add to compare">
+        <label class="compare-cb" title="Add to compare" onclick="event.stopPropagation()">
           <input type="checkbox" ${checked} onchange="toggleCompare('${m.model_id}', this.checked)"> Compare
         </label>
       </div>
@@ -782,12 +837,17 @@ function clearCompare() {
 function fireCompare() {
   const ids = [...compareSet];
   if (ids.length < 2) { alert('Select at least 2 models to compare.'); return; }
-  const [a, b] = ids;
-  const selA = document.getElementById('compare-a');
-  const selB = document.getElementById('compare-b');
-  selA.value = a; selB.value = b;
+  syncCompareSetsToSelects(ids);
   showTab('compare');
   runCompare();
+}
+
+function syncCompareSetsToSelects(ids) {
+  const wrap = document.getElementById('compare-selects');
+  // Ensure enough selects exist
+  while (wrap.querySelectorAll('select').length < ids.length) addCompareSelect();
+  const sels = wrap.querySelectorAll('select');
+  ids.forEach((id, i) => { if (sels[i]) sels[i].value = id; });
 }
 
 // ── Query ──────────────────────────────────────────────────────────────
@@ -888,69 +948,388 @@ async function voteFb(el, vote, modelId, query) {
 }
 
 // ── Compare ────────────────────────────────────────────────────────────
+const COMPARE_COLORS = ['#2563eb','#34d399','#f59e0b','#f87171','#a78bfa'];
+let compareSelectCount = 0;
+
+function buildSelectOptions() {
+  const curatedFirst = [...allModels].sort((a,b) => (a._meta?.needs_review?1:0) - (b._meta?.needs_review?1:0));
+  return '<option value="">— pick model —</option>' +
+    curatedFirst.map(m => `<option value="${m.model_id}">${m.model_name}${m._meta?.needs_review?' ⚠':''}</option>`).join('');
+}
+
+function addCompareSelect(val='') {
+  const wrap = document.getElementById('compare-selects');
+  if (wrap.querySelectorAll('select').length >= 5) return;
+  compareSelectCount++;
+  const idx = wrap.querySelectorAll('select').length;
+  const div = document.createElement('div');
+  div.style.cssText = 'display:flex;align-items:center;gap:4px';
+  div.innerHTML = `
+    <span style="width:10px;height:10px;border-radius:50%;background:${COMPARE_COLORS[idx]};flex-shrink:0"></span>
+    <select style="min-width:160px;flex:1" class="cmp-sel">${buildSelectOptions()}</select>
+    <button class="ghost" onclick="this.parentElement.remove();checkAddBtn()" style="padding:5px 8px;font-size:12px;border-radius:6px">✕</button>`;
+  wrap.appendChild(div);
+  if (val) div.querySelector('select').value = val;
+  checkAddBtn();
+}
+
+function checkAddBtn() {
+  const cnt = document.getElementById('compare-selects').querySelectorAll('select').length;
+  document.getElementById('compare-add-btn').style.display = cnt >= 5 ? 'none' : '';
+}
+
 function populateCompareSelects() {
-  ['compare-a','compare-b'].forEach(id => {
-    const sel = document.getElementById(id);
-    const curatedFirst = [...allModels].sort((a,b) => (a._meta?.needs_review?1:0) - (b._meta?.needs_review?1:0));
-    curatedFirst.forEach(m => {
-      const o = document.createElement('option'); o.value = m.model_id;
-      o.textContent = m.model_name + (m._meta?.needs_review ? ' ⚠' : '');
-      sel.appendChild(o);
-    });
-  });
+  // Start with 2 default selects
+  addCompareSelect(); addCompareSelect();
 }
 
 async function runCompare() {
-  const a = document.getElementById('compare-a').value;
-  const b = document.getElementById('compare-b').value;
+  const sels = [...document.querySelectorAll('#compare-selects .cmp-sel')];
+  const ids = sels.map(s => s.value).filter(Boolean);
+  if (ids.length < 2) {
+    document.getElementById('compare-results').innerHTML = '<div class="status err">Select at least 2 models.</div>';
+    return;
+  }
   const task = document.getElementById('compare-task').value;
-  if (!a || !b) return;
   const out = document.getElementById('compare-results');
   out.innerHTML = '<div class="loading"><span class="spinner"></span>Comparing…</div>';
-  const res = await fetch('/api/compare', {method:'POST', headers:{'Content-Type':'application/json'},
-    body: JSON.stringify({model_a: a, model_b: b, task})});
-  const data = await res.json();
-  if (data.error) { out.innerHTML = `<div class="status err">✗ ${data.error}</div>`; return; }
-  const ma = data.model_a, mb = data.model_b;
-  const cheaperA = (ma.pricing?.input_per_mtok||999) <= (mb.pricing?.input_per_mtok||999);
-  const ctxA = (ma.context_window||0) >= (mb.context_window||0);
-  const effA = computeEff(ma), effB = computeEff(mb);
-  const effWinA = effA >= effB;
+
+  // Fetch all models data
+  const models = ids.map(id => allModels.find(m => m.model_id === id)).filter(Boolean);
+  if (models.length < 2) { out.innerHTML = '<div class="status err">Could not find selected models.</div>'; return; }
+
+  // Fetch spend history for all selected models
+  let history = {};
+  try {
+    const hr = await fetch('/api/spend-history');
+    history = await hr.json();
+  } catch(e) {}
+
+  const effs = models.map(m => computeEff(m));
+  const minInp = Math.min(...models.map(m => m.pricing?.input_per_mtok ?? 999));
+  const maxCtx = Math.max(...models.map(m => m.context_window ?? 0));
+  const maxEff = Math.max(...effs);
 
   function fmtCtx(n) { return n ? (n>=1e6?(n/1e6).toFixed(1)+'M':Math.round(n/1000)+'k') : '?'; }
 
-  out.innerHTML = `<div class="compare-grid">
-    <div class="compare-col">
-      <h3>${ma.model_name}</h3>
-      <div class="cmp-row"><span class="cmp-label">Provider</span><span class="cmp-val">${ma.provider}</span></div>
-      <div class="cmp-row"><span class="cmp-label">Input cost</span><span class="cmp-val ${cheaperA?'win':''}">$${ma.pricing?.input_per_mtok??'?'}/MTok</span></div>
-      <div class="cmp-row"><span class="cmp-label">Output cost</span><span class="cmp-val">$${ma.pricing?.output_per_mtok??'?'}/MTok</span></div>
-      <div class="cmp-row"><span class="cmp-label">Context</span><span class="cmp-val ${ctxA?'win':''}">${fmtCtx(ma.context_window)}</span></div>
-      <div class="cmp-row"><span class="cmp-label">Efficiency</span><span class="cmp-val ${effWinA?'win':''}">${effA}/100</span></div>
-      <div class="cmp-row"><span class="cmp-label">Strengths</span><span class="cmp-val">${(ma.strengths||[]).slice(0,3).join(', ')||'—'}</span></div>
-      <div class="cmp-row"><span class="cmp-label">Tags</span><span class="cmp-val">${(ma.routing_tags||[]).join(', ')||'—'}</span></div>
-      ${ma.spend?.total_cost_usd > 0 ? `
-      <div class="cmp-row"><span class="cmp-label">Total spent</span><span class="cmp-val spend-val">$${ma.spend.total_cost_usd.toFixed(2)}</span></div>
-      <div class="cmp-row"><span class="cmp-label">Calls · avg/call</span><span class="cmp-val">${ma.spend.call_count.toLocaleString()} · $${ma.spend.avg_cost_per_call_usd.toFixed(5)}</span></div>
-      <div class="cmp-row"><span class="cmp-label">Cache read</span><span class="cmp-val">${ma.spend.total_cache_read_mtok?.toFixed(2)||'0'}M tok</span></div>` : ''}
+  const cols = models.map((m, i) => {
+    const eff = effs[i];
+    const inp = m.pricing?.input_per_mtok ?? null;
+    const color = COMPARE_COLORS[i];
+    const isMinInp = inp !== null && inp <= minInp;
+    const isMaxCtx = (m.context_window||0) >= maxCtx;
+    const isMaxEff = eff >= maxEff;
+    return `<div class="compare-col" style="border-top:3px solid ${color}">
+      <h3><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${color};margin-right:6px"></span>${m.model_name}</h3>
+      <div class="cmp-row"><span class="cmp-label">Provider</span><span class="cmp-val">${m.provider}</span></div>
+      <div class="cmp-row"><span class="cmp-label">Input</span><span class="cmp-val ${isMinInp?'win':''}">$${inp??'?'}/M</span></div>
+      <div class="cmp-row"><span class="cmp-label">Output</span><span class="cmp-val">$${m.pricing?.output_per_mtok??'?'}/M</span></div>
+      <div class="cmp-row"><span class="cmp-label">Context</span><span class="cmp-val ${isMaxCtx?'win':''}">${fmtCtx(m.context_window)}</span></div>
+      <div class="cmp-row"><span class="cmp-label">Efficiency</span><span class="cmp-val ${isMaxEff?'win':''}">${eff}/100</span></div>
+      <div class="cmp-row"><span class="cmp-label">Tags</span><span class="cmp-val" style="font-size:10px">${(m.routing_tags||[]).slice(0,3).join(', ')||'—'}</span></div>
+      ${m.spend?.total_cost_usd > 0 ? `
+      <div class="cmp-row"><span class="cmp-label">Spent</span><span class="cmp-val" style="color:var(--amber)">$${m.spend.total_cost_usd.toFixed(2)}</span></div>
+      <div class="cmp-row"><span class="cmp-label">Calls</span><span class="cmp-val">${m.spend.call_count.toLocaleString()}</span></div>
+      <div class="cmp-row"><span class="cmp-label">Avg/call</span><span class="cmp-val">$${m.spend.avg_cost_per_call_usd.toFixed(5)}</span></div>` : `
+      <div class="cmp-row"><span class="cmp-label">Spent</span><span class="cmp-val" style="color:var(--muted)">no data</span></div>`}
+      ${m.direct_pricing?.direct_available ? `
+      <div class="cmp-row"><span class="cmp-label">Direct API</span><span class="cmp-val" style="color:var(--green)">⚡ Yes</span></div>` : ''}
+      ${m.direct_pricing?.batch_input_per_mtok ? `
+      <div class="cmp-row"><span class="cmp-label">Batch</span><span class="cmp-val" style="color:var(--green)">$${m.direct_pricing.batch_input_per_mtok}/M</span></div>` : ''}
+    </div>`;
+  });
+
+  const gridCols = `repeat(${models.length}, minmax(180px, 1fr))`;
+  const winner = models[effs.indexOf(maxEff)];
+
+  // Build trend charts for models that have history
+  const hasHistory = models.some(m => (history[m.model_id]||[]).length > 1 || (history[m.openrouter_slug]||[]).length > 1);
+  let trendsHtml = '';
+  if (hasHistory) {
+    const allDates = new Set();
+    models.forEach(m => {
+      const h = history[m.model_id] || history[m.openrouter_slug] || [];
+      h.forEach(d => allDates.add(d.date));
+    });
+    const dates = [...allDates].sort();
+    const seriesCost = models.map((m,i) => ({
+      label: m.model_name, color: COMPARE_COLORS[i],
+      data: history[m.model_id] || history[m.openrouter_slug] || []
+    }));
+    trendsHtml = `<div style="margin-top:20px">
+      <div class="section-title">Daily Cost Trend — All Models</div>
+      ${lineChart(dates, seriesCost, d => d.cost_usd, 700, 180, v => '$'+v.toFixed(2))}
+      <div class="chart-legend">${seriesCost.map(s =>
+        `<div class="chart-legend-item"><div class="chart-legend-dot" style="background:${s.color}"></div>${s.label}</div>`).join('')}
+      </div>
+    </div>`;
+  }
+
+  out.innerHTML = `
+    <div class="compare-scroll">
+      <div class="compare-grid" style="grid-template-columns:${gridCols}">${cols.join('')}</div>
     </div>
-    <div class="compare-col">
-      <h3>${mb.model_name}</h3>
-      <div class="cmp-row"><span class="cmp-label">Provider</span><span class="cmp-val">${mb.provider}</span></div>
-      <div class="cmp-row"><span class="cmp-label">Input cost</span><span class="cmp-val ${!cheaperA?'win':''}">$${mb.pricing?.input_per_mtok??'?'}/MTok</span></div>
-      <div class="cmp-row"><span class="cmp-label">Output cost</span><span class="cmp-val">$${mb.pricing?.output_per_mtok??'?'}/MTok</span></div>
-      <div class="cmp-row"><span class="cmp-label">Context</span><span class="cmp-val ${!ctxA?'win':''}">${fmtCtx(mb.context_window)}</span></div>
-      <div class="cmp-row"><span class="cmp-label">Efficiency</span><span class="cmp-val ${!effWinA?'win':''}">${effB}/100</span></div>
-      <div class="cmp-row"><span class="cmp-label">Strengths</span><span class="cmp-val">${(mb.strengths||[]).slice(0,3).join(', ')||'—'}</span></div>
-      <div class="cmp-row"><span class="cmp-label">Tags</span><span class="cmp-val">${(mb.routing_tags||[]).join(', ')||'—'}</span></div>
-      ${mb.spend?.total_cost_usd > 0 ? `
-      <div class="cmp-row"><span class="cmp-label">Total spent</span><span class="cmp-val spend-val">$${mb.spend.total_cost_usd.toFixed(2)}</span></div>
-      <div class="cmp-row"><span class="cmp-label">Calls · avg/call</span><span class="cmp-val">${mb.spend.call_count.toLocaleString()} · $${mb.spend.avg_cost_per_call_usd.toFixed(5)}</span></div>
-      <div class="cmp-row"><span class="cmp-label">Cache read</span><span class="cmp-val">${mb.spend.total_cache_read_mtok?.toFixed(2)||'0'}M tok</span></div>` : ''}
-    </div>
-  </div>
-  ${data.recommendation ? `<div class="rec-box">🏆 ${data.recommendation}</div>` : ''}`;
+    <div class="rec-box" style="margin-top:14px">🏆 Best overall: <strong>${winner.model_name}</strong> (efficiency ${maxEff}/100${minInp < 999 ? ', $'+minInp+'/M input' : ''})</div>
+    ${trendsHtml}`;
 }
+
+// ── SVG Line Chart ────────────────────────────────────────────────────
+function lineChart(dates, series, accessor, w=680, h=160, fmtY=v=>v.toFixed(2)) {
+  if (!dates.length) return '<div class="chart-no-data">No daily data yet — accumulates with each hourly sync.</div>';
+  const pad = {t:10, r:10, b:30, l:54};
+  const cw = w - pad.l - pad.r, ch = h - pad.t - pad.b;
+
+  // Compute rolling 90-day window
+  const cutoff = dates.length > 90 ? dates[dates.length - 90] : dates[0];
+  const visDates = dates.filter(d => d >= cutoff);
+
+  // For each series, build value lookup and apply 7-day rolling average
+  function rollingAvg(vals, k=7) {
+    return vals.map((v, i) => {
+      const slice = vals.slice(Math.max(0, i-k+1), i+1).filter(x => x != null);
+      return slice.length ? slice.reduce((a,b)=>a+b,0)/slice.length : 0;
+    });
+  }
+
+  const allAvged = series.map(s => {
+    const lookup = Object.fromEntries((s.data||[]).map(d => [d.date, accessor(d)||0]));
+    const raw = visDates.map(d => lookup[d] ?? 0);
+    return rollingAvg(raw);
+  });
+
+  const allVals = allAvged.flat().filter(v => v > 0);
+  if (!allVals.length) return '<div class="chart-no-data">No spend data in this range yet.</div>';
+  const maxV = Math.max(...allVals) * 1.1 || 1;
+
+  function px(i, v) {
+    const x = pad.l + (i / Math.max(visDates.length-1,1)) * cw;
+    const y = pad.t + ch - (v / maxV) * ch;
+    return [x, y];
+  }
+
+  // Axis labels
+  const yTicks = 4;
+  const yLabels = Array.from({length:yTicks+1}, (_,i) => {
+    const v = (maxV * i/yTicks);
+    const y = pad.t + ch - (v/maxV)*ch;
+    return `<text x="${pad.l-6}" y="${y+4}" text-anchor="end" font-size="9" fill="var(--muted)">${fmtY(v)}</text>
+      <line x1="${pad.l}" y1="${y}" x2="${pad.l+cw}" y2="${y}" stroke="var(--border)" stroke-width="0.5"/>`;
+  }).join('');
+
+  // X axis: show ~5 date labels
+  const xStep = Math.max(1, Math.floor(visDates.length/5));
+  const xLabels = visDates.map((d, i) => {
+    if (i % xStep !== 0 && i !== visDates.length-1) return '';
+    const [x] = px(i, 0);
+    return `<text x="${x}" y="${pad.t+ch+18}" text-anchor="middle" font-size="9" fill="var(--muted)">${d.slice(5)}</text>`;
+  }).join('');
+
+  // Path + area per series
+  const paths = series.map((s, si) => {
+    const avged = allAvged[si];
+    const pts = avged.map((v, i) => px(i, v));
+    if (!pts.length) return '';
+    const d = pts.map(([x,y],i) => (i===0?'M':'L')+x.toFixed(1)+' '+y.toFixed(1)).join(' ');
+    const areaBottom = pad.t + ch;
+    const area = pts.map(([x,y],i) => (i===0?'M':'L')+x.toFixed(1)+' '+y.toFixed(1)).join(' ')
+      + ` L${pts[pts.length-1][0].toFixed(1)} ${areaBottom} L${pts[0][0].toFixed(1)} ${areaBottom} Z`;
+    return `<path d="${area}" fill="${s.color}" fill-opacity="0.08"/>
+      <path d="${d}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      ${pts.map(([x,y],i) => i===pts.length-1 ? `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3" fill="${s.color}"/>` : '').join('')}`;
+  }).join('');
+
+  return `<svg class="chart-svg" viewBox="0 0 ${w} ${h}" style="max-height:${h}px">
+    ${yLabels}${xLabels}
+    <line x1="${pad.l}" y1="${pad.t}" x2="${pad.l}" y2="${pad.t+ch}" stroke="var(--border)" stroke-width="1"/>
+    ${paths}
+  </svg>`;
+}
+
+// ── Model Detail Modal ────────────────────────────────────────────────
+let spendHistory = null;
+
+async function getHistory() {
+  if (spendHistory) return spendHistory;
+  try {
+    const r = await fetch('/api/spend-history');
+    spendHistory = await r.json();
+  } catch(e) { spendHistory = {}; }
+  return spendHistory;
+}
+
+function handleCardClick(e, modelId) {
+  // Don't open if clicking the checkbox label
+  if (e.target.closest('.compare-cb')) return;
+  openModelDetail(modelId);
+}
+
+async function openModelDetail(modelId) {
+  const m = allModels.find(x => x.model_id === modelId);
+  if (!m) return;
+  const modal = document.getElementById('model-modal');
+  const eff = computeEff(m);
+  const inp = m.pricing?.input_per_mtok ?? null;
+  const ctx = m.context_window;
+  const spend = m.spend;
+
+  // Header
+  document.getElementById('modal-name').textContent = m.model_name;
+  document.getElementById('modal-sub').textContent =
+    [m.provider, m.version ? 'v'+m.version : null, m.release_date].filter(Boolean).join(' · ');
+
+  // Donuts
+  const ctxPct = Math.min(100, (ctx||0)/12000);
+  const spendPct = spend?.total_cost_usd > 0 ? Math.min(100, spend.total_cost_usd/10*100) : 0;
+  document.getElementById('modal-donuts').innerHTML = `
+    <div class="modal-stat">
+      <div class="donut-wrap">${donut(eff, effColor(eff), 44)}</div>
+      <div class="stat-info modal-stat-info"><div class="stat-val">${eff}</div><div class="stat-label">Efficiency</div></div>
+    </div>
+    <div class="modal-stat">
+      <div class="donut-wrap">${donut(inp ? Math.max(5, 100 - inp*5) : 0, '#34d399', 44)}</div>
+      <div class="stat-info modal-stat-info"><div class="stat-val">$${inp??'?'}</div><div class="stat-label">Input /MTok</div></div>
+    </div>
+    <div class="modal-stat">
+      <div class="donut-wrap">${donut(ctxPct, '#2563eb', 44)}</div>
+      <div class="stat-info modal-stat-info"><div class="stat-val">${ctx ? (ctx>=1e6?(ctx/1e6).toFixed(1)+'M':Math.round(ctx/1000)+'k') : '?'}</div><div class="stat-label">Context</div></div>
+    </div>
+    ${spend?.total_cost_usd > 0 ? `
+    <div class="modal-stat">
+      <div class="donut-wrap">${donut(spendPct, '#f87171', 44)}</div>
+      <div class="stat-info modal-stat-info"><div class="stat-val">$${spend.total_cost_usd.toFixed(2)}</div><div class="stat-label">Total Spend</div></div>
+    </div>
+    <div class="modal-stat">
+      <div class="donut-wrap">${donut(Math.min(100, spend.call_count/100), '#fbbf24', 44)}</div>
+      <div class="stat-info modal-stat-info"><div class="stat-val">${spend.call_count.toLocaleString()}</div><div class="stat-label">API Calls</div></div>
+    </div>` : ''}
+    ${m._meta?.confidence ? `
+    <div class="modal-stat">
+      <div class="donut-wrap">${donut(m._meta.confidence*100, '#a78bfa', 44)}</div>
+      <div class="stat-info modal-stat-info"><div class="stat-val">${Math.round(m._meta.confidence*100)}%</div><div class="stat-label">Confidence</div></div>
+    </div>` : ''}`;
+
+  // Body: notes + strengths/weaknesses
+  const strengths = m.strengths || [];
+  const weaknesses = m.weaknesses || [];
+  const useCases = m.ideal_use_cases || [];
+  const notes = m.performance_notes || '';
+  const directP = m.direct_pricing;
+  document.getElementById('modal-body').innerHTML = `
+    ${notes ? `<div class="modal-section" style="grid-column:1/-1">
+      <div class="modal-section-title">Performance Notes</div>
+      <div class="modal-notes">${notes}</div>
+    </div>` : ''}
+    ${strengths.length ? `<div class="modal-section">
+      <div class="modal-section-title">Strengths</div>
+      <ul class="modal-list">${strengths.map(s=>`<li>${s}</li>`).join('')}</ul>
+    </div>` : ''}
+    ${weaknesses.length ? `<div class="modal-section">
+      <div class="modal-section-title">Weaknesses</div>
+      <ul class="modal-list">${weaknesses.map(s=>`<li class="weak">${s}</li>`).join('')}</ul>
+    </div>` : ''}
+    ${useCases.length ? `<div class="modal-section">
+      <div class="modal-section-title">Ideal Use Cases</div>
+      <ul class="modal-list">${useCases.map(s=>`<li>${s}</li>`).join('')}</ul>
+    </div>` : ''}
+    ${directP ? `<div class="modal-section">
+      <div class="modal-section-title">Direct API</div>
+      <ul class="modal-list">
+        ${directP.direct_available ? '<li>Direct API available</li>' : '<li class="weak">OpenRouter only</li>'}
+        ${directP.batch_input_per_mtok ? `<li>Batch: $${directP.batch_input_per_mtok}/M in</li>` : ''}
+        ${directP.cache_read_per_mtok ? `<li>Cache read: $${directP.cache_read_per_mtok}/M</li>` : ''}
+        ${directP.notes ? `<li>${directP.notes}</li>` : ''}
+      </ul>
+    </div>` : ''}
+    ${spend?.total_cost_usd > 0 ? `<div class="modal-section">
+      <div class="modal-section-title">Spend Summary</div>
+      <ul class="modal-list">
+        <li>Total: $${spend.total_cost_usd.toFixed(4)}</li>
+        <li>${spend.call_count.toLocaleString()} calls · $${spend.avg_cost_per_call_usd.toFixed(5)}/call</li>
+        <li>Input: ${spend.total_input_mtok.toFixed(2)}M tok</li>
+        <li>Output: ${spend.total_output_mtok.toFixed(2)}M tok</li>
+        ${spend.total_cache_read_mtok > 0 ? `<li>Cached: ${spend.total_cache_read_mtok.toFixed(2)}M tok</li>` : ''}
+        ${spend.period_start ? `<li>${spend.period_start} → ${spend.period_end}</li>` : ''}
+      </ul>
+    </div>` : ''}`;
+
+  // Charts (async)
+  const chartsEl = document.getElementById('modal-charts');
+  chartsEl.innerHTML = '<div class="loading"><span class="spinner"></span>Loading trend data…</div>';
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  const hist = await getHistory();
+  const modelHist = hist[m.model_id] || hist[m.openrouter_slug] || [];
+
+  if (modelHist.length < 2) {
+    chartsEl.innerHTML = `<div class="chart-no-data" style="margin-top:16px">
+      Daily trend data is accumulating — check back after a few more hourly syncs.<br>
+      <span style="font-size:11px;color:var(--muted)">(${modelHist.length} day${modelHist.length===1?'':'s'} of data so far)</span>
+    </div>`;
+    return;
+  }
+
+  const dates = modelHist.map(d => d.date);
+  const costSeries = [{label:'Daily Cost', color:'#f87171', data: modelHist}];
+  const inputSeries = [{label:'Input Tokens (M)', color:'#2563eb', data: modelHist.map(d=>({...d, input_tokens: d.input_tokens/1e6}))}];
+  const outputSeries = [{label:'Output Tokens (M)', color:'#34d399', data: modelHist.map(d=>({...d, output_tokens: d.output_tokens/1e6}))}];
+
+  chartsEl.innerHTML = `
+    <div style="display:grid;gap:20px;margin-top:20px">
+      <div>
+        <div class="chart-title">Daily Cost (USD) — 7-day rolling avg</div>
+        ${lineChart(dates, costSeries, d => d.cost_usd, 780, 160, v=>'$'+v.toFixed(3))}
+      </div>
+      <div>
+        <div class="chart-title">Daily Token Volume (Millions) — 7-day rolling avg</div>
+        ${lineChart(dates,
+          [{label:'Input', color:'#2563eb', data:modelHist}, {label:'Output', color:'#34d399', data:modelHist}],
+          null, 780, 160, v=>v.toFixed(2)+'M')}
+        <div class="chart-legend">
+          <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#2563eb"></div>Input tokens</div>
+          <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#34d399"></div>Output tokens</div>
+        </div>
+      </div>
+    </div>`;
+
+  // Fix token chart: pass two series with correct accessors
+  chartsEl.querySelector('div > div:last-child > svg, div > div:last-child > .chart-no-data')?.remove?.();
+  const tokenChart = lineChart(dates,
+    [{label:'Input', color:'#2563eb', data:modelHist}, {label:'Output', color:'#34d399', data:modelHist}],
+    null, 780, 160, v=>v.toFixed(2)+'M');
+  // Rebuild properly
+  chartsEl.innerHTML = `
+    <div style="display:grid;gap:20px;margin-top:20px">
+      <div>
+        <div class="chart-title">Daily Cost (USD) — 7-day rolling avg</div>
+        ${lineChart(dates, costSeries, d => d.cost_usd, 780, 160, v=>'$'+v.toFixed(3))}
+      </div>
+      <div>
+        <div class="chart-title">Daily Token Volume (Millions) — 7-day rolling avg</div>
+        ${lineChart(dates,
+          [{label:'Input', color:'#2563eb', data:modelHist}, {label:'Output', color:'#34d399', data:modelHist}],
+          d => (d.input_tokens||0)/1e6, 780, 160, v=>v.toFixed(2)+'M')}
+        <div style="margin-top:4px">${lineChart(dates,
+          [{label:'Output', color:'#34d399', data:modelHist}],
+          d => (d.output_tokens||0)/1e6, 780, 140, v=>v.toFixed(2)+'M')}</div>
+        <div class="chart-legend">
+          <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#2563eb"></div>Input</div>
+          <div class="chart-legend-item"><div class="chart-legend-dot" style="background:#34d399"></div>Output</div>
+        </div>
+      </div>
+    </div>`;
+}
+
+function closeModal() {
+  document.getElementById('model-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function handleModalBackdropClick(e) {
+  if (e.target === document.getElementById('model-modal')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 // ── Changelog ──────────────────────────────────────────────────────────
 async function loadChangelog() {
@@ -1176,7 +1555,7 @@ function showTab(name) {
   if (name === 'usage') { renderSpendChart(); renderSpendTable(); }
 }
 
-loadModels();
+loadModels().then(() => populateCompareSelects());
 </script>
 </body>
 </html>"""
@@ -1401,6 +1780,16 @@ def api_sync():
         return jsonify({"ok": result.returncode == 0, "output": result.stdout.strip() or result.stderr.strip()})
     except Exception as e:
         return jsonify({"ok": False, "error": str(e)}), 500
+
+
+@app.route("/api/spend-history")
+def api_spend_history():
+    if not SPEND_HISTORY_FILE.exists():
+        return jsonify({})
+    try:
+        return jsonify(json.loads(SPEND_HISTORY_FILE.read_text()))
+    except Exception:
+        return jsonify({})
 
 
 @app.route("/api/route", methods=["GET"])

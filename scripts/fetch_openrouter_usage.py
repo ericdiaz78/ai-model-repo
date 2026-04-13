@@ -26,6 +26,7 @@ STATE_FILE = REPO_DIR / ".usage-sync-state.json"  # tracks last successful pull
 
 OPENROUTER_ACTIVITY_URL = "https://openrouter.ai/api/v1/activity"
 OPENROUTER_CREDITS_URL = "https://openrouter.ai/api/v1/credits"
+SPEND_HISTORY_FILE = REPO_DIR / "spend_history.json"
 
 
 def get_management_key():
@@ -73,7 +74,7 @@ def fetch_credits(key):
 
 
 def aggregate_activity(records):
-    """Aggregate activity records by model slug."""
+    """Aggregate activity records by model slug, and collect daily breakdowns."""
     agg = defaultdict(lambda: {
         "total_cost_usd": 0.0,
         "total_input_tokens": 0,
@@ -82,18 +83,51 @@ def aggregate_activity(records):
         "call_count": 0,
         "dates": set(),
     })
+    # daily[slug][date] = {cost_usd, input_tokens, output_tokens, calls}
+    daily = defaultdict(lambda: defaultdict(lambda: {
+        "cost_usd": 0.0, "input_tokens": 0, "output_tokens": 0, "calls": 0
+    }))
     for r in records:
         slug = r.get("model_permaslug") or r.get("model", "")
         if not slug:
             continue
-        agg[slug]["total_cost_usd"] += float(r.get("usage", 0))
-        agg[slug]["total_input_tokens"] += int(r.get("prompt_tokens", 0))
-        agg[slug]["total_output_tokens"] += int(r.get("completion_tokens", 0))
-        # reasoning tokens included in output for cost purposes
-        agg[slug]["call_count"] += int(r.get("requests", 1))
-        if r.get("date"):
-            agg[slug]["dates"].add(r["date"][:10])
-    return dict(agg)
+        cost = float(r.get("usage", 0))
+        inp = int(r.get("prompt_tokens", 0))
+        out = int(r.get("completion_tokens", 0))
+        calls = int(r.get("requests", 1))
+        agg[slug]["total_cost_usd"] += cost
+        agg[slug]["total_input_tokens"] += inp
+        agg[slug]["total_output_tokens"] += out
+        agg[slug]["call_count"] += calls
+        date = (r.get("date") or "")[:10]
+        if date:
+            agg[slug]["dates"].add(date)
+            daily[slug][date]["cost_usd"] += cost
+            daily[slug][date]["input_tokens"] += inp
+            daily[slug][date]["output_tokens"] += out
+            daily[slug][date]["calls"] += calls
+    return dict(agg), {slug: dict(days) for slug, days in daily.items()}
+
+
+def merge_spend_history(slug, new_daily):
+    """Merge new daily data into spend_history.json."""
+    history = {}
+    if SPEND_HISTORY_FILE.exists():
+        try:
+            history = json.loads(SPEND_HISTORY_FILE.read_text())
+        except Exception:
+            pass
+    existing = {entry["date"]: entry for entry in history.get(slug, [])}
+    for date, data in new_daily.items():
+        if date in existing:
+            existing[date]["cost_usd"] = round(existing[date]["cost_usd"] + data["cost_usd"], 8)
+            existing[date]["input_tokens"] += data["input_tokens"]
+            existing[date]["output_tokens"] += data["output_tokens"]
+            existing[date]["calls"] += data["calls"]
+        else:
+            existing[date] = {"date": date, **data}
+    history[slug] = sorted(existing.values(), key=lambda x: x["date"])
+    SPEND_HISTORY_FILE.write_text(json.dumps(history, indent=2) + "\n")
 
 
 def match_model(slug, models):
@@ -161,7 +195,7 @@ def main():
         save_state({"last_sync_ts": now.timestamp(), "last_sync": now.isoformat()})
         return
 
-    agg = aggregate_activity(records)
+    agg, daily = aggregate_activity(records)
 
     # Print summary
     if not args.quiet:
@@ -186,6 +220,10 @@ def main():
     period_end = max(all_dates) if all_dates else now.strftime("%Y-%m-%d")
 
     for slug, data in agg.items():
+        # Write daily history for this slug
+        if slug in daily:
+            merge_spend_history(slug, daily[slug])
+
         m = match_model(slug, models)
         if m:
             existing = m.get("spend") or {}
