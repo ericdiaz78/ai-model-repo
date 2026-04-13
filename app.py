@@ -1403,6 +1403,46 @@ def api_sync():
         return jsonify({"ok": False, "error": str(e)}), 500
 
 
+@app.route("/api/route", methods=["GET"])
+def api_route():
+    """
+    Routing decision endpoint — returns optimal endpoint for a given model + context.
+    Used by agents to decide openrouter vs direct vs batch.
+
+    GET /api/route?model=anthropic/claude-sonnet-4-6&prompt_tokens=50000&cacheable=1&batch=0
+    """
+    model_id = request.args.get("model", "")
+    if not model_id:
+        return jsonify({"error": "model parameter required"}), 400
+
+    prompt_tokens = int(request.args.get("prompt_tokens", 1000))
+    output_tokens = int(request.args.get("output_tokens", 500))
+    cacheable = request.args.get("cacheable", "0") in ("1", "true", "yes")
+    cache_hit_ratio = float(request.args.get("cache_hit_ratio", 0.3))
+    batch = request.args.get("batch", "0") in ("1", "true", "yes")
+    task = request.args.get("task", None)
+
+    try:
+        # Import inline to avoid module-level import issues with path
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("routing_engine", SCRIPTS_DIR / "routing_engine.py")
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        result = mod.recommend_route(
+            model_id=model_id,
+            prompt_tokens=prompt_tokens,
+            output_tokens=output_tokens,
+            cacheable=cacheable,
+            cache_hit_ratio=cache_hit_ratio,
+            batch=batch,
+            real_time=not batch,
+            task=task,
+        )
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)
