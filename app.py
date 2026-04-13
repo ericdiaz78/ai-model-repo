@@ -324,6 +324,7 @@ button.danger:hover { background: #991b1b; }
   <div class="tab active" onclick="showTab('catalog')">Catalog</div>
   <div class="tab" onclick="showTab('query')">Query</div>
   <div class="tab" onclick="showTab('compare')">Compare</div>
+  <div class="tab" onclick="showTab('usage')">Usage</div>
   <div class="tab" onclick="showTab('changelog')">Changelog</div>
   <div class="tab" onclick="showTab('feedback')">Feedback</div>
   <div class="tab" onclick="showTab('ingest')">Ingest</div>
@@ -417,6 +418,43 @@ button.danger:hover { background: #991b1b; }
       <div class="section-title">Recent Feedback</div>
       <div id="fb-history"><div class="loading"><span class="spinner"></span>Loading…</div></div>
     </div>
+  </div>
+</div>
+
+<!-- USAGE -->
+<div class="panel" id="panel-usage">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start">
+    <div>
+      <div class="section-title">Import Spend Data</div>
+      <div class="feedback-form">
+        <label>OpenRouter Activity CSV</label>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:10px">Download from <a href="https://openrouter.ai/activity" target="_blank" style="color:var(--accent)">openrouter.ai/activity</a> → Export CSV. Drag it here or click to select.</p>
+        <div id="csv-drop" style="border:2px dashed var(--border);border-radius:8px;padding:32px;text-align:center;cursor:pointer;transition:border-color 0.15s"
+          ondragover="event.preventDefault();this.style.borderColor='var(--accent)'"
+          ondragleave="this.style.borderColor='var(--border)'"
+          ondrop="handleCsvDrop(event)"
+          onclick="document.getElementById('csv-file').click()">
+          <div style="font-size:28px;margin-bottom:8px">📊</div>
+          <div style="font-size:13px;color:var(--sub)">Drop CSV here or click to browse</div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">openrouter_activity_*.csv</div>
+        </div>
+        <input type="file" id="csv-file" accept=".csv" style="display:none" onchange="handleCsvFile(this.files[0])">
+        <div id="csv-preview" style="margin-top:12px"></div>
+        <div style="display:flex;gap:8px;margin-top:12px">
+          <button onclick="uploadCsv()" id="csv-upload-btn" style="flex:1;display:none">Import Spend Data</button>
+          <button class="ghost" onclick="clearCsvUpload()" id="csv-clear-btn" style="display:none">Clear</button>
+        </div>
+        <div id="csv-status"></div>
+      </div>
+    </div>
+    <div>
+      <div class="section-title">Spend by Model</div>
+      <div id="spend-chart"><div class="loading"><span class="spinner"></span>Loading…</div></div>
+    </div>
+  </div>
+  <div style="margin-top:20px">
+    <div class="section-title">All Models with Spend Data</div>
+    <div id="spend-table"></div>
   </div>
 </div>
 
@@ -997,14 +1035,145 @@ async function runIngest() {
   if (data.ok) loadModels();
 }
 
+// ── Usage Tab ──────────────────────────────────────────────────────────
+let pendingCsvFile = null;
+
+function handleCsvDrop(e) {
+  e.preventDefault();
+  document.getElementById('csv-drop').style.borderColor = 'var(--border)';
+  const file = e.dataTransfer.files[0];
+  if (file) handleCsvFile(file);
+}
+
+function handleCsvFile(file) {
+  if (!file || !file.name.endsWith('.csv')) {
+    document.getElementById('csv-preview').innerHTML = '<div class="status err">Please select a .csv file</div>';
+    return;
+  }
+  pendingCsvFile = file;
+  document.getElementById('csv-drop').style.borderColor = 'var(--green)';
+  document.getElementById('csv-preview').innerHTML =
+    `<div class="status ok">✓ ${file.name} (${(file.size/1024).toFixed(1)} KB) — ready to import</div>`;
+  document.getElementById('csv-upload-btn').style.display = '';
+  document.getElementById('csv-clear-btn').style.display = '';
+}
+
+function clearCsvUpload() {
+  pendingCsvFile = null;
+  document.getElementById('csv-drop').style.borderColor = 'var(--border)';
+  document.getElementById('csv-preview').innerHTML = '';
+  document.getElementById('csv-upload-btn').style.display = 'none';
+  document.getElementById('csv-clear-btn').style.display = 'none';
+  document.getElementById('csv-status').innerHTML = '';
+  document.getElementById('csv-file').value = '';
+}
+
+async function uploadCsv() {
+  if (!pendingCsvFile) return;
+  const btn = document.getElementById('csv-upload-btn');
+  btn.textContent = 'Importing…'; btn.disabled = true;
+  const form = new FormData();
+  form.append('file', pendingCsvFile);
+  const res = await fetch('/api/import-spend', { method: 'POST', body: form });
+  const data = await res.json();
+  btn.textContent = 'Import Spend Data'; btn.disabled = false;
+  if (data.ok) {
+    document.getElementById('csv-status').innerHTML =
+      `<div class="status ok">✓ ${data.message}</div>`;
+    clearCsvUpload();
+    await loadModels();
+    renderSpendChart();
+    renderSpendTable();
+  } else {
+    document.getElementById('csv-status').innerHTML =
+      `<div class="status err">✗ ${data.error}</div>`;
+  }
+}
+
+function renderSpendChart() {
+  const withSpend = allModels.filter(m => (m.spend?.total_cost_usd || 0) > 0)
+    .sort((a,b) => (b.spend.total_cost_usd||0) - (a.spend.total_cost_usd||0));
+  const el = document.getElementById('spend-chart');
+  if (!withSpend.length) {
+    el.innerHTML = '<div class="empty" style="padding:20px">No spend data yet.<br>Import your OpenRouter CSV to see costs here.</div>';
+    return;
+  }
+  const total = withSpend.reduce((s,m) => s + m.spend.total_cost_usd, 0);
+  const bars = withSpend.slice(0, 10).map(m => {
+    const pct = (m.spend.total_cost_usd / total * 100).toFixed(1);
+    const barW = Math.max(4, Math.round(m.spend.total_cost_usd / withSpend[0].spend.total_cost_usd * 100));
+    return `<div style="margin-bottom:10px">
+      <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px">
+        <span style="color:var(--text);font-weight:600">${m.model_name}</span>
+        <span style="color:var(--amber);font-weight:700">$${m.spend.total_cost_usd.toFixed(4)} (${pct}%)</span>
+      </div>
+      <div style="height:6px;background:var(--border);border-radius:3px;overflow:hidden">
+        <div style="height:100%;width:${barW}%;background:var(--amber);border-radius:3px"></div>
+      </div>
+      <div style="font-size:10px;color:var(--muted);margin-top:2px">
+        ${m.spend.call_count.toLocaleString()} calls · $${m.spend.avg_cost_per_call_usd.toFixed(5)}/call ·
+        ${m.spend.total_input_mtok.toFixed(2)}M in · ${m.spend.total_output_mtok.toFixed(2)}M out
+        ${m.spend.total_cache_read_mtok > 0 ? ` · ${m.spend.total_cache_read_mtok.toFixed(2)}M cached` : ''}
+      </div>
+    </div>`;
+  }).join('');
+  el.innerHTML = `
+    <div style="font-size:11px;color:var(--muted);margin-bottom:12px">
+      Total: <strong style="color:var(--amber)">$${total.toFixed(4)}</strong> across ${withSpend.length} models
+      ${withSpend[0]?.spend?.period_start ? ` · ${withSpend[0].spend.period_start} → ${withSpend[0].spend.period_end}` : ''}
+    </div>
+    ${bars}`;
+}
+
+function renderSpendTable() {
+  const withSpend = allModels.filter(m => (m.spend?.total_cost_usd || 0) > 0)
+    .sort((a,b) => (b.spend.total_cost_usd||0) - (a.spend.total_cost_usd||0));
+  const el = document.getElementById('spend-table');
+  if (!withSpend.length) { el.innerHTML = ''; return; }
+  const rows = withSpend.map(m => {
+    const dp = m.direct_pricing;
+    const savingsFlag = dp?.batch_input_per_mtok
+      ? `<span style="color:var(--green);font-size:11px">⚡ Batch API available</span>`
+      : dp?.direct_available === false
+      ? `<span style="color:var(--muted);font-size:11px">OpenRouter only</span>`
+      : '';
+    return `<tr>
+      <td style="font-weight:600;color:var(--text)">${m.model_name}</td>
+      <td style="color:var(--muted)">${m.provider}</td>
+      <td style="color:var(--amber);font-weight:700">$${m.spend.total_cost_usd.toFixed(4)}</td>
+      <td>${m.spend.call_count.toLocaleString()}</td>
+      <td>$${m.spend.avg_cost_per_call_usd.toFixed(5)}</td>
+      <td>${m.spend.total_input_mtok.toFixed(2)}M</td>
+      <td>${m.spend.total_output_mtok.toFixed(2)}M</td>
+      <td>${m.spend.total_cache_read_mtok > 0 ? m.spend.total_cache_read_mtok.toFixed(2)+'M' : '—'}</td>
+      <td>${savingsFlag}</td>
+    </tr>`;
+  }).join('');
+  el.innerHTML = `<table style="width:100%;border-collapse:collapse;font-size:12px">
+    <thead><tr style="border-bottom:1px solid var(--border);color:var(--muted)">
+      <th style="text-align:left;padding:8px 6px">Model</th>
+      <th style="text-align:left;padding:8px 6px">Provider</th>
+      <th style="text-align:left;padding:8px 6px">Total Cost</th>
+      <th style="text-align:left;padding:8px 6px">Calls</th>
+      <th style="text-align:left;padding:8px 6px">Avg/Call</th>
+      <th style="text-align:left;padding:8px 6px">Input</th>
+      <th style="text-align:left;padding:8px 6px">Output</th>
+      <th style="text-align:left;padding:8px 6px">Cached</th>
+      <th style="text-align:left;padding:8px 6px">Opportunity</th>
+    </tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
 // ── Tabs ───────────────────────────────────────────────────────────────
-const TAB_NAMES = ['catalog','query','compare','changelog','feedback','ingest'];
+const TAB_NAMES = ['catalog','query','compare','usage','changelog','feedback','ingest'];
 function showTab(name) {
   document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', TAB_NAMES[i]===name));
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-'+name).classList.add('active');
   if (name === 'changelog') loadChangelog();
   if (name === 'feedback') loadFeedback();
+  if (name === 'usage') { renderSpendChart(); renderSpendTable(); }
 }
 
 loadModels();
@@ -1180,6 +1349,41 @@ def api_recommend():
             "needs_review": (m.get("_meta") or {}).get("needs_review", False),
         })
     return jsonify({"ok": True, "task": task, "count": len(results), "models": results})
+
+
+@app.route("/api/import-spend", methods=["POST"])
+def api_import_spend():
+    """Upload an OpenRouter activity CSV and merge spend data into models.json."""
+    import tempfile
+    from werkzeug.utils import secure_filename
+
+    if "file" not in request.files:
+        return jsonify({"ok": False, "error": "No file provided"}), 400
+    f = request.files["file"]
+    if not f.filename or not f.filename.endswith(".csv"):
+        return jsonify({"ok": False, "error": "File must be a .csv"}), 400
+
+    try:
+        with tempfile.NamedTemporaryFile(suffix=".csv", delete=False, mode="wb") as tmp:
+            f.save(tmp)
+            tmp_path = tmp.name
+
+        result = subprocess.run(
+            [sys.executable, str(SCRIPTS_DIR / "import_spend.py"), tmp_path, "--apply"],
+            capture_output=True, text=True, timeout=60, cwd=str(REPO_DIR)
+        )
+        Path(tmp_path).unlink(missing_ok=True)
+
+        if result.returncode != 0:
+            return jsonify({"ok": False, "error": result.stderr[:500] or result.stdout[:500]})
+
+        # Parse summary from output
+        lines = result.stdout.strip().splitlines()
+        matched_line = next((l for l in lines if "models updated" in l), "")
+        return jsonify({"ok": True, "message": matched_line or "Spend data imported successfully",
+                        "output": result.stdout[:1000]})
+    except Exception as e:
+        return jsonify({"ok": False, "error": str(e)}), 500
 
 
 @app.route("/api/sync", methods=["POST"])
