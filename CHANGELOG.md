@@ -201,3 +201,28 @@ All notable changes to the AI Model Knowledge Repository are documented here.
 ### Next
 - Provision admin keys (Eric action): console.anthropic.com → Admin Key, platform.openai.com → Usage: Read key
 - Wire agents to call `/api/route` before each model call for automated routing decisions
+
+## 2026-04-13 — Model Detail Modal + Trend Charts + 5-Model Compare
+
+### Added
+- **Model detail modal**: Click any model card to open a full dashboard overlay
+  - Stat donuts: Efficiency, Input $/MTok, Context window, Total spend, API calls, Confidence
+  - Full performance notes, strengths (→), weaknesses (✗), use cases, direct pricing detail
+  - SVG line charts: Daily cost (USD) and daily token volume, both with 7-day rolling average
+  - 90-day rolling window; gracefully shows "building history" when < 2 data points
+  - Close: Esc key, ✕ button, or click backdrop
+- **Daily spend history** (`spend_history.json`): `fetch_openrouter_usage.py` now writes per-day breakpoints on every sync
+- **`GET /api/spend-history`**: Returns full daily history for all models
+- **5-model compare**: Replace A/B selects with dynamic add/remove (up to 5)
+  - Each model color-coded (blue/green/amber/red/purple)
+  - Horizontal-scroll grid highlights the winner per metric in green
+  - Trend overlay chart when ≥2 compared models have daily history
+
+### Changed
+- Compare grid is now horizontal-scroll for wide comparisons
+- Compare tray updated to support up to 5 selections
+- Card click opens model detail (checkbox click still compares; both don't interfere)
+
+### Notes
+- Charts use pure SVG — no Chart.js or CDN dependency
+- Daily data accumulates from this point forward; historical data estimated from aggregate totals
