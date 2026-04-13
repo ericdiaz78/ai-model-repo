@@ -414,6 +414,124 @@ def api_ingest():
         return jsonify({"ok": False, "error": str(e)}), 500
 
 
+@app.route("/api/recommend", methods=["GET"])
+def api_recommend():
+    """
+    Agent-facing routing endpoint.
+    GET /api/recommend?task=coding&budget=1.0&context=50000
+
+    Returns ranked model list with rationale. Designed for OpenClaw agents to
+    call before spawning a session to pick the right model.
+
+    Params:
+      task    — keyword(s) matching routing_tags (e.g. coding, reasoning, agentic, low-cost)
+      budget  — max input cost in $/M tokens (optional, default unlimited)
+      context — min context window required in tokens (optional, default 0)
+      top     — number of results to return (optional, default 5)
+    """
+    task = request.args.get("task", "").lower().strip()
+    budget = request.args.get("budget", type=float)
+    min_context = request.args.get("context", 0, type=int)
+    top_n = request.args.get("top", 5, type=int)
+
+    models = load_models()
+
+    # Filter: context window
+    if min_context:
+        models = [m for m in models if (m.get("context_window") or 0) >= min_context]
+
+    # Filter: budget
+    if budget is not None:
+        models = [m for m in models if (m.get("pricing") or {}).get("input_per_mtok", 999) <= budget]
+
+    # Filter: needs_review models are included but penalized in scoring
+    def score(m):
+        tags = set(m.get("routing_tags") or [])
+        task_words = set(task.split()) if task else set()
+        tag_match = len(tags & task_words)
+
+        # Also match against strengths and ideal_use_cases
+        strength_text = " ".join(m.get("strengths") or []).lower()
+        use_case_text = " ".join(m.get("ideal_use_cases") or []).lower()
+        text_match = sum(1 for w in task_words if w in strength_text or w in use_case_text)
+
+        input_cost = (m.get("pricing") or {}).get("input_per_mtok", 999)
+        cost_score = 1 / (input_cost + 0.01)  # lower cost = higher score
+
+        confidence = (m.get("_meta") or {}).get("confidence", 0.5)
+        needs_review = (m.get("_meta") or {}).get("needs_review", False)
+        review_penalty = 0.5 if needs_review else 1.0
+
+        return (tag_match * 3 + text_match * 2 + cost_score * 0.1 + confidence) * review_penalty
+
+    ranked = sorted(models, key=score, reverse=True)[:top_n]
+
+    results = []
+    for m in ranked:
+        pricing = m.get("pricing") or {}
+        results.append({
+            "model_id": m["model_id"],
+            "model_name": m.get("model_name", m["model_id"]),
+            "provider": m.get("provider", "unknown"),
+            "openrouter_slug": m.get("openrouter_slug"),
+            "input_per_mtok": pricing.get("input_per_mtok"),
+            "output_per_mtok": pricing.get("output_per_mtok"),
+            "context_window": m.get("context_window"),
+            "routing_tags": m.get("routing_tags", []),
+            "strengths": m.get("strengths", []),
+            "ideal_use_cases": m.get("ideal_use_cases", []),
+            "performance_notes": m.get("performance_notes", ""),
+            "confidence": (m.get("_meta") or {}).get("confidence", 0.5),
+            "needs_review": (m.get("_meta") or {}).get("needs_review", False),
+            "rationale": (
+                f"Matched task='{task}' — "
+                f"${pricing.get('input_per_mtok','?')}/M input, "
+                f"ctx={m.get('context_window','?'):,}" if m.get('context_window') else
+                f"Matched task='{task}'"
+            )
+        })
+
+    return jsonify({
+        "ok": True,
+        "task": task,
+        "filters": {"budget": budget, "min_context": min_context},
+        "count": len(results),
+        "models": results
+    })
+
+
+@app.route("/api/sync", methods=["POST"])
+def api_sync():
+    """
+    Trigger an OpenRouter sync from the UI or an agent.
+    POST /api/sync  (no body required)
+    Optional JSON body: {"filter": "anthropic,google", "apply": true}
+    """
+    data = request.get_json(silent=True) or {}
+    provider_filter = data.get("filter", "")
+    apply_changes = data.get("apply", True)
+
+    cmd = [sys.executable, str(SCRIPTS_DIR / "ingest_openrouter.py")]
+    if apply_changes:
+        cmd.append("--apply")
+        cmd.append("--quiet")
+    if provider_filter:
+        cmd.extend(["--filter", provider_filter])
+
+    try:
+        result = subprocess.run(
+            cmd, capture_output=True, text=True, timeout=60, cwd=str(REPO_DIR)
+        )
+        output = result.stdout.strip() or result.stderr.strip()
+        return jsonify({
+            "ok": result.returncode == 0,
+            "output": output,
+            "apply": apply_changes
+        })
+    except Exception as e:
+        return jsonify({"ok": False, "error": str(e)}), 500
+
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)
