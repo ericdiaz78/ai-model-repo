@@ -12,9 +12,13 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-from flask import Flask, jsonify, render_template_string, request
+from flask import Flask, jsonify, render_template_string, request, session, redirect, url_for
+from functools import wraps
 
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY", "ai-model-repo-secret-2026")
+
+UI_PASSWORD = os.environ.get("UI_PASSWORD", "IntelligenceMap")
 
 REPO_DIR = Path(__file__).parent
 MODELS_FILE = REPO_DIR / "models.json"
@@ -1575,17 +1579,90 @@ loadModels().then(() => populateCompareSelects());
 </html>"""
 
 
+LOGIN_HTML = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Model Repo — Login</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0f1117; color: #e2e8f0; min-height: 100vh;
+  display: flex; align-items: center; justify-content: center; }
+.card { background: #1a1d27; border: 1px solid #2d3148; border-radius: 12px;
+  padding: 40px; width: 100%; max-width: 380px; }
+h1 { font-size: 1.25rem; font-weight: 600; margin-bottom: 6px; color: #e2e8f0; }
+p { font-size: 0.85rem; color: #64748b; margin-bottom: 28px; }
+label { font-size: 0.8rem; color: #94a3b8; display: block; margin-bottom: 6px; }
+input[type=password] { width: 100%; padding: 10px 14px; background: #0f1117;
+  border: 1px solid #2d3148; border-radius: 8px; color: #e2e8f0;
+  font-size: 0.95rem; outline: none; transition: border-color 0.15s; }
+input[type=password]:focus { border-color: #2563eb; }
+button { width: 100%; margin-top: 16px; padding: 11px;
+  background: #2563eb; color: #fff; border: none; border-radius: 8px;
+  font-size: 0.95rem; font-weight: 500; cursor: pointer; transition: background 0.15s; }
+button:hover { background: #1d4ed8; }
+.error { margin-top: 14px; font-size: 0.82rem; color: #f87171; text-align: center; }
+.logo { font-size: 1.8rem; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">🧠</div>
+  <h1>AI Model Repository</h1>
+  <p>Intelligence mapping for the agent stack</p>
+  <form method="POST" action="/login">
+    <label>Access key</label>
+    <input type="password" name="password" autofocus placeholder="••••••••••••••">
+    <button type="submit">Enter</button>
+    {% if error %}<div class="error">{{ error }}</div>{% endif %}
+  </form>
+</div>
+</body>
+</html>"""
+
+
+def require_login(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        if not session.get("authed"):
+            return redirect(url_for("login"))
+        return f(*args, **kwargs)
+    return decorated
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    error = None
+    if request.method == "POST":
+        if request.form.get("password") == UI_PASSWORD:
+            session["authed"] = True
+            return redirect(url_for("index"))
+        error = "Invalid access key"
+    return render_template_string(LOGIN_HTML, error=error)
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
+
 @app.route("/")
+@require_login
 def index():
     return render_template_string(HTML)
 
 
 @app.route("/api/models")
+@require_login
 def api_models():
     return jsonify(load_models())
 
 
 @app.route("/api/changelog")
+@require_login
 def api_changelog():
     if not CHANGELOG_FILE.exists():
         return jsonify({"content": "No changelog found."})
@@ -1593,6 +1670,7 @@ def api_changelog():
 
 
 @app.route("/api/feedback", methods=["GET", "POST"])
+@require_login
 def api_feedback():
     entries = []
     if FEEDBACK_FILE.exists():
@@ -1620,6 +1698,7 @@ def api_feedback():
 
 
 @app.route("/api/query", methods=["POST"])
+@require_login
 def api_query():
     data = request.get_json()
     query = data.get("query", "").strip()
@@ -1646,6 +1725,7 @@ def api_query():
 
 
 @app.route("/api/compare", methods=["POST"])
+@require_login
 def api_compare():
     data = request.get_json()
     a_id = data.get("model_a", "")
@@ -1683,6 +1763,7 @@ def api_compare():
 
 
 @app.route("/api/ingest", methods=["POST"])
+@require_login
 def api_ingest():
     data = request.get_json()
     text = data.get("text", "").strip()
@@ -1703,6 +1784,7 @@ def api_ingest():
 
 
 @app.route("/api/recommend", methods=["GET"])
+@require_login
 def api_recommend():
     task = request.args.get("task", "").lower().strip()
     budget = request.args.get("budget", type=float)
@@ -1745,6 +1827,7 @@ def api_recommend():
 
 
 @app.route("/api/import-spend", methods=["POST"])
+@require_login
 def api_import_spend():
     """
     Upload a provider activity CSV (OpenRouter, Anthropic, or OpenAI).
@@ -1783,6 +1866,7 @@ def api_import_spend():
 
 
 @app.route("/api/sync", methods=["POST"])
+@require_login
 def api_sync():
     data = request.get_json(silent=True) or {}
     apply_changes = data.get("apply", True)
@@ -1800,6 +1884,7 @@ def api_sync():
 
 
 @app.route("/api/spend-history")
+@require_login
 def api_spend_history():
     if not SPEND_HISTORY_FILE.exists():
         return jsonify({})
@@ -1810,6 +1895,7 @@ def api_spend_history():
 
 
 @app.route("/api/route", methods=["GET"])
+@require_login
 def api_route():
     """
     Routing decision endpoint — returns optimal endpoint for a given model + context.
