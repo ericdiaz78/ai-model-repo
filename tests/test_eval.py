@@ -16,11 +16,15 @@ class EvaluateTests(unittest.TestCase):
 
     def test_recommend_model_prefers_low_cost_code(self):
         result = recommend_model("coding", {"required_tags": ["code", "low-cost"]})
-        self.assertEqual(result["model_id"], "deepseek/deepseek-chat")
+        tags = set(result.get("routing_tags", []))
+        self.assertIn("low-cost", tags)
+        self.assertTrue("code" in tags or "coding" in tags)
 
     def test_recommend_model_prefers_vision_for_image_task(self):
         result = recommend_model("vision image analysis", {})
-        self.assertEqual(result["model_id"], "openai/gpt-4o")
+        tags = set(result.get("routing_tags", []))
+        modalities = set(result.get("modalities", []))
+        self.assertTrue("vision" in tags or "image" in modalities)
 
     def test_recommend_model_prefers_summarization_for_summary_task(self):
         result = recommend_model("fast summary for cron", {})

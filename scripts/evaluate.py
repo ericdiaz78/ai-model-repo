@@ -7,11 +7,20 @@ ROOT = Path(__file__).resolve().parents[1]
 MODELS = json.loads((ROOT / 'models.json').read_text())
 
 
+def _expand_tag_aliases(tags):
+    expanded = set(tags or [])
+    if 'code' in expanded:
+        expanded.add('coding')
+    if 'coding' in expanded:
+        expanded.add('code')
+    return expanded
+
+
 def _filter(required_tags=None, min_context_window=0):
-    required_tags = set(required_tags or [])
+    required_tags = _expand_tag_aliases(required_tags)
     results = []
     for model in MODELS:
-        tags = set(model.get('routing_tags', []))
+        tags = _expand_tag_aliases(model.get('routing_tags', []))
         if required_tags and not required_tags.issubset(tags):
             continue
         if model.get('context_window', 0) < min_context_window:

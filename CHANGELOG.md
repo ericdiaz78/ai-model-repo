@@ -1,5 +1,16 @@
 # Changelog
 
+## [2026-04-14] — Validation + spend history sync hardening
+
+### Fixed
+- Restored `schema.json` provider enum coverage so `python3 scripts/update_schema.py validate` passes against the expanded OpenRouter dataset
+- Normalized `code` / `coding` tag aliases in `scripts/evaluate.py` so low-cost code recommendations still filter correctly after large model ingests
+- Updated evaluation tests to assert capability coverage instead of brittle exact-model IDs as the catalog evolves
+- Ignored local sync cursor files (`.usage-sync-state.json`, `.direct-usage-state.json`) so runtime state stops polluting git status
+
+### Added
+- Tracked `spend_history.json` in-repo so the web UI trend endpoints have deployable history data instead of a local-only artifact
+
 ## [2026-04-13] — Auto-ingestion from OpenRouter
 
 - New model ingested: `anthropic/claude-opus-4.6-fast` (anthropic) — $30.0/M in, $150.0/M out, ctx=1,000,000

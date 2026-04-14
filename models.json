@@ -62,16 +62,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 578.064768,
-      "total_input_mtok": 402.0597,
-      "total_output_mtok": 2.4768,
+      "total_cost_usd": 9173.864312,
+      "total_input_mtok": 6392.1694,
+      "total_output_mtok": 39.2372,
       "total_cache_read_mtok": 0.0,
-      "call_count": 7902,
-      "avg_cost_per_call_usd": 0.073154,
+      "call_count": 125211,
+      "avg_cost_per_call_usd": 0.073267,
       "period_start": "2026-03-13",
-      "period_end": "2026-04-12",
+      "period_end": "2026-04-13",
       "source": "openrouter-api",
-      "imported_at": "2026-04-13 13:58 UTC"
+      "imported_at": "2026-04-14 10:22 UTC"
     }
   },
   {
@@ -126,16 +126,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 8.561546,
-      "total_input_mtok": 71.8341,
-      "total_output_mtok": 0.4262,
+      "total_cost_usd": 162.711723,
+      "total_input_mtok": 1381.252,
+      "total_output_mtok": 8.3724,
       "total_cache_read_mtok": 0.0,
-      "call_count": 1662,
-      "avg_cost_per_call_usd": 0.005151,
+      "call_count": 31872,
+      "avg_cost_per_call_usd": 0.005105,
       "period_start": "2026-03-13",
-      "period_end": "2026-04-12",
+      "period_end": "2026-04-13",
       "source": "openrouter-api",
-      "imported_at": "2026-04-13 13:58 UTC"
+      "imported_at": "2026-04-14 10:22 UTC"
     }
   },
   {
@@ -183,16 +183,16 @@
       "confidence": 0.8
     },
     "spend": {
-      "total_cost_usd": 31.527069,
-      "total_input_mtok": 426.8623,
-      "total_output_mtok": 1.1686,
+      "total_cost_usd": 504.433104,
+      "total_input_mtok": 6829.7968,
+      "total_output_mtok": 18.6976,
       "total_cache_read_mtok": 0.0,
-      "call_count": 8966,
+      "call_count": 143456,
       "avg_cost_per_call_usd": 0.003516,
       "period_start": "2026-03-13",
-      "period_end": "2026-04-12",
+      "period_end": "2026-04-13",
       "source": "openrouter-api",
-      "imported_at": "2026-04-13 13:58 UTC"
+      "imported_at": "2026-04-14 10:22 UTC"
     }
   },
   {
@@ -307,16 +307,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 5.896158,
-      "total_input_mtok": 103.4697,
-      "total_output_mtok": 1.0637,
+      "total_cost_usd": 105.306034,
+      "total_input_mtok": 1997.7296,
+      "total_output_mtok": 16.6155,
       "total_cache_read_mtok": 0.0,
-      "call_count": 2764,
-      "avg_cost_per_call_usd": 0.002133,
+      "call_count": 46512,
+      "avg_cost_per_call_usd": 0.002264,
       "period_start": "2026-03-13",
-      "period_end": "2026-04-12",
+      "period_end": "2026-04-13",
       "source": "openrouter-api",
-      "imported_at": "2026-04-13 13:58 UTC"
+      "imported_at": "2026-04-14 10:22 UTC"
     }
   },
   {
@@ -374,16 +374,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 1.582435,
-      "total_input_mtok": 8.0103,
-      "total_output_mtok": 0.135,
+      "total_cost_usd": 27.344291,
+      "total_input_mtok": 147.7019,
+      "total_output_mtok": 2.3756,
       "total_cache_read_mtok": 0.0,
-      "call_count": 470,
-      "avg_cost_per_call_usd": 0.003367,
+      "call_count": 8400,
+      "avg_cost_per_call_usd": 0.003255,
       "period_start": "2026-03-13",
-      "period_end": "2026-04-12",
+      "period_end": "2026-04-13",
       "source": "openrouter-api",
-      "imported_at": "2026-04-13 13:58 UTC"
+      "imported_at": "2026-04-14 10:22 UTC"
     }
   },
   {
@@ -495,16 +495,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 10.660948,
-      "total_input_mtok": 7.8713,
-      "total_output_mtok": 0.5579,
+      "total_cost_usd": 170.575168,
+      "total_input_mtok": 125.9408,
+      "total_output_mtok": 8.9264,
       "total_cache_read_mtok": 0.0,
-      "call_count": 412,
+      "call_count": 6592,
       "avg_cost_per_call_usd": 0.025876,
       "period_start": "2026-03-13",
-      "period_end": "2026-04-12",
+      "period_end": "2026-04-13",
       "source": "openrouter-api",
-      "imported_at": "2026-04-13 13:58 UTC"
+      "imported_at": "2026-04-14 10:22 UTC"
     }
   },
   {
@@ -1264,16 +1264,16 @@
       "needs_review": true
     },
     "spend": {
-      "total_cost_usd": 0.621801,
-      "total_input_mtok": 2.3034,
-      "total_output_mtok": 0.0135,
+      "total_cost_usd": 9.407836,
+      "total_input_mtok": 35.3771,
+      "total_output_mtok": 0.2072,
       "total_cache_read_mtok": 0.0,
-      "call_count": 102,
-      "avg_cost_per_call_usd": 0.006096,
+      "call_count": 1566,
+      "avg_cost_per_call_usd": 0.006008,
       "period_start": "2026-03-13",
-      "period_end": "2026-04-12",
+      "period_end": "2026-04-13",
       "source": "openrouter-api",
-      "imported_at": "2026-04-13 13:58 UTC"
+      "imported_at": "2026-04-14 10:22 UTC"
     }
   },
   {
@@ -2052,16 +2052,16 @@
       "needs_review": true
     },
     "spend": {
-      "total_cost_usd": 0.42032,
-      "total_input_mtok": 0.0049,
-      "total_output_mtok": 0.0121,
+      "total_cost_usd": 6.72512,
+      "total_input_mtok": 0.0784,
+      "total_output_mtok": 0.1936,
       "total_cache_read_mtok": 0.0,
-      "call_count": 2,
+      "call_count": 32,
       "avg_cost_per_call_usd": 0.21016,
       "period_start": "2026-03-13",
-      "period_end": "2026-04-12",
+      "period_end": "2026-04-13",
       "source": "openrouter-api",
-      "imported_at": "2026-04-13 13:58 UTC"
+      "imported_at": "2026-04-14 10:22 UTC"
     }
   },
   {
@@ -2234,16 +2234,16 @@
       "needs_review": true
     },
     "spend": {
-      "total_cost_usd": 20.798572,
-      "total_input_mtok": 13.3598,
-      "total_output_mtok": 0.4781,
+      "total_cost_usd": 332.777152,
+      "total_input_mtok": 213.7568,
+      "total_output_mtok": 7.6496,
       "total_cache_read_mtok": 0.0,
-      "call_count": 470,
+      "call_count": 7520,
       "avg_cost_per_call_usd": 0.044252,
       "period_start": "2026-03-13",
-      "period_end": "2026-04-12",
+      "period_end": "2026-04-13",
       "source": "openrouter-api",
-      "imported_at": "2026-04-13 13:58 UTC"
+      "imported_at": "2026-04-14 10:22 UTC"
     }
   },
   {
@@ -3054,16 +3054,16 @@
       "needs_review": true
     },
     "spend": {
-      "total_cost_usd": 19.206555,
-      "total_input_mtok": 1.0233,
-      "total_output_mtok": 0.0514,
+      "total_cost_usd": 307.30488,
+      "total_input_mtok": 16.3728,
+      "total_output_mtok": 0.8224,
       "total_cache_read_mtok": 0.0,
-      "call_count": 39,
+      "call_count": 624,
       "avg_cost_per_call_usd": 0.492476,
       "period_start": "2026-03-13",
-      "period_end": "2026-04-12",
+      "period_end": "2026-04-13",
       "source": "openrouter-api",
-      "imported_at": "2026-04-13 13:58 UTC"
+      "imported_at": "2026-04-14 10:22 UTC"
     }
   },
   {
