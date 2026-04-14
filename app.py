@@ -1655,6 +1655,23 @@ def index():
     return render_template_string(HTML)
 
 
+@app.route("/health")
+def health():
+    models_count = 0
+    if MODELS_FILE.exists():
+        try:
+            models_count = len(json.loads(MODELS_FILE.read_text()))
+        except Exception:
+            return jsonify({"ok": False, "error": "models.json unreadable"}), 500
+    return jsonify({
+        "ok": True,
+        "service": "ai-model-repo",
+        "models_count": models_count,
+        "generated_exists": GENERATED_FILE.exists(),
+        "feedback_exists": FEEDBACK_FILE.exists(),
+    })
+
+
 @app.route("/api/models")
 @require_login
 def api_models():
