@@ -1,0 +1,4244 @@
+[
+  {
+    "model_id": "google/gemma-4-26b-a4b-it",
+    "provider": "google",
+    "model_name": "Google: Gemma 4 26B A4B ",
+    "version": "unknown",
+    "release_date": "2026-04-03",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.12,
+      "output_per_mtok": 0.4,
+      "notes": "$0.12/M input, $0.4/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 262144,
+    "modalities": [
+      "image",
+      "text",
+      "video"
+    ],
+    "performance_notes": "Gemma 4 26B A4B IT is an instruction-tuned Mixture-of-Experts (MoE) model from Google DeepMind. Despite 25.2B total parameters, only 3.8B activate per token during inference \u2014 delivering near-31B quality at...",
+    "routing_tags": [
+      "chat"
+    ],
+    "openrouter_slug": "google/gemma-4-26b-a4b-it-20260403",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemma-4-31b-it",
+    "provider": "google",
+    "model_name": "Google: Gemma 4 31B",
+    "version": "unknown",
+    "release_date": "2026-04-02",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.14,
+      "output_per_mtok": 0.4,
+      "notes": "$0.14/M input, $0.4/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 262144,
+    "modalities": [
+      "image",
+      "text",
+      "video"
+    ],
+    "performance_notes": "Gemma 4 31B Instruct is Google DeepMind's 30.7B dense multimodal model supporting text and image input with text output. Features a 256K token context window, configurable thinking/reasoning mode, native function...",
+    "routing_tags": [
+      "vision",
+      "chat",
+      "reasoning"
+    ],
+    "openrouter_slug": "google/gemma-4-31b-it-20260402",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5.3-chat",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5.3 Chat",
+    "version": "unknown",
+    "release_date": "2026-03-03",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.75,
+      "output_per_mtok": 14.0,
+      "notes": "$1.75/M input, $14.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "GPT-5.3 Chat is an update to ChatGPT's most-used model that makes everyday conversations smoother, more useful, and more directly helpful. It delivers more accurate answers with better contextualization and significantly...",
+    "routing_tags": [
+      "chat"
+    ],
+    "openrouter_slug": "openai/gpt-5.3-chat-20260303",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemini-3.1-flash-image-preview",
+    "provider": "google",
+    "model_name": "Google: Nano Banana 2 (Gemini 3.1 Flash Image Preview)",
+    "version": "unknown",
+    "release_date": "2026-02-26",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.5,
+      "output_per_mtok": 3.0,
+      "notes": "$0.5/M input, $3.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 65536,
+    "modalities": [
+      "image",
+      "text"
+    ],
+    "performance_notes": "Gemini 3.1 Flash Image Preview, a.k.a. \"Nano Banana 2,\" is Google\u2019s latest state of the art image generation and editing model, delivering Pro-level visual quality at Flash speed. It combines...",
+    "routing_tags": [
+      "vision",
+      "fast-response",
+      "low-cost",
+      "analysis"
+    ],
+    "openrouter_slug": "google/gemini-3.1-flash-image-preview-20260226",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "minimax/minimax-m2-her",
+    "provider": "minimax",
+    "model_name": "MiniMax: MiniMax M2-her",
+    "version": "unknown",
+    "release_date": "2026-01-23",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.3,
+      "output_per_mtok": 1.2,
+      "notes": "$0.3/M input, $1.2/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 65536,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "MiniMax M2-her is a dialogue-first large language model built for immersive roleplay, character-driven chat, and expressive multi-turn conversations. Designed to stay consistent in tone and personality, it supports rich message...",
+    "routing_tags": [
+      "chat",
+      "fast-response",
+      "low-cost",
+      "analysis"
+    ],
+    "openrouter_slug": "minimax/minimax-m2-her-20260123",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-audio",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT Audio",
+    "version": "unknown",
+    "release_date": "2026-01-19",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.5,
+      "output_per_mtok": 10.0,
+      "notes": "$2.5/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text",
+      "audio"
+    ],
+    "performance_notes": "The gpt-audio model is OpenAI's first generally available audio model. The new snapshot features an upgraded decoder for more natural sounding voices and maintains better voice consistency. Audio is priced...",
+    "routing_tags": [
+      "coding"
+    ],
+    "openrouter_slug": "openai/gpt-audio",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-audio-mini",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT Audio Mini",
+    "version": "unknown",
+    "release_date": "2026-01-19",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.6,
+      "output_per_mtok": 2.4,
+      "notes": "$0.6/M input, $2.4/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text",
+      "audio"
+    ],
+    "performance_notes": "A cost-efficient version of GPT Audio. The new snapshot features an upgraded decoder for more natural sounding voices and maintains better voice consistency. Input is priced at $0.60 per million...",
+    "routing_tags": [
+      "coding",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "openai/gpt-audio-mini",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5.2-codex",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5.2-Codex",
+    "version": "unknown",
+    "release_date": "2026-01-14",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.75,
+      "output_per_mtok": 14.0,
+      "notes": "$1.75/M input, $14.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 400000,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "GPT-5.2-Codex is an upgraded version of GPT-5.1-Codex optimized for software engineering and coding workflows. It is designed for both interactive development sessions and long, independent execution of complex engineering tasks....",
+    "routing_tags": [
+      "coding"
+    ],
+    "openrouter_slug": "openai/gpt-5.2-codex-20260114",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "minimax/minimax-m2.1",
+    "provider": "minimax",
+    "model_name": "MiniMax: MiniMax M2.1",
+    "version": "unknown",
+    "release_date": "2025-12-23",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.29,
+      "output_per_mtok": 0.95,
+      "notes": "$0.29/M input, $0.95/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 196608,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "MiniMax-M2.1 is a lightweight, state-of-the-art large language model optimized for coding, agentic workflows, and modern application development. With only 10 billion activated parameters, it delivers a major jump in real-world...",
+    "routing_tags": [
+      "coding",
+      "fast-response",
+      "low-cost",
+      "analysis"
+    ],
+    "openrouter_slug": "minimax/minimax-m2.1",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemini-3-flash-preview",
+    "provider": "google",
+    "model_name": "Google: Gemini 3 Flash Preview",
+    "version": "unknown",
+    "release_date": "2025-12-17",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.5,
+      "output_per_mtok": 3.0,
+      "notes": "$0.5/M input, $3.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 1048576,
+    "modalities": [
+      "text",
+      "image",
+      "file",
+      "audio",
+      "video"
+    ],
+    "performance_notes": "Gemini 3 Flash Preview is a high speed, high value thinking model designed for agentic workflows, multi turn chat, and coding assistance. It delivers near Pro level reasoning and tool...",
+    "routing_tags": [
+      "chat",
+      "fast-response",
+      "low-cost",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "google/gemini-3-flash-preview-20251217",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    },
+    "spend": {
+      "total_cost_usd": 9.407836,
+      "total_input_mtok": 35.3771,
+      "total_output_mtok": 0.2072,
+      "total_cache_read_mtok": 0.0,
+      "call_count": 1566,
+      "avg_cost_per_call_usd": 0.006008,
+      "period_start": "2026-03-13",
+      "period_end": "2026-04-13",
+      "source": "openrouter-api",
+      "imported_at": "2026-04-14 10:22 UTC"
+    }
+  },
+  {
+    "model_id": "mistralai/mistral-small-creative",
+    "provider": "mistral",
+    "model_name": "Mistral: Mistral Small Creative",
+    "version": "unknown",
+    "release_date": "2025-12-16",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.1,
+      "output_per_mtok": 0.3,
+      "notes": "$0.1/M input, $0.3/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 32768,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "Mistral Small Creative is an experimental small model designed for creative writing, narrative generation, roleplay and character-driven dialogue, general-purpose instruction following, and conversational agents.",
+    "routing_tags": [
+      "chat",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "mistralai/mistral-small-creative-20251216",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5.2-chat",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5.2 Chat",
+    "version": "unknown",
+    "release_date": "2025-12-10",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.75,
+      "output_per_mtok": 14.0,
+      "notes": "$1.75/M input, $14.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "file",
+      "image",
+      "text"
+    ],
+    "performance_notes": "GPT-5.2 Chat (AKA Instant) is the fast, lightweight member of the 5.2 family, optimized for low-latency chat while retaining strong general intelligence. It uses adaptive reasoning to selectively \u201cthink\u201d on...",
+    "routing_tags": [
+      "chat",
+      "fast-response",
+      "low-cost",
+      "reasoning"
+    ],
+    "openrouter_slug": "openai/gpt-5.2-chat-20251211",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5.2-pro",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5.2 Pro",
+    "version": "unknown",
+    "release_date": "2025-12-10",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 21.0,
+      "output_per_mtok": 168.0,
+      "notes": "$21.0/M input, $168.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 400000,
+    "modalities": [
+      "image",
+      "text",
+      "file"
+    ],
+    "performance_notes": "GPT-5.2 Pro is OpenAI\u2019s most advanced model, offering major improvements in agentic coding and long context performance over GPT-5 Pro. It is optimized for complex tasks that require step-by-step reasoning,...",
+    "routing_tags": [
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-5.2-pro-20251211",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5.2",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5.2",
+    "version": "unknown",
+    "release_date": "2025-12-10",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.75,
+      "output_per_mtok": 14.0,
+      "notes": "$1.75/M input, $14.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 400000,
+    "modalities": [
+      "file",
+      "image",
+      "text"
+    ],
+    "performance_notes": "GPT-5.2 is the latest frontier-grade model in the GPT-5 series, offering stronger agentic and long context perfomance compared to GPT-5.1. It uses adaptive reasoning to allocate computation dynamically, responding quickly...",
+    "routing_tags": [
+      "reasoning"
+    ],
+    "openrouter_slug": "openai/gpt-5.2-20251211",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/devstral-2512",
+    "provider": "mistral",
+    "model_name": "Mistral: Devstral 2 2512",
+    "version": "unknown",
+    "release_date": "2025-12-09",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.4,
+      "output_per_mtok": 2.0,
+      "notes": "$0.4/M input, $2.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 262144,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "Devstral 2 is a state-of-the-art open-source model by Mistral AI specializing in agentic coding. It is a 123B-parameter dense transformer model supporting a 256K context window. Devstral 2 supports exploring...",
+    "routing_tags": [
+      "coding"
+    ],
+    "openrouter_slug": "mistralai/devstral-2512",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5.1-codex-max",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5.1-Codex-Max",
+    "version": "unknown",
+    "release_date": "2025-12-04",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.25,
+      "output_per_mtok": 10.0,
+      "notes": "$1.25/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 400000,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "GPT-5.1-Codex-Max is OpenAI\u2019s latest agentic coding model, designed for long-running, high-context software development tasks. It is based on an updated version of the 5.1 reasoning stack and trained on agentic...",
+    "routing_tags": [
+      "coding",
+      "reasoning"
+    ],
+    "openrouter_slug": "openai/gpt-5.1-codex-max-20251204",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/ministral-14b-2512",
+    "provider": "mistral",
+    "model_name": "Mistral: Ministral 3 14B 2512",
+    "version": "unknown",
+    "release_date": "2025-12-02",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.2,
+      "output_per_mtok": 0.2,
+      "notes": "$0.2/M input, $0.2/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 262144,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "The largest model in the Ministral 3 family, Ministral 3 14B offers frontier capabilities and performance comparable to its larger Mistral Small 3.2 24B counterpart. A powerful and efficient language...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost",
+      "analysis"
+    ],
+    "openrouter_slug": "mistralai/ministral-14b-2512",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/ministral-8b-2512",
+    "provider": "mistral",
+    "model_name": "Mistral: Ministral 3 8B 2512",
+    "version": "unknown",
+    "release_date": "2025-12-02",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.15,
+      "output_per_mtok": 0.15,
+      "notes": "$0.15/M input, $0.15/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 262144,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "A balanced model in the Ministral 3 family, Ministral 3 8B is a powerful, efficient tiny language model with vision capabilities.",
+    "routing_tags": [
+      "vision",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "mistralai/ministral-8b-2512",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/ministral-3b-2512",
+    "provider": "mistral",
+    "model_name": "Mistral: Ministral 3 3B 2512",
+    "version": "unknown",
+    "release_date": "2025-12-02",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.1,
+      "output_per_mtok": 0.1,
+      "notes": "$0.1/M input, $0.1/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "The smallest model in the Ministral 3 family, Ministral 3 3B is a powerful, efficient tiny language model with vision capabilities.",
+    "routing_tags": [
+      "vision",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "mistralai/ministral-3b-2512",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/mistral-large-2512",
+    "provider": "mistral",
+    "model_name": "Mistral: Mistral Large 3 2512",
+    "version": "unknown",
+    "release_date": "2025-12-01",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.5,
+      "output_per_mtok": 1.5,
+      "notes": "$0.5/M input, $1.5/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 262144,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "Mistral Large 3 2512 is Mistral\u2019s most capable model to date, featuring a sparse mixture-of-experts architecture with 41B active parameters (675B total), and released under the Apache 2.0 license.",
+    "routing_tags": [
+      "analysis"
+    ],
+    "openrouter_slug": "mistralai/mistral-large-2512",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "deepseek/deepseek-v3.2-speciale",
+    "provider": "deepseek",
+    "model_name": "DeepSeek: DeepSeek V3.2 Speciale",
+    "version": "unknown",
+    "release_date": "2025-12-01",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.4,
+      "output_per_mtok": 1.2,
+      "notes": "$0.4/M input, $1.2/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 163840,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "DeepSeek-V3.2-Speciale is a high-compute variant of DeepSeek-V3.2 optimized for maximum reasoning and agentic performance. It builds on DeepSeek Sparse Attention (DSA) for efficient long-context processing, then scales post-training reinforcement learning...",
+    "routing_tags": [
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "deepseek/deepseek-v3.2-speciale-20251201",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "deepseek/deepseek-v3.2",
+    "provider": "deepseek",
+    "model_name": "DeepSeek: DeepSeek V3.2",
+    "version": "unknown",
+    "release_date": "2025-12-01",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.26,
+      "output_per_mtok": 0.38,
+      "notes": "$0.26/M input, $0.38/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 163840,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "DeepSeek-V3.2 is a large language model designed to harmonize high computational efficiency with strong reasoning and agentic tool-use performance. It introduces DeepSeek Sparse Attention (DSA), a fine-grained sparse attention mechanism...",
+    "routing_tags": [
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "deepseek/deepseek-v3.2-20251201",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.5",
+    "provider": "anthropic",
+    "model_name": "Anthropic: Claude Opus 4.5",
+    "version": "unknown",
+    "release_date": "2025-11-24",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 5.0,
+      "output_per_mtok": 25.0,
+      "notes": "$5.0/M input, $25.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "file",
+      "image",
+      "text"
+    ],
+    "performance_notes": "Claude Opus 4.5 is Anthropic\u2019s frontier reasoning model optimized for complex software engineering, agentic workflows, and long-horizon computer use. It offers strong multimodal capabilities, competitive performance across real-world coding and...",
+    "routing_tags": [
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "anthropic/claude-4.5-opus-20251124",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemini-3-pro-image-preview",
+    "provider": "google",
+    "model_name": "Google: Nano Banana Pro (Gemini 3 Pro Image Preview)",
+    "version": "unknown",
+    "release_date": "2025-11-20",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.0,
+      "output_per_mtok": 12.0,
+      "notes": "$2.0/M input, $12.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 65536,
+    "modalities": [
+      "image",
+      "text"
+    ],
+    "performance_notes": "Nano Banana Pro is Google\u2019s most advanced image-generation and editing model, built on Gemini 3 Pro. It extends the original Nano Banana with significantly improved multimodal reasoning, real-world grounding, and...",
+    "routing_tags": [
+      "vision",
+      "fast-response",
+      "low-cost",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "google/gemini-3-pro-image-preview-20251120",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5.1",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5.1",
+    "version": "unknown",
+    "release_date": "2025-11-13",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.25,
+      "output_per_mtok": 10.0,
+      "notes": "$1.25/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 400000,
+    "modalities": [
+      "image",
+      "text",
+      "file"
+    ],
+    "performance_notes": "GPT-5.1 is the latest frontier-grade model in the GPT-5 series, offering stronger general-purpose reasoning, improved instruction adherence, and a more natural conversational style compared to GPT-5. It uses adaptive reasoning...",
+    "routing_tags": [
+      "chat",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-5.1-20251113",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5.1-chat",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5.1 Chat",
+    "version": "unknown",
+    "release_date": "2025-11-13",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.25,
+      "output_per_mtok": 10.0,
+      "notes": "$1.25/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "file",
+      "image",
+      "text"
+    ],
+    "performance_notes": "GPT-5.1 Chat (AKA Instant is the fast, lightweight member of the 5.1 family, optimized for low-latency chat while retaining strong general intelligence. It uses adaptive reasoning to selectively \u201cthink\u201d on...",
+    "routing_tags": [
+      "chat",
+      "fast-response",
+      "low-cost",
+      "reasoning"
+    ],
+    "openrouter_slug": "openai/gpt-5.1-chat-20251113",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5.1-codex",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5.1-Codex",
+    "version": "unknown",
+    "release_date": "2025-11-13",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.25,
+      "output_per_mtok": 10.0,
+      "notes": "$1.25/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 400000,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "GPT-5.1-Codex is a specialized version of GPT-5.1 optimized for software engineering and coding workflows. It is designed for both interactive development sessions and long, independent execution of complex engineering tasks....",
+    "routing_tags": [
+      "coding"
+    ],
+    "openrouter_slug": "openai/gpt-5.1-codex-20251113",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5.1-codex-mini",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5.1-Codex-Mini",
+    "version": "unknown",
+    "release_date": "2025-11-13",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.25,
+      "output_per_mtok": 2.0,
+      "notes": "$0.25/M input, $2.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 400000,
+    "modalities": [
+      "image",
+      "text"
+    ],
+    "performance_notes": "GPT-5.1-Codex-Mini is a smaller and faster version of GPT-5.1-Codex",
+    "routing_tags": [
+      "coding",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "openai/gpt-5.1-codex-mini-20251113",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/voxtral-small-24b-2507",
+    "provider": "mistral",
+    "model_name": "Mistral: Voxtral Small 24B 2507",
+    "version": "unknown",
+    "release_date": "2025-10-30",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.1,
+      "output_per_mtok": 0.3,
+      "notes": "$0.1/M input, $0.3/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 32000,
+    "modalities": [
+      "text",
+      "audio"
+    ],
+    "performance_notes": "Voxtral Small is an enhancement of Mistral Small 3, incorporating state-of-the-art audio input capabilities while retaining best-in-class text performance. It excels at speech transcription, translation and audio understanding. Input audio...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "mistralai/voxtral-small-24b-2507",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-oss-safeguard-20b",
+    "provider": "openai",
+    "model_name": "OpenAI: gpt-oss-safeguard-20b",
+    "version": "unknown",
+    "release_date": "2025-10-29",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.075,
+      "output_per_mtok": 0.3,
+      "notes": "$0.075/M input, $0.3/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "gpt-oss-safeguard-20b is a safety reasoning model from OpenAI built upon gpt-oss-20b. This open-weight, 21B-parameter Mixture-of-Experts (MoE) model offers lower latency for safety tasks like content classification, LLM filtering, and trust...",
+    "routing_tags": [
+      "reasoning"
+    ],
+    "openrouter_slug": "openai/gpt-oss-safeguard-20b",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "minimax/minimax-m2",
+    "provider": "minimax",
+    "model_name": "MiniMax: MiniMax M2",
+    "version": "unknown",
+    "release_date": "2025-10-23",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.255,
+      "output_per_mtok": 1.0,
+      "notes": "$0.255/M input, $1.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 196608,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "MiniMax-M2 is a compact, high-efficiency large language model optimized for end-to-end coding and agentic workflows. With 10 billion activated parameters (230 billion total), it delivers near-frontier intelligence across general reasoning,...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "minimax/minimax-m2",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5-image-mini",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5 Image Mini",
+    "version": "unknown",
+    "release_date": "2025-10-16",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.5,
+      "output_per_mtok": 2.0,
+      "notes": "$2.5/M input, $2.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 400000,
+    "modalities": [
+      "file",
+      "image",
+      "text"
+    ],
+    "performance_notes": "GPT-5 Image Mini combines OpenAI's advanced language capabilities, powered by [GPT-5 Mini](https://openrouter.ai/openai/gpt-5-mini), with GPT Image 1 Mini for efficient image generation. This natively multimodal model features superior instruction following, text...",
+    "routing_tags": [
+      "vision",
+      "chat",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "openai/gpt-5-image-mini",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5-image",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5 Image",
+    "version": "unknown",
+    "release_date": "2025-10-14",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 10.0,
+      "output_per_mtok": 10.0,
+      "notes": "$10.0/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 400000,
+    "modalities": [
+      "image",
+      "text",
+      "file"
+    ],
+    "performance_notes": "[GPT-5](https://openrouter.ai/openai/gpt-5) Image combines OpenAI's GPT-5 model with state-of-the-art image generation capabilities. It offers major improvements in reasoning, code quality, and user experience while incorporating GPT Image 1's superior instruction following,...",
+    "routing_tags": [
+      "coding",
+      "vision",
+      "chat",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-5-image",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    },
+    "spend": {
+      "total_cost_usd": 6.72512,
+      "total_input_mtok": 0.0784,
+      "total_output_mtok": 0.1936,
+      "total_cache_read_mtok": 0.0,
+      "call_count": 32,
+      "avg_cost_per_call_usd": 0.21016,
+      "period_start": "2026-03-13",
+      "period_end": "2026-04-13",
+      "source": "openrouter-api",
+      "imported_at": "2026-04-14 10:22 UTC"
+    }
+  },
+  {
+    "model_id": "openai/o3-deep-research",
+    "provider": "openai",
+    "model_name": "OpenAI: o3 Deep Research",
+    "version": "unknown",
+    "release_date": "2025-10-10",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 10.0,
+      "output_per_mtok": 40.0,
+      "notes": "$10.0/M input, $40.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "image",
+      "text",
+      "file"
+    ],
+    "performance_notes": "o3-deep-research is OpenAI's advanced model for deep research, designed to tackle complex, multi-step research tasks.\n\nNote: This model always uses the 'web_search' tool which adds additional cost.",
+    "routing_tags": [
+      "reasoning"
+    ],
+    "openrouter_slug": "openai/o3-deep-research-2025-06-26",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/o4-mini-deep-research",
+    "provider": "openai",
+    "model_name": "OpenAI: o4 Mini Deep Research",
+    "version": "unknown",
+    "release_date": "2025-10-10",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.0,
+      "output_per_mtok": 8.0,
+      "notes": "$2.0/M input, $8.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "file",
+      "image",
+      "text"
+    ],
+    "performance_notes": "o4-mini-deep-research is OpenAI's faster, more affordable deep research model\u2014ideal for tackling complex, multi-step research tasks.\n\nNote: This model always uses the 'web_search' tool which adds additional cost.",
+    "routing_tags": [
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "openai/o4-mini-deep-research-2025-06-26",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemini-2.5-flash-image",
+    "provider": "google",
+    "model_name": "Google: Nano Banana (Gemini 2.5 Flash Image)",
+    "version": "unknown",
+    "release_date": "2025-10-07",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.3,
+      "output_per_mtok": 2.5,
+      "notes": "$0.3/M input, $2.5/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 32768,
+    "modalities": [
+      "image",
+      "text"
+    ],
+    "performance_notes": "Gemini 2.5 Flash Image, a.k.a. \"Nano Banana,\" is now generally available. It is a state of the art image generation model with contextual understanding. It is capable of image generation,...",
+    "routing_tags": [
+      "vision",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "google/gemini-2.5-flash-image",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5-pro",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5 Pro",
+    "version": "unknown",
+    "release_date": "2025-10-06",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 15.0,
+      "output_per_mtok": 120.0,
+      "notes": "$15.0/M input, $120.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 400000,
+    "modalities": [
+      "image",
+      "text",
+      "file"
+    ],
+    "performance_notes": "GPT-5 Pro is OpenAI\u2019s most advanced model, offering major improvements in reasoning, code quality, and user experience. It is optimized for complex tasks that require step-by-step reasoning, instruction following, and...",
+    "routing_tags": [
+      "coding",
+      "chat",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-5-pro-2025-10-06",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-4.5",
+    "provider": "anthropic",
+    "model_name": "Anthropic: Claude Sonnet 4.5",
+    "version": "unknown",
+    "release_date": "2025-09-29",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 3.0,
+      "output_per_mtok": 15.0,
+      "notes": "$3.0/M input, $15.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 1000000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "Claude Sonnet 4.5 is Anthropic\u2019s most advanced Sonnet model to date, optimized for real-world agents and coding workflows. It delivers state-of-the-art performance on coding benchmarks such as SWE-bench Verified, with...",
+    "routing_tags": [
+      "general"
+    ],
+    "openrouter_slug": "anthropic/claude-4.5-sonnet-20250929",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    },
+    "spend": {
+      "total_cost_usd": 332.777152,
+      "total_input_mtok": 213.7568,
+      "total_output_mtok": 7.6496,
+      "total_cache_read_mtok": 0.0,
+      "call_count": 7520,
+      "avg_cost_per_call_usd": 0.044252,
+      "period_start": "2026-03-13",
+      "period_end": "2026-04-13",
+      "source": "openrouter-api",
+      "imported_at": "2026-04-14 10:22 UTC"
+    }
+  },
+  {
+    "model_id": "deepseek/deepseek-v3.2-exp",
+    "provider": "deepseek",
+    "model_name": "DeepSeek: DeepSeek V3.2 Exp",
+    "version": "unknown",
+    "release_date": "2025-09-29",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.27,
+      "output_per_mtok": 0.41,
+      "notes": "$0.27/M input, $0.41/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 163840,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "DeepSeek-V3.2-Exp is an experimental large language model released by DeepSeek as an intermediate step between V3.1 and future architectures. It introduces DeepSeek Sparse Attention (DSA), a fine-grained sparse attention mechanism...",
+    "routing_tags": [
+      "analysis"
+    ],
+    "openrouter_slug": "deepseek/deepseek-v3.2-exp",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemini-2.5-flash-lite-preview-09-2025",
+    "provider": "google",
+    "model_name": "Google: Gemini 2.5 Flash Lite Preview 09-2025",
+    "version": "unknown",
+    "release_date": "2025-09-25",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.1,
+      "output_per_mtok": 0.4,
+      "notes": "$0.1/M input, $0.4/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 1048576,
+    "modalities": [
+      "text",
+      "image",
+      "file",
+      "audio",
+      "video"
+    ],
+    "performance_notes": "Gemini 2.5 Flash-Lite is a lightweight reasoning model in the Gemini 2.5 family, optimized for ultra-low latency and cost efficiency. It offers improved throughput, faster token generation, and better performance...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "google/gemini-2.5-flash-lite-preview-09-2025",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5-codex",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5 Codex",
+    "version": "unknown",
+    "release_date": "2025-09-23",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.25,
+      "output_per_mtok": 10.0,
+      "notes": "$1.25/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 400000,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "GPT-5-Codex is a specialized version of GPT-5 optimized for software engineering and coding workflows. It is designed for both interactive development sessions and long, independent execution of complex engineering tasks....",
+    "routing_tags": [
+      "coding"
+    ],
+    "openrouter_slug": "openai/gpt-5-codex",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "deepseek/deepseek-v3.1-terminus",
+    "provider": "deepseek",
+    "model_name": "DeepSeek: DeepSeek V3.1 Terminus",
+    "version": "unknown",
+    "release_date": "2025-09-22",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.21,
+      "output_per_mtok": 0.79,
+      "notes": "$0.21/M input, $0.79/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 163840,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "DeepSeek-V3.1 Terminus is an update to [DeepSeek V3.1](/deepseek/deepseek-chat-v3.1) that maintains the model's original capabilities while addressing issues reported by users, including language consistency and agent capabilities, further optimizing the model's...",
+    "routing_tags": [
+      "chat"
+    ],
+    "openrouter_slug": "deepseek/deepseek-v3.1-terminus",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "deepseek/deepseek-chat-v3.1",
+    "provider": "deepseek",
+    "model_name": "DeepSeek: DeepSeek V3.1",
+    "version": "unknown",
+    "release_date": "2025-08-21",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.15,
+      "output_per_mtok": 0.75,
+      "notes": "$0.15/M input, $0.75/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 32768,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "DeepSeek-V3.1 is a large hybrid reasoning model (671B parameters, 37B active) that supports both thinking and non-thinking modes via prompt templates. It extends the DeepSeek-V3 base with a two-phase long-context...",
+    "routing_tags": [
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "deepseek/deepseek-chat-v3.1",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4o-audio-preview",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4o Audio",
+    "version": "unknown",
+    "release_date": "2025-08-15",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.5,
+      "output_per_mtok": 10.0,
+      "notes": "$2.5/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "audio",
+      "text"
+    ],
+    "performance_notes": "The gpt-4o-audio-preview model adds support for audio inputs as prompts. This enhancement allows the model to detect nuances within audio recordings and add depth to generated user experiences. Audio outputs...",
+    "routing_tags": [
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-4o-audio-preview",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/mistral-medium-3.1",
+    "provider": "mistral",
+    "model_name": "Mistral: Mistral Medium 3.1",
+    "version": "unknown",
+    "release_date": "2025-08-13",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.4,
+      "output_per_mtok": 2.0,
+      "notes": "$0.4/M input, $2.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "Mistral Medium 3.1 is an updated version of Mistral Medium 3, which is a high-performance enterprise-grade language model designed to deliver frontier-level capabilities at significantly reduced operational cost. It balances...",
+    "routing_tags": [
+      "general"
+    ],
+    "openrouter_slug": "mistralai/mistral-medium-3.1",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5-chat",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5 Chat",
+    "version": "unknown",
+    "release_date": "2025-08-07",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.25,
+      "output_per_mtok": 10.0,
+      "notes": "$1.25/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "file",
+      "image",
+      "text"
+    ],
+    "performance_notes": "GPT-5 Chat is designed for advanced, natural, multimodal, and context-aware conversations for enterprise applications.",
+    "routing_tags": [
+      "chat"
+    ],
+    "openrouter_slug": "openai/gpt-5-chat-2025-08-07",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5",
+    "version": "unknown",
+    "release_date": "2025-08-07",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.25,
+      "output_per_mtok": 10.0,
+      "notes": "$1.25/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 400000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "GPT-5 is OpenAI\u2019s most advanced model, offering major improvements in reasoning, code quality, and user experience. It is optimized for complex tasks that require step-by-step reasoning, instruction following, and accuracy...",
+    "routing_tags": [
+      "coding",
+      "chat",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-5-2025-08-07",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5-mini",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5 Mini",
+    "version": "unknown",
+    "release_date": "2025-08-07",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.25,
+      "output_per_mtok": 2.0,
+      "notes": "$0.25/M input, $2.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 400000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "GPT-5 Mini is a compact version of GPT-5, designed to handle lighter-weight reasoning tasks. It provides the same instruction-following and safety-tuning benefits as GPT-5, but with reduced latency and cost....",
+    "routing_tags": [
+      "chat",
+      "fast-response",
+      "low-cost",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-5-mini-2025-08-07",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-5-nano",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-5 Nano",
+    "version": "unknown",
+    "release_date": "2025-08-07",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.05,
+      "output_per_mtok": 0.4,
+      "notes": "$0.05/M input, $0.4/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 400000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "GPT-5-Nano is the smallest and fastest variant in the GPT-5 system, optimized for developer tools, rapid interactions, and ultra-low latency environments. While limited in reasoning depth compared to its larger...",
+    "routing_tags": [
+      "coding",
+      "fast-response",
+      "low-cost",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-5-nano-2025-08-07",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-oss-120b",
+    "provider": "openai",
+    "model_name": "OpenAI: gpt-oss-120b",
+    "version": "unknown",
+    "release_date": "2025-08-05",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.039,
+      "output_per_mtok": 0.19,
+      "notes": "$0.039/M input, $0.19/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "gpt-oss-120b is an open-weight, 117B-parameter Mixture-of-Experts (MoE) language model from OpenAI designed for high-reasoning, agentic, and general-purpose production use cases. It activates 5.1B parameters per forward pass and is optimized...",
+    "routing_tags": [
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-oss-120b",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-oss-20b",
+    "provider": "openai",
+    "model_name": "OpenAI: gpt-oss-20b",
+    "version": "unknown",
+    "release_date": "2025-08-05",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.03,
+      "output_per_mtok": 0.14,
+      "notes": "$0.03/M input, $0.14/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "gpt-oss-20b is an open-weight 21B parameter model released by OpenAI under the Apache 2.0 license. It uses a Mixture-of-Experts (MoE) architecture with 3.6B active parameters per forward pass, optimized for...",
+    "routing_tags": [
+      "general"
+    ],
+    "openrouter_slug": "openai/gpt-oss-20b",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "anthropic/claude-opus-4.1",
+    "provider": "anthropic",
+    "model_name": "Anthropic: Claude Opus 4.1",
+    "version": "unknown",
+    "release_date": "2025-08-05",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 15.0,
+      "output_per_mtok": 75.0,
+      "notes": "$15.0/M input, $75.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "image",
+      "text",
+      "file"
+    ],
+    "performance_notes": "Claude Opus 4.1 is an updated version of Anthropic\u2019s flagship model, offering improved performance in coding, reasoning, and agentic tasks. It achieves 74.5% on SWE-bench Verified and shows notable gains...",
+    "routing_tags": [
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "anthropic/claude-4.1-opus-20250805",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/codestral-2508",
+    "provider": "mistral",
+    "model_name": "Mistral: Codestral 2508",
+    "version": "unknown",
+    "release_date": "2025-08-01",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.3,
+      "output_per_mtok": 0.9,
+      "notes": "$0.3/M input, $0.9/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 256000,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "Mistral's cutting-edge language model for coding released end of July 2025. Codestral specializes in low-latency, high-frequency tasks such as fill-in-the-middle (FIM), code correction and test generation.\n\n[Blog Post](https://mistral.ai/news/codestral-25-08)",
+    "routing_tags": [
+      "coding"
+    ],
+    "openrouter_slug": "mistralai/codestral-2508",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/devstral-medium",
+    "provider": "mistral",
+    "model_name": "Mistral: Devstral Medium",
+    "version": "unknown",
+    "release_date": "2025-07-10",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.4,
+      "output_per_mtok": 2.0,
+      "notes": "$0.4/M input, $2.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "Devstral Medium is a high-performance code generation and agentic reasoning model developed jointly by Mistral AI and All Hands AI. Positioned as a step up from Devstral Small, it achieves...",
+    "routing_tags": [
+      "coding",
+      "fast-response",
+      "low-cost",
+      "reasoning"
+    ],
+    "openrouter_slug": "mistralai/devstral-medium-2507",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/devstral-small",
+    "provider": "mistral",
+    "model_name": "Mistral: Devstral Small 1.1",
+    "version": "unknown",
+    "release_date": "2025-07-10",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.1,
+      "output_per_mtok": 0.3,
+      "notes": "$0.1/M input, $0.3/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "Devstral Small 1.1 is a 24B parameter open-weight language model for software engineering agents, developed by Mistral AI in collaboration with All Hands AI. Finetuned from Mistral Small 3.1 and...",
+    "routing_tags": [
+      "coding",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "mistralai/devstral-small-2507",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/mistral-small-3.2-24b-instruct",
+    "provider": "mistral",
+    "model_name": "Mistral: Mistral Small 3.2 24B",
+    "version": "unknown",
+    "release_date": "2025-06-20",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.075,
+      "output_per_mtok": 0.2,
+      "notes": "$0.075/M input, $0.2/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "image",
+      "text"
+    ],
+    "performance_notes": "Mistral-Small-3.2-24B-Instruct-2506 is an updated 24B parameter model from Mistral optimized for instruction following, repetition reduction, and improved function calling. Compared to the 3.1 release, version 3.2 significantly improves accuracy on...",
+    "routing_tags": [
+      "chat",
+      "fast-response",
+      "low-cost",
+      "analysis"
+    ],
+    "openrouter_slug": "mistralai/mistral-small-3.2-24b-instruct-2506",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "minimax/minimax-m1",
+    "provider": "minimax",
+    "model_name": "MiniMax: MiniMax M1",
+    "version": "unknown",
+    "release_date": "2025-06-17",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.4,
+      "output_per_mtok": 2.2,
+      "notes": "$0.4/M input, $2.2/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 1000000,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "MiniMax-M1 is a large-scale, open-weight reasoning model designed for extended context and high-efficiency inference. It leverages a hybrid Mixture-of-Experts (MoE) architecture paired with a custom \"lightning attention\" mechanism, allowing it...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "minimax/minimax-m1",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemini-2.5-pro",
+    "provider": "google",
+    "model_name": "Google: Gemini 2.5 Pro",
+    "version": "unknown",
+    "release_date": "2025-06-17",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.25,
+      "output_per_mtok": 10.0,
+      "notes": "$1.25/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 1048576,
+    "modalities": [
+      "text",
+      "image",
+      "file",
+      "audio",
+      "video"
+    ],
+    "performance_notes": "Gemini 2.5 Pro is Google\u2019s state-of-the-art AI model designed for advanced reasoning, coding, mathematics, and scientific tasks. It employs \u201cthinking\u201d capabilities, enabling it to reason through responses with enhanced accuracy...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "google/gemini-2.5-pro",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/o3-pro",
+    "provider": "openai",
+    "model_name": "OpenAI: o3 Pro",
+    "version": "unknown",
+    "release_date": "2025-06-10",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 20.0,
+      "output_per_mtok": 80.0,
+      "notes": "$20.0/M input, $80.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "text",
+      "file",
+      "image"
+    ],
+    "performance_notes": "The o-series of models are trained with reinforcement learning to think before they answer and perform complex reasoning. The o3-pro model uses more compute to think harder and provide consistently...",
+    "routing_tags": [
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/o3-pro-2025-06-10",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemini-2.5-pro-preview",
+    "provider": "google",
+    "model_name": "Google: Gemini 2.5 Pro Preview 06-05",
+    "version": "unknown",
+    "release_date": "2025-06-05",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.25,
+      "output_per_mtok": 10.0,
+      "notes": "$1.25/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 1048576,
+    "modalities": [
+      "file",
+      "image",
+      "text",
+      "audio"
+    ],
+    "performance_notes": "Gemini 2.5 Pro is Google\u2019s state-of-the-art AI model designed for advanced reasoning, coding, mathematics, and scientific tasks. It employs \u201cthinking\u201d capabilities, enabling it to reason through responses with enhanced accuracy...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "google/gemini-2.5-pro-preview-06-05",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "deepseek/deepseek-r1-0528",
+    "provider": "deepseek",
+    "model_name": "DeepSeek: R1 0528",
+    "version": "unknown",
+    "release_date": "2025-05-28",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.5,
+      "output_per_mtok": 2.15,
+      "notes": "$0.5/M input, $2.15/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 163840,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "May 28th update to the [original DeepSeek R1](/deepseek/deepseek-r1) Performance on par with [OpenAI o1](/openai/o1), but open-sourced and with fully open reasoning tokens. It's 671B parameters in size, with 37B active...",
+    "routing_tags": [
+      "reasoning"
+    ],
+    "openrouter_slug": "deepseek/deepseek-r1-0528",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "anthropic/claude-opus-4",
+    "provider": "anthropic",
+    "model_name": "Anthropic: Claude Opus 4",
+    "version": "unknown",
+    "release_date": "2025-05-22",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 15.0,
+      "output_per_mtok": 75.0,
+      "notes": "$15.0/M input, $75.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "image",
+      "text",
+      "file"
+    ],
+    "performance_notes": "Claude Opus 4 is benchmarked as the world\u2019s best coding model, at time of release, bringing sustained performance on complex, long-running tasks and agent workflows. It sets new benchmarks in...",
+    "routing_tags": [
+      "analysis"
+    ],
+    "openrouter_slug": "anthropic/claude-4-opus-20250522",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    },
+    "spend": {
+      "total_cost_usd": 307.30488,
+      "total_input_mtok": 16.3728,
+      "total_output_mtok": 0.8224,
+      "total_cache_read_mtok": 0.0,
+      "call_count": 624,
+      "avg_cost_per_call_usd": 0.492476,
+      "period_start": "2026-03-13",
+      "period_end": "2026-04-13",
+      "source": "openrouter-api",
+      "imported_at": "2026-04-14 10:22 UTC"
+    }
+  },
+  {
+    "model_id": "anthropic/claude-sonnet-4",
+    "provider": "anthropic",
+    "model_name": "Anthropic: Claude Sonnet 4",
+    "version": "unknown",
+    "release_date": "2025-05-22",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 3.0,
+      "output_per_mtok": 15.0,
+      "notes": "$3.0/M input, $15.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 1000000,
+    "modalities": [
+      "image",
+      "text",
+      "file"
+    ],
+    "performance_notes": "Claude Sonnet 4 significantly enhances the capabilities of its predecessor, Sonnet 3.7, excelling in both coding and reasoning tasks with improved precision and controllability. Achieving state-of-the-art performance on SWE-bench (72.7%),...",
+    "routing_tags": [
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "anthropic/claude-4-sonnet-20250522",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemma-3n-e4b-it",
+    "provider": "google",
+    "model_name": "Google: Gemma 3n 4B",
+    "version": "unknown",
+    "release_date": "2025-05-20",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.02,
+      "output_per_mtok": 0.04,
+      "notes": "$0.02/M input, $0.04/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 32768,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "Gemma 3n E4B-it is optimized for efficient execution on mobile and low-resource devices, such as phones, laptops, and tablets. It supports multimodal inputs\u2014including text, visual data, and audio\u2014enabling diverse tasks...",
+    "routing_tags": [
+      "coding",
+      "vision"
+    ],
+    "openrouter_slug": "google/gemma-3n-e4b-it",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/mistral-medium-3",
+    "provider": "mistral",
+    "model_name": "Mistral: Mistral Medium 3",
+    "version": "unknown",
+    "release_date": "2025-05-07",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.4,
+      "output_per_mtok": 2.0,
+      "notes": "$0.4/M input, $2.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "Mistral Medium 3 is a high-performance enterprise-grade language model designed to deliver frontier-level capabilities at significantly reduced operational cost. It balances state-of-the-art reasoning and multimodal performance with 8\u00d7 lower cost...",
+    "routing_tags": [
+      "reasoning"
+    ],
+    "openrouter_slug": "mistralai/mistral-medium-3",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemini-2.5-pro-preview-05-06",
+    "provider": "google",
+    "model_name": "Google: Gemini 2.5 Pro Preview 05-06",
+    "version": "unknown",
+    "release_date": "2025-05-07",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.25,
+      "output_per_mtok": 10.0,
+      "notes": "$1.25/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 1048576,
+    "modalities": [
+      "text",
+      "image",
+      "file",
+      "audio",
+      "video"
+    ],
+    "performance_notes": "Gemini 2.5 Pro is Google\u2019s state-of-the-art AI model designed for advanced reasoning, coding, mathematics, and scientific tasks. It employs \u201cthinking\u201d capabilities, enabling it to reason through responses with enhanced accuracy...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "google/gemini-2.5-pro-preview-03-25",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/o4-mini-high",
+    "provider": "openai",
+    "model_name": "OpenAI: o4 Mini High",
+    "version": "unknown",
+    "release_date": "2025-04-16",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.1,
+      "output_per_mtok": 4.4,
+      "notes": "$1.1/M input, $4.4/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "image",
+      "text",
+      "file"
+    ],
+    "performance_notes": "OpenAI o4-mini-high is the same model as [o4-mini](/openai/o4-mini) with reasoning_effort set to high. OpenAI o4-mini is a compact reasoning model in the o-series, optimized for fast, cost-efficient performance while retaining...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost",
+      "reasoning"
+    ],
+    "openrouter_slug": "openai/o4-mini-high-2025-04-16",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/o3",
+    "provider": "openai",
+    "model_name": "OpenAI: o3",
+    "version": "unknown",
+    "release_date": "2025-04-16",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.0,
+      "output_per_mtok": 8.0,
+      "notes": "$2.0/M input, $8.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "image",
+      "text",
+      "file"
+    ],
+    "performance_notes": "o3 is a well-rounded and powerful model across domains. It sets a new standard for math, science, coding, and visual reasoning tasks. It also excels at technical writing and instruction-following....",
+    "routing_tags": [
+      "vision",
+      "chat",
+      "reasoning"
+    ],
+    "openrouter_slug": "openai/o3-2025-04-16",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4.1",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4.1",
+    "version": "unknown",
+    "release_date": "2025-04-14",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.0,
+      "output_per_mtok": 8.0,
+      "notes": "$2.0/M input, $8.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 1047576,
+    "modalities": [
+      "image",
+      "text",
+      "file"
+    ],
+    "performance_notes": "GPT-4.1 is a flagship large language model optimized for advanced instruction following, real-world software engineering, and long-context reasoning. It supports a 1 million token context window and outperforms GPT-4o and...",
+    "routing_tags": [
+      "chat",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-4.1-2025-04-14",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4.1-mini",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4.1 Mini",
+    "version": "unknown",
+    "release_date": "2025-04-14",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.4,
+      "output_per_mtok": 1.6,
+      "notes": "$0.4/M input, $1.6/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 1047576,
+    "modalities": [
+      "image",
+      "text",
+      "file"
+    ],
+    "performance_notes": "GPT-4.1 Mini is a mid-sized model delivering performance competitive with GPT-4o at substantially lower latency and cost. It retains a 1 million token context window and scores 45.1% on hard...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "openai/gpt-4.1-mini-2025-04-14",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4.1-nano",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4.1 Nano",
+    "version": "unknown",
+    "release_date": "2025-04-14",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.1,
+      "output_per_mtok": 0.4,
+      "notes": "$0.1/M input, $0.4/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 1047576,
+    "modalities": [
+      "image",
+      "text",
+      "file"
+    ],
+    "performance_notes": "For tasks that demand low latency, GPT\u20114.1 nano is the fastest and cheapest model in the GPT-4.1 series. It delivers exceptional performance at a small size with its 1 million...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "openai/gpt-4.1-nano-2025-04-14",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "deepseek/deepseek-chat-v3-0324",
+    "provider": "deepseek",
+    "model_name": "DeepSeek: DeepSeek V3 0324",
+    "version": "unknown",
+    "release_date": "2025-03-24",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.2,
+      "output_per_mtok": 0.77,
+      "notes": "$0.2/M input, $0.77/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 163840,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "DeepSeek V3, a 685B-parameter, mixture-of-experts model, is the latest iteration of the flagship chat model family from the DeepSeek team. It succeeds the [DeepSeek V3](/deepseek/deepseek-chat-v3) model and performs really well...",
+    "routing_tags": [
+      "chat"
+    ],
+    "openrouter_slug": "deepseek/deepseek-chat-v3-0324",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/o1-pro",
+    "provider": "openai",
+    "model_name": "OpenAI: o1-pro",
+    "version": "unknown",
+    "release_date": "2025-03-19",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 150.0,
+      "output_per_mtok": 600.0,
+      "notes": "$150.0/M input, $600.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "The o1 series of models are trained with reinforcement learning to think before they answer and perform complex reasoning. The o1-pro model uses more compute to think harder and provide...",
+    "routing_tags": [
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/o1-pro",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/mistral-small-3.1-24b-instruct",
+    "provider": "mistral",
+    "model_name": "Mistral: Mistral Small 3.1 24B",
+    "version": "unknown",
+    "release_date": "2025-03-17",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.35,
+      "output_per_mtok": 0.56,
+      "notes": "$0.35/M input, $0.56/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "Mistral Small 3.1 24B Instruct is an upgraded variant of Mistral Small 3 (2501), featuring 24 billion parameters with advanced multimodal capabilities. It provides state-of-the-art performance in text-based reasoning and...",
+    "routing_tags": [
+      "chat",
+      "fast-response",
+      "low-cost",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "mistralai/mistral-small-3.1-24b-instruct-2503",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemma-3-4b-it",
+    "provider": "google",
+    "model_name": "Google: Gemma 3 4B",
+    "version": "unknown",
+    "release_date": "2025-03-13",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.04,
+      "output_per_mtok": 0.08,
+      "notes": "$0.04/M input, $0.08/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "Gemma 3 introduces multimodality, supporting vision-language input and text outputs. It handles context windows up to 128k tokens, understands over 140 languages, and offers improved math, reasoning, and chat capabilities,...",
+    "routing_tags": [
+      "vision",
+      "chat",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "google/gemma-3-4b-it",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemma-3-12b-it",
+    "provider": "google",
+    "model_name": "Google: Gemma 3 12B",
+    "version": "unknown",
+    "release_date": "2025-03-13",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.04,
+      "output_per_mtok": 0.13,
+      "notes": "$0.04/M input, $0.13/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "Gemma 3 introduces multimodality, supporting vision-language input and text outputs. It handles context windows up to 128k tokens, understands over 140 languages, and offers improved math, reasoning, and chat capabilities,...",
+    "routing_tags": [
+      "vision",
+      "chat",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "google/gemma-3-12b-it",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4o-mini-search-preview",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4o-mini Search Preview",
+    "version": "unknown",
+    "release_date": "2025-03-12",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.15,
+      "output_per_mtok": 0.6,
+      "notes": "$0.15/M input, $0.6/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "GPT-4o mini Search Preview is a specialized model for web search in Chat Completions. It is trained to understand and execute web search queries.",
+    "routing_tags": [
+      "chat",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "openai/gpt-4o-mini-search-preview-2025-03-11",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4o-search-preview",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4o Search Preview",
+    "version": "unknown",
+    "release_date": "2025-03-12",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.5,
+      "output_per_mtok": 10.0,
+      "notes": "$2.5/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "GPT-4o Search Previewis a specialized model for web search in Chat Completions. It is trained to understand and execute web search queries.",
+    "routing_tags": [
+      "chat"
+    ],
+    "openrouter_slug": "openai/gpt-4o-search-preview-2025-03-11",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemma-3-27b-it",
+    "provider": "google",
+    "model_name": "Google: Gemma 3 27B",
+    "version": "unknown",
+    "release_date": "2025-03-12",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.08,
+      "output_per_mtok": 0.16,
+      "notes": "$0.08/M input, $0.16/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "Gemma 3 introduces multimodality, supporting vision-language input and text outputs. It handles context windows up to 128k tokens, understands over 140 languages, and offers improved math, reasoning, and chat capabilities,...",
+    "routing_tags": [
+      "vision",
+      "chat",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "google/gemma-3-27b-it",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemini-2.0-flash-lite-001",
+    "provider": "google",
+    "model_name": "Google: Gemini 2.0 Flash Lite",
+    "version": "unknown",
+    "release_date": "2025-02-25",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.075,
+      "output_per_mtok": 0.3,
+      "notes": "$0.075/M input, $0.3/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 1048576,
+    "modalities": [
+      "text",
+      "image",
+      "file",
+      "audio",
+      "video"
+    ],
+    "performance_notes": "Gemini 2.0 Flash Lite offers a significantly faster time to first token (TTFT) compared to [Gemini Flash 1.5](/google/gemini-flash-1.5), while maintaining quality on par with larger models like [Gemini Pro 1.5](/google/gemini-pro-1.5),...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost",
+      "analysis"
+    ],
+    "openrouter_slug": "google/gemini-2.0-flash-lite-001",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "anthropic/claude-3.7-sonnet",
+    "provider": "anthropic",
+    "model_name": "Anthropic: Claude 3.7 Sonnet",
+    "version": "unknown",
+    "release_date": "2025-02-24",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 3.0,
+      "output_per_mtok": 15.0,
+      "notes": "$3.0/M input, $15.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "Claude 3.7 Sonnet is an advanced large language model with improved reasoning, coding, and problem-solving capabilities. It introduces a hybrid reasoning approach, allowing users to choose between rapid responses and...",
+    "routing_tags": [
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "anthropic/claude-3-7-sonnet-20250219",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "anthropic/claude-3.7-sonnet:thinking",
+    "provider": "anthropic",
+    "model_name": "Anthropic: Claude 3.7 Sonnet (thinking)",
+    "version": "unknown",
+    "release_date": "2025-02-24",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 3.0,
+      "output_per_mtok": 15.0,
+      "notes": "$3.0/M input, $15.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "Claude 3.7 Sonnet is an advanced large language model with improved reasoning, coding, and problem-solving capabilities. It introduces a hybrid reasoning approach, allowing users to choose between rapid responses and...",
+    "routing_tags": [
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "anthropic/claude-3-7-sonnet-20250219",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/mistral-saba",
+    "provider": "mistral",
+    "model_name": "Mistral: Saba",
+    "version": "unknown",
+    "release_date": "2025-02-17",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.2,
+      "output_per_mtok": 0.6,
+      "notes": "$0.2/M input, $0.6/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 32768,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "Mistral Saba is a 24B-parameter language model specifically designed for the Middle East and South Asia, delivering accurate and contextually relevant responses while maintaining efficient performance. Trained on curated regional...",
+    "routing_tags": [
+      "general"
+    ],
+    "openrouter_slug": "mistralai/mistral-saba-2502",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemini-2.0-flash-001",
+    "provider": "google",
+    "model_name": "Google: Gemini 2.0 Flash",
+    "version": "unknown",
+    "release_date": "2025-02-05",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.1,
+      "output_per_mtok": 0.4,
+      "notes": "$0.1/M input, $0.4/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 1048576,
+    "modalities": [
+      "text",
+      "image",
+      "file",
+      "audio",
+      "video"
+    ],
+    "performance_notes": "Gemini Flash 2.0 offers a significantly faster time to first token (TTFT) compared to [Gemini Flash 1.5](/google/gemini-flash-1.5), while maintaining quality on par with larger models like [Gemini Pro 1.5](/google/gemini-pro-1.5). It...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost",
+      "analysis"
+    ],
+    "openrouter_slug": "google/gemini-2.0-flash-001",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/o3-mini",
+    "provider": "openai",
+    "model_name": "OpenAI: o3 Mini",
+    "version": "unknown",
+    "release_date": "2025-01-31",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.1,
+      "output_per_mtok": 4.4,
+      "notes": "$1.1/M input, $4.4/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "text",
+      "file"
+    ],
+    "performance_notes": "OpenAI o3-mini is a cost-efficient language model optimized for STEM reasoning tasks, particularly excelling in science, mathematics, and coding. This model supports the `reasoning_effort` parameter, which can be set to...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost",
+      "reasoning"
+    ],
+    "openrouter_slug": "openai/o3-mini-2025-01-31",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/mistral-small-24b-instruct-2501",
+    "provider": "mistral",
+    "model_name": "Mistral: Mistral Small 3",
+    "version": "unknown",
+    "release_date": "2025-01-30",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.05,
+      "output_per_mtok": 0.08,
+      "notes": "$0.05/M input, $0.08/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 32768,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "Mistral Small 3 is a 24B-parameter language model optimized for low-latency performance across common AI tasks. Released under the Apache 2.0 license, it features both pre-trained and instruction-tuned versions designed...",
+    "routing_tags": [
+      "chat",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "mistralai/mistral-small-24b-instruct-2501",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "deepseek/deepseek-r1-distill-qwen-32b",
+    "provider": "deepseek",
+    "model_name": "DeepSeek: R1 Distill Qwen 32B",
+    "version": "unknown",
+    "release_date": "2025-01-29",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.29,
+      "output_per_mtok": 0.29,
+      "notes": "$0.29/M input, $0.29/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 32768,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "DeepSeek R1 Distill Qwen 32B is a distilled large language model based on [Qwen 2.5 32B](https://huggingface.co/Qwen/Qwen2.5-32B), using outputs from [DeepSeek R1](/deepseek/deepseek-r1). It outperforms OpenAI's o1-mini across various benchmarks, achieving new...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "deepseek/deepseek-r1-distill-qwen-32b",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "deepseek/deepseek-r1-distill-llama-70b",
+    "provider": "deepseek",
+    "model_name": "DeepSeek: R1 Distill Llama 70B",
+    "version": "unknown",
+    "release_date": "2025-01-23",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.7,
+      "output_per_mtok": 0.8,
+      "notes": "$0.7/M input, $0.8/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "DeepSeek R1 Distill Llama 70B is a distilled large language model based on [Llama-3.3-70B-Instruct](/meta-llama/llama-3.3-70b-instruct), using outputs from [DeepSeek R1](/deepseek/deepseek-r1). The model combines advanced distillation techniques to achieve high performance across...",
+    "routing_tags": [
+      "chat",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "deepseek/deepseek-r1-distill-llama-70b",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "minimax/minimax-01",
+    "provider": "minimax",
+    "model_name": "MiniMax: MiniMax-01",
+    "version": "unknown",
+    "release_date": "2025-01-15",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.2,
+      "output_per_mtok": 1.1,
+      "notes": "$0.2/M input, $1.1/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 1000192,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "MiniMax-01 is a combines MiniMax-Text-01 for text generation and MiniMax-VL-01 for image understanding. It has 456 billion parameters, with 45.9 billion parameters activated per inference, and can handle a context...",
+    "routing_tags": [
+      "vision",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "minimax/minimax-01",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/o1",
+    "provider": "openai",
+    "model_name": "OpenAI: o1",
+    "version": "unknown",
+    "release_date": "2024-12-17",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 15.0,
+      "output_per_mtok": 60.0,
+      "notes": "$15.0/M input, $60.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "The latest and strongest model family from OpenAI, o1 is designed to spend more time thinking before responding. The o1 model series is trained with large-scale reinforcement learning to reason...",
+    "routing_tags": [
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/o1-2024-12-17",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4o-2024-11-20",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4o (2024-11-20)",
+    "version": "unknown",
+    "release_date": "2024-11-20",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.5,
+      "output_per_mtok": 10.0,
+      "notes": "$2.5/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "The 2024-11-20 version of GPT-4o offers a leveled-up creative writing ability with more natural, engaging, and tailored writing to improve relevance & readability. It\u2019s also better at working with uploaded...",
+    "routing_tags": [
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-4o-2024-11-20",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/mistral-large-2411",
+    "provider": "mistral",
+    "model_name": "Mistral Large 2411",
+    "version": "unknown",
+    "release_date": "2024-11-19",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.0,
+      "output_per_mtok": 6.0,
+      "notes": "$2.0/M input, $6.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "Mistral Large 2 2411 is an update of [Mistral Large 2](/mistralai/mistral-large) released together with [Pixtral Large 2411](/mistralai/pixtral-large-2411) It provides a significant upgrade on the previous [Mistral Large 24.07](/mistralai/mistral-large-2407), with notable...",
+    "routing_tags": [
+      "analysis"
+    ],
+    "openrouter_slug": "mistralai/mistral-large-2411",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/mistral-large-2407",
+    "provider": "mistral",
+    "model_name": "Mistral Large 2407",
+    "version": "unknown",
+    "release_date": "2024-11-19",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.0,
+      "output_per_mtok": 6.0,
+      "notes": "$2.0/M input, $6.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "This is Mistral AI's flagship model, Mistral Large 2 (version mistral-large-2407). It's a proprietary weights-available model and excels at reasoning, code, JSON, chat, and more. Read the launch announcement [here](https://mistral.ai/news/mistral-large-2407/)....",
+    "routing_tags": [
+      "coding",
+      "chat",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "mistralai/mistral-large-2407",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/pixtral-large-2411",
+    "provider": "mistral",
+    "model_name": "Mistral: Pixtral Large 2411",
+    "version": "unknown",
+    "release_date": "2024-11-19",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.0,
+      "output_per_mtok": 6.0,
+      "notes": "$2.0/M input, $6.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "Pixtral Large is a 124B parameter, open-weight, multimodal model built on top of [Mistral Large 2](/mistralai/mistral-large-2411). The model is able to understand documents, charts and natural images. The model is...",
+    "routing_tags": [
+      "vision",
+      "analysis"
+    ],
+    "openrouter_slug": "mistralai/pixtral-large-2411",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "anthropic/claude-3.5-haiku",
+    "provider": "anthropic",
+    "model_name": "Anthropic: Claude 3.5 Haiku",
+    "version": "unknown",
+    "release_date": "2024-11-04",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.8,
+      "output_per_mtok": 4.0,
+      "notes": "$0.8/M input, $4.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "Claude 3.5 Haiku features offers enhanced capabilities in speed, coding accuracy, and tool use. Engineered to excel in real-time applications, it delivers quick response times that are essential for dynamic...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "anthropic/claude-3-5-haiku",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4o-2024-08-06",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4o (2024-08-06)",
+    "version": "unknown",
+    "release_date": "2024-08-06",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.5,
+      "output_per_mtok": 10.0,
+      "notes": "$2.5/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "The 2024-08-06 version of GPT-4o offers improved performance in structured outputs, with the ability to supply a JSON schema in the respone_format. Read more [here](https://openai.com/index/introducing-structured-outputs-in-the-api/). GPT-4o (\"o\" for \"omni\") is...",
+    "routing_tags": [
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-4o-2024-08-06",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/mistral-nemo",
+    "provider": "mistral",
+    "model_name": "Mistral: Mistral Nemo",
+    "version": "unknown",
+    "release_date": "2024-07-19",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.02,
+      "output_per_mtok": 0.04,
+      "notes": "$0.02/M input, $0.04/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 131072,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "A 12B parameter model with a 128k token context length built by Mistral in collaboration with NVIDIA. The model is multilingual, supporting English, French, German, Spanish, Italian, Portuguese, Chinese, Japanese,...",
+    "routing_tags": [
+      "general"
+    ],
+    "openrouter_slug": "mistralai/mistral-nemo",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4o-mini-2024-07-18",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4o-mini (2024-07-18)",
+    "version": "unknown",
+    "release_date": "2024-07-18",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.15,
+      "output_per_mtok": 0.6,
+      "notes": "$0.15/M input, $0.6/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "GPT-4o mini is OpenAI's newest model after [GPT-4 Omni](/models/openai/gpt-4o), supporting both text and image inputs with text outputs. As their most advanced small model, it is many multiples more affordable...",
+    "routing_tags": [
+      "vision",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "openai/gpt-4o-mini-2024-07-18",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4o-mini",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4o-mini",
+    "version": "unknown",
+    "release_date": "2024-07-18",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.15,
+      "output_per_mtok": 0.6,
+      "notes": "$0.15/M input, $0.6/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "GPT-4o mini is OpenAI's newest model after [GPT-4 Omni](/models/openai/gpt-4o), supporting both text and image inputs with text outputs. As their most advanced small model, it is many multiples more affordable...",
+    "routing_tags": [
+      "vision",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "openai/gpt-4o-mini",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemma-2-27b-it",
+    "provider": "google",
+    "model_name": "Google: Gemma 2 27B",
+    "version": "unknown",
+    "release_date": "2024-07-13",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.65,
+      "output_per_mtok": 0.65,
+      "notes": "$0.65/M input, $0.65/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 8192,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "Gemma 2 27B by Google is an open model built from the same research and technology used to create the [Gemini models](/models?q=gemini). Gemma models are well-suited for a variety of...",
+    "routing_tags": [
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "google/gemma-2-27b-it",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "google/gemma-2-9b-it",
+    "provider": "google",
+    "model_name": "Google: Gemma 2 9B",
+    "version": "unknown",
+    "release_date": "2024-06-28",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.03,
+      "output_per_mtok": 0.09,
+      "notes": "$0.03/M input, $0.09/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 8192,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "Gemma 2 9B by Google is an advanced, open-source language model that sets a new standard for efficiency and performance in its size class. Designed for a wide variety of...",
+    "routing_tags": [
+      "general"
+    ],
+    "openrouter_slug": "google/gemma-2-9b-it",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4o-2024-05-13",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4o (2024-05-13)",
+    "version": "unknown",
+    "release_date": "2024-05-13",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 5.0,
+      "output_per_mtok": 15.0,
+      "notes": "$5.0/M input, $15.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs. It maintains the intelligence level of [GPT-4 Turbo](/models/openai/gpt-4-turbo) while being twice as...",
+    "routing_tags": [
+      "vision"
+    ],
+    "openrouter_slug": "openai/gpt-4o-2024-05-13",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4o",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4o",
+    "version": "unknown",
+    "release_date": "2024-05-13",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.5,
+      "output_per_mtok": 10.0,
+      "notes": "$2.5/M input, $10.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs. It maintains the intelligence level of [GPT-4 Turbo](/models/openai/gpt-4-turbo) while being twice as...",
+    "routing_tags": [
+      "vision"
+    ],
+    "openrouter_slug": "openai/gpt-4o",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4o:extended",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4o (extended)",
+    "version": "unknown",
+    "release_date": "2024-05-13",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 6.0,
+      "output_per_mtok": 18.0,
+      "notes": "$6.0/M input, $18.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text",
+      "image",
+      "file"
+    ],
+    "performance_notes": "GPT-4o (\"o\" for \"omni\") is OpenAI's latest AI model, supporting both text and image inputs with text outputs. It maintains the intelligence level of [GPT-4 Turbo](/models/openai/gpt-4-turbo) while being twice as...",
+    "routing_tags": [
+      "vision"
+    ],
+    "openrouter_slug": "openai/gpt-4o",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/mixtral-8x22b-instruct",
+    "provider": "mistral",
+    "model_name": "Mistral: Mixtral 8x22B Instruct",
+    "version": "unknown",
+    "release_date": "2024-04-17",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.0,
+      "output_per_mtok": 6.0,
+      "notes": "$2.0/M input, $6.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 65536,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "Mistral's official instruct fine-tuned version of [Mixtral 8x22B](/models/mistralai/mixtral-8x22b). It uses 39B active parameters out of 141B, offering unparalleled cost efficiency for its size. Its strengths include: - strong math, coding,...",
+    "routing_tags": [
+      "chat"
+    ],
+    "openrouter_slug": "mistralai/mixtral-8x22b-instruct",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4-turbo",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4 Turbo",
+    "version": "unknown",
+    "release_date": "2024-04-09",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 10.0,
+      "output_per_mtok": 30.0,
+      "notes": "$10.0/M input, $30.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "The latest GPT-4 Turbo model with vision capabilities. Vision requests can now use JSON mode and function calling.\n\nTraining data: up to December 2023.",
+    "routing_tags": [
+      "vision"
+    ],
+    "openrouter_slug": "openai/gpt-4-turbo",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "anthropic/claude-3-haiku",
+    "provider": "anthropic",
+    "model_name": "Anthropic: Claude 3 Haiku",
+    "version": "unknown",
+    "release_date": "2024-03-13",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.25,
+      "output_per_mtok": 1.25,
+      "notes": "$0.25/M input, $1.25/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 200000,
+    "modalities": [
+      "text",
+      "image"
+    ],
+    "performance_notes": "Claude 3 Haiku is Anthropic's fastest and most compact model for\nnear-instant responsiveness. Quick and accurate targeted performance.\n\nSee the launch announcement and benchmark results [here](https://www.anthropic.com/news/claude-3-haiku)\n\n#multimodal",
+    "routing_tags": [
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "anthropic/claude-3-haiku",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/mistral-large",
+    "provider": "mistral",
+    "model_name": "Mistral Large",
+    "version": "unknown",
+    "release_date": "2024-02-26",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 2.0,
+      "output_per_mtok": 6.0,
+      "notes": "$2.0/M input, $6.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "This is Mistral AI's flagship model, Mistral Large 2 (version `mistral-large-2407`). It's a proprietary weights-available model and excels at reasoning, code, JSON, chat, and more. Read the launch announcement [here](https://mistral.ai/news/mistral-large-2407/)....",
+    "routing_tags": [
+      "coding",
+      "chat",
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "mistralai/mistral-large",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4-turbo-preview",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4 Turbo Preview",
+    "version": "unknown",
+    "release_date": "2024-01-25",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 10.0,
+      "output_per_mtok": 30.0,
+      "notes": "$10.0/M input, $30.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "The preview GPT-4 model with improved instruction following, JSON mode, reproducible outputs, parallel function calling, and more. Training data: up to Dec 2023. **Note:** heavily rate limited by OpenAI while...",
+    "routing_tags": [
+      "chat",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-4-turbo-preview",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-3.5-turbo-0613",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-3.5 Turbo (older v0613)",
+    "version": "unknown",
+    "release_date": "2024-01-25",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.0,
+      "output_per_mtok": 2.0,
+      "notes": "$1.0/M input, $2.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 4095,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "GPT-3.5 Turbo is OpenAI's fastest model. It can understand and generate natural language or code, and is optimized for chat and traditional completion tasks.\n\nTraining data up to Sep 2021.",
+    "routing_tags": [
+      "coding",
+      "chat",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "openai/gpt-3.5-turbo-0613",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/mixtral-8x7b-instruct",
+    "provider": "mistral",
+    "model_name": "Mistral: Mixtral 8x7B Instruct",
+    "version": "unknown",
+    "release_date": "2023-12-10",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.54,
+      "output_per_mtok": 0.54,
+      "notes": "$0.54/M input, $0.54/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 32768,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "Mixtral 8x7B Instruct is a pretrained generative Sparse Mixture of Experts, by Mistral AI, for chat and instruction use. Incorporates 8 experts (feed-forward networks) for a total of 47 billion...",
+    "routing_tags": [
+      "chat"
+    ],
+    "openrouter_slug": "mistralai/mixtral-8x7b-instruct",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4-1106-preview",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4 Turbo (older v1106)",
+    "version": "unknown",
+    "release_date": "2023-11-06",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 10.0,
+      "output_per_mtok": 30.0,
+      "notes": "$10.0/M input, $30.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 128000,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "The latest GPT-4 Turbo model with vision capabilities. Vision requests can now use JSON mode and function calling.\n\nTraining data: up to April 2023.",
+    "routing_tags": [
+      "vision"
+    ],
+    "openrouter_slug": "openai/gpt-4-1106-preview",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-3.5-turbo-instruct",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-3.5 Turbo Instruct",
+    "version": "unknown",
+    "release_date": "2023-09-28",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 1.5,
+      "output_per_mtok": 2.0,
+      "notes": "$1.5/M input, $2.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 4095,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "This model is a variant of GPT-3.5 Turbo tuned for instructional prompts and omitting chat-related optimizations. Training data: up to Sep 2021.",
+    "routing_tags": [
+      "chat",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-3.5-turbo-instruct",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "mistralai/mistral-7b-instruct-v0.1",
+    "provider": "mistral",
+    "model_name": "Mistral: Mistral 7B Instruct v0.1",
+    "version": "unknown",
+    "release_date": "2023-09-28",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.11,
+      "output_per_mtok": 0.19,
+      "notes": "$0.11/M input, $0.19/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 2824,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "A 7.3B parameter model that outperforms Llama 2 13B on all benchmarks, with optimizations for speed and context length.",
+    "routing_tags": [
+      "chat"
+    ],
+    "openrouter_slug": "mistralai/mistral-7b-instruct-v0.1",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.4,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-3.5-turbo-16k",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-3.5 Turbo 16k",
+    "version": "unknown",
+    "release_date": "2023-08-28",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 3.0,
+      "output_per_mtok": 4.0,
+      "notes": "$3.0/M input, $4.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 16385,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "This model offers four times the context length of gpt-3.5-turbo, allowing it to support approximately 20 pages of text in a single request at a higher cost. Training data: up...",
+    "routing_tags": [
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-3.5-turbo-16k",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4-0314",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4 (older v0314)",
+    "version": "unknown",
+    "release_date": "2023-05-28",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 30.0,
+      "output_per_mtok": 60.0,
+      "notes": "$30.0/M input, $60.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 8191,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "GPT-4-0314 is the first version of GPT-4 released, with a context length of 8,192 tokens, and was supported until June 14. Training data: up to Sep 2021.",
+    "routing_tags": [
+      "general"
+    ],
+    "openrouter_slug": "openai/gpt-4-0314",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-4",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-4",
+    "version": "unknown",
+    "release_date": "2023-05-28",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 30.0,
+      "output_per_mtok": 60.0,
+      "notes": "$30.0/M input, $60.0/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 8191,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "OpenAI's flagship model, GPT-4 is a large-scale multimodal language model capable of solving difficult problems with greater accuracy than previous models due to its broader general knowledge and advanced reasoning...",
+    "routing_tags": [
+      "reasoning",
+      "analysis"
+    ],
+    "openrouter_slug": "openai/gpt-4",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  },
+  {
+    "model_id": "openai/gpt-3.5-turbo",
+    "provider": "openai",
+    "model_name": "OpenAI: GPT-3.5 Turbo",
+    "version": "unknown",
+    "release_date": "2023-05-28",
+    "strengths": [],
+    "weaknesses": [],
+    "ideal_use_cases": [],
+    "pricing": {
+      "input_per_mtok": 0.5,
+      "output_per_mtok": 1.5,
+      "notes": "$0.5/M input, $1.5/M output (auto-ingested from OpenRouter)"
+    },
+    "context_window": 16385,
+    "modalities": [
+      "text"
+    ],
+    "performance_notes": "GPT-3.5 Turbo is OpenAI's fastest model. It can understand and generate natural language or code, and is optimized for chat and traditional completion tasks.\n\nTraining data up to Sep 2021.",
+    "routing_tags": [
+      "coding",
+      "chat",
+      "fast-response",
+      "low-cost"
+    ],
+    "openrouter_slug": "openai/gpt-3.5-turbo",
+    "_meta": {
+      "last_updated": "2026-04-13",
+      "source": "openrouter-api",
+      "confidence": 0.6,
+      "auto_ingested": true,
+      "needs_review": true,
+      "archived": true,
+      "archived_date": "2026-04-15"
+    }
+  }
+]

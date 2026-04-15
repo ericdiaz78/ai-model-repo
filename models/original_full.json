@@ -45,29 +45,7 @@
     "_meta": {
       "last_updated": "2026-04-13",
       "source": "openrouter-api",
-      "confidence": 0.95,
-      "shelf": "active",
-      "security": {
-        "api_path": "both",
-        "data_retention": "No training on API data (Anthropic policy)",
-        "prompt_injection_resistance": "high",
-        "notes": "Direct API enables native Prompt Caching (90% cache discount). Use direct for high-volume agentic tasks."
-      },
-      "benchmarks": [
-        {
-          "source": "LMSYS Chatbot Arena",
-          "url": "https://chat.lmsys.org",
-          "score": "Top 3 overall ELO",
-          "date": "2026-04"
-        },
-        {
-          "source": "Artificial Analysis",
-          "url": "https://artificialanalysis.ai",
-          "score": "Strong reasoning, coding, analysis",
-          "date": "2026-04"
-        }
-      ],
-      "our_observations": {}
+      "confidence": 0.95
     },
     "direct_pricing": {
       "input_per_mtok": 3.0,
@@ -139,29 +117,7 @@
     "_meta": {
       "last_updated": "2026-04-13",
       "source": "openrouter-api",
-      "confidence": 0.92,
-      "shelf": "active",
-      "security": {
-        "api_path": "openrouter",
-        "data_retention": "Unknown \u2014 verify with Minimax before sensitive use",
-        "prompt_injection_resistance": "medium",
-        "notes": "OpenRouter-only. Context degradation risk in isolated cron sessions (hallucination of prior context)."
-      },
-      "benchmarks": [
-        {
-          "source": "OpenRouter",
-          "url": "https://openrouter.ai/models/minimax/minimax-m2.7-20260318",
-          "score": "Agentic leaderboard \u2014 strong tool use, low latency",
-          "date": "2026-04"
-        },
-        {
-          "source": "r/LocalLLaMA",
-          "url": "https://reddit.com/r/LocalLLaMA",
-          "score": "Good agentic performance at very low cost",
-          "date": "2026-04"
-        }
-      ],
-      "our_observations": {}
+      "confidence": 0.92
     },
     "direct_pricing": {
       "direct_available": false,
@@ -224,23 +180,7 @@
     "_meta": {
       "last_updated": "2026-04-13",
       "source": "openrouter-activity",
-      "confidence": 0.8,
-      "shelf": "active",
-      "security": {
-        "api_path": "openrouter",
-        "data_retention": "Unknown \u2014 verify with Xiaomi/MiniMax before sensitive use",
-        "prompt_injection_resistance": "medium",
-        "notes": "Highest call volume model. Lowest cost capable model tested. No direct API known."
-      },
-      "benchmarks": [
-        {
-          "source": "OpenRouter",
-          "url": "https://openrouter.ai/models/xiaomi/mimo-v2-pro-20260318",
-          "score": "Highest volume, proven in production",
-          "date": "2026-04"
-        }
-      ],
-      "our_observations": {}
+      "confidence": 0.8
     },
     "spend": {
       "total_cost_usd": 504.433104,
@@ -296,29 +236,7 @@
     "_meta": {
       "last_updated": "2026-04-13",
       "source": "production-observation",
-      "confidence": 0.85,
-      "shelf": "active",
-      "security": {
-        "api_path": "openrouter",
-        "data_retention": "OpenAI retains data 30 days for abuse monitoring (API terms)",
-        "prompt_injection_resistance": "high",
-        "notes": "Alexander primary coding model. No temperature support via OpenRouter codex provider."
-      },
-      "benchmarks": [
-        {
-          "source": "OpenRouter",
-          "url": "https://openrouter.ai/models/openai-codex/gpt-5.4",
-          "score": "Top coding model",
-          "date": "2026-04"
-        },
-        {
-          "source": "Artificial Analysis",
-          "url": "https://artificialanalysis.ai",
-          "score": "State-of-the-art code synthesis",
-          "date": "2026-04"
-        }
-      ],
-      "our_observations": {}
+      "confidence": 0.85
     },
     "direct_pricing": {
       "input_per_mtok": 1.5,
@@ -375,29 +293,7 @@
     "_meta": {
       "last_updated": "2026-04-13",
       "source": "openrouter-api",
-      "confidence": 0.88,
-      "shelf": "active",
-      "security": {
-        "api_path": "both",
-        "data_retention": "Google retains data for 72h for abuse monitoring (configurable)",
-        "prompt_injection_resistance": "medium",
-        "notes": "Free tier via Google AI Studio (15 RPM, 1M tokens/day). Direct unlocks Context Caching API."
-      },
-      "benchmarks": [
-        {
-          "source": "Artificial Analysis",
-          "url": "https://artificialanalysis.ai",
-          "score": "Fastest throughput, lowest cost/quality ratio",
-          "date": "2026-04"
-        },
-        {
-          "source": "OpenRouter",
-          "url": "https://openrouter.ai/models/google/gemini-2.5-flash-lite",
-          "score": "Top tier for fast automation",
-          "date": "2026-04"
-        }
-      ],
-      "our_observations": {}
+      "confidence": 0.88
     },
     "direct_pricing": {
       "input_per_mtok": 0.1,
@@ -464,29 +360,7 @@
     "_meta": {
       "last_updated": "2026-04-13",
       "source": "openrouter-api",
-      "confidence": 0.85,
-      "shelf": "active",
-      "security": {
-        "api_path": "both",
-        "data_retention": "Google retains data 72h for abuse monitoring (configurable)",
-        "prompt_injection_resistance": "medium",
-        "notes": "Direct unlocks Grounding with Search feature. Good balance of capability and cost."
-      },
-      "benchmarks": [
-        {
-          "source": "Artificial Analysis",
-          "url": "https://artificialanalysis.ai",
-          "score": "Good balanced performer",
-          "date": "2026-04"
-        },
-        {
-          "source": "OpenRouter",
-          "url": "https://openrouter.ai/models/google/gemini-2.5-flash",
-          "score": "Mid-tier cost, strong reasoning",
-          "date": "2026-04"
-        }
-      ],
-      "our_observations": {}
+      "confidence": 0.85
     },
     "direct_pricing": {
       "input_per_mtok": 0.3,
@@ -551,29 +425,7 @@
     "_meta": {
       "last_updated": "2026-04-13",
       "source": "openrouter-api",
-      "confidence": 0.76,
-      "shelf": "active",
-      "security": {
-        "api_path": "both",
-        "data_retention": "DeepSeek retains data \u2014 review their API terms before sensitive use",
-        "prompt_injection_resistance": "low",
-        "notes": "OpenAI-compatible API. Direct pricing lower than OpenRouter. Excellent price-performance for code."
-      },
-      "benchmarks": [
-        {
-          "source": "OpenRouter",
-          "url": "https://openrouter.ai/models/deepseek/deepseek-chat-v3",
-          "score": "Best budget coding model",
-          "date": "2026-04"
-        },
-        {
-          "source": "r/LocalLLaMA",
-          "url": "https://reddit.com/r/LocalLLaMA",
-          "score": "Strong open-source reasoning, excellent price",
-          "date": "2026-04"
-        }
-      ],
-      "our_observations": {}
+      "confidence": 0.76
     },
     "direct_pricing": {
       "input_per_mtok": 0.14,
@@ -626,29 +478,7 @@
     "_meta": {
       "last_updated": "2026-04-13",
       "source": "openrouter-api",
-      "confidence": 0.82,
-      "shelf": "active",
-      "security": {
-        "api_path": "both",
-        "data_retention": "No training on API data (Anthropic policy)",
-        "prompt_injection_resistance": "high",
-        "notes": "Direct API enables Batch API (50% off). Good for classification and lightweight cron tasks."
-      },
-      "benchmarks": [
-        {
-          "source": "LMSYS Chatbot Arena",
-          "url": "https://chat.lmsys.org",
-          "score": "Strong small model ELO",
-          "date": "2026-04"
-        },
-        {
-          "source": "Artificial Analysis",
-          "url": "https://artificialanalysis.ai",
-          "score": "Best cost-performance for short tasks",
-          "date": "2026-04"
-        }
-      ],
-      "our_observations": {}
+      "confidence": 0.82
     },
     "direct_pricing": {
       "input_per_mtok": 0.8,

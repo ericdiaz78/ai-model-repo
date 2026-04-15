@@ -3,9 +3,15 @@
   "type": "array",
   "items": {
     "type": "object",
-    "required": ["model_id", "provider", "model_name"],
+    "required": [
+      "model_id",
+      "provider",
+      "model_name"
+    ],
     "properties": {
-      "model_id": {"type": "string"},
+      "model_id": {
+        "type": "string"
+      },
       "provider": {
         "type": "string",
         "enum": [
@@ -18,69 +24,261 @@
           "xiaomi"
         ]
       },
-      "model_name": {"type": "string"},
-      "version": {"type": "string"},
-      "release_date": {"type": "string", "format": "date"},
-      "strengths": {"type": "array", "items": {"type": "string"}},
-      "weaknesses": {"type": "array", "items": {"type": "string"}},
-      "ideal_use_cases": {"type": "array", "items": {"type": "string"}},
+      "model_name": {
+        "type": "string"
+      },
+      "version": {
+        "type": "string"
+      },
+      "release_date": {
+        "type": "string",
+        "format": "date"
+      },
+      "strengths": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "weaknesses": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "ideal_use_cases": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
       "pricing": {
         "type": "object",
         "description": "OpenRouter pricing (what we pay via OpenRouter)",
         "properties": {
-          "input_per_mtok": {"type": "number"},
-          "output_per_mtok": {"type": "number"},
-          "cache_read_per_mtok": {"type": "number"},
-          "cache_write_per_mtok": {"type": "number"},
-          "notes": {"type": "string"}
+          "input_per_mtok": {
+            "type": "number"
+          },
+          "output_per_mtok": {
+            "type": "number"
+          },
+          "cache_read_per_mtok": {
+            "type": "number"
+          },
+          "cache_write_per_mtok": {
+            "type": "number"
+          },
+          "notes": {
+            "type": "string"
+          }
         }
       },
       "direct_pricing": {
         "type": "object",
         "description": "Provider-direct pricing (what we'd pay bypassing OpenRouter)",
         "properties": {
-          "input_per_mtok": {"type": "number"},
-          "output_per_mtok": {"type": "number"},
-          "cache_read_per_mtok": {"type": "number"},
-          "batch_input_per_mtok": {"type": "number"},
-          "batch_output_per_mtok": {"type": "number"},
-          "markup_vs_openrouter_pct": {"type": "number", "description": "Negative = direct is cheaper"},
-          "api_url": {"type": "string"},
-          "dashboard_url": {"type": "string"},
-          "direct_available": {"type": "boolean"},
-          "notes": {"type": "string"},
-          "researched_at": {"type": "string", "format": "date"}
+          "input_per_mtok": {
+            "type": "number"
+          },
+          "output_per_mtok": {
+            "type": "number"
+          },
+          "cache_read_per_mtok": {
+            "type": "number"
+          },
+          "batch_input_per_mtok": {
+            "type": "number"
+          },
+          "batch_output_per_mtok": {
+            "type": "number"
+          },
+          "markup_vs_openrouter_pct": {
+            "type": "number",
+            "description": "Negative = direct is cheaper"
+          },
+          "api_url": {
+            "type": "string"
+          },
+          "dashboard_url": {
+            "type": "string"
+          },
+          "direct_available": {
+            "type": "boolean"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "researched_at": {
+            "type": "string",
+            "format": "date"
+          }
         }
       },
       "spend": {
         "type": "object",
         "description": "Actual spend data imported from provider activity exports",
         "properties": {
-          "total_cost_usd": {"type": "number"},
-          "total_input_mtok": {"type": "number"},
-          "total_output_mtok": {"type": "number"},
-          "total_cache_read_mtok": {"type": "number"},
-          "call_count": {"type": "integer"},
-          "avg_cost_per_call_usd": {"type": "number"},
-          "period_start": {"type": "string"},
-          "period_end": {"type": "string"},
-          "source": {"type": "string", "description": "openrouter | anthropic-direct | openai-direct | google-direct"},
-          "imported_at": {"type": "string"}
+          "total_cost_usd": {
+            "type": "number"
+          },
+          "total_input_mtok": {
+            "type": "number"
+          },
+          "total_output_mtok": {
+            "type": "number"
+          },
+          "total_cache_read_mtok": {
+            "type": "number"
+          },
+          "call_count": {
+            "type": "integer"
+          },
+          "avg_cost_per_call_usd": {
+            "type": "number"
+          },
+          "period_start": {
+            "type": "string"
+          },
+          "period_end": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string",
+            "description": "openrouter | anthropic-direct | openai-direct | google-direct"
+          },
+          "imported_at": {
+            "type": "string"
+          }
         }
       },
-      "context_window": {"type": "integer"},
-      "modalities": {"type": "array", "items": {"type": "string"}},
-      "performance_notes": {"type": "string"},
-      "routing_tags": {"type": "array", "items": {"type": "string"}},
-      "openrouter_slug": {"type": "string"},
+      "context_window": {
+        "type": "integer"
+      },
+      "modalities": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "performance_notes": {
+        "type": "string"
+      },
+      "routing_tags": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "openrouter_slug": {
+        "type": "string"
+      },
       "_meta": {
         "type": "object",
         "properties": {
-          "last_updated": {"type": "string"},
-          "source": {"type": "string"},
-          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
-          "auto_ingested": {"type": "boolean"},
-          "needs_review": {"type": "boolean"}
+          "last_updated": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "auto_ingested": {
+            "type": "boolean"
+          },
+          "needs_review": {
+            "type": "boolean"
+          },
+          "shelf": {
+            "type": "string",
+            "enum": [
+              "active",
+              "discovery"
+            ],
+            "description": "Which shelf the model belongs to"
+          },
+          "added_to_discovery": {
+            "type": "string",
+            "format": "date"
+          },
+          "archived": {
+            "type": "boolean"
+          },
+          "archived_date": {
+            "type": "string",
+            "format": "date"
+          },
+          "promoted_date": {
+            "type": "string",
+            "format": "date",
+            "description": "Date promoted from discovery to active"
+          },
+          "benchmarks": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            },
+            "description": "External benchmark references"
+          },
+          "our_observations": {
+            "type": "object",
+            "properties": {
+              "latency_ms_p50": {
+                "type": "number"
+              },
+              "latency_ms_p95": {
+                "type": "number"
+              },
+              "failure_rate_pct": {
+                "type": "number"
+              },
+              "tasks_succeeded": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "tasks_failed": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "notes": {
+                "type": "string"
+              }
+            }
+          },
+          "security": {
+            "type": "object",
+            "properties": {
+              "api_path": {
+                "type": "string",
+                "enum": [
+                  "direct",
+                  "openrouter",
+                  "both"
+                ]
+              },
+              "data_retention": {
+                "type": "string"
+              },
+              "prompt_injection_resistance": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "medium",
+                  "low"
+                ]
+              },
+              "notes": {
+                "type": "string"
+              }
+            }
+          }
         }
       }
     }

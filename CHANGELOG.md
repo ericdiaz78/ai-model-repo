@@ -1,5 +1,30 @@
 # Changelog
 
+## [2026-04-15] — Catalog restructure: active / discovery / archive shelves
+
+### Changed
+- Restructured `models.json` into three shelves:
+  - `models/active.json` — 8 production-proven models with our telemetry (Sonnet 4.6, MiniMax M2.7, Gemini 2.5 Flash-Lite, Claude Haiku 4.5, Xiaomi MiMo v2 Pro, GPT-5.4 Codex, Gemini 2.5 Flash, DeepSeek Chat)
+  - `models/discovery.json` — 15 benchmarked candidates awaiting production test
+  - `models/archive.json` — 118 auto-ingested models, not currently relevant
+  - `models/original_full.json` — pre-restructure full 141-model catalog (snapshot)
+- `models.json` now contains active + discovery only (23 models) — what the routing/query tools search by default
+- Auto-ingestion disabled — new models enter via discovery shelf process, not bulk OpenRouter sync
+
+### Added
+- Schema extended with `_meta.shelf`, `_meta.benchmarks`, `_meta.our_observations`, `_meta.security` fields
+- `models/discovery.json` candidates tagged with `shelf: discovery` and `added_to_discovery` dates
+- Archived models tagged with `_meta.archived: true` and `archived_date`
+- Security fields per model: `api_path`, `data_retention`, `prompt_injection_resistance`, `notes`
+- Benchmark sources documented in README (LMSYS, Artificial Analysis, OpenRouter, r/LocalLLaMA)
+- README rewritten with full catalog structure, shelf discipline, and security posture
+
+### Deprecated
+- Full 141-model catalog no longer used for routing — use active + discovery shelves
+- Bulk auto-ingestion via OpenRouter suspended — manual discovery shelf process required for new models
+
+---
+
 ## [2026-04-14] — Validation + spend history sync hardening
 
 ### Fixed
