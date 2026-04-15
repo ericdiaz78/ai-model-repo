@@ -29,6 +29,19 @@ OPENROUTER_CREDITS_URL = "https://openrouter.ai/api/v1/credits"
 SPEND_HISTORY_FILE = REPO_DIR / "spend_history.json"
 
 
+def load_history():
+    if SPEND_HISTORY_FILE.exists():
+        try:
+            return json.loads(SPEND_HISTORY_FILE.read_text())
+        except Exception:
+            pass
+    return {}
+
+
+def save_history(history):
+    SPEND_HISTORY_FILE.write_text(json.dumps(history, indent=2) + "\n")
+
+
 def get_management_key():
     key = os.environ.get("OPENROUTER_MANAGEMENT_KEY", "")
     if not key:
@@ -109,25 +122,38 @@ def aggregate_activity(records):
     return dict(agg), {slug: dict(days) for slug, days in daily.items()}
 
 
-def merge_spend_history(slug, new_daily):
-    """Merge new daily data into spend_history.json."""
-    history = {}
-    if SPEND_HISTORY_FILE.exists():
-        try:
-            history = json.loads(SPEND_HISTORY_FILE.read_text())
-        except Exception:
-            pass
+def merge_spend_history(history, slug, new_daily):
+    """Merge new daily data into spend history, replacing overlapping day buckets."""
     existing = {entry["date"]: entry for entry in history.get(slug, [])}
     for date, data in new_daily.items():
-        if date in existing:
-            existing[date]["cost_usd"] = round(existing[date]["cost_usd"] + data["cost_usd"], 8)
-            existing[date]["input_tokens"] += data["input_tokens"]
-            existing[date]["output_tokens"] += data["output_tokens"]
-            existing[date]["calls"] += data["calls"]
-        else:
-            existing[date] = {"date": date, **data}
+        existing[date] = {
+            "date": date,
+            "cost_usd": round(data["cost_usd"], 8),
+            "input_tokens": int(data["input_tokens"]),
+            "output_tokens": int(data["output_tokens"]),
+            "calls": int(data["calls"]),
+        }
     history[slug] = sorted(existing.values(), key=lambda x: x["date"])
-    SPEND_HISTORY_FILE.write_text(json.dumps(history, indent=2) + "\n")
+    return history[slug]
+
+
+def summarize_history(entries):
+    if not entries:
+        return None
+    total_cost = round(sum(entry.get("cost_usd", 0) for entry in entries), 6)
+    total_input_mtok = round(sum(entry.get("input_tokens", 0) for entry in entries) / 1e6, 4)
+    total_output_mtok = round(sum(entry.get("output_tokens", 0) for entry in entries) / 1e6, 4)
+    total_calls = sum(entry.get("calls", 0) for entry in entries)
+    return {
+        "total_cost_usd": total_cost,
+        "total_input_mtok": total_input_mtok,
+        "total_output_mtok": total_output_mtok,
+        "total_cache_read_mtok": 0,
+        "call_count": total_calls,
+        "avg_cost_per_call_usd": round(total_cost / max(total_calls, 1), 6),
+        "period_start": entries[0]["date"],
+        "period_end": entries[-1]["date"],
+    }
 
 
 def match_model(slug, models):
@@ -196,6 +222,7 @@ def main():
         return
 
     agg, daily = aggregate_activity(records)
+    history = load_history()
 
     # Print summary
     if not args.quiet:
@@ -220,32 +247,33 @@ def main():
     period_end = max(all_dates) if all_dates else now.strftime("%Y-%m-%d")
 
     for slug, data in agg.items():
-        # Write daily history for this slug
         if slug in daily:
-            merge_spend_history(slug, daily[slug])
+            merge_spend_history(history, slug, daily[slug])
 
         m = match_model(slug, models)
         if m:
-            existing = m.get("spend") or {}
-            # Accumulate on top of existing spend data
+            summary = summarize_history(history.get(slug, []))
+            if summary is None:
+                summary = {
+                    "total_cost_usd": round(data["total_cost_usd"], 6),
+                    "total_input_mtok": round(data["total_input_tokens"] / 1e6, 4),
+                    "total_output_mtok": round(data["total_output_tokens"] / 1e6, 4),
+                    "total_cache_read_mtok": round(data["total_cache_read_tokens"] / 1e6, 4),
+                    "call_count": data["call_count"],
+                    "avg_cost_per_call_usd": round(data["total_cost_usd"] / max(data["call_count"], 1), 6),
+                    "period_start": period_start,
+                    "period_end": period_end,
+                }
             m["spend"] = {
-                "total_cost_usd": round(existing.get("total_cost_usd", 0) + data["total_cost_usd"], 6),
-                "total_input_mtok": round(existing.get("total_input_mtok", 0) + data["total_input_tokens"] / 1e6, 4),
-                "total_output_mtok": round(existing.get("total_output_mtok", 0) + data["total_output_tokens"] / 1e6, 4),
-                "total_cache_read_mtok": round(existing.get("total_cache_read_mtok", 0) + data["total_cache_read_tokens"] / 1e6, 4),
-                "call_count": existing.get("call_count", 0) + data["call_count"],
-                "avg_cost_per_call_usd": 0,  # recalculated below
-                "period_start": existing.get("period_start", period_start) or period_start,
-                "period_end": period_end,
+                **summary,
                 "source": "openrouter-api",
                 "imported_at": now.strftime("%Y-%m-%d %H:%M UTC"),
             }
-            calls = m["spend"]["call_count"]
-            m["spend"]["avg_cost_per_call_usd"] = round(m["spend"]["total_cost_usd"] / max(calls, 1), 6)
             matched += 1
         else:
             unmatched.append(slug)
 
+    save_history(history)
     MODELS_FILE.write_text(json.dumps(models, indent=2) + "\n")
 
     state = {

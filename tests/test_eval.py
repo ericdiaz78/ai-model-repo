@@ -11,7 +11,7 @@ from scripts.evaluate import compare_models, recommend_model
 
 class EvaluateTests(unittest.TestCase):
     def test_compare_models_returns_models(self):
-        result = compare_models("reasoning", ["anthropic/claude-sonnet-4-6", "openai/gpt-4o"])
+        result = compare_models("reasoning", ["anthropic/claude-sonnet-4-6", "openai/o4-mini"])
         self.assertEqual(len(result["models"]), 2)
 
     def test_recommend_model_prefers_low_cost_code(self):
