@@ -67,7 +67,8 @@
           "date": "2026-04"
         }
       ],
-      "our_observations": {}
+      "our_observations": {},
+      "needs_review": false
     },
     "direct_pricing": {
       "input_per_mtok": 3.0,
@@ -161,7 +162,8 @@
           "date": "2026-04"
         }
       ],
-      "our_observations": {}
+      "our_observations": {},
+      "needs_review": false
     },
     "direct_pricing": {
       "direct_available": false,
@@ -240,7 +242,8 @@
           "date": "2026-04"
         }
       ],
-      "our_observations": {}
+      "our_observations": {},
+      "needs_review": false
     },
     "spend": {
       "total_cost_usd": 504.433104,
@@ -318,7 +321,8 @@
           "date": "2026-04"
         }
       ],
-      "our_observations": {}
+      "our_observations": {},
+      "needs_review": false
     },
     "direct_pricing": {
       "input_per_mtok": 1.5,
@@ -397,7 +401,8 @@
           "date": "2026-04"
         }
       ],
-      "our_observations": {}
+      "our_observations": {},
+      "needs_review": false
     },
     "direct_pricing": {
       "input_per_mtok": 0.1,
@@ -486,7 +491,8 @@
           "date": "2026-04"
         }
       ],
-      "our_observations": {}
+      "our_observations": {},
+      "needs_review": false
     },
     "direct_pricing": {
       "input_per_mtok": 0.3,
@@ -573,7 +579,8 @@
           "date": "2026-04"
         }
       ],
-      "our_observations": {}
+      "our_observations": {},
+      "needs_review": false
     },
     "direct_pricing": {
       "input_per_mtok": 0.14,
@@ -648,7 +655,8 @@
           "date": "2026-04"
         }
       ],
-      "our_observations": {}
+      "our_observations": {},
+      "needs_review": false
     },
     "direct_pricing": {
       "input_per_mtok": 0.8,
