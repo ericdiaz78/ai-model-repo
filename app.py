@@ -199,6 +199,10 @@ button.danger:hover { background: #991b1b; }
 .card-title { min-width: 0; }
 .card-name { font-weight: 700; font-size: 14px; color: var(--text); line-height: 1.2; }
 .card-provider { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.card-title-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.shelf-badge { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.06em; flex-shrink: 0; }
+.shelf-badge.active { background: #064e3b; border: 1px solid #065f46; color: #34d399; }
+.shelf-badge.discovery { background: #1e1b4b; border: 1px solid #312e81; color: #a5b4fc; }
 .card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex-shrink: 0; }
 .cost-pill { background: var(--tag-bg); border: 1px solid var(--tag-border); border-radius: 6px;
   padding: 3px 9px; font-size: 12px; color: var(--sub); text-align: right; }
@@ -391,10 +395,19 @@ button.danger:hover { background: #991b1b; }
       <option value="context">Sort: Context window</option>
       <option value="name">Sort: Name</option>
     </select>
+    <select id="shelf-filter" onchange="filterCatalog()">
+      <option value="">All shelves</option>
+      <option value="active">Active only</option>
+      <option value="discovery">Discovery only</option>
+    </select>
     <label style="font-size:12px;color:var(--muted);display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap">
       <input type="checkbox" id="hide-review" onchange="filterCatalog()" style="width:auto">
       Hide unreviewed
     </label>
+  </div>
+  <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:12px">
+    <span class="shelf-badge active">ACTIVE</span> <span style="font-size:12px;color:var(--muted)">· production-proven with our telemetry</span>
+    <span class="shelf-badge discovery">DISCOVERY</span> <span style="font-size:12px;color:var(--muted)">· benchmarked, awaiting real-world test</span>
   </div>
   <div class="tag-chips" id="tag-chips"></div>
   <div class="grid" id="catalog-grid"><div class="loading"><span class="spinner"></span>Loading models…</div></div>
@@ -632,6 +645,8 @@ function modalDonutStat(pct, color, value, label, sub='') {
 function renderStats() {
   const providers = [...new Set(allModels.map(m => m.provider))];
   const curated = allModels.filter(m => !m._meta?.needs_review);
+  const activeCount = allModels.filter(m => m._meta?.shelf === 'active').length;
+  const discoveryCount = allModels.filter(m => m._meta?.shelf === 'discovery').length;
   const withPricing = allModels.filter(m => (m.pricing?.input_per_mtok || 0) > 0);
   const cheapest = withPricing.reduce((a, b) =>
     (a.pricing?.input_per_mtok || 999) < (b.pricing?.input_per_mtok || 999) ? a : b, withPricing[0]);
@@ -647,17 +662,12 @@ function renderStats() {
   const spendPct = topSpender && totalSpend > 0 ? Math.round((topSpender.spend.total_cost_usd / totalSpend) * 100) : 0;
 
   document.getElementById('stat-row').innerHTML = [
-    // Count: no natural ceiling → plain
+    // Count: total models in catalog
     plainStat(allModels.length, 'Total Models', `${providers.length} providers`, '#2563eb'),
-    // Curated %: genuine 0-100% → donut
-    `<div class="stat-card">
-      <div class="donut-wrap">${donut(curatedPct, '#34d399')}</div>
-      <div class="stat-info">
-        <div class="stat-val">${curatedPct}%</div>
-        <div class="stat-label">Curated</div>
-        <div class="stat-sub">${curated.length} of ${allModels.length} reviewed</div>
-      </div>
-    </div>`,
+    // Active shelf count
+    plainStat(activeCount, 'Active Models', 'in production', '#34d399'),
+    // Discovery shelf count
+    plainStat(discoveryCount, 'Discovery Shelf', 'benchmarked, awaiting test', '#a5b4fc'),
     // Avg efficiency: 0-100 score → donut
     `<div class="stat-card">
       <div class="donut-wrap">${donut(avgEff, '#fbbf24')}</div>
@@ -740,10 +750,12 @@ function toggleTagFilter(tag) {
 function filterModels() {
   const q = document.getElementById('catalog-search').value.toLowerCase();
   const prov = document.getElementById('catalog-provider').value;
+  const shelf = document.getElementById('shelf-filter').value;
   const hideReview = document.getElementById('hide-review').checked;
   let list = allModels.filter(m => {
     if (hideReview && m._meta?.needs_review) return false;
     if (prov && m.provider !== prov) return false;
+    if (shelf && m._meta?.shelf !== shelf) return false;
     if (activeTagFilter && !(m.routing_tags || []).includes(activeTagFilter)) return false;
     if (q) {
       const text = [m.model_name, m.provider, ...(m.routing_tags||[]),
@@ -793,7 +805,10 @@ function renderCatalog(models) {
       </div>
       <div class="card-top" style="padding-right:70px">
         <div class="card-title">
-          <div class="card-name">${m.model_name}</div>
+          <div class="card-title-row">
+            <div class="card-name">${m.model_name}</div>
+            ${m._meta?.shelf ? `<span class="shelf-badge ${m._meta.shelf}">${m._meta.shelf}</span>` : ''}
+          </div>
           <div class="card-provider">${m.provider}${m.version ? ' · v'+m.version : ''}</div>
         </div>
         <div class="card-right">
