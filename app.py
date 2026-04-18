@@ -645,8 +645,13 @@ button.danger:hover { background: #991b1b; }
   <div class="modal" id="modal-inner">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <div class="modal-header">
-      <div class="modal-name" id="modal-name"></div>
-      <div class="modal-sub" id="modal-sub"></div>
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+        <div style="flex:1;min-width:0">
+          <div class="modal-name" id="modal-name"></div>
+          <div class="modal-sub" id="modal-sub"></div>
+        </div>
+        <button id="modal-assign-btn" class="assign-btn" style="padding:6px 12px;font-size:12px;white-space:nowrap" onclick="openAssignPopoverFromModal(event)">⚡ Assign to agent</button>
+      </div>
     </div>
     <div class="modal-donuts" id="modal-donuts"></div>
     <div class="modal-body-grid" id="modal-body"></div>
@@ -902,8 +907,7 @@ function renderCatalog(models) {
     const checked = compareSet.has(m.model_id) ? 'checked' : '';
     const comparing = compareSet.has(m.model_id) ? 'comparing' : '';
     return `<div class="card ${comparing}" id="card-${CSS.escape(m.model_id)}" onclick="handleCardClick(event,'${m.model_id}')" style="cursor:pointer">
-      <div style="position:absolute;top:10px;right:10px;display:flex;gap:6px;align-items:center">
-        <button class="assign-btn" title="Assign to agent" onclick="event.stopPropagation();openAssignPopover(event,'${m.model_id}')">⚡ Assign</button>
+      <div style="position:absolute;top:10px;right:10px">
         <label class="compare-cb" title="Add to compare" onclick="event.stopPropagation()">
           <input type="checkbox" ${checked} onchange="toggleCompare('${m.model_id}', this.checked)"> Compare
         </label>
@@ -963,6 +967,9 @@ function renderCatalog(models) {
 
 // ── Quick-assign popover ───────────────────────────────────────────────
 let _assignAgentsCache = null;
+function openAssignPopoverFromModal(ev) {
+  if (_openModelId) openAssignPopover(ev, _openModelId);
+}
 async function openAssignPopover(ev, modelId) {
   closeAssignPopover();
   if (!_assignAgentsCache) {
@@ -1396,9 +1403,11 @@ function handleCardClick(e, modelId) {
   openModelDetail(modelId);
 }
 
+let _openModelId = null;
 async function openModelDetail(modelId) {
   const m = allModels.find(x => x.model_id === modelId);
   if (!m) return;
+  _openModelId = modelId;
   const modal = document.getElementById('model-modal');
   const eff = computeEff(m);
   const inp = m.pricing?.input_per_mtok ?? null;
