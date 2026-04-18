@@ -27,6 +27,16 @@ try:
 except ImportError:
     HAS_LIMITER = False
 
+try:
+    import pyotp
+    import qrcode
+    import qrcode.image.svg
+    import io
+    import base64
+    HAS_TOTP = True
+except ImportError:
+    HAS_TOTP = False
+
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", secrets.token_hex(32))
 app.config["SESSION_COOKIE_HTTPONLY"] = True
@@ -41,7 +51,11 @@ else:
 UI_PASSWORD_HASH = os.environ.get("UI_PASSWORD_HASH", "")
 UI_PASSWORD = os.environ.get("UI_PASSWORD", "IntelligenceMap")
 API_TOKEN = os.environ.get("API_TOKEN", "")
+TOTP_SECRET = os.environ.get("TOTP_SECRET", "")
+TOTP_REQUIRED = os.environ.get("TOTP_REQUIRED", "false").lower() in ("true", "1", "yes")
 OPENCLAW_CONFIG = Path.home() / ".openclaw" / "openclaw.json"
+PENDING_CHANGES_FILE = REPO_DIR / "pending_model_changes.json"
+IS_REMOTE = not OPENCLAW_CONFIG.exists()
 
 REPO_DIR = Path(__file__).parent
 MODELS_FILE = REPO_DIR / "models.json"
@@ -1659,16 +1673,19 @@ async function setAgentModel(agentId) {
   const sel = document.getElementById('model-sel-' + agentId);
   const newModel = sel.value;
   const status = document.getElementById('agents-status');
-  const restart = confirm('Restart gateway now to apply? (Cancel = change saved but not active until next restart)');
   status.innerHTML = '<span style="color:var(--amber)">Applying...</span>';
   const res = await fetch('/api/agents/' + agentId + '/model', {
     method: 'PUT',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({primary: newModel, restart_gateway: restart})
+    body: JSON.stringify({primary: newModel, restart_gateway: true})
   });
   const data = await res.json();
   if (data.ok) {
-    status.innerHTML = `<span style="color:var(--green)">✓ ${agentId}: ${data.old_primary} → ${data.new_primary}${data.restarted ? ' (gateway restarted)' : ' (restart needed)'}</span>`;
+    if (data.mode === 'queued') {
+      status.innerHTML = `<span style="color:var(--amber)">⏳ ${agentId} → ${data.new_primary} — queued, will apply on next sync</span>`;
+    } else {
+      status.innerHTML = `<span style="color:var(--green)">✓ ${agentId}: ${data.old_primary} → ${data.new_primary}${data.restarted ? ' (gateway restarted)' : ' (restart needed)'}</span>`;
+    }
     loadAgentHistory();
   } else {
     status.innerHTML = `<span style="color:var(--red)">✗ ${data.error}</span>`;
@@ -1738,6 +1755,11 @@ button:hover { background: #1d4ed8; }
   <form method="POST" action="/login">
     <label>Access key</label>
     <input type="password" name="password" autofocus placeholder="••••••••••••••">
+    {% if totp_required %}
+    <label style="margin-top:16px">2FA Code</label>
+    <input type="text" name="totp_code" placeholder="6-digit code" maxlength="6" pattern="[0-9]{6}"
+      style="width:100%;padding:10px 14px;background:#0f1117;border:1px solid #2d3148;border-radius:8px;color:#e2e8f0;font-size:1.1rem;letter-spacing:6px;text-align:center">
+    {% endif %}
     <button type="submit">Enter</button>
     {% if error %}<div class="error">{{ error }}</div>{% endif %}
   </form>
@@ -1795,18 +1817,72 @@ def login():
     ip = request.remote_addr or "unknown"
     if _is_locked_out(ip):
         error = "Too many attempts. Try again in 5 minutes."
-        return render_template_string(LOGIN_HTML, error=error), 429
+        return render_template_string(LOGIN_HTML, error=error, totp_required=TOTP_REQUIRED), 429
     if request.method == "POST":
         time.sleep(0.5)
-        if _check_password(request.form.get("password", "")):
+        pw_ok = _check_password(request.form.get("password", ""))
+        totp_ok = True
+        if TOTP_REQUIRED and HAS_TOTP and TOTP_SECRET:
+            totp_code = request.form.get("totp_code", "").strip()
+            totp = pyotp.TOTP(TOTP_SECRET)
+            totp_ok = totp.verify(totp_code, valid_window=1)
+        if pw_ok and totp_ok:
             session["authed"] = True
             session["login_ip"] = ip
             session["login_at"] = datetime.now(timezone.utc).isoformat()
             _login_attempts.pop(ip, None)
             return redirect(url_for("index"))
         _record_failed_attempt(ip)
-        error = "Invalid access key"
-    return render_template_string(LOGIN_HTML, error=error)
+        if not pw_ok:
+            error = "Invalid access key"
+        else:
+            error = "Invalid 2FA code"
+    return render_template_string(LOGIN_HTML, error=error, totp_required=TOTP_REQUIRED)
+
+
+@app.route("/setup-2fa")
+def setup_2fa():
+    if not HAS_TOTP:
+        return "pyotp not installed", 500
+    if TOTP_SECRET:
+        secret = TOTP_SECRET
+    else:
+        secret = pyotp.random_base32()
+    totp = pyotp.TOTP(secret)
+    uri = totp.provisioning_uri(name="eric@openclaw", issuer_name="AI Model Repo")
+    img = qrcode.make(uri, image_factory=qrcode.image.svg.SvgImage)
+    buf = io.BytesIO()
+    img.save(buf)
+    svg_data = buf.getvalue().decode()
+    return render_template_string(SETUP_2FA_HTML, secret=secret, svg=svg_data, uri=uri)
+
+
+SETUP_2FA_HTML = """<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setup 2FA</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, sans-serif; background: #0f1117; color: #e2e8f0;
+  min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+.card { background: #1a1d27; border: 1px solid #2d3148; border-radius: 12px; padding: 40px; max-width: 420px; text-align: center; }
+h1 { font-size: 1.2rem; margin-bottom: 16px; }
+p { font-size: 0.85rem; color: #94a3b8; margin-bottom: 16px; }
+.secret { font-family: monospace; background: #0f1117; padding: 10px; border-radius: 6px; font-size: 14px;
+  letter-spacing: 2px; color: #34d399; margin: 12px 0; word-break: break-all; }
+svg { max-width: 200px; margin: 16px auto; display: block; }
+</style></head><body>
+<div class="card">
+<h1>Setup Two-Factor Authentication</h1>
+<p>Scan this QR code with Google Authenticator, Authy, or any TOTP app:</p>
+{{ svg | safe }}
+<p style="margin-top:16px">Or enter this secret manually:</p>
+<div class="secret">{{ secret }}</div>
+<p style="margin-top:20px;font-size:12px;color:#64748b">
+  Then set these Railway env vars:<br>
+  <code>TOTP_SECRET={{ secret }}</code><br>
+  <code>TOTP_REQUIRED=true</code>
+</p>
+</div></body></html>"""
 
 
 @app.route("/logout")
@@ -2151,10 +2227,42 @@ def _get_agents_with_models() -> list[dict]:
     return result
 
 
+def _load_pending_changes() -> list[dict]:
+    if PENDING_CHANGES_FILE.exists():
+        try:
+            return json.loads(PENDING_CHANGES_FILE.read_text())
+        except Exception:
+            pass
+    return []
+
+
+def _save_pending_changes(changes: list[dict]):
+    PENDING_CHANGES_FILE.write_text(json.dumps(changes, indent=2))
+
+
+def _get_agents_from_pending() -> list[dict]:
+    """On Railway (no local config), read agent list from env or pending changes."""
+    agents_json = os.environ.get("AGENTS_CONFIG", "")
+    if agents_json:
+        try:
+            return json.loads(agents_json)
+        except Exception:
+            pass
+    return []
+
+
 @app.route("/api/agents", methods=["GET"])
 @require_login
 def api_agents():
-    return jsonify(_get_agents_with_models())
+    if not IS_REMOTE:
+        return jsonify(_get_agents_with_models())
+    agents = _get_agents_from_pending()
+    pending = _load_pending_changes()
+    for a in agents:
+        for p in pending:
+            if p.get("agent") == a.get("agentId") and p.get("status") == "pending":
+                a["pending_model"] = p.get("new_primary")
+    return jsonify(agents)
 
 
 @app.route("/api/agents/<agent_id>/model", methods=["PUT"])
@@ -2173,6 +2281,28 @@ def api_set_agent_model(agent_id):
         candidates = [m for m in known_models if bare_id in m]
         if not candidates:
             return jsonify({"error": f"model '{new_primary}' not in catalog", "known": sorted(known_models)}), 400
+
+    if IS_REMOTE:
+        pending = _load_pending_changes()
+        change = {
+            "id": secrets.token_hex(8),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
+            "agent": agent_id,
+            "new_primary": new_primary,
+            "new_fallbacks": new_fallbacks,
+            "status": "pending",
+            "changed_by": "ai-model-repo-ui",
+        }
+        pending.append(change)
+        _save_pending_changes(pending)
+        return jsonify({
+            "ok": True,
+            "mode": "queued",
+            "agent": agent_id,
+            "new_primary": new_primary,
+            "change_id": change["id"],
+            "message": "Change queued. Will apply on next local sync.",
+        })
 
     cfg = _load_openclaw_config()
     agents = cfg.get("agents", {}).get("list", [])
@@ -2219,11 +2349,37 @@ def api_set_agent_model(agent_id):
 
     return jsonify({
         "ok": True,
+        "mode": "applied",
         "agent": agent_id,
         "old_primary": old_primary,
         "new_primary": new_primary,
         "restarted": restarted,
     })
+
+
+@app.route("/api/pending-changes", methods=["GET"])
+def api_pending_changes():
+    if not _check_api_token():
+        return jsonify({"error": "unauthorized"}), 401
+    return jsonify(_load_pending_changes())
+
+
+@app.route("/api/pending-changes/<change_id>/ack", methods=["POST"])
+def api_ack_change(change_id):
+    if not _check_api_token():
+        return jsonify({"error": "unauthorized"}), 401
+    pending = _load_pending_changes()
+    found = False
+    for p in pending:
+        if p.get("id") == change_id:
+            p["status"] = "applied"
+            p["applied_at"] = datetime.now(timezone.utc).isoformat()
+            found = True
+            break
+    if not found:
+        return jsonify({"error": "change not found"}), 404
+    _save_pending_changes(pending)
+    return jsonify({"ok": True})
 
 
 @app.route("/api/agents/<agent_id>/model/history", methods=["GET"])
