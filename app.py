@@ -2450,6 +2450,36 @@ def api_ack_change(change_id):
     return jsonify({"ok": True})
 
 
+@app.route("/api/test-webhook", methods=["POST"])
+def api_test_webhook():
+    if not _check_api_token():
+        return jsonify({"error": "unauthorized"}), 401
+    import urllib.request
+    import ssl
+    url = OPENCLAW_WEBHOOK_URL
+    token = OPENCLAW_WEBHOOK_TOKEN
+    if not url or not token:
+        return jsonify({"error": "OPENCLAW_WEBHOOK_URL or TOKEN not set", "url": url, "token_set": bool(token)}), 400
+    body = json.dumps({"text": "webhook diagnostic test", "mode": "next-heartbeat"}).encode()
+    req = urllib.request.Request(
+        f"{url}/hooks/wake",
+        data=body,
+        headers={"Authorization": f"Bearer {token}", "Content-Type": "application/json"},
+        method="POST",
+    )
+    try:
+        ctx = ssl.create_default_context()
+        resp = urllib.request.urlopen(req, timeout=10, context=ctx)
+        return jsonify({"ok": True, "status": resp.status, "body": resp.read().decode()})
+    except Exception as e:
+        try:
+            ctx = ssl._create_unverified_context()
+            resp = urllib.request.urlopen(req, timeout=10, context=ctx)
+            return jsonify({"ok": True, "ssl": "unverified", "status": resp.status, "body": resp.read().decode()})
+        except Exception as e2:
+            return jsonify({"error": str(e), "retry_error": str(e2)}), 502
+
+
 @app.route("/api/agents/<agent_id>/model/history", methods=["GET"])
 @require_login
 def api_agent_model_history(agent_id):
