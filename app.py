@@ -901,9 +901,7 @@ function renderCatalog(models) {
     const ctx = ctxLabel(m.context_window);
     const ctxPct = Math.min(100, (m.context_window || 0) / 12000);
     const needsReview = m._meta?.needs_review;
-    const tags = [...(m.routing_tags||[])].map(t =>
-      `<span class="tag">${t}</span>`).join('') +
-      (needsReview ? '<span class="tag needs-review">needs review</span>' : '');
+    const reviewBadge = needsReview ? '<span class="tag needs-review">needs review</span>' : '';
     const checked = compareSet.has(m.model_id) ? 'checked' : '';
     const comparing = compareSet.has(m.model_id) ? 'comparing' : '';
     return `<div class="card ${comparing}" id="card-${CSS.escape(m.model_id)}" onclick="handleCardClick(event,'${m.model_id}')" style="cursor:pointer">
@@ -928,7 +926,7 @@ function renderCatalog(models) {
           </div>
         </div>
       </div>
-      <div class="tags">${tags}</div>
+      ${reviewBadge ? `<div class="tags">${reviewBadge}</div>` : ''}
       <div class="ctx-bar"><div class="ctx-fill" style="width:${ctxPct}%"></div></div>
       <div class="card-meta">ctx ${ctx} · out $${out}/MTok${m.release_date ? ' · ' + m.release_date : ''}</div>
       ${m.performance_notes ? `<div class="card-notes">${m.performance_notes}</div>` : ''}
@@ -1583,7 +1581,19 @@ async function openModelDetail(modelId) {
       ${tags ? `<div class="industry-note-tags">${tags}</div>` : ''}
     </div>`;
   };
+  const vendorDesc = meta.vendor_description || '';
+  const vendorSource = meta.vendor_description_source || '';
+  const vendorFetched = meta.vendor_description_fetched_at || '';
+  const vendorSourceLabel = {
+    openrouter: 'Vendor description via OpenRouter',
+    huggingface: 'Model card via HuggingFace',
+  }[vendorSource] || (vendorSource ? `Source: ${vendorSource}` : '');
   document.getElementById('modal-body').innerHTML = `
+    ${vendorDesc ? `<div class="modal-section" style="grid-column:1/-1">
+      <div class="modal-section-title">About this model</div>
+      <div class="modal-notes">${vendorDesc.replace(/</g,'&lt;').replace(/\n\n/g,'<br><br>')}</div>
+      ${vendorSourceLabel ? `<div style="margin-top:8px;font-size:10px;color:var(--muted)">${vendorSourceLabel}${vendorFetched?` · fetched ${vendorFetched}`:''}</div>` : ''}
+    </div>` : ''}
     ${notes ? `<div class="modal-section" style="grid-column:1/-1">
       <div class="modal-section-title">Performance Notes</div>
       <div class="modal-notes">${notes}</div>

@@ -26,13 +26,16 @@
     ],
     "openrouter_slug": "anthropic/claude-4.6-opus-fast-20260407",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "Fast-mode variant of [Opus 4.6](/anthropic/claude-opus-4.6) - identical capabilities with higher output speed at premium 6x pricing.\\n\\nLearn more in Anthropic's docs: https://platform.claude.com/docs/en/build-with-claude/fast-mode\",\"model_version_group_id\":null,\"context_length\":1000000,\"input_modalities\":",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   },
   {
@@ -61,13 +64,16 @@
     ],
     "openrouter_slug": "openai/gpt-5.4-nano-20260317",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "GPT-5.4 nano is the most lightweight and cost-efficient variant of the GPT-5.4 family, optimized for speed-critical and high-volume tasks. It supports text and image inputs and is designed for low-latency use cases such as classification, data extraction, ranking, and sub-agent execution.\\n\\nThe model prioritizes responsiveness and efficiency over deep reasoning, making it ideal for pipelines that require fast, reliable outputs at scale. GPT-5.4 nano is well suited for background tasks, real-time systems, and distributed agent architectures where minimizing cost and latency is essential.\",\"model_version_group_id\":null,\"context_length\":400000,\"input_modalities\":",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   },
   {
@@ -99,13 +105,16 @@
     ],
     "openrouter_slug": "openai/gpt-5.4-mini-20260317",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "GPT-5.4 mini brings the core capabilities of GPT-5.4 to a faster, more efficient model optimized for high-throughput workloads. It supports text and image inputs with strong performance across reasoning, coding, and tool use, while reducing latency and cost for large-scale deployments.\\n\\nThe model is designed for production environments that require a balance of capability and efficiency, making it well suited for chat applications, coding assistants, and agent workflows that operate at scale. GPT-5.4 mini delivers reliable instruction following, solid multi-step reasoning, and consistent performance across diverse tasks with improved cost efficiency.\",\"model_version_group_id\":null,\"context_length\":400000,\"input_modalities\":",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   },
   {
@@ -135,13 +144,16 @@
     ],
     "openrouter_slug": "mistralai/mistral-small-2603",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.4,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "Mistral Small 4 is the next major release in the Mistral Small family, unifying the capabilities of several flagship Mistral models into a single system. It combines strong reasoning from Magistral, multimodal understanding from Pixtral, and agentic coding capabilities from Devstral, enabling one model to handle complex analysis, software development, and visual tasks within the same workflow.",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   },
   {
@@ -171,13 +183,16 @@
     ],
     "openrouter_slug": "openai/gpt-5.4-pro-20260305",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "GPT-5.4 Pro is OpenAI's most advanced model, building on GPT-5.4's unified architecture with enhanced reasoning capabilities for complex, high-stakes tasks. It features a 1M+ token context window (922K input, 128K output) with support for text and image inputs. Optimized for step-by-step reasoning, instruction following, and accuracy, GPT-5.4 Pro excels at agentic coding, long-context workflows, and multi-step problem solving.\",\"model_version_group_id\":null,\"context_length\":1050000,\"input_modalities\":",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   },
   {
@@ -206,13 +221,16 @@
     ],
     "openrouter_slug": "openai/gpt-5.4-20260305",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "GPT-5.4 is OpenAI\u2019s latest frontier model, unifying the Codex and GPT lines into a single system. It features a 1M+ token context window (922K input, 128K output) with support for text and image inputs, enabling high-context reasoning, coding, and multimodal analysis within the same workflow.\\n\\nThe model delivers improved performance in coding, document understanding, tool use, and instruction following. It is designed as a strong default for both general-purpose tasks and software engineering, capable of generating production-quality code, synthesizing information across multiple sources, and executing complex multi-step workflows with fewer iterations and greater token efficiency.\",\"model_version_group_id\":null,\"context_length\":1050000,\"input_modalities\":",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   },
   {
@@ -245,13 +263,16 @@
     ],
     "openrouter_slug": "google/gemini-3.1-flash-lite-preview-20260303",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "Gemini 3.1 Flash Lite Preview is Google's high-efficiency model optimized for high-volume use cases. It outperforms Gemini 2.5 Flash Lite on overall quality and approaches Gemini 2.5 Flash performance across key capabilities. Improvements span audio input/ASR, RAG snippet ranking, translation, data extraction, and code completion. Supports full thinking levels (minimal, low, medium, high) for fine-grained cost/performance trade-offs. Priced at half the cost of Gemini 3 Flash.\",\"model_version_group_id\":null,\"context_length\":1048576,\"input_modalities\":",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   },
   {
@@ -284,13 +305,16 @@
     ],
     "openrouter_slug": "google/gemini-3.1-pro-preview-customtools-20260219",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "Gemini 3.1 Pro Preview Custom Tools is a variant of Gemini 3.1 Pro that improves tool selection behavior by preventing overuse of a general bash tool when more efficient third-party or user-defined functions are available. This specialized preview endpoint significantly increases function calling reliability and ensures the model selects the most appropriate tool in coding agents and complex, multi-tool workflows.\\n\\nIt retains the core strengths of Gemini 3.1 Pro, including multimodal reasoning across text, image, video, audio, and code, a 1M-token context window, and strong software engineering performance.\",\"model_version_group_id\":null,\"context_length\":1048576,\"input_modalities\":",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   },
   {
@@ -321,13 +345,16 @@
     ],
     "openrouter_slug": "openai/gpt-5.3-codex-20260224",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "GPT-5.3-Codex is OpenAI\u2019s most advanced agentic coding model, combining the frontier software engineering performance of GPT-5.2-Codex with the broader reasoning and professional knowledge capabilities of GPT-5.2. It achieves state-of-the-art results on SWE-Bench Pro and strong performance on Terminal-Bench 2.0 and OSWorld-Verified, reflecting improved multi-language coding, terminal proficiency, and real-world computer-use skills. The model is optimized for long-running, tool-using workflows and supports interactive steering during execution, making it suitable for complex development tasks, debugging, deployment, and iterative product work.\n\nBeyond coding, GPT-5.3-Codex performs strongly on structured knowledge-work benchmarks such as GDPval, supporting tasks like document drafting, spreadsheet analysis, slide creation, and operational research across domains. It is trained with enhanced cybersecurity awareness, including vulnerability identification capabilities, and deployed with additional safeguards for high-risk use cases. Compared to prior Codex models, it is more token-efficient and approximately 25% faster, targeting professional end-to-end workflows that span reasoning, execution, and computer interaction.",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   },
   {
@@ -361,13 +388,16 @@
     ],
     "openrouter_slug": "google/gemini-3.1-pro-preview-20260219",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "Gemini 3.1 Pro Preview is Google\u2019s frontier reasoning model, delivering enhanced software engineering performance, improved agentic reliability, and more efficient token usage across complex workflows. Building on the multimodal foundation of the Gemini 3 series, it combines high-precision reasoning across text, image, video, audio, and code with a 1M-token context window. Reasoning Details must be preserved when using multi-turn tool calling, see our docs here: https://openrouter.ai/docs/use-cases/reasoning-tokens#preserving-reasoning. The 3.1 update introduces measurable gains in SWE benchmarks and real-world coding environments, along with stronger autonomous task execution in structured domains such as finance and spreadsheet-based workflows.\n\nDesigned for advanced development and agentic systems, Gemini 3.1 Pro Preview improves long-horizon stability and tool orchestration while increasing token efficiency. It introduces a new medium thinking level to better balance cost, speed, and performance. The model excels in agentic coding, structured planning, multimodal analysis, and workflow automation, making it well-suited for autonomous agents, financial modeling, spreadsheet automation, and high-context enterprise tasks.",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   },
   {
@@ -396,13 +426,16 @@
     ],
     "openrouter_slug": "minimax/minimax-m2.5-20260211",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "MiniMax-M2.5 is a SOTA large language model designed for real-world productivity. Trained in a diverse range of complex real-world digital working environments, M2.5 builds upon the coding expertise of M2.1 to extend into general office work, reaching fluency in generating and operating Word, Excel, and Powerpoint files, context switching between diverse software environments, and working across different agent and human teams. Scoring 80.2% on SWE-Bench Verified, 51.3% on Multi-SWE-Bench, and 76.3% on BrowseComp, M2.5 is also more token efficient than previous generations, having been trained to optimize its actions and output through planning.\",\"model_version_group_id\":null,\"context_length\":196608,\"input_modalities\":",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   },
   {
@@ -430,13 +463,16 @@
     ],
     "openrouter_slug": "anthropic/claude-4.6-opus-20260205",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "Opus 4.6 is Anthropic\u2019s strongest model for coding and long-running professional tasks. It is built for agents that operate across entire workflows rather than single prompts, making it especially effective for large codebases, complex refactors, and multi-step debugging that unfolds over time. The model shows deeper contextual understanding, stronger problem decomposition, and greater reliability on hard engineering tasks than prior generations.\\n\\nBeyond coding, Opus 4.6 excels at sustained knowledge work. It produces near-production-ready documents, plans, and analyses in a single pass, and maintains coherence across very long outputs and extended sessions. This makes it a strong default for tasks that require persistence, judgment, and follow-through, such as technical design, migration planning, and end-to-end project execution.\\n\\nFor users upgrading from earlier Opus versions, see our [official migration guide here](https://openrouter.ai/docs/guides/guides/model-migrations/claude-4-6-opus)\\n\",\"model_version_group_id\":null,\"context_length\":1000000,\"input_modalities\":",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   },
   {
@@ -467,13 +503,16 @@
     ],
     "openrouter_slug": "openai/o4-mini-2025-04-16",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "OpenAI o4-mini is a compact reasoning model in the o-series, optimized for fast, cost-efficient performance while retaining strong multimodal and agentic capabilities. It supports tool use and demonstrates competitive reasoning and coding performance across benchmarks like AIME (99.5% with Python) and SWE-bench, outperforming its predecessor o3-mini and even approaching o3 in some domains.\\n\\nDespite its smaller size, o4-mini exhibits high accuracy in STEM tasks, visual problem solving (e.g., MathVista, MMMU), and code editing. It is especially well-suited for high-throughput scenarios where latency or cost is critical. Thanks to its efficient architecture and refined reinforcement learning training, o4-mini can chain tools, generate structured outputs, and solve multi-step tasks with minimal delay\u2014often in under a minute.\",\"model_version_group_id\":null,\"context_length\":200000,\"input_modalities\":",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   },
   {
@@ -503,13 +542,16 @@
     ],
     "openrouter_slug": "openai/o3-mini-high-2025-01-31",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "OpenAI o3-mini-high is the same model as [o3-mini](/openai/o3-mini) with reasoning_effort set to high. \\n\\no3-mini is a cost-efficient language model optimized for STEM reasoning tasks, particularly excelling in science, mathematics, and coding. The model features three adjustable reasoning effort levels and supports key developer capabilities including function calling, structured outputs, and streaming, though it does not include vision processing capabilities.\\n\\nThe model demonstrates significant improvements over its predecessor, with expert testers preferring its responses 56% of the time and noting a 39% reduction in major errors on complex questions. With medium reasoning effort settings, o3-mini matches the performance of the larger o1 model on challenging reasoning evaluations like AIME and GPQA, while maintaining lower latency and cost.\",\"model_version_group_id\":null,\"context_length\":200000,\"input_modalities\":",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   },
   {
@@ -536,13 +578,16 @@
     ],
     "openrouter_slug": "deepseek/deepseek-r1",
     "_meta": {
-      "last_updated": "2026-04-13",
+      "last_updated": "2026-04-18",
       "source": "openrouter-api",
       "confidence": 0.6,
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "vendor_description": "DeepSeek R1 is here: Performance on par with [OpenAI o1](/openai/o1), but open-sourced and with fully open reasoning tokens. It's 671B parameters in size, with 37B active in an inference pass.\n\nFully open-source model & [technical report](https://api-docs.deepseek.com/news/news250120).\n\nMIT licensed: Distill & commercialize freely!",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     }
   }
 ]

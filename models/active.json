@@ -111,7 +111,10 @@
             "instruction-following"
           ]
         }
-      ]
+      ],
+      "vendor_description": "Sonnet 4.6 is Anthropic's most capable Sonnet-class model yet, with frontier performance across coding, agents, and professional work. It excels at iterative development, complex codebase navigation, end-to-end project management with memory, polished document creation, and confident computer use for web QA and workflow automation.",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     },
     "direct_pricing": {
       "input_per_mtok": 3.0,
@@ -247,7 +250,10 @@
             "compliance"
           ]
         }
-      ]
+      ],
+      "vendor_description": "MiniMax-M2.7 is a next-generation large language model designed for autonomous, real-world productivity and continuous improvement. Built to actively participate in its own evolution, M2.7 integrates advanced agentic capabilities through multi-agent collaboration, enabling it to plan, execute, and refine complex tasks across dynamic environments.\n\nTrained for production-grade performance, M2.7 handles workflows such as live debugging, root cause analysis, financial modeling, and full document generation across Word, Excel, and PowerPoint. It delivers strong results on benchmarks including 56.2% on SWE-Pro and 57.0% on Terminal Bench 2, while achieving a 1495 ELO on GDPval-AA, setting a new standard for multi-agent systems operating in real-world digital workflows.",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     },
     "direct_pricing": {
       "direct_available": false,
@@ -364,7 +370,10 @@
             "ecosystem-thin"
           ]
         }
-      ]
+      ],
+      "vendor_description": "MiMo-V2-Pro is Xiaomi's flagship foundation model, featuring over 1T total parameters and a 1M context length, deeply optimized for agentic scenarios. It is highly adaptable to general agent frameworks like OpenClaw. It ranks among the global top tier in the standard PinchBench and ClawBench benchmarks, with perceived performance approaching that of Opus 4.6. MiMo-V2-Pro is designed to serve as the brain of agent systems, orchestrating complex workflows, driving production engineering tasks, and delivering results reliably.",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     },
     "spend": {
       "total_cost_usd": 504.433104,
@@ -872,7 +881,10 @@
             "avoid-for-agentic"
           ]
         }
-      ]
+      ],
+      "vendor_description": "Gemini 2.5 Flash-Lite is a lightweight reasoning model in the Gemini 2.5 family, optimized for ultra-low latency and cost efficiency. It offers improved throughput, faster token generation, and better performance across common benchmarks compared to earlier Flash models. By default, \"thinking\" (i.e. multi-pass reasoning) is disabled to prioritize speed, but developers can enable it via the [Reasoning API parameter](https://openrouter.ai/docs/use-cases/reasoning-tokens) to selectively trade off cost for intelligence.",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     },
     "direct_pricing": {
       "input_per_mtok": 0.1,
@@ -1544,7 +1556,10 @@
             "test-before-commit"
           ]
         }
-      ]
+      ],
+      "vendor_description": "Gemini 2.5 Flash is Google's state-of-the-art workhorse model, specifically designed for advanced reasoning, coding, mathematics, and scientific tasks. It includes built-in \"thinking\" capabilities, enabling it to provide responses with greater accuracy and nuanced context handling. \n\nAdditionally, Gemini 2.5 Flash is configurable through the \"max tokens for reasoning\" parameter, as described in the documentation (https://openrouter.ai/docs/use-cases/reasoning-tokens#max-tokens-for-reasoning).",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     },
     "direct_pricing": {
       "input_per_mtok": 0.3,
@@ -1663,7 +1678,10 @@
             "compliance"
           ]
         }
-      ]
+      ],
+      "vendor_description": "DeepSeek-V3 is the latest model from the DeepSeek team, building upon the instruction following and coding abilities of the previous versions. Pre-trained on nearly 15 trillion tokens, the reported evaluations reveal that the model outperforms other open-source models and rivals leading closed-source models.\n\nFor model details, please visit [the DeepSeek-V3 repo](https://github.com/deepseek-ai/DeepSeek-V3) for more information, or see the [launch announcement](https://api-docs.deepseek.com/news/news1226).",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     },
     "direct_pricing": {
       "input_per_mtok": 0.14,
@@ -1769,7 +1787,10 @@
             "caching"
           ]
         }
-      ]
+      ],
+      "vendor_description": "Claude Haiku 4.5 is Anthropic\u2019s fastest and most efficient model, delivering near-frontier intelligence at a fraction of the cost and latency of larger Claude models. Matching Claude Sonnet 4\u2019s performance across reasoning, coding, and computer-use tasks, Haiku 4.5 brings frontier-level capability to real-time and high-volume applications.\n\nIt introduces extended thinking to the Haiku line; enabling controllable reasoning depth, summarized or interleaved thought output, and tool-assisted workflows with full support for coding, bash, web search, and computer-use tools. Scoring >73% on SWE-bench Verified, Haiku 4.5 ranks among the world\u2019s best coding models while maintaining exceptional responsiveness for sub-agents, parallelized execution, and scaled deployment.",
+      "vendor_description_source": "openrouter",
+      "vendor_description_fetched_at": "2026-04-18"
     },
     "direct_pricing": {
       "input_per_mtok": 0.8,
