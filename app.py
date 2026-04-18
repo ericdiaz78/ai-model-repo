@@ -2256,7 +2256,7 @@ def _save_pending_changes(changes: list[dict]):
 
 def _trigger_sync_webhook():
     if not OPENCLAW_WEBHOOK_URL or not OPENCLAW_WEBHOOK_TOKEN:
-        app.logger.warning("Webhook skipped: OPENCLAW_WEBHOOK_URL or TOKEN not set")
+        print("Webhook skipped: OPENCLAW_WEBHOOK_URL or TOKEN not set", file=sys.stderr)
         return
     import urllib.request
     import urllib.error
@@ -2279,15 +2279,15 @@ def _trigger_sync_webhook():
     ctx = ssl.create_default_context()
     try:
         resp = urllib.request.urlopen(req, timeout=10, context=ctx)
-        app.logger.info(f"Webhook triggered: {resp.status} {resp.read().decode()}")
+        print(f"Webhook triggered: {resp.status} {resp.read().decode()}", file=sys.stderr)
     except Exception as e:
-        app.logger.error(f"Webhook failed: {e}")
+        print(f"Webhook failed: {e}", file=sys.stderr)
         try:
             ctx = ssl._create_unverified_context()
             resp = urllib.request.urlopen(req, timeout=10, context=ctx)
-            app.logger.info(f"Webhook triggered (unverified SSL): {resp.status}")
+            print(f"Webhook triggered (unverified SSL): {resp.status}", file=sys.stderr)
         except Exception as e2:
-            app.logger.error(f"Webhook retry failed: {e2}")
+            print(f"Webhook retry failed: {e2}", file=sys.stderr)
 
 
 def _get_agents_from_pending() -> list[dict]:
