@@ -349,6 +349,15 @@ button.danger:hover { background: #991b1b; }
 .modal-list li:last-child { border-bottom: none; }
 .modal-list li::before { content: "→"; color: var(--accent); font-size: 10px; flex-shrink: 0; }
 .modal-list li.weak::before { content: "✗"; color: var(--red); }
+.assign-btn { background: var(--bg); border: 1px solid var(--border); color: var(--text); font-size: 11px; padding: 3px 8px; border-radius: 6px; cursor: pointer; }
+.assign-btn:hover { border-color: var(--accent); color: var(--accent); }
+.assign-popover { position: fixed; z-index: 10000; background: var(--surface); border: 1px solid var(--accent); border-radius: 10px; padding: 14px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); min-width: 260px; }
+.assign-popover .ap-title { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+.assign-popover .ap-model { font-weight: 600; font-size: 13px; margin-bottom: 10px; word-break: break-all; }
+.assign-popover .ap-agent { display: flex; justify-content: space-between; align-items: center; padding: 6px 8px; border-radius: 6px; cursor: pointer; font-size: 12px; }
+.assign-popover .ap-agent:hover { background: var(--bg); }
+.assign-popover .ap-agent-current { color: var(--muted); font-size: 10px; }
+.assign-popover .ap-close { position: absolute; top: 6px; right: 8px; background: none; border: none; color: var(--muted); cursor: pointer; font-size: 16px; }
 .rate-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
 .rate-pill { border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; font-size: 11px; display: inline-flex; gap: 6px; align-items: center; }
 .rate-pill .rate-role { color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; font-size: 10px; }
@@ -893,7 +902,8 @@ function renderCatalog(models) {
     const checked = compareSet.has(m.model_id) ? 'checked' : '';
     const comparing = compareSet.has(m.model_id) ? 'comparing' : '';
     return `<div class="card ${comparing}" id="card-${CSS.escape(m.model_id)}" onclick="handleCardClick(event,'${m.model_id}')" style="cursor:pointer">
-      <div style="position:absolute;top:10px;right:10px">
+      <div style="position:absolute;top:10px;right:10px;display:flex;gap:6px;align-items:center">
+        <button class="assign-btn" title="Assign to agent" onclick="event.stopPropagation();openAssignPopover(event,'${m.model_id}')">⚡ Assign</button>
         <label class="compare-cb" title="Add to compare" onclick="event.stopPropagation()">
           <input type="checkbox" ${checked} onchange="toggleCompare('${m.model_id}', this.checked)"> Compare
         </label>
@@ -949,6 +959,74 @@ function renderCatalog(models) {
       </div>` : ''}
     </div>`;
   }).join('');
+}
+
+// ── Quick-assign popover ───────────────────────────────────────────────
+let _assignAgentsCache = null;
+async function openAssignPopover(ev, modelId) {
+  closeAssignPopover();
+  if (!_assignAgentsCache) {
+    try {
+      _assignAgentsCache = await fetch('/api/agents').then(r => r.json());
+    } catch (e) { _assignAgentsCache = []; }
+  }
+  const agents = _assignAgentsCache || [];
+  const rows = agents.map(a => {
+    const current = a.primary || a.primary_raw || '(not set)';
+    const isCurrent = current === modelId;
+    return `<div class="ap-agent" onclick="assignAgentTo('${a.agentId}','${modelId}')">
+      <span><strong>${a.name || a.agentId}</strong> <span style="color:var(--muted)">· ${a.agentId}</span></span>
+      <span class="ap-agent-current">${isCurrent ? '✓ on this model' : current}</span>
+    </div>`;
+  }).join('') || '<div style="color:var(--muted);font-size:12px">No agents configured.</div>';
+  const pop = document.createElement('div');
+  pop.className = 'assign-popover';
+  pop.id = 'assign-popover';
+  pop.innerHTML = `
+    <button class="ap-close" onclick="closeAssignPopover()">✕</button>
+    <div class="ap-title">Assign model to agent</div>
+    <div class="ap-model">${modelId}</div>
+    ${rows}
+    <div id="assign-popover-status" style="margin-top:8px;font-size:11px"></div>
+  `;
+  document.body.appendChild(pop);
+  const rect = ev.currentTarget.getBoundingClientRect();
+  pop.style.top = Math.min(window.innerHeight - 260, rect.bottom + 6) + 'px';
+  pop.style.left = Math.max(10, Math.min(window.innerWidth - 290, rect.left - 120)) + 'px';
+  setTimeout(() => document.addEventListener('click', _assignOutsideClick, { once: true }), 0);
+}
+function _assignOutsideClick(e) {
+  const pop = document.getElementById('assign-popover');
+  if (pop && !pop.contains(e.target)) closeAssignPopover();
+  else if (pop) setTimeout(() => document.addEventListener('click', _assignOutsideClick, { once: true }), 0);
+}
+function closeAssignPopover() {
+  const pop = document.getElementById('assign-popover');
+  if (pop) pop.remove();
+}
+async function assignAgentTo(agentId, modelId) {
+  const status = document.getElementById('assign-popover-status');
+  if (status) status.innerHTML = `<span style="color:var(--amber)">Applying ${agentId} → ${modelId}…</span>`;
+  try {
+    const res = await fetch('/api/agents/' + agentId + '/model', {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({primary: modelId, restart_gateway: true})
+    });
+    const data = await res.json();
+    if (data.ok) {
+      const msg = data.mode === 'queued'
+        ? `⏳ queued: ${data.old_primary} → ${data.new_primary}`
+        : `✓ ${data.old_primary} → ${data.new_primary}${data.restarted ? ' (gateway restarted)' : ''}`;
+      if (status) status.innerHTML = `<span style="color:var(--green)">${msg}</span>`;
+      _assignAgentsCache = null; // force re-fetch next open
+      setTimeout(closeAssignPopover, 1500);
+    } else {
+      if (status) status.innerHTML = `<span style="color:var(--red)">✗ ${data.error || 'failed'}</span>`;
+    }
+  } catch (e) {
+    if (status) status.innerHTML = `<span style="color:var(--red)">✗ ${e.message}</span>`;
+  }
 }
 
 // ── Compare tray ───────────────────────────────────────────────────────
