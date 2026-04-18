@@ -53,11 +53,10 @@ UI_PASSWORD = os.environ.get("UI_PASSWORD", "IntelligenceMap")
 API_TOKEN = os.environ.get("API_TOKEN", "")
 TOTP_SECRET = os.environ.get("TOTP_SECRET", "")
 TOTP_REQUIRED = os.environ.get("TOTP_REQUIRED", "false").lower() in ("true", "1", "yes")
+REPO_DIR = Path(__file__).parent
 OPENCLAW_CONFIG = Path.home() / ".openclaw" / "openclaw.json"
 PENDING_CHANGES_FILE = REPO_DIR / "pending_model_changes.json"
 IS_REMOTE = not OPENCLAW_CONFIG.exists()
-
-REPO_DIR = Path(__file__).parent
 MODELS_FILE = REPO_DIR / "models.json"
 GENERATED_FILE = REPO_DIR / "models.generated.json"
 FEEDBACK_FILE = REPO_DIR / "feedback.json"
