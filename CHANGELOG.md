@@ -1,5 +1,28 @@
 # Changelog
 
+## [2026-04-18] — Agent model management, security, PWA, webhook sync
+
+### Added
+- **Agent model management**: Agents tab shows all OpenClaw agents with current primary model and fallbacks. Change models directly from the UI with one-click Apply.
+- **TOTP 2FA**: Login now requires authenticator app code (RFC 6238). Works with any TOTP app (Google Authenticator, Microsoft Authenticator, etc).
+- **Password + rate limiting**: UI protected by password + constant-time hash comparison. 5 failed attempts = 5-minute lockout.
+- **API token auth**: All API endpoints accept `X-API-Token` header for machine-to-machine access.
+- **Remote model management**: When running on Railway, model changes queue to `pending_model_changes.json`. Local sync script (`scripts/sync_pending.py`) polls and applies changes to `openclaw.json`.
+- **Webhook sync trigger**: Model changes on Railway immediately POST to OpenClaw gateway via Tailscale Funnel webhook, triggering instant sync instead of polling.
+- **Change history log**: All model changes tracked in `model_changes.jsonl` with timestamp, agent, old/new model, and changed_by.
+- **PWA support**: App is installable on Android (and desktop) as a standalone app via manifest.json and service worker.
+- **Tab persistence**: Active tab remembered across page refreshes via localStorage.
+- **Pending change indicators**: Agent cards show amber border and pending badge when a queued change is awaiting sync.
+
+### Security
+- UI password hashed with SHA-256, compared via `hmac.compare_digest`
+- TOTP secret stored as Railway env var, never exposed to client
+- API token separate from UI password
+- Login rate limiting with exponential lockout
+- Session cookies: HttpOnly, SameSite=Lax, Secure (on Railway)
+
+---
+
 ## [2026-04-15] — Catalog restructure: active / discovery / archive shelves
 
 ### Changed

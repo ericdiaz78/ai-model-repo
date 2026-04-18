@@ -156,6 +156,10 @@ HTML = r"""<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0f1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="/manifest.json">
 <title>AI Model Repo</title>
 <style>
 :root {
@@ -1632,6 +1636,7 @@ function showTab(name) {
   document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', TAB_NAMES[i]===name));
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
   document.getElementById('panel-'+name).classList.add('active');
+  localStorage.setItem('activeTab', name);
   if (name === 'changelog') loadChangelog();
   if (name === 'feedback') loadFeedback();
   if (name === 'usage') { renderSpendChart(); renderSpendTable(); }
@@ -1652,10 +1657,13 @@ async function loadAgents() {
     const opts = modelIds.map(id =>
       `<option value="${id}" ${id === a.primary ? 'selected' : ''}>${id}</option>`
     ).join('');
-    return `<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+    const pendingBadge = a.pending_model ? `<span style="font-size:10px;color:var(--amber);background:#2d2006;padding:2px 6px;border-radius:4px;margin-left:4px">⏳ pending: ${a.pending_model}</span>` : '';
+    const currentModel = a.pending_model || a.primary;
+    return `<div style="background:var(--surface);border:1px solid ${a.pending_model ? 'var(--amber)' : 'var(--border)'};border-radius:10px;padding:16px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
         <span style="font-weight:600;font-size:14px">${a.name || a.agentId}</span>
         <span style="font-size:11px;color:var(--muted);background:var(--tag-bg);padding:2px 8px;border-radius:4px">${a.agentId}</span>
+        ${pendingBadge}
       </div>
       <div style="font-size:11px;color:var(--muted);margin-bottom:6px">Primary Model</div>
       <div style="display:flex;gap:8px;align-items:center">
@@ -1664,7 +1672,7 @@ async function loadAgents() {
         </select>
         <button onclick="setAgentModel('${a.agentId}')" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap">Apply</button>
       </div>
-      <div style="font-size:11px;color:var(--muted);margin-top:8px">Fallbacks: ${a.fallbacks.length ? a.fallbacks.join(', ') : 'none'}</div>
+      <div style="font-size:11px;color:var(--muted);margin-top:8px">Fallbacks: ${(a.fallbacks||[]).length ? a.fallbacks.join(', ') : 'none'}</div>
     </div>`;
   }).join('');
   loadAgentHistory();
@@ -1683,11 +1691,11 @@ async function setAgentModel(agentId) {
   const data = await res.json();
   if (data.ok) {
     if (data.mode === 'queued') {
-      status.innerHTML = `<span style="color:var(--amber)">⏳ ${agentId} → ${data.new_primary} — queued, will apply on next sync</span>`;
+      status.innerHTML = `<span style="color:var(--amber)">⏳ ${agentId}: ${data.old_primary} → ${data.new_primary} — queued, sync triggered</span>`;
     } else {
       status.innerHTML = `<span style="color:var(--green)">✓ ${agentId}: ${data.old_primary} → ${data.new_primary}${data.restarted ? ' (gateway restarted)' : ' (restart needed)'}</span>`;
     }
-    loadAgentHistory();
+    loadAgents();
   } else {
     status.innerHTML = `<span style="color:var(--red)">✗ ${data.error}</span>`;
   }
@@ -1714,7 +1722,12 @@ async function loadAgentHistory() {
   </table>`;
 }
 
-loadModels().then(() => populateCompareSelects());
+loadModels().then(() => {
+  populateCompareSelects();
+  const savedTab = localStorage.getItem('activeTab');
+  if (savedTab && TAB_NAMES.includes(savedTab)) showTab(savedTab);
+});
+if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js');
 </script>
 </body>
 </html>"""
@@ -2320,11 +2333,18 @@ def api_set_agent_model(agent_id):
             return jsonify({"error": f"model '{new_primary}' not in catalog", "known": sorted(known_models)}), 400
 
     if IS_REMOTE:
+        agents = _get_agents_from_pending()
+        old_primary = "unknown"
+        for a in agents:
+            if a.get("agentId") == agent_id:
+                old_primary = a.get("primary", "unknown")
+                break
         pending = _load_pending_changes()
         change = {
             "id": secrets.token_hex(8),
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "agent": agent_id,
+            "old_primary": old_primary,
             "new_primary": new_primary,
             "new_fallbacks": new_fallbacks,
             "status": "pending",
@@ -2332,11 +2352,21 @@ def api_set_agent_model(agent_id):
         }
         pending.append(change)
         _save_pending_changes(pending)
+        log_file = REPO_DIR / "model_changes.jsonl"
+        with open(log_file, "a") as f:
+            f.write(json.dumps({
+                "timestamp": change["timestamp"],
+                "agent": agent_id,
+                "old_primary": old_primary,
+                "new_primary": new_primary,
+                "changed_by": "ai-model-repo-ui",
+            }) + "\n")
         _trigger_sync_webhook()
         return jsonify({
             "ok": True,
             "mode": "queued",
             "agent": agent_id,
+            "old_primary": old_primary,
             "new_primary": new_primary,
             "change_id": change["id"],
             "message": "Change queued. Sync triggered via webhook.",
@@ -2434,6 +2464,39 @@ def api_agent_model_history(agent_id):
         if entry.get("agent") == agent_id or agent_id == "all":
             entries.append(entry)
     return jsonify(entries[-50:])
+
+
+@app.route("/manifest.json")
+def manifest():
+    return jsonify({
+        "name": "AI Model Repo",
+        "short_name": "ModelRepo",
+        "start_url": "/",
+        "display": "standalone",
+        "background_color": "#0f1117",
+        "theme_color": "#0f1117",
+        "description": "AI Model Knowledge Repository — manage models, agents, and benchmarks",
+        "icons": [
+            {"src": "/icon-192.svg", "sizes": "192x192", "type": "image/svg+xml"},
+            {"src": "/icon-512.svg", "sizes": "512x512", "type": "image/svg+xml"},
+        ],
+    })
+
+
+@app.route("/icon-192.svg")
+@app.route("/icon-512.svg")
+def app_icon():
+    svg = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+<rect width="512" height="512" rx="96" fill="#0f1117"/>
+<text x="256" y="320" text-anchor="middle" font-size="280" font-family="sans-serif">⚡</text>
+</svg>'''
+    return svg, 200, {"Content-Type": "image/svg+xml"}
+
+
+@app.route("/sw.js")
+def service_worker():
+    sw = """self.addEventListener('fetch', function(e) {});"""
+    return sw, 200, {"Content-Type": "application/javascript"}
 
 
 if __name__ == "__main__":
