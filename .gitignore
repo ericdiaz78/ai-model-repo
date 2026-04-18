@@ -3,3 +3,4 @@ __pycache__/
 models.generated.json
 .usage-sync-state.json
 .direct-usage-state.json
+model_changes.jsonl

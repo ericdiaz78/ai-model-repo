@@ -5,20 +5,43 @@ Flask app for browsing, querying, comparing, and ingesting AI models.
 Run: python3 app.py
 """
 
+import hashlib
+import hmac
 import json
 import os
+import secrets
+import shutil
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
-from flask import Flask, jsonify, render_template_string, request, session, redirect, url_for
+from flask import Flask, jsonify, render_template_string, request, session, redirect, url_for, abort
 from functools import wraps
 
-app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY", "ai-model-repo-secret-2026")
+try:
+    from flask_limiter import Limiter
+    from flask_limiter.util import get_remote_address
+    HAS_LIMITER = True
+except ImportError:
+    HAS_LIMITER = False
 
+app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY", secrets.token_hex(32))
+app.config["SESSION_COOKIE_HTTPONLY"] = True
+app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+app.config["SESSION_COOKIE_SECURE"] = os.environ.get("RAILWAY_ENVIRONMENT") is not None
+
+if HAS_LIMITER:
+    limiter = Limiter(get_remote_address, app=app, default_limits=["120 per minute"])
+else:
+    limiter = None
+
+UI_PASSWORD_HASH = os.environ.get("UI_PASSWORD_HASH", "")
 UI_PASSWORD = os.environ.get("UI_PASSWORD", "IntelligenceMap")
+API_TOKEN = os.environ.get("API_TOKEN", "")
+OPENCLAW_CONFIG = Path.home() / ".openclaw" / "openclaw.json"
 
 REPO_DIR = Path(__file__).parent
 MODELS_FILE = REPO_DIR / "models.json"
@@ -378,6 +401,7 @@ button.danger:hover { background: #991b1b; }
   <div class="tab" onclick="showTab('changelog')">Changelog</div>
   <div class="tab" onclick="showTab('feedback')">Feedback</div>
   <div class="tab" onclick="showTab('ingest')">Ingest</div>
+  <div class="tab" onclick="showTab('agents')">⚡ Agents</div>
 </div>
 
 <!-- CATALOG -->
@@ -534,6 +558,16 @@ button.danger:hover { background: #991b1b; }
     <button onclick="runIngest()">Ingest Model</button>
   </div>
   <div id="ingest-results"></div>
+</div>
+
+<!-- AGENTS -->
+<div class="panel" id="panel-agents">
+  <div class="section-title">Agent Model Assignment</div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Change agent primary models directly. Backs up config before every change. Gateway restart required to take effect.</p>
+  <div id="agents-grid" style="display:grid;gap:12px;max-width:800px"></div>
+  <div id="agents-status" style="margin-top:12px"></div>
+  <div class="section-title" style="margin-top:28px">Model Change History</div>
+  <div id="agents-history" style="font-size:12px"></div>
 </div>
 
 <!-- MODEL DETAIL MODAL -->
@@ -1578,7 +1612,7 @@ function renderSpendTable() {
 }
 
 // ── Tabs ───────────────────────────────────────────────────────────────
-const TAB_NAMES = ['catalog','query','compare','usage','changelog','feedback','ingest'];
+const TAB_NAMES = ['catalog','query','compare','usage','changelog','feedback','ingest','agents'];
 function showTab(name) {
   document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', TAB_NAMES[i]===name));
   document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
@@ -1586,6 +1620,80 @@ function showTab(name) {
   if (name === 'changelog') loadChangelog();
   if (name === 'feedback') loadFeedback();
   if (name === 'usage') { renderSpendChart(); renderSpendTable(); }
+  if (name === 'agents') loadAgents();
+}
+
+// ── Agents ──────────────────────────────────────────────────────────────
+let agentModels = [];
+async function loadAgents() {
+  const [agentsRes, modelsData] = await Promise.all([
+    fetch('/api/agents').then(r => r.json()),
+    allModels.length ? Promise.resolve(allModels) : fetch('/api/models').then(r => r.json())
+  ]);
+  agentModels = agentsRes;
+  const modelIds = modelsData.map(m => m.model_id).sort();
+  const grid = document.getElementById('agents-grid');
+  grid.innerHTML = agentsRes.map(a => {
+    const opts = modelIds.map(id =>
+      `<option value="${id}" ${id === a.primary ? 'selected' : ''}>${id}</option>`
+    ).join('');
+    return `<div style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span style="font-weight:600;font-size:14px">${a.name || a.agentId}</span>
+        <span style="font-size:11px;color:var(--muted);background:var(--tag-bg);padding:2px 8px;border-radius:4px">${a.agentId}</span>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:6px">Primary Model</div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <select id="model-sel-${a.agentId}" style="flex:1;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:13px">
+          ${opts}
+        </select>
+        <button onclick="setAgentModel('${a.agentId}')" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap">Apply</button>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:8px">Fallbacks: ${a.fallbacks.length ? a.fallbacks.join(', ') : 'none'}</div>
+    </div>`;
+  }).join('');
+  loadAgentHistory();
+}
+
+async function setAgentModel(agentId) {
+  const sel = document.getElementById('model-sel-' + agentId);
+  const newModel = sel.value;
+  const status = document.getElementById('agents-status');
+  const restart = confirm('Restart gateway now to apply? (Cancel = change saved but not active until next restart)');
+  status.innerHTML = '<span style="color:var(--amber)">Applying...</span>';
+  const res = await fetch('/api/agents/' + agentId + '/model', {
+    method: 'PUT',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({primary: newModel, restart_gateway: restart})
+  });
+  const data = await res.json();
+  if (data.ok) {
+    status.innerHTML = `<span style="color:var(--green)">✓ ${agentId}: ${data.old_primary} → ${data.new_primary}${data.restarted ? ' (gateway restarted)' : ' (restart needed)'}</span>`;
+    loadAgentHistory();
+  } else {
+    status.innerHTML = `<span style="color:var(--red)">✗ ${data.error}</span>`;
+  }
+}
+
+async function loadAgentHistory() {
+  const res = await fetch('/api/agents/all/model/history');
+  const entries = await res.json();
+  const el = document.getElementById('agents-history');
+  if (!entries.length) { el.innerHTML = '<div style="color:var(--muted);padding:8px">No changes yet.</div>'; return; }
+  el.innerHTML = `<table style="width:100%;border-collapse:collapse;margin-top:8px">
+    <tr style="border-bottom:1px solid var(--border)">
+      <th style="text-align:left;padding:6px;color:var(--muted);font-weight:500">Time</th>
+      <th style="text-align:left;padding:6px;color:var(--muted);font-weight:500">Agent</th>
+      <th style="text-align:left;padding:6px;color:var(--muted);font-weight:500">From</th>
+      <th style="text-align:left;padding:6px;color:var(--muted);font-weight:500">To</th>
+    </tr>
+    ${entries.slice().reverse().slice(0,20).map(e => `<tr style="border-bottom:1px solid var(--border)">
+      <td style="padding:6px;font-size:11px">${new Date(e.timestamp).toLocaleString()}</td>
+      <td style="padding:6px"><span style="background:var(--tag-bg);padding:2px 6px;border-radius:4px;font-size:11px">${e.agent}</span></td>
+      <td style="padding:6px;font-size:11px;color:var(--muted)">${e.old_primary}</td>
+      <td style="padding:6px;font-size:11px;color:var(--green)">${e.new_primary}</td>
+    </tr>`).join('')}
+  </table>`;
 }
 
 loadModels().then(() => populateCompareSelects());
@@ -1638,10 +1746,44 @@ button:hover { background: #1d4ed8; }
 </html>"""
 
 
+def _check_password(candidate: str) -> bool:
+    if UI_PASSWORD_HASH:
+        candidate_hash = hashlib.sha256(candidate.encode()).hexdigest()
+        return hmac.compare_digest(candidate_hash, UI_PASSWORD_HASH)
+    return hmac.compare_digest(candidate, UI_PASSWORD)
+
+
+def _check_api_token() -> bool:
+    if not API_TOKEN:
+        return False
+    token = request.headers.get("X-API-Token", "") or request.args.get("api_token", "")
+    return hmac.compare_digest(token, API_TOKEN)
+
+
+_login_attempts: dict[str, list[float]] = {}
+MAX_LOGIN_ATTEMPTS = 5
+LOCKOUT_SECONDS = 300
+
+
+def _is_locked_out(ip: str) -> bool:
+    attempts = _login_attempts.get(ip, [])
+    recent = [t for t in attempts if time.time() - t < LOCKOUT_SECONDS]
+    _login_attempts[ip] = recent
+    return len(recent) >= MAX_LOGIN_ATTEMPTS
+
+
+def _record_failed_attempt(ip: str):
+    _login_attempts.setdefault(ip, []).append(time.time())
+
+
 def require_login(f):
     @wraps(f)
     def decorated(*args, **kwargs):
+        if _check_api_token():
+            return f(*args, **kwargs)
         if not session.get("authed"):
+            if request.is_json or request.path.startswith("/api/"):
+                return jsonify({"error": "unauthorized"}), 401
             return redirect(url_for("login"))
         return f(*args, **kwargs)
     return decorated
@@ -1650,10 +1792,19 @@ def require_login(f):
 @app.route("/login", methods=["GET", "POST"])
 def login():
     error = None
+    ip = request.remote_addr or "unknown"
+    if _is_locked_out(ip):
+        error = "Too many attempts. Try again in 5 minutes."
+        return render_template_string(LOGIN_HTML, error=error), 429
     if request.method == "POST":
-        if request.form.get("password") == UI_PASSWORD:
+        time.sleep(0.5)
+        if _check_password(request.form.get("password", "")):
             session["authed"] = True
+            session["login_ip"] = ip
+            session["login_at"] = datetime.now(timezone.utc).isoformat()
+            _login_attempts.pop(ip, None)
             return redirect(url_for("index"))
+        _record_failed_attempt(ip)
         error = "Invalid access key"
     return render_template_string(LOGIN_HTML, error=error)
 
@@ -1965,6 +2116,130 @@ def api_route():
         return jsonify(result)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+# ── Agent Model Management ──────────────────────────────────────────────────
+
+def _load_openclaw_config() -> dict:
+    if not OPENCLAW_CONFIG.exists():
+        return {}
+    with open(OPENCLAW_CONFIG) as f:
+        return json.load(f)
+
+
+def _save_openclaw_config(cfg: dict):
+    backup = OPENCLAW_CONFIG.parent / f"openclaw.json.bak.{int(time.time())}"
+    shutil.copy2(OPENCLAW_CONFIG, backup)
+    with open(OPENCLAW_CONFIG, "w") as f:
+        json.dump(cfg, f, indent=2)
+    json.load(open(OPENCLAW_CONFIG))
+
+
+def _get_agents_with_models() -> list[dict]:
+    cfg = _load_openclaw_config()
+    agents = cfg.get("agents", {}).get("list", [])
+    result = []
+    for a in agents:
+        model_cfg = a.get("model", {})
+        agent_id = a.get("id", a.get("agentId", ""))
+        result.append({
+            "agentId": agent_id,
+            "name": a.get("name", agent_id),
+            "primary": model_cfg.get("primary", "default") if isinstance(model_cfg, dict) else str(model_cfg),
+            "fallbacks": model_cfg.get("fallbacks", []) if isinstance(model_cfg, dict) else [],
+        })
+    return result
+
+
+@app.route("/api/agents", methods=["GET"])
+@require_login
+def api_agents():
+    return jsonify(_get_agents_with_models())
+
+
+@app.route("/api/agents/<agent_id>/model", methods=["PUT"])
+@require_login
+def api_set_agent_model(agent_id):
+    data = request.get_json()
+    if not data or "primary" not in data:
+        return jsonify({"error": "primary field required"}), 400
+
+    new_primary = data["primary"].strip()
+    new_fallbacks = data.get("fallbacks")
+
+    known_models = {m["model_id"] for m in load_models()}
+    bare_id = new_primary.split("/", 1)[-1] if "/" in new_primary else new_primary
+    if new_primary not in known_models and bare_id not in known_models:
+        candidates = [m for m in known_models if bare_id in m]
+        if not candidates:
+            return jsonify({"error": f"model '{new_primary}' not in catalog", "known": sorted(known_models)}), 400
+
+    cfg = _load_openclaw_config()
+    agents = cfg.get("agents", {}).get("list", [])
+    target = None
+    for a in agents:
+        if a.get("id", a.get("agentId", "")) == agent_id:
+            target = a
+            break
+    if not target:
+        return jsonify({"error": f"agent '{agent_id}' not found"}), 404
+
+    old_model = target.get("model", {})
+    old_primary = old_model.get("primary", "unknown") if isinstance(old_model, dict) else str(old_model)
+
+    if isinstance(old_model, dict):
+        target["model"]["primary"] = new_primary
+        if new_fallbacks is not None:
+            target["model"]["fallbacks"] = new_fallbacks
+    else:
+        target["model"] = {"primary": new_primary, "fallbacks": new_fallbacks or []}
+
+    _save_openclaw_config(cfg)
+
+    change_log = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "agent": agent_id,
+        "old_primary": old_primary,
+        "new_primary": new_primary,
+        "changed_by": "ai-model-repo-ui",
+    }
+    log_file = REPO_DIR / "model_changes.jsonl"
+    with open(log_file, "a") as f:
+        f.write(json.dumps(change_log) + "\n")
+
+    needs_restart = data.get("restart_gateway", False)
+    restarted = False
+    if needs_restart:
+        try:
+            subprocess.run(["systemctl", "--user", "restart", "openclaw-gateway"],
+                           capture_output=True, text=True, timeout=10)
+            restarted = True
+        except Exception:
+            pass
+
+    return jsonify({
+        "ok": True,
+        "agent": agent_id,
+        "old_primary": old_primary,
+        "new_primary": new_primary,
+        "restarted": restarted,
+    })
+
+
+@app.route("/api/agents/<agent_id>/model/history", methods=["GET"])
+@require_login
+def api_agent_model_history(agent_id):
+    log_file = REPO_DIR / "model_changes.jsonl"
+    if not log_file.exists():
+        return jsonify([])
+    entries = []
+    for line in log_file.read_text().strip().split("\n"):
+        if not line:
+            continue
+        entry = json.loads(line)
+        if entry.get("agent") == agent_id or agent_id == "all":
+            entries.append(entry)
+    return jsonify(entries[-50:])
 
 
 if __name__ == "__main__":
