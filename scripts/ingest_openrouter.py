@@ -147,7 +147,7 @@ def build_new_record(or_model: dict) -> dict:
         },
         "context_window": or_model.get("context_length") or or_model.get("top_provider", {}).get("context_length", 0),
         "modalities": parse_modalities(arch),
-        "performance_notes": or_model.get("description", "")[:300] if or_model.get("description") else "",
+        "performance_notes": or_model.get("description", "") or "",
         "routing_tags": infer_routing_tags(or_model),
         "openrouter_slug": slug,
         "_meta": {

@@ -349,6 +349,33 @@ button.danger:hover { background: #991b1b; }
 .modal-list li:last-child { border-bottom: none; }
 .modal-list li::before { content: "→"; color: var(--accent); font-size: 10px; flex-shrink: 0; }
 .modal-list li.weak::before { content: "✗"; color: var(--red); }
+.bench-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px; margin-bottom: 20px; }
+.bench-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px 14px; }
+.bench-card-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); font-weight: 700; margin-bottom: 8px; display: flex;
+  justify-content: space-between; align-items: baseline; gap: 8px; }
+.bench-card-title .bench-asof { font-weight: 400; text-transform: none; letter-spacing: 0;
+  font-size: 10px; color: var(--muted); }
+.bench-row { display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 12px; padding: 3px 0; color: var(--sub);
+  border-bottom: 1px solid var(--border); }
+.bench-row:last-child { border-bottom: none; }
+.bench-row .bench-val { font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; }
+.industry-note { background: var(--bg); border-left: 2px solid var(--accent);
+  border-radius: 0 8px 8px 0; padding: 10px 14px; margin-bottom: 10px; }
+.industry-note-quote { font-size: 13px; color: var(--sub); line-height: 1.55;
+  font-style: italic; margin-bottom: 6px; }
+.industry-note-cite { font-size: 11px; color: var(--muted); display: flex;
+  justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.industry-note-cite a { color: var(--accent); text-decoration: none; }
+.industry-note-cite a:hover { text-decoration: underline; }
+.industry-note-tags { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
+.industry-note-tag { font-size: 10px; padding: 1px 6px; border-radius: 4px;
+  background: var(--surface); color: var(--muted); border: 1px solid var(--border); }
+.bench-pending { font-size: 12px; color: var(--muted); font-style: italic;
+  padding: 10px 14px; border: 1px dashed var(--border); border-radius: 8px; }
 .chart-wrap { margin-top: 20px; }
 .chart-title { font-size: 10px; text-transform: uppercase; letter-spacing: 0.08em;
   color: var(--muted); font-weight: 700; margin-bottom: 10px; }
@@ -1324,6 +1351,110 @@ async function openModelDetail(modelId) {
   const useCases = m.ideal_use_cases || [];
   const notes = m.performance_notes || '';
   const directP = m.direct_pricing;
+  const meta = m._meta || {};
+  const benchmarks = meta.benchmarks || {};
+  const industryNotes = meta.industry_notes || [];
+
+  // Benchmark formatting. Each source gets a card with its own fields.
+  const BENCH_LABELS = {
+    artificial_analysis: {
+      title: 'Artificial Analysis',
+      fields: {
+        intelligence_index: { label: 'Intelligence Index', fmt: v => `${v} / 100` },
+        output_tps: { label: 'Output Speed', fmt: v => `${v} tok/s` },
+        ttft_s: { label: 'Time to First Token', fmt: v => `${v}s` }
+      }
+    },
+    livebench: {
+      title: 'LiveBench (decontaminated)',
+      fields: {
+        reasoning: { label: 'Reasoning', fmt: v => `${v}` },
+        coding: { label: 'Coding', fmt: v => `${v}` },
+        mathematics: { label: 'Mathematics', fmt: v => `${v}` },
+        data_analysis: { label: 'Data Analysis', fmt: v => `${v}` },
+        language: { label: 'Language', fmt: v => `${v}` },
+        instruction_following: { label: 'Instruction Following', fmt: v => `${v}` },
+        global_average: { label: 'Global Average', fmt: v => `${v}` }
+      }
+    },
+    gaia: {
+      title: 'GAIA (agentic multi-step)',
+      fields: {
+        level_1: { label: 'Level 1', fmt: v => `${Math.round(v*100)}%` },
+        level_2: { label: 'Level 2', fmt: v => `${Math.round(v*100)}%` },
+        level_3: { label: 'Level 3', fmt: v => `${Math.round(v*100)}%` },
+        average: { label: 'Average', fmt: v => `${Math.round(v*100)}%` }
+      }
+    },
+    tau_bench: {
+      title: 'TAU-bench (tool use)',
+      fields: {
+        retail: { label: 'Retail', fmt: v => `${Math.round(v*100)}%` },
+        airline: { label: 'Airline', fmt: v => `${Math.round(v*100)}%` }
+      }
+    },
+    lmsys_arena_elo: {
+      title: 'LMSYS Arena',
+      fields: {
+        score: { label: 'ELO', fmt: v => `${v}` },
+        rank: { label: 'Rank', fmt: v => `#${v}` }
+      }
+    },
+    aider: {
+      title: 'Aider (code edit)',
+      fields: {
+        edit_pct: { label: 'Edit Accuracy', fmt: v => `${Math.round(v*100)}%` },
+        refactor_pct: { label: 'Refactor', fmt: v => `${Math.round(v*100)}%` }
+      }
+    },
+    swe_bench: {
+      title: 'SWE-bench',
+      fields: {
+        verified_pct: { label: 'Verified', fmt: v => `${Math.round(v*100)}%` }
+      }
+    },
+    openrouter_stats: {
+      title: 'OpenRouter (production)',
+      fields: {
+        latency_p50_ms: { label: 'Latency p50', fmt: v => `${v}ms` },
+        latency_p95_ms: { label: 'Latency p95', fmt: v => `${v}ms` },
+        throughput_tps: { label: 'Throughput', fmt: v => `${v} tok/s` },
+        error_rate_pct: { label: 'Error rate', fmt: v => `${v}%` }
+      }
+    }
+  };
+
+  const renderBenchCard = (sourceKey) => {
+    const src = benchmarks[sourceKey];
+    const def = BENCH_LABELS[sourceKey];
+    if (!src || !def) return '';
+    const rows = Object.entries(def.fields)
+      .filter(([k,_]) => src[k] != null)
+      .map(([k, cfg]) => `<div class="bench-row"><span>${cfg.label}</span><span class="bench-val">${cfg.fmt(src[k])}</span></div>`)
+      .join('');
+    if (!rows) return '';
+    const asof = src.as_of ? `<span class="bench-asof">${src.as_of}</span>` : '';
+    return `<div class="bench-card">
+      <div class="bench-card-title"><span>${def.title}</span>${asof}</div>
+      ${rows}
+    </div>`;
+  };
+
+  const benchCards = Object.keys(BENCH_LABELS).map(renderBenchCard).filter(Boolean).join('');
+  const hasAnyBench = benchCards.length > 0;
+
+  const renderIndustryNote = (n) => {
+    const tags = (n.tags || []).map(t => `<span class="industry-note-tag">${t}</span>`).join('');
+    const cite = n.url
+      ? `<a href="${n.url}" target="_blank" rel="noopener">${n.source}</a>`
+      : n.source;
+    const asof = n.as_of ? `<span>${n.as_of}</span>` : '';
+    return `<div class="industry-note">
+      <div class="industry-note-quote">"${(n.note||'').replace(/"/g,'&quot;')}"</div>
+      <div class="industry-note-cite"><span>— ${cite}</span>${asof}</div>
+      ${tags ? `<div class="industry-note-tags">${tags}</div>` : ''}
+    </div>`;
+  };
   document.getElementById('modal-body').innerHTML = `
     ${notes ? `<div class="modal-section" style="grid-column:1/-1">
       <div class="modal-section-title">Performance Notes</div>
@@ -1360,6 +1491,16 @@ async function openModelDetail(modelId) {
         ${spend.total_cache_read_mtok > 0 ? `<li>Cached: ${spend.total_cache_read_mtok.toFixed(2)}M tok</li>` : ''}
         ${spend.period_start ? `<li>${spend.period_start} → ${spend.period_end}</li>` : ''}
       </ul>
+    </div>` : ''}
+    ${hasAnyBench || industryNotes.length > 0 ? `<div class="modal-section" style="grid-column:1/-1">
+      <div class="modal-section-title">Industry Benchmarks</div>
+      ${hasAnyBench
+        ? `<div class="bench-grid">${benchCards}</div>`
+        : `<div class="bench-pending">No benchmark data yet — run <code>scripts/enrich_benchmarks.py</code> to pull from LiveBench / Artificial Analysis / GAIA / Aider. (Stubs pending source URLs.)</div>`}
+    </div>` : ''}
+    ${industryNotes.length > 0 ? `<div class="modal-section" style="grid-column:1/-1">
+      <div class="modal-section-title">Industry Notes</div>
+      ${industryNotes.map(renderIndustryNote).join('')}
     </div>` : ''}`;
 
   // Charts (async)

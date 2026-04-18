@@ -217,38 +217,156 @@
             "description": "Date promoted from discovery to active"
           },
           "benchmarks": {
+            "type": "object",
+            "description": "Structured benchmark scores from trusted external sources",
+            "properties": {
+              "artificial_analysis": {
+                "type": "object",
+                "description": "artificialanalysis.ai — independent intelligence/speed/price benchmarks",
+                "properties": {
+                  "intelligence_index": { "type": "number", "description": "0-100 composite intelligence score" },
+                  "output_tps": { "type": "number", "description": "Output tokens per second" },
+                  "ttft_s": { "type": "number", "description": "Time to first token (seconds)" },
+                  "as_of": { "type": "string", "format": "date" }
+                }
+              },
+              "livebench": {
+                "type": "object",
+                "description": "livebench.ai — decontaminated monthly benchmark suite",
+                "properties": {
+                  "reasoning": { "type": "number" },
+                  "coding": { "type": "number" },
+                  "mathematics": { "type": "number" },
+                  "data_analysis": { "type": "number" },
+                  "language": { "type": "number" },
+                  "instruction_following": { "type": "number" },
+                  "global_average": { "type": "number" },
+                  "as_of": { "type": "string", "format": "date" }
+                }
+              },
+              "gaia": {
+                "type": "object",
+                "description": "GAIA benchmark — agentic multi-step tasks (pass rate 0-1)",
+                "properties": {
+                  "level_1": { "type": "number" },
+                  "level_2": { "type": "number" },
+                  "level_3": { "type": "number" },
+                  "average": { "type": "number" },
+                  "as_of": { "type": "string", "format": "date" }
+                }
+              },
+              "tau_bench": {
+                "type": "object",
+                "description": "TAU-bench — tool use in realistic agentic scenarios (pass rate 0-1)",
+                "properties": {
+                  "retail": { "type": "number" },
+                  "airline": { "type": "number" },
+                  "as_of": { "type": "string", "format": "date" }
+                }
+              },
+              "lmsys_arena_elo": {
+                "type": "object",
+                "description": "LMSYS Chatbot Arena — human preference ELO",
+                "properties": {
+                  "score": { "type": "number" },
+                  "rank": { "type": "integer" },
+                  "as_of": { "type": "string", "format": "date" }
+                }
+              },
+              "aider": {
+                "type": "object",
+                "description": "Aider leaderboard — code editing accuracy",
+                "properties": {
+                  "edit_pct": { "type": "number" },
+                  "refactor_pct": { "type": "number" },
+                  "as_of": { "type": "string", "format": "date" }
+                }
+              },
+              "swe_bench": {
+                "type": "object",
+                "description": "SWE-bench — real-world software engineering tasks",
+                "properties": {
+                  "verified_pct": { "type": "number" },
+                  "as_of": { "type": "string", "format": "date" }
+                }
+              },
+              "openrouter_stats": {
+                "type": "object",
+                "description": "Live production stats from OpenRouter",
+                "properties": {
+                  "latency_p50_ms": { "type": "number" },
+                  "latency_p95_ms": { "type": "number" },
+                  "throughput_tps": { "type": "number" },
+                  "error_rate_pct": { "type": "number" },
+                  "as_of": { "type": "string", "format": "date" }
+                }
+              }
+            }
+          },
+          "industry_notes": {
             "type": "array",
+            "description": "Curated observations from trusted third-party sources (provider model cards, reviews, community threads)",
             "items": {
-              "type": "object"
-            },
-            "description": "External benchmark references"
+              "type": "object",
+              "required": ["source", "note"],
+              "properties": {
+                "source": { "type": "string", "description": "e.g. 'Anthropic model card', 'r/LocalLLaMA', 'Artificial Analysis review'" },
+                "note": { "type": "string", "description": "The observation itself, in the source's voice" },
+                "url": { "type": "string" },
+                "as_of": { "type": "string", "format": "date" },
+                "tags": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "description": "Freeform tags: agentic, reasoning, coding, long-context, tool-use, reliability, etc."
+                }
+              }
+            }
           },
           "our_observations": {
             "type": "object",
             "properties": {
-              "latency_ms_p50": {
-                "type": "number"
-              },
-              "latency_ms_p95": {
-                "type": "number"
-              },
-              "failure_rate_pct": {
-                "type": "number"
-              },
+              "latency_ms_p50": { "type": "number" },
+              "latency_ms_p95": { "type": "number" },
+              "failure_rate_pct": { "type": "number" },
               "tasks_succeeded": {
                 "type": "array",
-                "items": {
-                  "type": "string"
-                }
+                "items": { "type": "string" }
               },
               "tasks_failed": {
                 "type": "array",
+                "items": { "type": "string" }
+              },
+              "notes": { "type": "string" },
+              "trials": {
+                "type": "array",
+                "description": "Graded real-run observations. Each entry is one agent session classified as multi-step and scored.",
                 "items": {
-                  "type": "string"
+                  "type": "object",
+                  "required": ["date", "agent_role", "result"],
+                  "properties": {
+                    "date": { "type": "string", "format": "date-time" },
+                    "agent": { "type": "string", "description": "e.g. 'oliver', 'amanda', 'alexander'" },
+                    "agent_role": { "type": "string", "enum": ["builder", "strategy", "gm"] },
+                    "result": { "type": "string", "enum": ["pass", "fail"] },
+                    "failure_point": { "type": "string", "enum": ["FP1", "FP2", "FP3", "FP4", "FP5", "FP6"], "description": "FP1=no context, FP2=silent, FP3=no artifacts, FP4=abandoned loop, FP5=duplicate, FP6=crash" },
+                    "session_id": { "type": "string" },
+                    "run_id": { "type": "string" },
+                    "notes": { "type": "string" }
+                  }
                 }
               },
-              "notes": {
-                "type": "string"
+              "pass_rate": {
+                "type": "object",
+                "description": "Rolling pass rates computed from trials[] over last 30 days",
+                "properties": {
+                  "builder": { "type": "number" },
+                  "strategy": { "type": "number" },
+                  "gm": { "type": "number" },
+                  "overall": { "type": "number" },
+                  "sample_size": { "type": "integer" },
+                  "window_days": { "type": "integer" },
+                  "computed_at": { "type": "string", "format": "date-time" }
+                }
               }
             }
           },

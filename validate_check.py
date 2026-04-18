@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json, sys
 from pathlib import Path
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parent
 schema = json.load(open(ROOT / "schema.json"))
 models = json.load(open(ROOT / "models.json"))
 errors = []
