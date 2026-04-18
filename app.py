@@ -631,7 +631,7 @@ button.danger:hover { background: #991b1b; }
     <div style="font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em">Bulk override — apply one model to all agents</div>
     <div style="display:flex;gap:8px;align-items:center">
       <select id="bulk-model-sel" style="flex:1;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:13px"></select>
-      <button onclick="applyBulkModel()" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap">Apply to all</button>
+      <button onclick="applyBulkModel(event)" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap">Apply to all</button>
     </div>
   </div>
   <div id="agents-grid" style="display:grid;gap:12px;max-width:800px"></div>
@@ -1009,7 +1009,12 @@ function closeAssignPopover() {
   const pop = document.getElementById('assign-popover');
   if (pop) pop.remove();
 }
+let _assignInflight = false;
 async function assignAgentTo(agentId, modelId) {
+  if (_assignInflight) return;
+  _assignInflight = true;
+  const pop = document.getElementById('assign-popover');
+  if (pop) pop.querySelectorAll('.ap-agent').forEach(el => { el.style.pointerEvents = 'none'; el.style.opacity = '0.6'; });
   const status = document.getElementById('assign-popover-status');
   if (status) status.innerHTML = `<span style="color:var(--amber)">Applying ${agentId} → ${modelId}…</span>`;
   try {
@@ -1031,6 +1036,8 @@ async function assignAgentTo(agentId, modelId) {
     }
   } catch (e) {
     if (status) status.innerHTML = `<span style="color:var(--red)">✗ ${e.message}</span>`;
+  } finally {
+    _assignInflight = false;
   }
 }
 
@@ -1996,7 +2003,7 @@ async function loadAgents() {
         <select id="model-sel-${a.agentId}" style="flex:1;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:13px">
           ${opts}
         </select>
-        <button onclick="setAgentModel('${a.agentId}')" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap">Apply</button>
+        <button onclick="setAgentModel(event, '${a.agentId}')" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap">Apply</button>
       </div>
       ${gradeBlock}
       <div style="font-size:11px;color:var(--muted);margin-top:8px">Fallbacks: ${(a.fallbacks||[]).length ? a.fallbacks.join(', ') : 'none'}</div>
@@ -2005,30 +2012,37 @@ async function loadAgents() {
   loadAgentHistory();
 }
 
-async function setAgentModel(agentId) {
+async function setAgentModel(ev, agentId) {
+  const btn = ev && ev.currentTarget;
   const sel = document.getElementById('model-sel-' + agentId);
   const newModel = sel.value;
   const status = document.getElementById('agents-status');
+  if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; btn.textContent = 'Applying…'; }
   status.innerHTML = '<span style="color:var(--amber)">Applying...</span>';
-  const res = await fetch('/api/agents/' + agentId + '/model', {
-    method: 'PUT',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({primary: newModel, restart_gateway: true})
-  });
-  const data = await res.json();
-  if (data.ok) {
-    if (data.mode === 'queued') {
-      status.innerHTML = `<span style="color:var(--amber)">⏳ ${agentId}: ${data.old_primary} → ${data.new_primary} — queued, sync triggered</span>`;
+  try {
+    const res = await fetch('/api/agents/' + agentId + '/model', {
+      method: 'PUT',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({primary: newModel, restart_gateway: true})
+    });
+    const data = await res.json();
+    if (data.ok) {
+      if (data.mode === 'queued') {
+        status.innerHTML = `<span style="color:var(--amber)">⏳ ${agentId}: ${data.old_primary} → ${data.new_primary} — queued, sync triggered</span>`;
+      } else {
+        status.innerHTML = `<span style="color:var(--green)">✓ ${agentId}: ${data.old_primary} → ${data.new_primary}${data.restarted ? ' (gateway restarted)' : ' (restart needed)'}</span>`;
+      }
+      loadAgents();
     } else {
-      status.innerHTML = `<span style="color:var(--green)">✓ ${agentId}: ${data.old_primary} → ${data.new_primary}${data.restarted ? ' (gateway restarted)' : ' (restart needed)'}</span>`;
+      status.innerHTML = `<span style="color:var(--red)">✗ ${data.error}</span>`;
     }
-    loadAgents();
-  } else {
-    status.innerHTML = `<span style="color:var(--red)">✗ ${data.error}</span>`;
+  } finally {
+    if (btn) { btn.disabled = false; btn.style.opacity = ''; btn.textContent = 'Apply'; }
   }
 }
 
-async function applyBulkModel() {
+async function applyBulkModel(ev) {
+  const btn = ev && ev.currentTarget;
   const sel = document.getElementById('bulk-model-sel');
   const newModel = sel.value;
   const status = document.getElementById('agents-status');
@@ -2037,6 +2051,7 @@ async function applyBulkModel() {
     return;
   }
   if (!confirm(`Apply ${newModel} to ALL ${agentModels.length} agents?`)) return;
+  if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; btn.textContent = 'Applying…'; }
   status.innerHTML = '<span style="color:var(--amber)">Applying to all agents...</span>';
   const results = [];
   for (const a of agentModels) {
@@ -2055,6 +2070,7 @@ async function applyBulkModel() {
   const ok = results.filter(r => r.ok).length;
   const fail = results.length - ok;
   status.innerHTML = `<span style="color:${fail?'var(--amber)':'var(--green)'}">Bulk apply: ${ok} ok, ${fail} failed — ${results.map(r=>`${r.agent}:${r.msg}`).join(', ')}</span>`;
+  if (btn) { btn.disabled = false; btn.style.opacity = ''; btn.textContent = 'Apply to all'; }
   loadAgents();
 }
 
