@@ -2262,9 +2262,10 @@ def _trigger_sync_webhook():
     import urllib.error
     import ssl
     body = json.dumps({
-        "message": "A model change was queued in the AI Model Repo. Run: python3 /home/ericd/.openclaw/workspace-alexander/ai-model-repo/scripts/sync_pending.py",
+        "message": "Model change queued in AI Model Repo. Run immediately: python3 /home/ericd/.openclaw/workspace-alexander/ai-model-repo/scripts/sync_pending.py",
         "agentId": "build",
         "name": "model-sync",
+        "model": "anthropic/claude-sonnet-4-6",
         "timeoutSeconds": 120,
     }).encode()
     req = urllib.request.Request(
