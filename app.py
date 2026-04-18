@@ -55,7 +55,21 @@ TOTP_SECRET = os.environ.get("TOTP_SECRET", "")
 TOTP_REQUIRED = os.environ.get("TOTP_REQUIRED", "false").lower() in ("true", "1", "yes")
 REPO_DIR = Path(__file__).parent
 OPENCLAW_CONFIG = Path.home() / ".openclaw" / "openclaw.json"
-PENDING_CHANGES_FILE = REPO_DIR / "pending_model_changes.json"
+# Persistent state lives on /data (Railway volume) when available, otherwise
+# falls back to REPO_DIR for local dev. One-time migration copies existing
+# ephemeral files to the volume on first boot.
+_DATA_DIR = Path("/data")
+_STATE_DIR = _DATA_DIR if _DATA_DIR.exists() and os.access(_DATA_DIR, os.W_OK) else REPO_DIR
+PENDING_CHANGES_FILE = _STATE_DIR / "pending_model_changes.json"
+MODEL_CHANGES_LOG = _STATE_DIR / "model_changes.jsonl"
+if _STATE_DIR != REPO_DIR:
+    for legacy in (REPO_DIR / "pending_model_changes.json", REPO_DIR / "model_changes.jsonl"):
+        target = _STATE_DIR / legacy.name
+        if legacy.exists() and not target.exists():
+            try:
+                target.write_bytes(legacy.read_bytes())
+            except OSError:
+                pass
 IS_REMOTE = not OPENCLAW_CONFIG.exists()
 OPENCLAW_WEBHOOK_URL = os.environ.get("OPENCLAW_WEBHOOK_URL", "")
 OPENCLAW_WEBHOOK_TOKEN = os.environ.get("OPENCLAW_WEBHOOK_TOKEN", "")
@@ -1967,6 +1981,36 @@ async function loadAgents() {
       modelIds.map(id => `<option value="${id}">${id}</option>`).join('');
     bulkSel.dataset.populated = '1';
   }
+  // Fetch history once and slice per agent — endpoint supports agent_id='all'
+  let historyAll = [];
+  try {
+    historyAll = await fetch('/api/agents/all/model/history').then(r => r.json());
+  } catch (e) {}
+  const historyByAgent = {};
+  for (const h of historyAll) {
+    (historyByAgent[h.agent] = historyByAgent[h.agent] || []).push(h);
+  }
+  const stripOR = s => (s||'').startsWith('openrouter/') ? s.slice('openrouter/'.length) : (s||'');
+  const renderAgentHistory = (agentId) => {
+    const items = (historyByAgent[agentId] || []).slice().reverse();
+    if (!items.length) return '';
+    const rows = items.slice(0, 10).map(h => {
+      const when = new Date(h.timestamp);
+      const whenStr = when.toLocaleString(undefined, {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'});
+      const from = stripOR(h.old_primary);
+      const to = stripOR(h.new_primary);
+      return `<div style="display:flex;gap:8px;font-size:11px;padding:4px 0;border-bottom:1px dashed var(--border)">
+        <span style="color:var(--muted);white-space:nowrap">${whenStr}</span>
+        <span style="color:var(--muted)">${from}</span>
+        <span style="color:var(--muted)">→</span>
+        <span style="color:var(--green)">${to}</span>
+      </div>`;
+    }).join('');
+    return `<details style="margin-top:10px">
+      <summary style="cursor:pointer;font-size:11px;color:var(--muted)">History (${items.length})</summary>
+      <div style="margin-top:6px">${rows}</div>
+    </details>`;
+  };
   const grid = document.getElementById('agents-grid');
   grid.innerHTML = agentsRes.map(a => {
     const opts = modelIds.map(id =>
@@ -2007,6 +2051,7 @@ async function loadAgents() {
       </div>
       ${gradeBlock}
       <div style="font-size:11px;color:var(--muted);margin-top:8px">Fallbacks: ${(a.fallbacks||[]).length ? a.fallbacks.join(', ') : 'none'}</div>
+      ${renderAgentHistory(a.agentId)}
     </div>`;
   }).join('');
   loadAgentHistory();
@@ -2768,7 +2813,7 @@ def api_set_agent_model(agent_id):
         }
         pending.append(change)
         _save_pending_changes(pending)
-        log_file = REPO_DIR / "model_changes.jsonl"
+        log_file = MODEL_CHANGES_LOG
         with open(log_file, "a") as f:
             f.write(json.dumps({
                 "timestamp": change["timestamp"],
@@ -2817,7 +2862,7 @@ def api_set_agent_model(agent_id):
         "new_primary": new_primary,
         "changed_by": "ai-model-repo-ui",
     }
-    log_file = REPO_DIR / "model_changes.jsonl"
+    log_file = MODEL_CHANGES_LOG
     with open(log_file, "a") as f:
         f.write(json.dumps(change_log) + "\n")
 
@@ -2899,7 +2944,7 @@ def api_test_webhook():
 @app.route("/api/agents/<agent_id>/model/history", methods=["GET"])
 @require_login
 def api_agent_model_history(agent_id):
-    log_file = REPO_DIR / "model_changes.jsonl"
+    log_file = MODEL_CHANGES_LOG
     if not log_file.exists():
         return jsonify([])
     entries = []
