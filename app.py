@@ -2669,7 +2669,10 @@ def _trigger_sync_webhook():
 
 
 def _get_agents_from_pending() -> list[dict]:
-    """On Railway (no local config), read agent list from env or pending changes."""
+    """On Railway (no local config), read agent list from env and overlay
+    the most-recent applied change from pending_changes so the UI reflects
+    reality. AGENTS_CONFIG is deploy-time static; applied changes are the
+    source of truth for current primary."""
     agents_json = os.environ.get("AGENTS_CONFIG", "")
     if not agents_json:
         return []
@@ -2677,10 +2680,24 @@ def _get_agents_from_pending() -> list[dict]:
         agents = json.loads(agents_json)
     except Exception:
         return []
+    applied = [p for p in _load_pending_changes() if p.get("status") == "applied"]
+    latest_by_agent: dict[str, dict] = {}
+    for p in applied:
+        aid = p.get("agent")
+        prev = latest_by_agent.get(aid)
+        if not prev or (p.get("applied_at") or "") > (prev.get("applied_at") or ""):
+            latest_by_agent[aid] = p
     for a in agents:
-        raw = a.get("primary", "")
+        aid = a.get("agentId")
+        latest = latest_by_agent.get(aid)
+        raw = latest["new_primary"] if latest else a.get("primary", "")
         a["primary_raw"] = raw
         a["primary"] = _normalize_primary(raw)
+        if latest:
+            a["primary_source"] = "applied_change"
+            a["primary_applied_at"] = latest.get("applied_at")
+        else:
+            a["primary_source"] = "env"
     return agents
 
 
