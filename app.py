@@ -349,6 +349,14 @@ button.danger:hover { background: #991b1b; }
 .modal-list li:last-child { border-bottom: none; }
 .modal-list li::before { content: "→"; color: var(--accent); font-size: 10px; flex-shrink: 0; }
 .modal-list li.weak::before { content: "✗"; color: var(--red); }
+.rate-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.rate-pill { border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; font-size: 11px; display: inline-flex; gap: 6px; align-items: center; }
+.rate-pill .rate-role { color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; font-size: 10px; }
+.rate-pill .rate-val { font-weight: 600; }
+.rate-meta { font-size: 11px; color: var(--muted); margin-left: auto; }
+.agent-grade { margin-top: 8px; padding: 6px 10px; border-radius: 6px; background: var(--bg); border: 1px solid var(--border); font-size: 11px; display: flex; justify-content: space-between; align-items: center; }
+.agent-grade-label { color: var(--muted); }
+.agent-grade-val { font-weight: 600; }
 .bench-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 12px; margin-bottom: 20px; }
 .bench-card { background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
@@ -1354,6 +1362,9 @@ async function openModelDetail(modelId) {
   const meta = m._meta || {};
   const benchmarks = meta.benchmarks || {};
   const industryNotes = meta.industry_notes || [];
+  const observations = meta.our_observations || {};
+  const passRate = observations.pass_rate || {};
+  const trials = (observations.trials || []).slice().sort((a,b) => (b.date||'').localeCompare(a.date||''));
 
   // Benchmark formatting. Each source gets a card with its own fields.
   const BENCH_LABELS = {
@@ -1443,6 +1454,29 @@ async function openModelDetail(modelId) {
   const benchCards = Object.keys(BENCH_LABELS).map(renderBenchCard).filter(Boolean).join('');
   const hasAnyBench = benchCards.length > 0;
 
+  const fmtPct = v => v == null ? '—' : `${Math.round(v*100)}%`;
+  const rateColor = v => v == null ? 'var(--muted)' : (v >= 0.7 ? 'var(--green)' : (v >= 0.3 ? 'var(--amber)' : 'var(--red)'));
+  const FP_LABEL = { FP1: 'no context', FP2: 'silent', FP3: 'no artifacts', FP4: 'abandoned loop', FP5: 'duplicate send', FP6: 'crash' };
+  const renderRoleRate = (role) => {
+    const v = passRate[role];
+    return `<div class="rate-pill" style="border-color:${rateColor(v)};color:${rateColor(v)}">
+      <span class="rate-role">${role}</span>
+      <span class="rate-val">${fmtPct(v)}</span>
+    </div>`;
+  };
+  const renderTrialRow = (t) => {
+    const ok = t.result === 'pass';
+    const fp = t.failure_point ? `${t.failure_point} · ${FP_LABEL[t.failure_point] || t.reason || ''}` : '';
+    return `<tr>
+      <td style="font-size:11px;color:var(--muted)">${t.date||''}</td>
+      <td><span class="tag">${t.agent||''}</span></td>
+      <td style="font-size:11px">${t.agent_role||''}</td>
+      <td style="color:${ok?'var(--green)':'var(--red)'};font-weight:500">${ok?'pass':'fail'}</td>
+      <td style="font-size:11px;color:var(--muted)">${fp}</td>
+      <td style="font-size:10px;color:var(--muted)">${t.notes||''}</td>
+    </tr>`;
+  };
+
   const renderIndustryNote = (n) => {
     const tags = (n.tags || []).map(t => `<span class="industry-note-tag">${t}</span>`).join('');
     const cite = n.url
@@ -1491,6 +1525,24 @@ async function openModelDetail(modelId) {
         ${spend.total_cache_read_mtok > 0 ? `<li>Cached: ${spend.total_cache_read_mtok.toFixed(2)}M tok</li>` : ''}
         ${spend.period_start ? `<li>${spend.period_start} → ${spend.period_end}</li>` : ''}
       </ul>
+    </div>` : ''}
+    ${trials.length || passRate.sample_size ? `<div class="modal-section" style="grid-column:1/-1">
+      <div class="modal-section-title">OpenClaw Grading — real production runs</div>
+      <div class="rate-row">
+        ${renderRoleRate('builder')}
+        ${renderRoleRate('strategy')}
+        ${renderRoleRate('gm')}
+        ${renderRoleRate('sage')}
+        <div class="rate-meta">${passRate.sample_size||0} trials · ${passRate.window_days||30}d window${passRate.computed_at?` · computed ${passRate.computed_at}`:''}</div>
+      </div>
+      ${trials.length ? `<div style="margin-top:12px;max-height:280px;overflow:auto">
+        <table style="width:100%;border-collapse:collapse;font-size:12px">
+          <tr style="border-bottom:1px solid var(--border);color:var(--muted);text-align:left">
+            <th style="padding:6px 8px">Date</th><th style="padding:6px 8px">Agent</th><th style="padding:6px 8px">Role</th><th style="padding:6px 8px">Result</th><th style="padding:6px 8px">Failure point</th><th style="padding:6px 8px">Notes</th>
+          </tr>
+          ${trials.slice(0, 30).map(renderTrialRow).join('')}
+        </table>
+      </div>` : ''}
     </div>` : ''}
     ${hasAnyBench || industryNotes.length > 0 ? `<div class="modal-section" style="grid-column:1/-1">
       <div class="modal-section-title">Industry Benchmarks</div>
@@ -1793,13 +1845,30 @@ async function loadAgents() {
   ]);
   agentModels = agentsRes;
   const modelIds = modelsData.map(m => m.model_id).sort();
+  const modelById = Object.fromEntries(modelsData.map(m => [m.model_id, m]));
+  const AGENT_ROLE = { build: 'builder', strategy: 'strategy', general: 'gm', main: 'gm', sage: 'sage' };
+  const rateColor = v => v == null ? 'var(--muted)' : (v >= 0.7 ? 'var(--green)' : (v >= 0.3 ? 'var(--amber)' : 'var(--red)'));
+  const fmtPct = v => v == null ? '—' : `${Math.round(v*100)}%`;
   const grid = document.getElementById('agents-grid');
   grid.innerHTML = agentsRes.map(a => {
     const opts = modelIds.map(id =>
       `<option value="${id}" ${id === a.primary ? 'selected' : ''}>${id}</option>`
     ).join('');
     const pendingBadge = a.pending_model ? `<span style="font-size:10px;color:var(--amber);background:#2d2006;padding:2px 6px;border-radius:4px;margin-left:4px">⏳ pending: ${a.pending_model}</span>` : '';
-    const currentModel = a.pending_model || a.primary;
+    // Pass-rate lookup: agent's primary model, agent's role slice
+    const role = AGENT_ROLE[a.agentId] || a.agentId;
+    const primaryModel = modelById[a.primary] || {};
+    const obs = (primaryModel._meta || {}).our_observations || {};
+    const pr = obs.pass_rate || {};
+    const rate = pr[role];
+    const sample = pr.sample_size || 0;
+    const color = rateColor(rate);
+    const gradeBlock = sample > 0
+      ? `<div class="agent-grade" style="border-color:${color}">
+           <span class="agent-grade-label">Pass rate (${role}, ${pr.window_days||30}d, n=${sample})</span>
+           <span class="agent-grade-val" style="color:${color}">${fmtPct(rate)}</span>
+         </div>`
+      : `<div class="agent-grade"><span class="agent-grade-label">No graded runs yet</span><span class="agent-grade-val" style="color:var(--muted)">—</span></div>`;
     return `<div style="background:var(--surface);border:1px solid ${a.pending_model ? 'var(--amber)' : 'var(--border)'};border-radius:10px;padding:16px">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
         <span style="font-weight:600;font-size:14px">${a.name || a.agentId}</span>
@@ -1813,6 +1882,7 @@ async function loadAgents() {
         </select>
         <button onclick="setAgentModel('${a.agentId}')" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap">Apply</button>
       </div>
+      ${gradeBlock}
       <div style="font-size:11px;color:var(--muted);margin-top:8px">Fallbacks: ${(a.fallbacks||[]).length ? a.fallbacks.join(', ') : 'none'}</div>
     </div>`;
   }).join('');

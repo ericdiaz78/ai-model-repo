@@ -63,7 +63,19 @@
         "swe_bench": {},
         "openrouter_stats": {}
       },
-      "our_observations": {},
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      },
       "needs_review": false,
       "industry_notes": [
         {
@@ -190,7 +202,19 @@
         "swe_bench": {},
         "openrouter_stats": {}
       },
-      "our_observations": {},
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      },
       "needs_review": false,
       "industry_notes": [
         {
@@ -306,7 +330,19 @@
         "swe_bench": {},
         "openrouter_stats": {}
       },
-      "our_observations": {},
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      },
       "needs_review": false,
       "industry_notes": [
         {
@@ -405,7 +441,306 @@
         "swe_bench": {},
         "openrouter_stats": {}
       },
-      "our_observations": {},
+      "our_observations": {
+        "trials": [
+          {
+            "date": "2026-04-02",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP5",
+            "reason": "consecutive_duplicate_send",
+            "session_id": "f53c2a4f-dcb6-4415-9dfb-57e8b51a860d",
+            "run_id": "f53c2a4f-dcb6-4415-9dfb-57e8b51a860d",
+            "notes": "455 actions across filesystem,message,shell,subagent; 57565s"
+          },
+          {
+            "date": "2026-04-02",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_23063min_status_done",
+            "session_id": "46c58d03-23ae-45ed-a5ba-ac170c71839d",
+            "run_id": "46c58d03-23ae-45ed-a5ba-ac170c71839d",
+            "notes": "78 actions across filesystem,shell,subagent; 5s"
+          },
+          {
+            "date": "2026-04-04",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_20135min_status_running",
+            "session_id": "445b43f7-d29e-4497-9b18-053065dc9355",
+            "run_id": "445b43f7-d29e-4497-9b18-053065dc9355",
+            "notes": "30 actions across filesystem,message,shell; 93s"
+          },
+          {
+            "date": "2026-04-07",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_16149min_status_failed",
+            "session_id": "96afcfd4-679b-4562-b692-1464b4a38589",
+            "run_id": "96afcfd4-679b-4562-b692-1464b4a38589",
+            "notes": "52 actions across filesystem,message,shell; 1s"
+          },
+          {
+            "date": "2026-04-07",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_15987min_status_failed",
+            "session_id": "37d1de07-0ae5-4ea8-8c87-d585072957ca",
+            "run_id": "37d1de07-0ae5-4ea8-8c87-d585072957ca",
+            "notes": "11 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-04-08",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_14160min_status_done",
+            "session_id": "5941e3a5-01a1-4eb2-8f99-9a23704ea2f2",
+            "run_id": "5941e3a5-01a1-4eb2-8f99-9a23704ea2f2",
+            "notes": "73 actions across filesystem,plan,shell; 19s"
+          },
+          {
+            "date": "2026-04-08",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_14244min_status_done",
+            "session_id": "37c04aea-a826-46b0-9f2d-dfcbfdba123b",
+            "run_id": "37c04aea-a826-46b0-9f2d-dfcbfdba123b",
+            "notes": "23 actions across filesystem,plan,shell; 4s"
+          },
+          {
+            "date": "2026-04-10",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_12569min_status_done",
+            "session_id": "988c3c29-935d-49bb-9fb3-d4852ac4aa40",
+            "run_id": "988c3c29-935d-49bb-9fb3-d4852ac4aa40",
+            "notes": "9 actions across message,plan,shell,subagent; 44s"
+          },
+          {
+            "date": "2026-04-10",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP5",
+            "reason": "consecutive_duplicate_send",
+            "session_id": "f66815b7-1364-4bdc-bd55-19757c892d71",
+            "run_id": "f66815b7-1364-4bdc-bd55-19757c892d71",
+            "notes": "22 actions across message,plan,shell; 49s"
+          },
+          {
+            "date": "2026-04-10",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_11403min_status_done",
+            "session_id": "8d42c130-b7fa-4b97-bc61-d4ee9bf27bed",
+            "run_id": "8d42c130-b7fa-4b97-bc61-d4ee9bf27bed",
+            "notes": "24 actions across plan,shell; 8s"
+          },
+          {
+            "date": "2026-04-11",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_11213min_status_done",
+            "session_id": "5661fea1-a111-47a2-b519-237cb4b9ad3b",
+            "run_id": "5661fea1-a111-47a2-b519-237cb4b9ad3b",
+            "notes": "21 actions across filesystem,plan,shell; 3s"
+          },
+          {
+            "date": "2026-04-11",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_11211min_status_done",
+            "session_id": "8e9ef2b7-e725-48d1-a654-004d32414cef",
+            "run_id": "8e9ef2b7-e725-48d1-a654-004d32414cef",
+            "notes": "3 actions across plan,subagent; 54s"
+          },
+          {
+            "date": "2026-04-18",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "33922aad-2f1e-4b28-9e77-0a45e824d5c2",
+            "run_id": "33922aad-2f1e-4b28-9e77-0a45e824d5c2",
+            "notes": "20 actions across filesystem,shell; 253053s"
+          },
+          {
+            "date": "2026-04-17",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "90d94f66-4ff1-43b8-aba8-bbea30eeecdb",
+            "run_id": "90d94f66-4ff1-43b8-aba8-bbea30eeecdb",
+            "notes": "20 actions across plan,shell"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_4605min_status_done",
+            "session_id": "1da7a0c8-ec81-47d0-abdc-81b9623d7563",
+            "run_id": "1da7a0c8-ec81-47d0-abdc-81b9623d7563",
+            "notes": "20 actions across filesystem,plan,shell; 111s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP5",
+            "reason": "consecutive_duplicate_send",
+            "session_id": "0c97adb7-664e-45b5-82dd-94cb4ff8e57f",
+            "run_id": "0c97adb7-664e-45b5-82dd-94cb4ff8e57f",
+            "notes": "7 actions across filesystem,message,plan,shell; 3s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_4162min_status_done",
+            "session_id": "62a69356-9f7f-4452-b3a6-2a65b408475a",
+            "run_id": "62a69356-9f7f-4452-b3a6-2a65b408475a",
+            "notes": "11 actions across plan,shell; 32s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_4175min_status_done",
+            "session_id": "6194adec-4906-409f-b946-19f0ffa3a9ab",
+            "run_id": "6194adec-4906-409f-b946-19f0ffa3a9ab",
+            "notes": "7 actions across plan,shell; 88s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_4114min_status_done",
+            "session_id": "8cec502b-92c2-46c7-8535-f46457d4c137",
+            "run_id": "8cec502b-92c2-46c7-8535-f46457d4c137",
+            "notes": "6 actions across message,plan,shell; 3s"
+          },
+          {
+            "date": "2026-04-16",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_2768min_status_done",
+            "session_id": "fe3d4fe6-1c76-4e8e-b114-7d5524c6a4d7",
+            "run_id": "fe3d4fe6-1c76-4e8e-b114-7d5524c6a4d7",
+            "notes": "14 actions across plan,shell; 6s"
+          },
+          {
+            "date": "2026-04-16",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_2769min_status_done",
+            "session_id": "49e59f75-7938-49de-95ab-2e95846e00a7",
+            "run_id": "49e59f75-7938-49de-95ab-2e95846e00a7",
+            "notes": "12 actions across message,shell,subagent; 4s"
+          },
+          {
+            "date": "2026-04-17",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_1542min_status_running",
+            "session_id": "b81a7128-ff77-4bc5-b751-82a389297da0",
+            "run_id": "b81a7128-ff77-4bc5-b751-82a389297da0",
+            "notes": "10 actions across plan,shell; 27s"
+          },
+          {
+            "date": "2026-04-17",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_1320min_status_done",
+            "session_id": "5c1af28d-4078-4215-b929-8afafa7867e0",
+            "run_id": "5c1af28d-4078-4215-b929-8afafa7867e0",
+            "notes": "6 actions across message,plan,subagent; 29s"
+          },
+          {
+            "date": "2026-04-17",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_1210min_status_running",
+            "session_id": "689db643-75a0-4d6e-8fb4-2bfdfe0ed0db",
+            "run_id": "689db643-75a0-4d6e-8fb4-2bfdfe0ed0db",
+            "notes": "13 actions across message,shell; 181242s"
+          },
+          {
+            "date": "2026-04-18",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_478min_status_running",
+            "session_id": "df37c833-4e4c-4e72-aceb-eaa7c5df8ffa",
+            "run_id": "df37c833-4e4c-4e72-aceb-eaa7c5df8ffa",
+            "notes": "25 actions across plan,shell; 225121s"
+          },
+          {
+            "date": "2026-04-18",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_252min_status_running",
+            "session_id": "eaf9c454-5ed6-4712-b0a7-6700e0f9cd1f",
+            "run_id": "eaf9c454-5ed6-4712-b0a7-6700e0f9cd1f",
+            "notes": "12 actions across filesystem,plan,shell; 238714s"
+          }
+        ],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": 0.077,
+          "sage": null,
+          "overall": 0.077,
+          "sample_size": 26,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      },
       "needs_review": false,
       "industry_notes": [
         {
@@ -504,7 +839,19 @@
         "swe_bench": {},
         "openrouter_stats": {}
       },
-      "our_observations": {},
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      },
       "needs_review": false,
       "industry_notes": [
         {
@@ -615,7 +962,570 @@
         "swe_bench": {},
         "openrouter_stats": {}
       },
-      "our_observations": {},
+      "our_observations": {
+        "trials": [
+          {
+            "date": "2026-04-01",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_24400min_status_done",
+            "session_id": "812ddd81-d199-4a78-9e73-9d6a4571b4ff",
+            "run_id": "812ddd81-d199-4a78-9e73-9d6a4571b4ff",
+            "notes": "20 actions across filesystem,shell; 1s"
+          },
+          {
+            "date": "2026-04-18",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "7c803ac0-9a9e-4a8d-a946-fdf5217b0923",
+            "run_id": "7c803ac0-9a9e-4a8d-a946-fdf5217b0923",
+            "notes": "13 actions across filesystem,shell; 28790s"
+          },
+          {
+            "date": "2026-04-10",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_12642min_status_done",
+            "session_id": "c6730e3e-8ab7-499c-8de2-4c541d1a7920",
+            "run_id": "c6730e3e-8ab7-499c-8de2-4c541d1a7920",
+            "notes": "14 actions across filesystem,shell; 33s"
+          },
+          {
+            "date": "2026-04-10",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP5",
+            "reason": "consecutive_duplicate_send",
+            "session_id": "5aed6f70-c4d5-4c79-a081-d0090e1743c7",
+            "run_id": "5aed6f70-c4d5-4c79-a081-d0090e1743c7",
+            "notes": "6 actions across message,shell; 45s"
+          },
+          {
+            "date": "2026-04-10",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_11924min_status_done",
+            "session_id": "7dfe8636-40be-4f94-993c-830a06c9b0aa",
+            "run_id": "7dfe8636-40be-4f94-993c-830a06c9b0aa",
+            "notes": "124 actions across filesystem,message,plan,shell; 10s"
+          },
+          {
+            "date": "2026-04-10",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_11678min_status_done",
+            "session_id": "7ecd3042-7037-4c3d-a01e-1ade87c8ec7f",
+            "run_id": "7ecd3042-7037-4c3d-a01e-1ade87c8ec7f",
+            "notes": "18 actions across filesystem,message,plan,shell; 19s"
+          },
+          {
+            "date": "2026-04-10",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_11440min_status_done",
+            "session_id": "cf1f8ac9-ce2b-4bf8-a2d6-a48408fb6ee6",
+            "run_id": "cf1f8ac9-ce2b-4bf8-a2d6-a48408fb6ee6",
+            "notes": "6 actions across plan,shell; 3s"
+          },
+          {
+            "date": "2026-04-11",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_11214min_status_done",
+            "session_id": "bf9227e7-4566-4844-ae20-c7392abfc9cf",
+            "run_id": "bf9227e7-4566-4844-ae20-c7392abfc9cf",
+            "notes": "6 actions across plan,shell; 1s"
+          },
+          {
+            "date": "2026-04-11",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_10319min_status_done",
+            "session_id": "49d61aa8-9aae-4c2a-99e3-7cca485de96a",
+            "run_id": "49d61aa8-9aae-4c2a-99e3-7cca485de96a",
+            "notes": "10 actions across plan,shell; 37s"
+          },
+          {
+            "date": "2026-04-13",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_8339min_status_done",
+            "session_id": "cb99ab8e-624d-495d-8550-0fc9356bf690",
+            "run_id": "cb99ab8e-624d-495d-8550-0fc9356bf690",
+            "notes": "42 actions across filesystem,shell; 11s"
+          },
+          {
+            "date": "2026-04-14",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_6093min_status_done",
+            "session_id": "ddc5791e-4188-445a-8f8e-b2e3cf2f001f",
+            "run_id": "ddc5791e-4188-445a-8f8e-b2e3cf2f001f",
+            "notes": "178 actions across filesystem,message,shell,subagent; 3s"
+          },
+          {
+            "date": "2026-04-14",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_5942min_status_done",
+            "session_id": "1fcf217f-7819-4f3e-a9e5-38215c1740f4",
+            "run_id": "1fcf217f-7819-4f3e-a9e5-38215c1740f4",
+            "notes": "220 actions across filesystem,message,plan,shell,subagent; 19s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_5449min_status_done",
+            "session_id": "3889da65-6d09-40f6-8b51-feb30ce8cd20",
+            "run_id": "3889da65-6d09-40f6-8b51-feb30ce8cd20",
+            "notes": "61 actions across filesystem,plan,shell; 94s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP5",
+            "reason": "consecutive_duplicate_send",
+            "session_id": "b007c177-b3db-46d6-b906-58b57c22405b",
+            "run_id": "b007c177-b3db-46d6-b906-58b57c22405b",
+            "notes": "349 actions across filesystem,message,plan,shell,subagent; 4s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_4217min_status_done",
+            "session_id": "1d4b90df-5674-4f26-96fc-65f7dba6421a",
+            "run_id": "1d4b90df-5674-4f26-96fc-65f7dba6421a",
+            "notes": "18 actions across plan,shell; 62s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_4109min_status_running",
+            "session_id": "fb82e867-580b-48f4-9133-551ca369577a",
+            "run_id": "fb82e867-580b-48f4-9133-551ca369577a",
+            "notes": "13 actions across filesystem,shell; 54s"
+          },
+          {
+            "date": "2026-04-16",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_3943min_status_done",
+            "session_id": "92a25d5d-5e63-4f23-8684-3381a0936961",
+            "run_id": "92a25d5d-5e63-4f23-8684-3381a0936961",
+            "notes": "35 actions across filesystem,shell,subagent; 74s"
+          },
+          {
+            "date": "2026-04-16",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_3999min_status_running",
+            "session_id": "b10b5448-1cb9-43a6-9226-ad6b752bc3ea",
+            "run_id": "b10b5448-1cb9-43a6-9226-ad6b752bc3ea",
+            "notes": "65 actions across filesystem,shell,subagent; 814s"
+          },
+          {
+            "date": "2026-04-16",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_4002min_status_done",
+            "session_id": "9e4dbd42-132b-4e50-bf6b-e02b315a2022",
+            "run_id": "9e4dbd42-132b-4e50-bf6b-e02b315a2022",
+            "notes": "24 actions across filesystem,shell; 240s"
+          },
+          {
+            "date": "2026-04-16",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_3871min_status_done",
+            "session_id": "7d57bf67-f0f2-49ad-8c9f-fee006645b0d",
+            "run_id": "7d57bf67-f0f2-49ad-8c9f-fee006645b0d",
+            "notes": "158 actions across filesystem,shell; 3421s"
+          },
+          {
+            "date": "2026-04-16",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_3188min_status_running",
+            "session_id": "2f0d42a9-4f67-4eba-a617-1a2704916fa3",
+            "run_id": "2f0d42a9-4f67-4eba-a617-1a2704916fa3",
+            "notes": "83 actions across filesystem,shell; 54377s"
+          },
+          {
+            "date": "2026-04-18",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_254min_status_running",
+            "session_id": "31d1bef9-6506-4fb5-ad84-467c71cc6e93",
+            "run_id": "31d1bef9-6506-4fb5-ad84-467c71cc6e93",
+            "notes": "21 actions across filesystem,shell; 14390s"
+          },
+          {
+            "date": "2026-04-01",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_24855min_status_running",
+            "session_id": "1f42180e-2267-4ae4-be50-69c9ab4c0e4d",
+            "run_id": "1f42180e-2267-4ae4-be50-69c9ab4c0e4d",
+            "notes": "16 actions across filesystem,shell; 120s"
+          },
+          {
+            "date": "2026-04-18",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_404min_status_running",
+            "session_id": "bd5706ea-01bb-4b39-9a15-de67a52c6837",
+            "run_id": "bd5706ea-01bb-4b39-9a15-de67a52c6837",
+            "notes": "8 actions across filesystem,shell; 431990s"
+          },
+          {
+            "date": "2026-04-03",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_22072min_status_done",
+            "session_id": "4935a6ff-e39f-4f8d-82a5-66b22140b0a4",
+            "run_id": "4935a6ff-e39f-4f8d-82a5-66b22140b0a4",
+            "notes": "40 actions across filesystem,shell,subagent; 42s"
+          },
+          {
+            "date": "2026-04-02",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_22943min_status_done",
+            "session_id": "c0c27831-68a5-48d1-9f9e-9bec58c8df86",
+            "run_id": "c0c27831-68a5-48d1-9f9e-9bec58c8df86",
+            "notes": "7 actions across filesystem,shell; 254s"
+          },
+          {
+            "date": "2026-04-03",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_22067min_status_done",
+            "session_id": "c33cd063-e197-478c-a0eb-315fc7ebdd32",
+            "run_id": "c33cd063-e197-478c-a0eb-315fc7ebdd32",
+            "notes": "10 actions across filesystem,shell; 289s"
+          },
+          {
+            "date": "2026-04-10",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_11674min_status_running",
+            "session_id": "ea8beb27-5625-4d36-85b7-4afc4dfe7d06",
+            "run_id": "ea8beb27-5625-4d36-85b7-4afc4dfe7d06",
+            "notes": "63 actions across filesystem,shell,subagent; -107s"
+          },
+          {
+            "date": "2026-04-10",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_11427min_status_done",
+            "session_id": "e20fb2c4-3ca0-40ea-82c0-c42104f07d96",
+            "run_id": "e20fb2c4-3ca0-40ea-82c0-c42104f07d96",
+            "notes": "38 actions across filesystem,shell; 15s"
+          },
+          {
+            "date": "2026-04-11",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_10207min_status_done",
+            "session_id": "4de3b2a2-3efd-434a-a7e1-c820ad44c37f",
+            "run_id": "4de3b2a2-3efd-434a-a7e1-c820ad44c37f",
+            "notes": "107 actions across message,shell,subagent; 253s"
+          },
+          {
+            "date": "2026-04-11",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_10203min_status_done",
+            "session_id": "22631f9e-0eb4-4b5e-b9ff-3bdd2477b0a4",
+            "run_id": "22631f9e-0eb4-4b5e-b9ff-3bdd2477b0a4",
+            "notes": "29 actions across filesystem,shell; 253s"
+          },
+          {
+            "date": "2026-04-11",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_10158min_status_done",
+            "session_id": "49fad91b-3fa3-42d9-a43e-a78f7ef51f9a",
+            "run_id": "49fad91b-3fa3-42d9-a43e-a78f7ef51f9a",
+            "notes": "140 actions across filesystem,message,shell; 7s"
+          },
+          {
+            "date": "2026-04-12",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_8410min_status_done",
+            "session_id": "5ca5ea42-5bbf-4442-94cb-da69f509fdcd",
+            "run_id": "5ca5ea42-5bbf-4442-94cb-da69f509fdcd",
+            "notes": "139 actions across filesystem,shell; 147s"
+          },
+          {
+            "date": "2026-04-13",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_8174min_status_done",
+            "session_id": "8ee21756-f2c4-4edd-9dcb-1df0cc6bebdc",
+            "run_id": "8ee21756-f2c4-4edd-9dcb-1df0cc6bebdc",
+            "notes": "64 actions across message,shell,subagent; 123s"
+          },
+          {
+            "date": "2026-04-13",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_8336min_status_done",
+            "session_id": "b3b7a089-9123-493b-aa07-32252e39725f",
+            "run_id": "b3b7a089-9123-493b-aa07-32252e39725f",
+            "notes": "36 actions across filesystem,shell; 17s"
+          },
+          {
+            "date": "2026-04-13",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_7579min_status_done",
+            "session_id": "3dd8a426-ee07-4a30-8c23-8fc705c97c2a",
+            "run_id": "3dd8a426-ee07-4a30-8c23-8fc705c97c2a",
+            "notes": "98 actions across filesystem,message,shell; 40s"
+          },
+          {
+            "date": "2026-04-13",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_7397min_status_running",
+            "session_id": "9ebb932e-c148-42bb-978f-197adbd80699",
+            "run_id": "9ebb932e-c148-42bb-978f-197adbd80699",
+            "notes": "97 actions across filesystem,shell; 334s"
+          },
+          {
+            "date": "2026-04-14",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_6830min_status_done",
+            "session_id": "21e3c008-1912-41a2-8246-34bf91cefa8a",
+            "run_id": "21e3c008-1912-41a2-8246-34bf91cefa8a",
+            "notes": "140 actions across filesystem,shell; 39s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP5",
+            "reason": "consecutive_duplicate_send",
+            "session_id": "d81823c4-a044-4d90-982b-eb2265fcb22a",
+            "run_id": "d81823c4-a044-4d90-982b-eb2265fcb22a",
+            "notes": "280 actions across filesystem,message,shell; 11s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_4748min_status_done",
+            "session_id": "a51933fc-a903-4be9-ab07-660f8a6c77af",
+            "run_id": "a51933fc-a903-4be9-ab07-660f8a6c77af",
+            "notes": "20 actions across filesystem,shell; 188s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_4288min_status_done",
+            "session_id": "f15724e8-2695-4330-948e-dd4c35c2c01d",
+            "run_id": "f15724e8-2695-4330-948e-dd4c35c2c01d",
+            "notes": "106 actions across filesystem,shell; 138s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_4510min_status_done",
+            "session_id": "560e1c7a-bff0-494d-a241-b4f0c367e06c",
+            "run_id": "560e1c7a-bff0-494d-a241-b4f0c367e06c",
+            "notes": "43 actions across filesystem,shell; 2s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_4290min_status_done",
+            "session_id": "c7fa5e1b-9bf3-4a17-b1cf-7c7b4a03129c",
+            "run_id": "c7fa5e1b-9bf3-4a17-b1cf-7c7b4a03129c",
+            "notes": "44 actions across filesystem,shell; 50s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_4419min_status_done",
+            "session_id": "0d4c2e7c-cdbd-4380-8da4-38e9cce15bb6",
+            "run_id": "0d4c2e7c-cdbd-4380-8da4-38e9cce15bb6",
+            "notes": "43 actions across filesystem,shell; 26s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_4200min_status_done",
+            "session_id": "a217cf11-c89c-4e0c-b936-a3474dcd96d4",
+            "run_id": "a217cf11-c89c-4e0c-b936-a3474dcd96d4",
+            "notes": "30 actions across filesystem,shell; 4s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP5",
+            "reason": "consecutive_duplicate_send",
+            "session_id": "51a0e165-ab78-41e5-a6ab-09ee5f08a1a2",
+            "run_id": "51a0e165-ab78-41e5-a6ab-09ee5f08a1a2",
+            "notes": "65 actions across filesystem,message,shell; 98s"
+          },
+          {
+            "date": "2026-04-15",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_4160min_status_done",
+            "session_id": "b9ed509b-94bc-42a8-9ad5-c94d23497c49",
+            "run_id": "b9ed509b-94bc-42a8-9ad5-c94d23497c49",
+            "notes": "62 actions across filesystem,shell; 24s"
+          },
+          {
+            "date": "2026-04-16",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_2620min_status_done",
+            "session_id": "c4a023f5-0891-4aee-bd25-17811149d44c",
+            "run_id": "c4a023f5-0891-4aee-bd25-17811149d44c",
+            "notes": "87 actions across filesystem,message,shell; 16s"
+          },
+          {
+            "date": "2026-04-18",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_896min_status_done",
+            "session_id": "907426ea-7cdc-442d-b916-c5cd0c9f23cf",
+            "run_id": "907426ea-7cdc-442d-b916-c5cd0c9f23cf",
+            "notes": "74 actions across filesystem,message,shell,subagent; 9s"
+          },
+          {
+            "date": "2026-04-18",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_893min_status_done",
+            "session_id": "6504ede3-552b-49b9-a38e-acde7a362df0",
+            "run_id": "6504ede3-552b-49b9-a38e-acde7a362df0",
+            "notes": "19 actions across filesystem,shell; 381s"
+          }
+        ],
+        "pass_rate": {
+          "builder": 0.045,
+          "strategy": 0.0,
+          "gm": null,
+          "sage": null,
+          "overall": 0.02,
+          "sample_size": 50,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      },
       "needs_review": false,
       "industry_notes": [
         {
@@ -723,7 +1633,19 @@
         "swe_bench": {},
         "openrouter_stats": {}
       },
-      "our_observations": {},
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      },
       "needs_review": false,
       "industry_notes": [
         {
@@ -819,7 +1741,19 @@
         "swe_bench": {},
         "openrouter_stats": {}
       },
-      "our_observations": {},
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      },
       "needs_review": false,
       "industry_notes": [
         {
@@ -905,7 +1839,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   },
   {
@@ -940,7 +1887,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   },
   {
@@ -978,7 +1938,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   },
   {
@@ -1014,7 +1987,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   },
   {
@@ -1050,7 +2036,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   },
   {
@@ -1085,7 +2084,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   },
   {
@@ -1124,7 +2136,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   },
   {
@@ -1163,7 +2188,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   },
   {
@@ -1200,7 +2238,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   },
   {
@@ -1240,7 +2291,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   },
   {
@@ -1275,7 +2339,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   },
   {
@@ -1309,7 +2386,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   },
   {
@@ -1346,7 +2436,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   },
   {
@@ -1382,7 +2485,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   },
   {
@@ -1415,7 +2531,20 @@
       "auto_ingested": true,
       "needs_review": true,
       "shelf": "discovery",
-      "added_to_discovery": "2026-04-15"
+      "added_to_discovery": "2026-04-15",
+      "our_observations": {
+        "trials": [],
+        "pass_rate": {
+          "builder": null,
+          "strategy": null,
+          "gm": null,
+          "sage": null,
+          "overall": null,
+          "sample_size": 0,
+          "window_days": 30,
+          "computed_at": "2026-04-18"
+        }
+      }
     }
   }
 ]
