@@ -2243,9 +2243,11 @@ def _save_pending_changes(changes: list[dict]):
 
 def _trigger_sync_webhook():
     if not OPENCLAW_WEBHOOK_URL or not OPENCLAW_WEBHOOK_TOKEN:
+        app.logger.warning("Webhook skipped: OPENCLAW_WEBHOOK_URL or TOKEN not set")
         return
     import urllib.request
     import urllib.error
+    import ssl
     body = json.dumps({
         "message": "A model change was queued in the AI Model Repo. Run: python3 /home/ericd/.openclaw/workspace-alexander/ai-model-repo/scripts/sync_pending.py",
         "agentId": "build",
@@ -2261,10 +2263,18 @@ def _trigger_sync_webhook():
         },
         method="POST",
     )
+    ctx = ssl.create_default_context()
     try:
-        urllib.request.urlopen(req, timeout=10)
-    except Exception:
-        pass
+        resp = urllib.request.urlopen(req, timeout=10, context=ctx)
+        app.logger.info(f"Webhook triggered: {resp.status} {resp.read().decode()}")
+    except Exception as e:
+        app.logger.error(f"Webhook failed: {e}")
+        try:
+            ctx = ssl._create_unverified_context()
+            resp = urllib.request.urlopen(req, timeout=10, context=ctx)
+            app.logger.info(f"Webhook triggered (unverified SSL): {resp.status}")
+        except Exception as e2:
+            app.logger.error(f"Webhook retry failed: {e2}")
 
 
 def _get_agents_from_pending() -> list[dict]:
