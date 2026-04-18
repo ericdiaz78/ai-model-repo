@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Deploy sentinel: auto-deploy from GitHub enabled 2026-04-18.
 """
 AI Model Knowledge Repository — Web UI
 Flask app for browsing, querying, comparing, and ingesting AI models.
