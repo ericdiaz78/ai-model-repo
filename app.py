@@ -57,6 +57,8 @@ REPO_DIR = Path(__file__).parent
 OPENCLAW_CONFIG = Path.home() / ".openclaw" / "openclaw.json"
 PENDING_CHANGES_FILE = REPO_DIR / "pending_model_changes.json"
 IS_REMOTE = not OPENCLAW_CONFIG.exists()
+OPENCLAW_WEBHOOK_URL = os.environ.get("OPENCLAW_WEBHOOK_URL", "")
+OPENCLAW_WEBHOOK_TOKEN = os.environ.get("OPENCLAW_WEBHOOK_TOKEN", "")
 MODELS_FILE = REPO_DIR / "models.json"
 GENERATED_FILE = REPO_DIR / "models.generated.json"
 FEEDBACK_FILE = REPO_DIR / "feedback.json"
@@ -2239,6 +2241,32 @@ def _save_pending_changes(changes: list[dict]):
     PENDING_CHANGES_FILE.write_text(json.dumps(changes, indent=2))
 
 
+def _trigger_sync_webhook():
+    if not OPENCLAW_WEBHOOK_URL or not OPENCLAW_WEBHOOK_TOKEN:
+        return
+    import urllib.request
+    import urllib.error
+    body = json.dumps({
+        "message": "A model change was queued in the AI Model Repo. Run: python3 /home/ericd/.openclaw/workspace-alexander/ai-model-repo/scripts/sync_pending.py",
+        "agentId": "build",
+        "name": "model-sync",
+        "timeoutSeconds": 120,
+    }).encode()
+    req = urllib.request.Request(
+        f"{OPENCLAW_WEBHOOK_URL}/hooks/agent",
+        data=body,
+        headers={
+            "Authorization": f"Bearer {OPENCLAW_WEBHOOK_TOKEN}",
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+    try:
+        urllib.request.urlopen(req, timeout=10)
+    except Exception:
+        pass
+
+
 def _get_agents_from_pending() -> list[dict]:
     """On Railway (no local config), read agent list from env or pending changes."""
     agents_json = os.environ.get("AGENTS_CONFIG", "")
@@ -2294,13 +2322,14 @@ def api_set_agent_model(agent_id):
         }
         pending.append(change)
         _save_pending_changes(pending)
+        _trigger_sync_webhook()
         return jsonify({
             "ok": True,
             "mode": "queued",
             "agent": agent_id,
             "new_primary": new_primary,
             "change_id": change["id"],
-            "message": "Change queued. Will apply on next local sync.",
+            "message": "Change queued. Sync triggered via webhook.",
         })
 
     cfg = _load_openclaw_config()
