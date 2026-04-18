@@ -618,6 +618,13 @@ button.danger:hover { background: #991b1b; }
 <div class="panel" id="panel-agents">
   <div class="section-title">Agent Model Assignment</div>
   <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Change agent primary models directly. Backs up config before every change. Gateway restart required to take effect.</p>
+  <div id="agents-bulk" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:14px;max-width:800px">
+    <div style="font-size:11px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.05em">Bulk override — apply one model to all agents</div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <select id="bulk-model-sel" style="flex:1;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:13px"></select>
+      <button onclick="applyBulkModel()" style="padding:8px 16px;background:var(--accent);color:#fff;border:none;border-radius:6px;font-size:12px;font-weight:500;cursor:pointer;white-space:nowrap">Apply to all</button>
+    </div>
+  </div>
   <div id="agents-grid" style="display:grid;gap:12px;max-width:800px"></div>
   <div id="agents-status" style="margin-top:12px"></div>
   <div class="section-title" style="margin-top:28px">Model Change History</div>
@@ -1849,6 +1856,13 @@ async function loadAgents() {
   const AGENT_ROLE = { build: 'builder', strategy: 'strategy', general: 'gm', main: 'gm', sage: 'sage' };
   const rateColor = v => v == null ? 'var(--muted)' : (v >= 0.7 ? 'var(--green)' : (v >= 0.3 ? 'var(--amber)' : 'var(--red)'));
   const fmtPct = v => v == null ? '—' : `${Math.round(v*100)}%`;
+  // Bulk selector — populate once
+  const bulkSel = document.getElementById('bulk-model-sel');
+  if (bulkSel && !bulkSel.dataset.populated) {
+    bulkSel.innerHTML = '<option value="">-- pick a model --</option>' +
+      modelIds.map(id => `<option value="${id}">${id}</option>`).join('');
+    bulkSel.dataset.populated = '1';
+  }
   const grid = document.getElementById('agents-grid');
   grid.innerHTML = agentsRes.map(a => {
     const opts = modelIds.map(id =>
@@ -1869,13 +1883,18 @@ async function loadAgents() {
            <span class="agent-grade-val" style="color:${color}">${fmtPct(rate)}</span>
          </div>`
       : `<div class="agent-grade"><span class="agent-grade-label">No graded runs yet</span><span class="agent-grade-val" style="color:var(--muted)">—</span></div>`;
+    const currentLabel = a.primary || a.primary_raw || '(not set)';
+    const rawNote = (a.primary_raw && a.primary_raw !== a.primary)
+      ? `<span style="font-size:10px;color:var(--muted);margin-left:6px">raw: ${a.primary_raw}</span>` : '';
     return `<div style="background:var(--surface);border:1px solid ${a.pending_model ? 'var(--amber)' : 'var(--border)'};border-radius:10px;padding:16px">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;flex-wrap:wrap">
         <span style="font-weight:600;font-size:14px">${a.name || a.agentId}</span>
         <span style="font-size:11px;color:var(--muted);background:var(--tag-bg);padding:2px 8px;border-radius:4px">${a.agentId}</span>
         ${pendingBadge}
       </div>
-      <div style="font-size:11px;color:var(--muted);margin-bottom:6px">Primary Model</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:4px">Currently running</div>
+      <div style="font-size:13px;font-weight:500;margin-bottom:10px;color:var(--text)">${currentLabel}${rawNote}</div>
+      <div style="font-size:11px;color:var(--muted);margin-bottom:6px">Change primary</div>
       <div style="display:flex;gap:8px;align-items:center">
         <select id="model-sel-${a.agentId}" style="flex:1;padding:8px 10px;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:13px">
           ${opts}
@@ -1910,6 +1929,36 @@ async function setAgentModel(agentId) {
   } else {
     status.innerHTML = `<span style="color:var(--red)">✗ ${data.error}</span>`;
   }
+}
+
+async function applyBulkModel() {
+  const sel = document.getElementById('bulk-model-sel');
+  const newModel = sel.value;
+  const status = document.getElementById('agents-status');
+  if (!newModel) {
+    status.innerHTML = '<span style="color:var(--red)">Pick a model first.</span>';
+    return;
+  }
+  if (!confirm(`Apply ${newModel} to ALL ${agentModels.length} agents?`)) return;
+  status.innerHTML = '<span style="color:var(--amber)">Applying to all agents...</span>';
+  const results = [];
+  for (const a of agentModels) {
+    try {
+      const res = await fetch('/api/agents/' + a.agentId + '/model', {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({primary: newModel, restart_gateway: false})
+      });
+      const data = await res.json();
+      results.push({agent: a.agentId, ok: data.ok, msg: data.error || data.mode || 'applied'});
+    } catch (e) {
+      results.push({agent: a.agentId, ok: false, msg: e.message});
+    }
+  }
+  const ok = results.filter(r => r.ok).length;
+  const fail = results.length - ok;
+  status.innerHTML = `<span style="color:${fail?'var(--amber)':'var(--green)'}">Bulk apply: ${ok} ok, ${fail} failed — ${results.map(r=>`${r.agent}:${r.msg}`).join(', ')}</span>`;
+  loadAgents();
 }
 
 async function loadAgentHistory() {
@@ -2436,6 +2485,24 @@ def _save_openclaw_config(cfg: dict):
     json.load(open(OPENCLAW_CONFIG))
 
 
+def _normalize_primary(raw: str) -> str:
+    """Strip provider prefixes so raw OpenClaw ids match the ai-model-repo catalog.
+       openrouter/google/gemini-2.5-flash  -> google/gemini-2.5-flash
+       openai-codex/gpt-5.4                -> openai/gpt-5.4-codex
+    """
+    if not raw:
+        return ""
+    s = str(raw).strip()
+    if s.startswith("openrouter/"):
+        s = s[len("openrouter/"):]
+    if s.startswith("openai-codex/"):
+        tail = s[len("openai-codex/"):]
+        if "codex" not in tail:
+            tail = f"{tail}-codex"
+        s = f"openai/{tail}"
+    return s
+
+
 def _get_agents_with_models() -> list[dict]:
     cfg = _load_openclaw_config()
     agents = cfg.get("agents", {}).get("list", [])
@@ -2443,10 +2510,12 @@ def _get_agents_with_models() -> list[dict]:
     for a in agents:
         model_cfg = a.get("model", {})
         agent_id = a.get("id", a.get("agentId", ""))
+        raw_primary = model_cfg.get("primary", "default") if isinstance(model_cfg, dict) else str(model_cfg)
         result.append({
             "agentId": agent_id,
             "name": a.get("name", agent_id),
-            "primary": model_cfg.get("primary", "default") if isinstance(model_cfg, dict) else str(model_cfg),
+            "primary": _normalize_primary(raw_primary),
+            "primary_raw": raw_primary,
             "fallbacks": model_cfg.get("fallbacks", []) if isinstance(model_cfg, dict) else [],
         })
     return result
@@ -2505,12 +2574,17 @@ def _trigger_sync_webhook():
 def _get_agents_from_pending() -> list[dict]:
     """On Railway (no local config), read agent list from env or pending changes."""
     agents_json = os.environ.get("AGENTS_CONFIG", "")
-    if agents_json:
-        try:
-            return json.loads(agents_json)
-        except Exception:
-            pass
-    return []
+    if not agents_json:
+        return []
+    try:
+        agents = json.loads(agents_json)
+    except Exception:
+        return []
+    for a in agents:
+        raw = a.get("primary", "")
+        a["primary_raw"] = raw
+        a["primary"] = _normalize_primary(raw)
+    return agents
 
 
 @app.route("/api/agents", methods=["GET"])
