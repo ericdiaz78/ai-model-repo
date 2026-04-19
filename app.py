@@ -1024,6 +1024,19 @@ function closeAssignPopover() {
   const pop = document.getElementById('assign-popover');
   if (pop) pop.remove();
 }
+async function previewRoute(primary) {
+  try {
+    const r = await fetch('/api/models/route-preview?primary=' + encodeURIComponent(primary));
+    if (!r.ok) return null;
+    return await r.json();
+  } catch (e) { return null; }
+}
+function fmtRoute(info) {
+  if (!info) return '';
+  const backend = info.backend === 'direct' ? 'direct API' : 'via OpenRouter';
+  const corrected = info.auto_prefixed ? ' (auto-prefixed)' : '';
+  return `<code style="background:var(--tag-bg);padding:1px 5px;border-radius:3px">${info.route}</code> — ${backend}${corrected}`;
+}
 let _assignInflight = false;
 async function assignAgentTo(agentId, modelId) {
   if (_assignInflight) return;
@@ -1031,7 +1044,8 @@ async function assignAgentTo(agentId, modelId) {
   const pop = document.getElementById('assign-popover');
   if (pop) pop.querySelectorAll('.ap-agent').forEach(el => { el.style.pointerEvents = 'none'; el.style.opacity = '0.6'; });
   const status = document.getElementById('assign-popover-status');
-  if (status) status.innerHTML = `<span style="color:var(--amber)">Applying ${agentId} → ${modelId}…</span>`;
+  const preview = await previewRoute(modelId);
+  if (status) status.innerHTML = `<span style="color:var(--amber)">Applying ${agentId} → ${fmtRoute(preview)}…</span>`;
   try {
     const res = await fetch('/api/agents/' + agentId + '/model', {
       method: 'PUT',
@@ -1040,12 +1054,13 @@ async function assignAgentTo(agentId, modelId) {
     });
     const data = await res.json();
     if (data.ok) {
+      const backend = data.backend === 'direct' ? 'direct' : 'via OpenRouter';
       const msg = data.mode === 'queued'
-        ? `⏳ queued: ${data.old_primary} → ${data.new_primary}`
-        : `✓ ${data.old_primary} → ${data.new_primary}${data.restarted ? ' (gateway restarted)' : ''}`;
+        ? `⏳ queued: ${data.old_primary} → ${data.new_primary} (${backend})`
+        : `✓ ${data.old_primary} → ${data.new_primary} (${backend})${data.restarted ? ' — gateway restarted' : ''}`;
       if (status) status.innerHTML = `<span style="color:var(--green)">${msg}</span>`;
       _assignAgentsCache = null; // force re-fetch next open
-      setTimeout(closeAssignPopover, 1500);
+      setTimeout(closeAssignPopover, 1800);
     } else {
       if (status) status.innerHTML = `<span style="color:var(--red)">✗ ${data.error || 'failed'}</span>`;
     }
@@ -2064,7 +2079,8 @@ async function setAgentModel(ev, agentId) {
   const newModel = sel.value;
   const status = document.getElementById('agents-status');
   if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; btn.textContent = 'Applying…'; }
-  status.innerHTML = '<span style="color:var(--amber)">Applying...</span>';
+  const preview = await previewRoute(newModel);
+  status.innerHTML = `<span style="color:var(--amber)">Applying ${agentId} → ${fmtRoute(preview)}…</span>`;
   try {
     const res = await fetch('/api/agents/' + agentId + '/model', {
       method: 'PUT',
@@ -2073,10 +2089,12 @@ async function setAgentModel(ev, agentId) {
     });
     const data = await res.json();
     if (data.ok) {
+      const backend = data.backend === 'direct' ? 'direct' : 'via OpenRouter';
+      const corrected = data.auto_prefixed ? ' — auto-prefixed openrouter/' : '';
       if (data.mode === 'queued') {
-        status.innerHTML = `<span style="color:var(--amber)">⏳ ${agentId}: ${data.old_primary} → ${data.new_primary} — queued, sync triggered</span>`;
+        status.innerHTML = `<span style="color:var(--amber)">⏳ ${agentId}: ${data.old_primary} → ${data.new_primary} (${backend})${corrected} — queued, sync triggered</span>`;
       } else {
-        status.innerHTML = `<span style="color:var(--green)">✓ ${agentId}: ${data.old_primary} → ${data.new_primary}${data.restarted ? ' (gateway restarted)' : ' (restart needed)'}</span>`;
+        status.innerHTML = `<span style="color:var(--green)">✓ ${agentId}: ${data.old_primary} → ${data.new_primary} (${backend})${corrected}${data.restarted ? ' — gateway restarted' : ' — restart needed'}</span>`;
       }
       loadAgents();
     } else {
@@ -2096,9 +2114,11 @@ async function applyBulkModel(ev) {
     status.innerHTML = '<span style="color:var(--red)">Pick a model first.</span>';
     return;
   }
-  if (!confirm(`Apply ${newModel} to ALL ${agentModels.length} agents?`)) return;
+  const preview = await previewRoute(newModel);
+  const routeLabel = preview ? `${preview.route} (${preview.backend === 'direct' ? 'direct' : 'via OpenRouter'})` : newModel;
+  if (!confirm(`Apply ${routeLabel} to ALL ${agentModels.length} agents?`)) return;
   if (btn) { btn.disabled = true; btn.style.opacity = '0.6'; btn.textContent = 'Applying…'; }
-  status.innerHTML = '<span style="color:var(--amber)">Applying to all agents...</span>';
+  status.innerHTML = `<span style="color:var(--amber)">Applying ${fmtRoute(preview)} to all agents…</span>`;
   const results = [];
   for (const a of agentModels) {
     try {
@@ -2644,6 +2664,47 @@ def _save_openclaw_config(cfg: dict):
     json.load(open(OPENCLAW_CONFIG))
 
 
+# Providers whose direct API credentials are wired into OpenClaw's keyring/env.
+# Anything else MUST route via openrouter/ even if the catalog lists a direct API option.
+# Keep this list in sync with OpenClaw gateway credentials (see project_openclaw_model_routing memory).
+WIRED_DIRECT_PROVIDERS = {"anthropic", "openai", "google"}
+
+
+def _resolve_route(primary: str, model_record: dict | None = None) -> dict:
+    """Decide openrouter/ vs bare route for an OpenClaw primary string.
+
+    Returns {"route": final_string, "backend": "openrouter"|"direct",
+             "provider": str, "reason": str, "auto_prefixed": bool}.
+    """
+    if not primary:
+        return {"route": primary, "backend": "unknown", "provider": "",
+                "reason": "empty primary", "auto_prefixed": False}
+    s = primary.strip()
+    if s.startswith("openrouter/"):
+        tail = s[len("openrouter/"):]
+        provider = tail.split("/", 1)[0] if "/" in tail else ""
+        return {"route": s, "backend": "openrouter", "provider": provider,
+                "reason": "explicit openrouter/ prefix", "auto_prefixed": False}
+
+    provider = s.split("/", 1)[0] if "/" in s else ""
+    direct_available = False
+    if model_record:
+        dp = model_record.get("direct_pricing") or {}
+        direct_available = bool(dp.get("direct_available"))
+
+    if provider in WIRED_DIRECT_PROVIDERS and direct_available:
+        return {"route": s, "backend": "direct", "provider": provider,
+                "reason": f"{provider} direct credential wired, catalog direct_available=true",
+                "auto_prefixed": False}
+
+    if provider in WIRED_DIRECT_PROVIDERS and not direct_available:
+        reason = f"{provider} has a direct credential but catalog direct_available is false/missing — routing via OpenRouter"
+    else:
+        reason = f"provider '{provider}' has no direct credential wired — routing via OpenRouter"
+    return {"route": f"openrouter/{s}", "backend": "openrouter", "provider": provider,
+            "reason": reason, "auto_prefixed": True}
+
+
 def _normalize_primary(raw: str) -> str:
     """Strip provider prefixes so raw OpenClaw ids match the ai-model-repo catalog.
        openrouter/google/gemini-2.5-flash  -> google/gemini-2.5-flash
@@ -2777,6 +2838,27 @@ def api_agents():
     return jsonify(agents)
 
 
+@app.route("/api/models/route-preview", methods=["GET"])
+@require_login
+def api_route_preview():
+    """Preview the final OpenClaw route for a candidate primary string.
+    Client calls this before PUT so the user sees openrouter/ vs direct before committing."""
+    primary = (request.args.get("primary") or "").strip()
+    if not primary:
+        return jsonify({"error": "primary query param required"}), 400
+    all_models = load_models()
+    lookup_key = _normalize_primary(primary)
+    bare_id = lookup_key.split("/", 1)[-1] if "/" in lookup_key else lookup_key
+    model_record = next(
+        (m for m in all_models if m.get("model_id") == lookup_key or m.get("model_id") == bare_id),
+        None,
+    )
+    info = _resolve_route(primary, model_record)
+    info["in_catalog"] = model_record is not None
+    info["wired_direct_providers"] = sorted(WIRED_DIRECT_PROVIDERS)
+    return jsonify(info)
+
+
 @app.route("/api/agents/<agent_id>/model", methods=["PUT"])
 @require_login
 def api_set_agent_model(agent_id):
@@ -2784,15 +2866,25 @@ def api_set_agent_model(agent_id):
     if not data or "primary" not in data:
         return jsonify({"error": "primary field required"}), 400
 
-    new_primary = data["primary"].strip()
+    requested_primary = data["primary"].strip()
     new_fallbacks = data.get("fallbacks")
 
-    known_models = {m["model_id"] for m in load_models()}
-    bare_id = new_primary.split("/", 1)[-1] if "/" in new_primary else new_primary
-    if new_primary not in known_models and bare_id not in known_models:
+    all_models = load_models()
+    known_models = {m["model_id"] for m in all_models}
+    # Catalog lookup uses the normalized (bare) form.
+    lookup_key = _normalize_primary(requested_primary)
+    bare_id = lookup_key.split("/", 1)[-1] if "/" in lookup_key else lookup_key
+    if lookup_key not in known_models and bare_id not in known_models:
         candidates = [m for m in known_models if bare_id in m]
         if not candidates:
-            return jsonify({"error": f"model '{new_primary}' not in catalog", "known": sorted(known_models)}), 400
+            return jsonify({"error": f"model '{requested_primary}' not in catalog", "known": sorted(known_models)}), 400
+
+    model_record = next(
+        (m for m in all_models if m.get("model_id") == lookup_key or m.get("model_id") == bare_id),
+        None,
+    )
+    route_info = _resolve_route(requested_primary, model_record)
+    new_primary = route_info["route"]
 
     if IS_REMOTE:
         agents = _get_agents_from_pending()
@@ -2807,7 +2899,10 @@ def api_set_agent_model(agent_id):
             "timestamp": datetime.now(timezone.utc).isoformat(),
             "agent": agent_id,
             "old_primary": old_primary,
+            "requested_primary": requested_primary,
             "new_primary": new_primary,
+            "backend": route_info["backend"],
+            "auto_prefixed": route_info["auto_prefixed"],
             "new_fallbacks": new_fallbacks,
             "status": "pending",
             "changed_by": "ai-model-repo-ui",
@@ -2820,7 +2915,10 @@ def api_set_agent_model(agent_id):
                 "timestamp": change["timestamp"],
                 "agent": agent_id,
                 "old_primary": old_primary,
+                "requested_primary": requested_primary,
                 "new_primary": new_primary,
+                "backend": route_info["backend"],
+                "auto_prefixed": route_info["auto_prefixed"],
                 "changed_by": "ai-model-repo-ui",
             }) + "\n")
         _trigger_sync_webhook()
@@ -2829,7 +2927,11 @@ def api_set_agent_model(agent_id):
             "mode": "queued",
             "agent": agent_id,
             "old_primary": old_primary,
+            "requested_primary": requested_primary,
             "new_primary": new_primary,
+            "backend": route_info["backend"],
+            "auto_prefixed": route_info["auto_prefixed"],
+            "route_reason": route_info["reason"],
             "change_id": change["id"],
             "message": "Change queued. Sync triggered via webhook.",
         })
