@@ -73,7 +73,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-18"
+          "computed_at": "2026-04-19"
         }
       },
       "industry_notes": [
@@ -205,16 +205,127 @@
         "openrouter_stats": {}
       },
       "our_observations": {
-        "trials": [],
+        "trials": [
+          {
+            "date": "2026-04-18",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_135min_status_running",
+            "session_id": "33922aad-2f1e-4b28-9e77-0a45e824d5c2",
+            "run_id": "33922aad-2f1e-4b28-9e77-0a45e824d5c2",
+            "notes": "20 actions across filesystem,shell; 253053s"
+          },
+          {
+            "date": "2026-04-17",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "90d94f66-4ff1-43b8-aba8-bbea30eeecdb",
+            "run_id": "90d94f66-4ff1-43b8-aba8-bbea30eeecdb",
+            "notes": "20 actions across plan,shell"
+          },
+          {
+            "date": "2026-04-16",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_2891min_status_done",
+            "session_id": "fe3d4fe6-1c76-4e8e-b114-7d5524c6a4d7",
+            "run_id": "fe3d4fe6-1c76-4e8e-b114-7d5524c6a4d7",
+            "notes": "14 actions across plan,shell; 6s"
+          },
+          {
+            "date": "2026-04-16",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_2892min_status_done",
+            "session_id": "49e59f75-7938-49de-95ab-2e95846e00a7",
+            "run_id": "49e59f75-7938-49de-95ab-2e95846e00a7",
+            "notes": "12 actions across message,shell,subagent; 4s"
+          },
+          {
+            "date": "2026-04-17",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_1665min_status_running",
+            "session_id": "b81a7128-ff77-4bc5-b751-82a389297da0",
+            "run_id": "b81a7128-ff77-4bc5-b751-82a389297da0",
+            "notes": "10 actions across plan,shell; 27s"
+          },
+          {
+            "date": "2026-04-17",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_1442min_status_done",
+            "session_id": "5c1af28d-4078-4215-b929-8afafa7867e0",
+            "run_id": "5c1af28d-4078-4215-b929-8afafa7867e0",
+            "notes": "6 actions across message,plan,subagent; 29s"
+          },
+          {
+            "date": "2026-04-17",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_1332min_status_running",
+            "session_id": "689db643-75a0-4d6e-8fb4-2bfdfe0ed0db",
+            "run_id": "689db643-75a0-4d6e-8fb4-2bfdfe0ed0db",
+            "notes": "13 actions across message,shell; 181242s"
+          },
+          {
+            "date": "2026-04-18",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_601min_status_running",
+            "session_id": "df37c833-4e4c-4e72-aceb-eaa7c5df8ffa",
+            "run_id": "df37c833-4e4c-4e72-aceb-eaa7c5df8ffa",
+            "notes": "25 actions across plan,shell; 225121s"
+          },
+          {
+            "date": "2026-04-18",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_374min_status_running",
+            "session_id": "eaf9c454-5ed6-4712-b0a7-6700e0f9cd1f",
+            "run_id": "eaf9c454-5ed6-4712-b0a7-6700e0f9cd1f",
+            "notes": "12 actions across filesystem,plan,shell; 238714s"
+          },
+          {
+            "date": "2026-04-18",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "0e491202-aa7e-44bb-9a8a-da825dc9f744",
+            "run_id": "0e491202-aa7e-44bb-9a8a-da825dc9f744",
+            "notes": "17 actions across filesystem,plan,shell; 267428s"
+          }
+        ],
         "pass_rate": {
           "builder": null,
           "strategy": null,
-          "gm": null,
+          "gm": 0.2,
           "sage": null,
-          "overall": null,
-          "sample_size": 0,
+          "overall": 0.2,
+          "sample_size": 10,
           "window_days": 30,
-          "computed_at": "2026-04-18"
+          "computed_at": "2026-04-19"
         }
       },
       "industry_notes": [
@@ -335,16 +446,61 @@
         "openrouter_stats": {}
       },
       "our_observations": {
-        "trials": [],
+        "trials": [
+          {
+            "date": "2026-04-18",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_527min_status_running",
+            "session_id": "bd5706ea-01bb-4b39-9a15-de67a52c6837",
+            "run_id": "bd5706ea-01bb-4b39-9a15-de67a52c6837",
+            "notes": "8 actions across filesystem,shell; 431990s"
+          },
+          {
+            "date": "2026-04-16",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_2742min_status_done",
+            "session_id": "c4a023f5-0891-4aee-bd25-17811149d44c",
+            "run_id": "c4a023f5-0891-4aee-bd25-17811149d44c",
+            "notes": "87 actions across filesystem,message,shell; 16s"
+          },
+          {
+            "date": "2026-04-18",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_1019min_status_done",
+            "session_id": "907426ea-7cdc-442d-b916-c5cd0c9f23cf",
+            "run_id": "907426ea-7cdc-442d-b916-c5cd0c9f23cf",
+            "notes": "74 actions across filesystem,message,shell,subagent; 9s"
+          },
+          {
+            "date": "2026-04-18",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_1016min_status_done",
+            "session_id": "6504ede3-552b-49b9-a38e-acde7a362df0",
+            "run_id": "6504ede3-552b-49b9-a38e-acde7a362df0",
+            "notes": "19 actions across filesystem,shell; 381s"
+          }
+        ],
         "pass_rate": {
           "builder": null,
-          "strategy": null,
+          "strategy": 0.0,
           "gm": null,
           "sage": null,
-          "overall": null,
-          "sample_size": 0,
+          "overall": 0.0,
+          "sample_size": 4,
           "window_days": 30,
-          "computed_at": "2026-04-18"
+          "computed_at": "2026-04-19"
         }
       },
       "industry_notes": [
@@ -744,7 +900,7 @@
           "overall": 0.077,
           "sample_size": 26,
           "window_days": 30,
-          "computed_at": "2026-04-18"
+          "computed_at": "2026-04-19"
         }
       },
       "industry_notes": [
@@ -854,7 +1010,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-18"
+          "computed_at": "2026-04-19"
         }
       },
       "industry_notes": [
@@ -1530,7 +1686,7 @@
           "overall": 0.02,
           "sample_size": 50,
           "window_days": 30,
-          "computed_at": "2026-04-18"
+          "computed_at": "2026-04-19"
         }
       },
       "industry_notes": [
@@ -1652,7 +1808,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-18"
+          "computed_at": "2026-04-19"
         }
       },
       "industry_notes": [
@@ -1762,7 +1918,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-18"
+          "computed_at": "2026-04-19"
         }
       },
       "industry_notes": [
