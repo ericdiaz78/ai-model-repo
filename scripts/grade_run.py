@@ -198,7 +198,10 @@ def grade(session_jsonl: Path, *, status: str | None = None, aborted: bool = Fal
         return _verdict(ana, "fail", "FP5", "consecutive_duplicate_send")
 
     # FP4 abandoned loop
-    if status and status not in ("completed", "idle", "ready"):
+    # Closed statuses: "completed"/"idle"/"ready" from internal runtime,
+    # "done" from the Slack reply handler, "abandoned"/"timeout" from the
+    # session reaper (future). Anything else + stale = abandoned loop.
+    if status and status not in ("completed", "idle", "ready", "done", "abandoned", "timeout"):
         if effective_last and (now - effective_last).total_seconds() / 60 > stale_threshold_min:
             return _verdict(ana, "fail", "FP4", f"stale_{int((now-effective_last).total_seconds()/60)}min_status_{status}")
 
