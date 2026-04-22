@@ -73,7 +73,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "needs_review": false,
@@ -132,16 +132,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 1189.950872,
-      "total_input_mtok": 819.3022,
-      "total_output_mtok": 5.47,
+      "total_cost_usd": 1193.848919,
+      "total_input_mtok": 824.5321,
+      "total_output_mtok": 5.5096,
       "total_cache_read_mtok": 0,
-      "call_count": 16421,
-      "avg_cost_per_call_usd": 0.072465,
+      "call_count": 16515,
+      "avg_cost_per_call_usd": 0.072289,
       "period_start": "2026-03-13",
-      "period_end": "2026-04-18",
+      "period_end": "2026-04-21",
       "source": "openrouter-api",
-      "imported_at": "2026-04-19 03:22 UTC"
+      "imported_at": "2026-04-22 18:57 UTC"
     }
   },
   {
@@ -316,17 +316,413 @@
             "session_id": "0e491202-aa7e-44bb-9a8a-da825dc9f744",
             "run_id": "0e491202-aa7e-44bb-9a8a-da825dc9f744",
             "notes": "17 actions across filesystem,plan,shell; 267428s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "b950b8a3-bde6-4738-a93b-f57c97ac43ed",
+            "run_id": "b950b8a3-bde6-4738-a93b-f57c97ac43ed",
+            "notes": "26 actions across filesystem,shell; 275s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "a88d770c-10b2-4f62-bbe8-a97d76375669",
+            "run_id": "a88d770c-10b2-4f62-bbe8-a97d76375669",
+            "notes": "52 actions across filesystem,message,shell; 45s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_57min_status_done",
+            "session_id": "4a6a91a9-cd46-4d33-95e6-37e64dbeb528",
+            "run_id": "4a6a91a9-cd46-4d33-95e6-37e64dbeb528",
+            "notes": "53 actions across filesystem,shell; 196s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "0998794c-c118-4999-8256-f153e2517d25",
+            "run_id": "0998794c-c118-4999-8256-f153e2517d25",
+            "notes": "17 actions across message,plan,shell; 310898s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_47min_status_running",
+            "session_id": "ee8ff4c6-f99a-446f-907a-14f3b3a7fba8",
+            "run_id": "ee8ff4c6-f99a-446f-907a-14f3b3a7fba8",
+            "notes": "20 actions across filesystem,shell; 518390s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "86e3edb3-ee8e-469a-9eb6-d88af6e9f1a1",
+            "run_id": "86e3edb3-ee8e-469a-9eb6-d88af6e9f1a1",
+            "notes": "23 actions across filesystem,shell; 87s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_37min_status_done",
+            "session_id": "38ba2012-79cb-4f23-89a0-fead5406d3f3",
+            "run_id": "38ba2012-79cb-4f23-89a0-fead5406d3f3",
+            "notes": "65 actions across filesystem,shell; 66s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_40min_status_done",
+            "session_id": "af58b8a6-f93b-4e51-98f1-f6f6cbb943f2",
+            "run_id": "af58b8a6-f93b-4e51-98f1-f6f6cbb943f2",
+            "notes": "32 actions across filesystem,shell; 102s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "be5b54ef-3cea-4603-a26a-3342757c3e12",
+            "run_id": "be5b54ef-3cea-4603-a26a-3342757c3e12",
+            "notes": "34 actions across filesystem,shell; 4s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP2",
+            "reason": "no_assistant_text",
+            "session_id": "0416557c-533a-4c55-af88-3981834ff7cb",
+            "run_id": "0416557c-533a-4c55-af88-3981834ff7cb",
+            "notes": "14 actions across filesystem,message,plan,shell; 325128s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "7b92711c-f6b9-4e21-a865-3bd93cdcfe25",
+            "run_id": "7b92711c-f6b9-4e21-a865-3bd93cdcfe25",
+            "notes": "58 actions across message,shell; 2s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_47min_status_done",
+            "session_id": "53e70179-5f7a-44b5-be72-ffb9dc42f07a",
+            "run_id": "53e70179-5f7a-44b5-be72-ffb9dc42f07a",
+            "notes": "13 actions across message,shell; 207s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_33min_status_done",
+            "session_id": "29f09dd5-b128-4678-a1a6-63e365cdc7f3",
+            "run_id": "29f09dd5-b128-4678-a1a6-63e365cdc7f3",
+            "notes": "38 actions across filesystem,message,shell; 57s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP2",
+            "reason": "no_assistant_text",
+            "session_id": "c44c4b82-9b17-4877-bd7c-4433a7704f08",
+            "run_id": "c44c4b82-9b17-4877-bd7c-4433a7704f08",
+            "notes": "13 actions across filesystem,plan,shell; 339549s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_44min_status_running",
+            "session_id": "cb59ce94-5ccb-4966-a310-45a0e2f94b56",
+            "run_id": "cb59ce94-5ccb-4966-a310-45a0e2f94b56",
+            "notes": "14 actions across filesystem,shell; 137s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP2",
+            "reason": "no_assistant_text",
+            "session_id": "f266767a-a191-4df8-94aa-52fa438ca91b",
+            "run_id": "f266767a-a191-4df8-94aa-52fa438ca91b",
+            "notes": "12 actions across filesystem,plan,shell; 353911s"
+          },
+          {
+            "date": "2026-04-20",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_60min_status_running",
+            "session_id": "30e5ce7a-fa74-4bc2-880c-ff942b3622c2",
+            "run_id": "30e5ce7a-fa74-4bc2-880c-ff942b3622c2",
+            "notes": "14 actions across filesystem,plan,shell; 397965s"
+          },
+          {
+            "date": "2026-04-20",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_47min_status_running",
+            "session_id": "13921b9c-b368-4171-aed7-9f5c630b5d4a",
+            "run_id": "13921b9c-b368-4171-aed7-9f5c630b5d4a",
+            "notes": "18 actions across filesystem,shell; 604790s"
+          },
+          {
+            "date": "2026-04-20",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP2",
+            "reason": "no_assistant_text",
+            "session_id": "389b70f0-7335-448d-9e31-31a4bf67b987",
+            "run_id": "389b70f0-7335-448d-9e31-31a4bf67b987",
+            "notes": "12 actions across filesystem,message,shell; 411727s"
+          },
+          {
+            "date": "2026-04-20",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP2",
+            "reason": "no_assistant_text",
+            "session_id": "86c3d086-8d98-4cf0-9bd4-92e07df06120",
+            "run_id": "86c3d086-8d98-4cf0-9bd4-92e07df06120",
+            "notes": "30 actions across filesystem,message,plan,shell; 425953s"
+          },
+          {
+            "date": "2026-04-20",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "06b8fa77-aec9-43e8-bd1d-19fb6f5a44e5",
+            "run_id": "06b8fa77-aec9-43e8-bd1d-19fb6f5a44e5",
+            "notes": "13 actions across filesystem,shell; 86375s"
+          },
+          {
+            "date": "2026-04-21",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP2",
+            "reason": "ended_on_toolcall_no_reply",
+            "session_id": "5a349dc4-810a-4767-ae1f-6e322dbfb123",
+            "run_id": "5a349dc4-810a-4767-ae1f-6e322dbfb123",
+            "notes": "26 actions across filesystem,message,shell"
+          },
+          {
+            "date": "2026-04-21",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "37db0b5b-936a-46e2-adff-2cd48b8e5090",
+            "run_id": "37db0b5b-936a-46e2-adff-2cd48b8e5090",
+            "notes": "10 actions across filesystem,shell; 691190s"
+          },
+          {
+            "date": "2026-04-21",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "65fc037d-56c1-4500-b277-9b725ed2c9cf",
+            "run_id": "65fc037d-56c1-4500-b277-9b725ed2c9cf",
+            "notes": "13 actions across message,shell; 518394s"
+          },
+          {
+            "date": "2026-04-21",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "b6c8ad61-fddc-46df-a9ea-0be98c65b3a8",
+            "run_id": "b6c8ad61-fddc-46df-a9ea-0be98c65b3a8",
+            "notes": "17 actions across message,shell,subagent; 14327s"
+          },
+          {
+            "date": "2026-04-21",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "d42390e5-52e9-4965-9fb7-a8671bdeb1d9",
+            "run_id": "d42390e5-52e9-4965-9fb7-a8671bdeb1d9",
+            "notes": "22 actions across filesystem,shell; 367s"
+          },
+          {
+            "date": "2026-04-21",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "b11c4a4c-da87-4773-8e3f-ceb30193b0c5",
+            "run_id": "b11c4a4c-da87-4773-8e3f-ceb30193b0c5",
+            "notes": "3 actions across filesystem,shell; 59s"
+          },
+          {
+            "date": "2026-04-21",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "c8a8c8e1-5df6-4ead-ba2f-5974d096fac7",
+            "run_id": "c8a8c8e1-5df6-4ead-ba2f-5974d096fac7",
+            "notes": "53 actions across filesystem,shell; 67s"
+          },
+          {
+            "date": "2026-04-21",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_246min_status_running",
+            "session_id": "5ba7b9db-3cff-4a74-81de-962169109cd2",
+            "run_id": "5ba7b9db-3cff-4a74-81de-962169109cd2",
+            "notes": "22 actions across filesystem,shell; 14327s"
+          },
+          {
+            "date": "2026-04-21",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "383747fd-21a6-4903-b9c8-f835527c3eb7",
+            "run_id": "383747fd-21a6-4903-b9c8-f835527c3eb7",
+            "notes": "10 actions across filesystem,shell; 172775s"
+          },
+          {
+            "date": "2026-04-22",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "019db458-1f1c-77fe-ab59-8599588bca2b",
+            "run_id": "019db458-1f1c-77fe-ab59-8599588bca2b",
+            "notes": "25 actions across message,shell; 150s"
+          },
+          {
+            "date": "2026-04-22",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "7cee7898-586d-4e5b-a142-d4a7b3a3de86",
+            "run_id": "7cee7898-586d-4e5b-a142-d4a7b3a3de86",
+            "notes": "29 actions across filesystem,shell; 30s"
+          },
+          {
+            "date": "2026-04-22",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "019db496-1150-723e-933c-43cc73158c87",
+            "run_id": "019db496-1150-723e-933c-43cc73158c87",
+            "notes": "9 actions across message,shell"
+          },
+          {
+            "date": "2026-04-21",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_1206min_status_running",
+            "session_id": "1105bead-60d6-4f1e-9aa5-77af90f3b50d",
+            "run_id": "1105bead-60d6-4f1e-9aa5-77af90f3b50d",
+            "notes": "9 actions across filesystem,shell; 14327s"
+          },
+          {
+            "date": "2026-04-22",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_50min_status_running",
+            "session_id": "92c1877e-9349-4341-9400-e2a5b2577960",
+            "run_id": "92c1877e-9349-4341-9400-e2a5b2577960",
+            "notes": "13 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-04-22",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "989b1861-4530-4623-9d8c-fc7df40991f3",
+            "run_id": "989b1861-4530-4623-9d8c-fc7df40991f3",
+            "notes": "14 actions across filesystem,shell; 779421s"
           }
         ],
         "pass_rate": {
           "builder": null,
-          "strategy": null,
-          "gm": 0.2,
+          "strategy": 0.583,
+          "gm": 0.382,
           "sage": null,
-          "overall": 0.2,
-          "sample_size": 10,
+          "overall": 0.435,
+          "sample_size": 46,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "needs_review": false,
@@ -375,16 +771,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 20.495646,
-      "total_input_mtok": 180.3673,
-      "total_output_mtok": 1.0571,
+      "total_cost_usd": 25.030865,
+      "total_input_mtok": 212.7547,
+      "total_output_mtok": 1.2435,
       "total_cache_read_mtok": 0,
-      "call_count": 4333,
-      "avg_cost_per_call_usd": 0.00473,
+      "call_count": 5161,
+      "avg_cost_per_call_usd": 0.00485,
       "period_start": "2026-03-30",
-      "period_end": "2026-04-18",
+      "period_end": "2026-04-21",
       "source": "openrouter-api",
-      "imported_at": "2026-04-19 03:22 UTC"
+      "imported_at": "2026-04-22 18:57 UTC"
     }
   },
   {
@@ -502,7 +898,7 @@
           "overall": 0.0,
           "sample_size": 4,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "needs_review": false,
@@ -535,16 +931,16 @@
       "vendor_description_fetched_at": "2026-04-18"
     },
     "spend": {
-      "total_cost_usd": 31.527069,
-      "total_input_mtok": 426.8623,
-      "total_output_mtok": 1.1686,
+      "total_cost_usd": 35.905511,
+      "total_input_mtok": 439.3504,
+      "total_output_mtok": 1.2414,
       "total_cache_read_mtok": 0,
-      "call_count": 8966,
-      "avg_cost_per_call_usd": 0.003516,
+      "call_count": 9501,
+      "avg_cost_per_call_usd": 0.003779,
       "period_start": "2026-03-30",
-      "period_end": "2026-04-10",
+      "period_end": "2026-04-21",
       "source": "openrouter-api",
-      "imported_at": "2026-04-19 03:22 UTC"
+      "imported_at": "2026-04-22 18:57 UTC"
     }
   },
   {
@@ -903,7 +1299,7 @@
           "overall": 0.077,
           "sample_size": 26,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "needs_review": false,
@@ -1014,7 +1410,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "needs_review": false,
@@ -1059,16 +1455,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 23.498413,
-      "total_input_mtok": 556.7155,
-      "total_output_mtok": 3.7007,
+      "total_cost_usd": 24.770286,
+      "total_input_mtok": 577.6672,
+      "total_output_mtok": 3.8694,
       "total_cache_read_mtok": 0,
-      "call_count": 11535,
-      "avg_cost_per_call_usd": 0.002037,
+      "call_count": 11835,
+      "avg_cost_per_call_usd": 0.002093,
       "period_start": "2026-03-13",
-      "period_end": "2026-04-18",
+      "period_end": "2026-04-21",
       "source": "openrouter-api",
-      "imported_at": "2026-04-19 03:22 UTC"
+      "imported_at": "2026-04-22 18:57 UTC"
     }
   },
   {
@@ -1691,7 +2087,7 @@
           "overall": 0.02,
           "sample_size": 50,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "needs_review": false,
@@ -1735,16 +2131,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 2.596686,
-      "total_input_mtok": 14.1289,
-      "total_output_mtok": 0.2003,
+      "total_cost_usd": 2.657214,
+      "total_input_mtok": 14.4729,
+      "total_output_mtok": 0.2027,
       "total_cache_read_mtok": 0,
-      "call_count": 814,
-      "avg_cost_per_call_usd": 0.00319,
+      "call_count": 823,
+      "avg_cost_per_call_usd": 0.003229,
       "period_start": "2026-03-19",
-      "period_end": "2026-04-18",
+      "period_end": "2026-04-19",
       "source": "openrouter-api",
-      "imported_at": "2026-04-19 03:22 UTC"
+      "imported_at": "2026-04-22 18:57 UTC"
     }
   },
   {
@@ -1814,7 +2210,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "needs_review": false,
@@ -1925,7 +2321,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "needs_review": false,
@@ -1971,16 +2367,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 11.868396,
-      "total_input_mtok": 8.6861,
-      "total_output_mtok": 0.6365,
+      "total_cost_usd": 13.272011,
+      "total_input_mtok": 9.6709,
+      "total_output_mtok": 0.7202,
       "total_cache_read_mtok": 0,
-      "call_count": 464,
-      "avg_cost_per_call_usd": 0.025578,
+      "call_count": 520,
+      "avg_cost_per_call_usd": 0.025523,
       "period_start": "2026-03-17",
-      "period_end": "2026-04-15",
+      "period_end": "2026-04-21",
       "source": "openrouter-api",
-      "imported_at": "2026-04-19 03:22 UTC"
+      "imported_at": "2026-04-22 18:57 UTC"
     }
   },
   {
@@ -2027,7 +2423,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "Fast-mode variant of [Opus 4.6](/anthropic/claude-opus-4.6) - identical capabilities with higher output speed at premium 6x pricing.\\n\\nLearn more in Anthropic's docs: https://platform.claude.com/docs/en/build-with-claude/fast-mode\",\"model_version_group_id\":null,\"context_length\":1000000,\"input_modalities\":",
@@ -2078,7 +2474,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "GPT-5.4 nano is the most lightweight and cost-efficient variant of the GPT-5.4 family, optimized for speed-critical and high-volume tasks. It supports text and image inputs and is designed for low-latency use cases such as classification, data extraction, ranking, and sub-agent execution.\\n\\nThe model prioritizes responsiveness and efficiency over deep reasoning, making it ideal for pipelines that require fast, reliable outputs at scale. GPT-5.4 nano is well suited for background tasks, real-time systems, and distributed agent architectures where minimizing cost and latency is essential.\",\"model_version_group_id\":null,\"context_length\":400000,\"input_modalities\":",
@@ -2132,7 +2528,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "GPT-5.4 mini brings the core capabilities of GPT-5.4 to a faster, more efficient model optimized for high-throughput workloads. It supports text and image inputs with strong performance across reasoning, coding, and tool use, while reducing latency and cost for large-scale deployments.\\n\\nThe model is designed for production environments that require a balance of capability and efficiency, making it well suited for chat applications, coding assistants, and agent workflows that operate at scale. GPT-5.4 mini delivers reliable instruction following, solid multi-step reasoning, and consistent performance across diverse tasks with improved cost efficiency.\",\"model_version_group_id\":null,\"context_length\":400000,\"input_modalities\":",
@@ -2184,7 +2580,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "Mistral Small 4 is the next major release in the Mistral Small family, unifying the capabilities of several flagship Mistral models into a single system. It combines strong reasoning from Magistral, multimodal understanding from Pixtral, and agentic coding capabilities from Devstral, enabling one model to handle complex analysis, software development, and visual tasks within the same workflow.",
@@ -2236,7 +2632,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "GPT-5.4 Pro is OpenAI's most advanced model, building on GPT-5.4's unified architecture with enhanced reasoning capabilities for complex, high-stakes tasks. It features a 1M+ token context window (922K input, 128K output) with support for text and image inputs. Optimized for step-by-step reasoning, instruction following, and accuracy, GPT-5.4 Pro excels at agentic coding, long-context workflows, and multi-step problem solving.\",\"model_version_group_id\":null,\"context_length\":1050000,\"input_modalities\":",
@@ -2287,7 +2683,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "GPT-5.4 is OpenAI\u2019s latest frontier model, unifying the Codex and GPT lines into a single system. It features a 1M+ token context window (922K input, 128K output) with support for text and image inputs, enabling high-context reasoning, coding, and multimodal analysis within the same workflow.\\n\\nThe model delivers improved performance in coding, document understanding, tool use, and instruction following. It is designed as a strong default for both general-purpose tasks and software engineering, capable of generating production-quality code, synthesizing information across multiple sources, and executing complex multi-step workflows with fewer iterations and greater token efficiency.\",\"model_version_group_id\":null,\"context_length\":1050000,\"input_modalities\":",
@@ -2342,7 +2738,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "Gemini 3.1 Flash Lite Preview is Google's high-efficiency model optimized for high-volume use cases. It outperforms Gemini 2.5 Flash Lite on overall quality and approaches Gemini 2.5 Flash performance across key capabilities. Improvements span audio input/ASR, RAG snippet ranking, translation, data extraction, and code completion. Supports full thinking levels (minimal, low, medium, high) for fine-grained cost/performance trade-offs. Priced at half the cost of Gemini 3 Flash.\",\"model_version_group_id\":null,\"context_length\":1048576,\"input_modalities\":",
@@ -2397,7 +2793,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "Gemini 3.1 Pro Preview Custom Tools is a variant of Gemini 3.1 Pro that improves tool selection behavior by preventing overuse of a general bash tool when more efficient third-party or user-defined functions are available. This specialized preview endpoint significantly increases function calling reliability and ensures the model selects the most appropriate tool in coding agents and complex, multi-tool workflows.\\n\\nIt retains the core strengths of Gemini 3.1 Pro, including multimodal reasoning across text, image, video, audio, and code, a 1M-token context window, and strong software engineering performance.\",\"model_version_group_id\":null,\"context_length\":1048576,\"input_modalities\":",
@@ -2450,7 +2846,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "GPT-5.3-Codex is OpenAI\u2019s most advanced agentic coding model, combining the frontier software engineering performance of GPT-5.2-Codex with the broader reasoning and professional knowledge capabilities of GPT-5.2. It achieves state-of-the-art results on SWE-Bench Pro and strong performance on Terminal-Bench 2.0 and OSWorld-Verified, reflecting improved multi-language coding, terminal proficiency, and real-world computer-use skills. The model is optimized for long-running, tool-using workflows and supports interactive steering during execution, making it suitable for complex development tasks, debugging, deployment, and iterative product work.\n\nBeyond coding, GPT-5.3-Codex performs strongly on structured knowledge-work benchmarks such as GDPval, supporting tasks like document drafting, spreadsheet analysis, slide creation, and operational research across domains. It is trained with enhanced cybersecurity awareness, including vulnerability identification capabilities, and deployed with additional safeguards for high-risk use cases. Compared to prior Codex models, it is more token-efficient and approximately 25% faster, targeting professional end-to-end workflows that span reasoning, execution, and computer interaction.",
@@ -2574,17 +2970,160 @@
             "session_id": "31d1bef9-6506-4fb5-ad84-467c71cc6e93",
             "run_id": "31d1bef9-6506-4fb5-ad84-467c71cc6e93",
             "notes": "21 actions across filesystem,shell; 14390s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_51min_status_running",
+            "session_id": "d72ceac7-8351-4aad-93ee-a535652db1d0",
+            "run_id": "d72ceac7-8351-4aad-93ee-a535652db1d0",
+            "notes": "2 actions across message,shell; 10746s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "c7b961c7-27b3-479e-a117-01d307f5ba02",
+            "run_id": "c7b961c7-27b3-479e-a117-01d307f5ba02",
+            "notes": "22 actions across filesystem,plan,shell; 100791s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "1d8991bb-b7f0-42ce-a138-af4ea9818ce2",
+            "run_id": "1d8991bb-b7f0-42ce-a138-af4ea9818ce2",
+            "notes": "28 actions across plan,shell; 115190s"
+          },
+          {
+            "date": "2026-04-19",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "dd58adc8-0a7e-49a8-b228-1f67c1a74c4e",
+            "run_id": "dd58adc8-0a7e-49a8-b228-1f67c1a74c4e",
+            "notes": "19 actions across filesystem,plan,shell; 129590s"
+          },
+          {
+            "date": "2026-04-20",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP2",
+            "reason": "no_assistant_text",
+            "session_id": "5c2fba88-2da7-4b20-9c43-d7317235213c",
+            "run_id": "5c2fba88-2da7-4b20-9c43-d7317235213c",
+            "notes": "3 actions across message,shell; 431990s"
+          },
+          {
+            "date": "2026-04-20",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "efa091c7-6d1c-4d49-ae6a-cd1efab4c809",
+            "run_id": "efa091c7-6d1c-4d49-ae6a-cd1efab4c809",
+            "notes": "34 actions across filesystem,plan,shell; 261s"
+          },
+          {
+            "date": "2026-04-20",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "93f9e173-3d30-4ed7-b1de-eb16084257c7",
+            "run_id": "93f9e173-3d30-4ed7-b1de-eb16084257c7",
+            "notes": "23 actions across filesystem,plan,shell; 172864s"
+          },
+          {
+            "date": "2026-04-20",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "8265f6d2-801e-4f41-ac1c-f6b0e8e943ac",
+            "run_id": "8265f6d2-801e-4f41-ac1c-f6b0e8e943ac",
+            "notes": "23 actions across filesystem,plan,shell; 14478s"
+          },
+          {
+            "date": "2026-04-20",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "4d572658-5725-41a5-b0bf-4ce444bb6e07",
+            "run_id": "4d572658-5725-41a5-b0bf-4ce444bb6e07",
+            "notes": "27 actions across filesystem,plan,shell; 28712s"
+          },
+          {
+            "date": "2026-04-21",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "dc38cf7e-6927-4d41-af2d-3aee9125ed25",
+            "run_id": "dc38cf7e-6927-4d41-af2d-3aee9125ed25",
+            "notes": "11 actions across filesystem,shell; 28192s"
+          },
+          {
+            "date": "2026-04-22",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_43min_status_running",
+            "session_id": "6277ba56-8acd-436e-959a-a8ef9738acc8",
+            "run_id": "6277ba56-8acd-436e-959a-a8ef9738acc8",
+            "notes": "2 actions across message,shell; 3597s"
+          },
+          {
+            "date": "2026-04-22",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP2",
+            "reason": "no_assistant_text",
+            "session_id": "df11c36e-0e77-4a2d-8c7d-d21f5eb444ad",
+            "run_id": "df11c36e-0e77-4a2d-8c7d-d21f5eb444ad",
+            "notes": "2 actions across message,shell; 346098s"
+          },
+          {
+            "date": "2026-04-22",
+            "agent": "build",
+            "agent_role": "builder",
+            "result": "fail",
+            "failure_point": "FP4",
+            "reason": "stale_43min_status_running",
+            "session_id": "18c863ed-55de-43f7-99b5-a809ab5c2598",
+            "run_id": "18c863ed-55de-43f7-99b5-a809ab5c2598",
+            "notes": "2 actions across message,shell; 10798s"
           }
         ],
         "pass_rate": {
-          "builder": 0.0,
+          "builder": 0.4,
           "strategy": null,
           "gm": null,
           "sage": null,
-          "overall": 0.0,
-          "sample_size": 7,
+          "overall": 0.4,
+          "sample_size": 20,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "Gemini 3.1 Pro Preview is Google\u2019s frontier reasoning model, delivering enhanced software engineering performance, improved agentic reliability, and more efficient token usage across complex workflows. Building on the multimodal foundation of the Gemini 3 series, it combines high-precision reasoning across text, image, video, audio, and code with a 1M-token context window. Reasoning Details must be preserved when using multi-turn tool calling, see our docs here: https://openrouter.ai/docs/use-cases/reasoning-tokens#preserving-reasoning. The 3.1 update introduces measurable gains in SWE benchmarks and real-world coding environments, along with stronger autonomous task execution in structured domains such as finance and spreadsheet-based workflows.\n\nDesigned for advanced development and agentic systems, Gemini 3.1 Pro Preview improves long-horizon stability and tool orchestration while increasing token efficiency. It introduces a new medium thinking level to better balance cost, speed, and performance. The model excels in agentic coding, structured planning, multimodal analysis, and workflow automation, making it well-suited for autonomous agents, financial modeling, spreadsheet automation, and high-context enterprise tasks.",
@@ -2635,7 +3174,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "MiniMax-M2.5 is a SOTA large language model designed for real-world productivity. Trained in a diverse range of complex real-world digital working environments, M2.5 builds upon the coding expertise of M2.1 to extend into general office work, reaching fluency in generating and operating Word, Excel, and Powerpoint files, context switching between diverse software environments, and working across different agent and human teams. Scoring 80.2% on SWE-Bench Verified, 51.3% on Multi-SWE-Bench, and 76.3% on BrowseComp, M2.5 is also more token efficient than previous generations, having been trained to optimize its actions and output through planning.\",\"model_version_group_id\":null,\"context_length\":196608,\"input_modalities\":",
@@ -2685,7 +3224,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "Opus 4.6 is Anthropic\u2019s strongest model for coding and long-running professional tasks. It is built for agents that operate across entire workflows rather than single prompts, making it especially effective for large codebases, complex refactors, and multi-step debugging that unfolds over time. The model shows deeper contextual understanding, stronger problem decomposition, and greater reliability on hard engineering tasks than prior generations.\\n\\nBeyond coding, Opus 4.6 excels at sustained knowledge work. It produces near-production-ready documents, plans, and analyses in a single pass, and maintains coherence across very long outputs and extended sessions. This makes it a strong default for tasks that require persistence, judgment, and follow-through, such as technical design, migration planning, and end-to-end project execution.\\n\\nFor users upgrading from earlier Opus versions, see our [official migration guide here](https://openrouter.ai/docs/guides/guides/model-migrations/claude-4-6-opus)\\n\",\"model_version_group_id\":null,\"context_length\":1000000,\"input_modalities\":",
@@ -2738,7 +3277,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "OpenAI o4-mini is a compact reasoning model in the o-series, optimized for fast, cost-efficient performance while retaining strong multimodal and agentic capabilities. It supports tool use and demonstrates competitive reasoning and coding performance across benchmarks like AIME (99.5% with Python) and SWE-bench, outperforming its predecessor o3-mini and even approaching o3 in some domains.\\n\\nDespite its smaller size, o4-mini exhibits high accuracy in STEM tasks, visual problem solving (e.g., MathVista, MMMU), and code editing. It is especially well-suited for high-throughput scenarios where latency or cost is critical. Thanks to its efficient architecture and refined reinforcement learning training, o4-mini can chain tools, generate structured outputs, and solve multi-step tasks with minimal delay\u2014often in under a minute.\",\"model_version_group_id\":null,\"context_length\":200000,\"input_modalities\":",
@@ -2790,7 +3329,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "OpenAI o3-mini-high is the same model as [o3-mini](/openai/o3-mini) with reasoning_effort set to high. \\n\\no3-mini is a cost-efficient language model optimized for STEM reasoning tasks, particularly excelling in science, mathematics, and coding. The model features three adjustable reasoning effort levels and supports key developer capabilities including function calling, structured outputs, and streaming, though it does not include vision processing capabilities.\\n\\nThe model demonstrates significant improvements over its predecessor, with expert testers preferring its responses 56% of the time and noting a 39% reduction in major errors on complex questions. With medium reasoning effort settings, o3-mini matches the performance of the larger o1 model on challenging reasoning evaluations like AIME and GPQA, while maintaining lower latency and cost.\",\"model_version_group_id\":null,\"context_length\":200000,\"input_modalities\":",
@@ -2839,7 +3378,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-19"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "DeepSeek R1 is here: Performance on par with [OpenAI o1](/openai/o1), but open-sourced and with fully open reasoning tokens. It's 671B parameters in size, with 37B active in an inference pass.\n\nFully open-source model & [technical report](https://api-docs.deepseek.com/news/news250120).\n\nMIT licensed: Distill & commercialize freely!",
