@@ -1,5 +1,21 @@
 # Changelog
 
+## [2026-04-23] — Bid-triage HVAC schedule extraction vision benchmark
+
+### Added
+- `benchmarks/bid-triage-vision-2026-04-23.md` — full benchmark report: 13 vision models tested across 5 HVAC mechanical drawing pages (41 schedule instances total). Covers methodology, per-model pass rates, cost/latency, failure-mode notes, and production routing recommendation.
+- `_meta.our_observations.task_benchmarks[]` field added to 12 tested models (4 active + 8 discovery) — structured per-model telemetry with task_id `bid-triage-hvac-schedule-extraction-2026-04-23`, including pass rate, cost/page, median latency, failure modes, and verdict.
+
+### Key findings
+- **anthropic/claude-opus-4-7** is the only model reliable across dense HVAC schedules (97.6% on 41 schedules). Verdict: `production_primary` for schedule extraction.
+- Opus 4.6, Sonnet 4.6, GPT-5.4, and Gemini 3.1 FL Preview all hit 11/11 on easy pages but collapsed to 50–70% on dense pages. Easy-page testing is not sufficient evidence of production readiness.
+- google/gemini-3.1-flash-lite-preview at $0.006/page (80× cheaper than Opus 4.7) is viable only as the first pass of a hybrid pipeline with Opus 4.7 escalation on dense pages — not as a standalone primary.
+
+### Methodology note
+- New convention: every vision model claim now requires at least one dense-page test (14+ schedules or a 20+ row sub-schedule) before moving from `discovery` to `active` shelf.
+
+---
+
 ## [2026-04-18] — Agent model management, security, PWA, webhook sync
 
 ### Added

@@ -74,7 +74,27 @@
           "sample_size": 0,
           "window_days": 30,
           "computed_at": "2026-04-22"
-        }
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 2,
+            "schedules_tested": 11,
+            "schedules_correct": 8,
+            "pass_rate": 0.727,
+            "cost_usd_per_page": 0.06,
+            "median_latency_sec": 46,
+            "failure_modes": [
+              "over-counts VAV on Michelin",
+              "over/under on air distribution and louvers"
+            ],
+            "verdict": "rejected",
+            "notes": "Current-gen Sonnet did not improve over 4.5 for this task. Off by 1 on multiple schedules. If we need Anthropic mid-tier, Opus 4.7 is the only reliable option."
+          }
+        ]
       },
       "industry_notes": [
         {
@@ -1407,7 +1427,28 @@
           "sample_size": 0,
           "window_days": 30,
           "computed_at": "2026-04-22"
-        }
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 2,
+            "schedules_tested": 11,
+            "schedules_correct": 8,
+            "pass_rate": 0.727,
+            "cost_usd_per_page": 0.003,
+            "median_latency_sec": 19,
+            "failure_modes": [
+              "hallucinates tag sequences (invented EF-B..E from seeing EF-A)",
+              "duplicates rows",
+              "misses last row of grouped schedules"
+            ],
+            "verdict": "rejected",
+            "notes": "Extremely cheap but unreliable pattern-matcher. Invents sequential tags when it sees the start of a series."
+          }
+        ]
       },
       "industry_notes": [
         {
@@ -2083,7 +2124,26 @@
           "sample_size": 50,
           "window_days": 30,
           "computed_at": "2026-04-22"
-        }
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 1,
+            "schedules_tested": 4,
+            "schedules_correct": 4,
+            "pass_rate": 1.0,
+            "cost_usd_per_page": 0.017,
+            "median_latency_sec": 24,
+            "failure_modes": [
+              "untested on dense pages"
+            ],
+            "verdict": "untested_on_dense",
+            "notes": "Passed the easy page but not stress-tested on DEI2/Mech3 dense schedules. Given Gemini 3.1 FL Preview's 71% on stress, unlikely to hold up."
+          }
+        ]
       },
       "industry_notes": [
         {
@@ -2315,7 +2375,28 @@
           "sample_size": 0,
           "window_days": 30,
           "computed_at": "2026-04-22"
-        }
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 1,
+            "schedules_tested": 4,
+            "schedules_correct": 1,
+            "pass_rate": 0.25,
+            "cost_usd_per_page": 0.019,
+            "median_latency_sec": 21,
+            "failure_modes": [
+              "misses RTUs",
+              "major undercount on FPB (10 vs 13)",
+              "overcount VAV (19 vs 18)"
+            ],
+            "verdict": "rejected",
+            "notes": "Not reliable for schedule extraction. Acceptable for cheap text tasks but not vision-intensive tables."
+          }
+        ]
       },
       "industry_notes": [
         {
