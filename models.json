@@ -73,8 +73,28 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 2,
+            "schedules_tested": 11,
+            "schedules_correct": 8,
+            "pass_rate": 0.727,
+            "cost_usd_per_page": 0.06,
+            "median_latency_sec": 46,
+            "failure_modes": [
+              "over-counts VAV on Michelin",
+              "over/under on air distribution and louvers"
+            ],
+            "verdict": "rejected",
+            "notes": "Current-gen Sonnet did not improve over 4.5 for this task. Off by 1 on multiple schedules. If we need Anthropic mid-tier, Opus 4.7 is the only reliable option."
+          }
+        ]
       },
       "needs_review": false,
       "industry_notes": [
@@ -132,16 +152,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 1198.517176,
-      "total_input_mtok": 830.1467,
-      "total_output_mtok": 5.5605,
+      "total_cost_usd": 1193.848919,
+      "total_input_mtok": 824.5321,
+      "total_output_mtok": 5.5096,
       "total_cache_read_mtok": 0,
-      "call_count": 16620,
-      "avg_cost_per_call_usd": 0.072113,
+      "call_count": 16515,
+      "avg_cost_per_call_usd": 0.072289,
       "period_start": "2026-03-13",
-      "period_end": "2026-04-24",
+      "period_end": "2026-04-21",
       "source": "openrouter-api",
-      "imported_at": "2026-04-25 18:20 UTC"
+      "imported_at": "2026-04-22 18:57 UTC"
     }
   },
   {
@@ -712,215 +732,17 @@
             "session_id": "989b1861-4530-4623-9d8c-fc7df40991f3",
             "run_id": "989b1861-4530-4623-9d8c-fc7df40991f3",
             "notes": "14 actions across filesystem,shell; 779421s"
-          },
-          {
-            "date": "2026-04-22",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "a74a0ecd-7884-4d28-b2c4-74cec4f436cd",
-            "run_id": "a74a0ecd-7884-4d28-b2c4-74cec4f436cd",
-            "notes": "8 actions across filesystem,shell; 259180s"
-          },
-          {
-            "date": "2026-04-21",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "fail",
-            "failure_point": "FP4",
-            "reason": "stale_2646min_status_running",
-            "session_id": "69cdd3f0-75af-488b-842e-bdcb14def6bb",
-            "run_id": "69cdd3f0-75af-488b-842e-bdcb14def6bb",
-            "notes": "19 actions across filesystem,shell; 14327s"
-          },
-          {
-            "date": "2026-04-23",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "1a449546-1b28-4fcb-9006-de9989db2b1d",
-            "run_id": "1a449546-1b28-4fcb-9006-de9989db2b1d",
-            "notes": "9 actions across filesystem,shell; 864004s"
-          },
-          {
-            "date": "2026-04-23",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "019dbbbc-2445-77d4-b2f7-044805e36dbd",
-            "run_id": "019dbbbc-2445-77d4-b2f7-044805e36dbd",
-            "notes": "7 actions across message,shell; 21s"
-          },
-          {
-            "date": "2026-04-23",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "84f332e0-4368-4194-9bdf-30464e574b22",
-            "run_id": "84f332e0-4368-4194-9bdf-30464e574b22",
-            "notes": "7 actions across filesystem,shell; 345583s"
-          },
-          {
-            "date": "2026-04-24",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "019dbcea-7bfe-73c8-9220-7df3004a64db",
-            "run_id": "019dbcea-7bfe-73c8-9220-7df3004a64db",
-            "notes": "5 actions across message,shell; 9s"
-          },
-          {
-            "date": "2026-04-24",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "b8b82a7f-373c-4bd2-9f3f-62d9aa23e894",
-            "run_id": "b8b82a7f-373c-4bd2-9f3f-62d9aa23e894",
-            "notes": "46 actions across filesystem,shell"
-          },
-          {
-            "date": "2026-04-24",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "fee7b1d3-468c-4225-b2d7-9d994519214c",
-            "run_id": "fee7b1d3-468c-4225-b2d7-9d994519214c",
-            "notes": "7 actions across filesystem,shell; 950404s"
-          },
-          {
-            "date": "2026-04-24",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "019dbf81-bbfb-751c-a003-80b185b5a89b",
-            "run_id": "019dbf81-bbfb-751c-a003-80b185b5a89b",
-            "notes": "46 actions across filesystem,shell; 5s"
-          },
-          {
-            "date": "2026-04-24",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "2395fa9c-cf93-4930-86ab-d224acabe0d2",
-            "run_id": "2395fa9c-cf93-4930-86ab-d224acabe0d2",
-            "notes": "6 actions across filesystem,shell; 431982s"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "019dc216-aca5-779e-854e-ae43c240566b",
-            "run_id": "019dc216-aca5-779e-854e-ae43c240566b",
-            "notes": "45 actions across filesystem,shell"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "78e0884b-b6b3-4019-8e8f-567eb7098355",
-            "run_id": "78e0884b-b6b3-4019-8e8f-567eb7098355",
-            "notes": "23 actions across filesystem,shell; 9s"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "523f85a3-cf86-42e1-8438-8e26cb664a44",
-            "run_id": "523f85a3-cf86-42e1-8438-8e26cb664a44",
-            "notes": "24 actions across filesystem,shell"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "fail",
-            "failure_point": "FP4",
-            "reason": "stale_35min_status_running",
-            "session_id": "cb76b69f-734a-4c68-b856-a05ba87e3162",
-            "run_id": "cb76b69f-734a-4c68-b856-a05ba87e3162",
-            "notes": "8 actions across filesystem,shell; 39s"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "f0d31249-7911-46a8-8f1f-fc23e11f3c0f",
-            "run_id": "f0d31249-7911-46a8-8f1f-fc23e11f3c0f",
-            "notes": "50 actions across filesystem,shell; 321s"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "79714687-8e7f-49c4-b976-f58528bef2b5",
-            "run_id": "79714687-8e7f-49c4-b976-f58528bef2b5",
-            "notes": "22 actions across filesystem,shell,subagent; 53s"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "1300da48-7ed5-4252-88b5-0a5543235301",
-            "run_id": "1300da48-7ed5-4252-88b5-0a5543235301",
-            "notes": "13 actions across filesystem,shell; 181s"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "69ba00ff-e946-4787-83f9-c965c9adaceb",
-            "run_id": "69ba00ff-e946-4787-83f9-c965c9adaceb",
-            "notes": "36 actions across filesystem,shell; 134s"
           }
         ],
         "pass_rate": {
           "builder": null,
-          "strategy": 0.7,
-          "gm": 0.5,
+          "strategy": 0.583,
+          "gm": 0.382,
           "sage": null,
-          "overall": 0.562,
-          "sample_size": 64,
+          "overall": 0.435,
+          "sample_size": 46,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "needs_review": false,
@@ -969,16 +791,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 32.690776,
-      "total_input_mtok": 287.3711,
-      "total_output_mtok": 1.5867,
+      "total_cost_usd": 25.030865,
+      "total_input_mtok": 212.7547,
+      "total_output_mtok": 1.2435,
       "total_cache_read_mtok": 0,
-      "call_count": 6600,
-      "avg_cost_per_call_usd": 0.004953,
+      "call_count": 5161,
+      "avg_cost_per_call_usd": 0.00485,
       "period_start": "2026-03-30",
-      "period_end": "2026-04-24",
+      "period_end": "2026-04-21",
       "source": "openrouter-api",
-      "imported_at": "2026-04-25 18:20 UTC"
+      "imported_at": "2026-04-22 18:57 UTC"
     }
   },
   {
@@ -1096,7 +918,7 @@
           "overall": 0.0,
           "sample_size": 4,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "needs_review": false,
@@ -1129,16 +951,16 @@
       "vendor_description_fetched_at": "2026-04-18"
     },
     "spend": {
-      "total_cost_usd": 38.041911,
-      "total_input_mtok": 447.0358,
-      "total_output_mtok": 1.275,
+      "total_cost_usd": 35.905511,
+      "total_input_mtok": 439.3504,
+      "total_output_mtok": 1.2414,
       "total_cache_read_mtok": 0,
-      "call_count": 9877,
-      "avg_cost_per_call_usd": 0.003852,
+      "call_count": 9501,
+      "avg_cost_per_call_usd": 0.003779,
       "period_start": "2026-03-30",
-      "period_end": "2026-04-24",
+      "period_end": "2026-04-21",
       "source": "openrouter-api",
-      "imported_at": "2026-04-25 18:20 UTC"
+      "imported_at": "2026-04-22 18:57 UTC"
     }
   },
   {
@@ -1497,7 +1319,7 @@
           "overall": 0.077,
           "sample_size": 26,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "needs_review": false,
@@ -1608,8 +1430,29 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 2,
+            "schedules_tested": 11,
+            "schedules_correct": 8,
+            "pass_rate": 0.727,
+            "cost_usd_per_page": 0.003,
+            "median_latency_sec": 19,
+            "failure_modes": [
+              "hallucinates tag sequences (invented EF-B..E from seeing EF-A)",
+              "duplicates rows",
+              "misses last row of grouped schedules"
+            ],
+            "verdict": "rejected",
+            "notes": "Extremely cheap but unreliable pattern-matcher. Invents sequential tags when it sees the start of a series."
+          }
+        ]
       },
       "needs_review": false,
       "industry_notes": [
@@ -1653,16 +1496,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 25.692106,
-      "total_input_mtok": 597.6459,
-      "total_output_mtok": 3.9495,
+      "total_cost_usd": 24.770286,
+      "total_input_mtok": 577.6672,
+      "total_output_mtok": 3.8694,
       "total_cache_read_mtok": 0,
-      "call_count": 12174,
-      "avg_cost_per_call_usd": 0.00211,
+      "call_count": 11835,
+      "avg_cost_per_call_usd": 0.002093,
       "period_start": "2026-03-13",
-      "period_end": "2026-04-24",
+      "period_end": "2026-04-21",
       "source": "openrouter-api",
-      "imported_at": "2026-04-25 18:20 UTC"
+      "imported_at": "2026-04-22 18:57 UTC"
     }
   },
   {
@@ -2285,8 +2128,27 @@
           "overall": 0.02,
           "sample_size": 50,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 1,
+            "schedules_tested": 4,
+            "schedules_correct": 4,
+            "pass_rate": 1.0,
+            "cost_usd_per_page": 0.017,
+            "median_latency_sec": 24,
+            "failure_modes": [
+              "untested on dense pages"
+            ],
+            "verdict": "untested_on_dense",
+            "notes": "Passed the easy page but not stress-tested on DEI2/Mech3 dense schedules. Given Gemini 3.1 FL Preview's 71% on stress, unlikely to hold up."
+          }
+        ]
       },
       "needs_review": false,
       "industry_notes": [
@@ -2329,16 +2191,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 2.717311,
-      "total_input_mtok": 14.8191,
-      "total_output_mtok": 0.2098,
+      "total_cost_usd": 2.657214,
+      "total_input_mtok": 14.4729,
+      "total_output_mtok": 0.2027,
       "total_cache_read_mtok": 0,
-      "call_count": 827,
-      "avg_cost_per_call_usd": 0.003286,
+      "call_count": 823,
+      "avg_cost_per_call_usd": 0.003229,
       "period_start": "2026-03-19",
-      "period_end": "2026-04-24",
+      "period_end": "2026-04-19",
       "source": "openrouter-api",
-      "imported_at": "2026-04-25 18:20 UTC"
+      "imported_at": "2026-04-22 18:57 UTC"
     }
   },
   {
@@ -2408,7 +2270,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "needs_review": false,
@@ -2519,8 +2381,29 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 1,
+            "schedules_tested": 4,
+            "schedules_correct": 1,
+            "pass_rate": 0.25,
+            "cost_usd_per_page": 0.019,
+            "median_latency_sec": 21,
+            "failure_modes": [
+              "misses RTUs",
+              "major undercount on FPB (10 vs 13)",
+              "overcount VAV (19 vs 18)"
+            ],
+            "verdict": "rejected",
+            "notes": "Not reliable for schedule extraction. Acceptable for cheap text tasks but not vision-intensive tables."
+          }
+        ]
       },
       "needs_review": false,
       "industry_notes": [
@@ -2565,16 +2448,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 13.674546,
-      "total_input_mtok": 9.9132,
-      "total_output_mtok": 0.7523,
+      "total_cost_usd": 13.272011,
+      "total_input_mtok": 9.6709,
+      "total_output_mtok": 0.7202,
       "total_cache_read_mtok": 0,
-      "call_count": 538,
-      "avg_cost_per_call_usd": 0.025417,
+      "call_count": 520,
+      "avg_cost_per_call_usd": 0.025523,
       "period_start": "2026-03-17",
-      "period_end": "2026-04-24",
+      "period_end": "2026-04-21",
       "source": "openrouter-api",
-      "imported_at": "2026-04-25 18:20 UTC"
+      "imported_at": "2026-04-22 18:57 UTC"
     }
   },
   {
@@ -2621,7 +2504,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "Fast-mode variant of [Opus 4.6](/anthropic/claude-opus-4.6) - identical capabilities with higher output speed at premium 6x pricing.\\n\\nLearn more in Anthropic's docs: https://platform.claude.com/docs/en/build-with-claude/fast-mode\",\"model_version_group_id\":null,\"context_length\":1000000,\"input_modalities\":",
@@ -2672,24 +2555,33 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 2,
+            "schedules_tested": 11,
+            "schedules_correct": 4,
+            "pass_rate": 0.364,
+            "cost_usd_per_page": 0.005,
+            "median_latency_sec": 22,
+            "failure_modes": [
+              "wild overcounts (Furnace 8 vs 1)",
+              "duplicates",
+              "hallucinated row expansions"
+            ],
+            "verdict": "rejected",
+            "notes": "Cheapest option but unreliable. Don't use for quantity-critical work."
+          }
+        ]
       },
       "vendor_description": "GPT-5.4 nano is the most lightweight and cost-efficient variant of the GPT-5.4 family, optimized for speed-critical and high-volume tasks. It supports text and image inputs and is designed for low-latency use cases such as classification, data extraction, ranking, and sub-agent execution.\\n\\nThe model prioritizes responsiveness and efficiency over deep reasoning, making it ideal for pipelines that require fast, reliable outputs at scale. GPT-5.4 nano is well suited for background tasks, real-time systems, and distributed agent architectures where minimizing cost and latency is essential.\",\"model_version_group_id\":null,\"context_length\":400000,\"input_modalities\":",
       "vendor_description_source": "openrouter",
       "vendor_description_fetched_at": "2026-04-18"
-    },
-    "spend": {
-      "total_cost_usd": 0.009065,
-      "total_input_mtok": 0.0063,
-      "total_output_mtok": 0.0062,
-      "total_cache_read_mtok": 0,
-      "call_count": 2,
-      "avg_cost_per_call_usd": 0.004533,
-      "period_start": "2026-04-24",
-      "period_end": "2026-04-24",
-      "source": "openrouter-api",
-      "imported_at": "2026-04-25 18:20 UTC"
     }
   },
   {
@@ -2738,24 +2630,31 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 2,
+            "schedules_tested": 4,
+            "schedules_correct": 4,
+            "pass_rate": 1.0,
+            "cost_usd_per_page": 0.016,
+            "median_latency_sec": 10,
+            "failure_modes": [
+              "JSON truncation on multi-schedule pages \u2014 escape-char bug ends response mid-row"
+            ],
+            "verdict": "rejected_until_parser_fixed",
+            "notes": "Accurate when it completes, but reliably crashes with JSON parse errors on complex pages. Disqualified until OpenRouter / model fixes JSON escape handling."
+          }
+        ]
       },
       "vendor_description": "GPT-5.4 mini brings the core capabilities of GPT-5.4 to a faster, more efficient model optimized for high-throughput workloads. It supports text and image inputs with strong performance across reasoning, coding, and tool use, while reducing latency and cost for large-scale deployments.\\n\\nThe model is designed for production environments that require a balance of capability and efficiency, making it well suited for chat applications, coding assistants, and agent workflows that operate at scale. GPT-5.4 mini delivers reliable instruction following, solid multi-step reasoning, and consistent performance across diverse tasks with improved cost efficiency.\",\"model_version_group_id\":null,\"context_length\":400000,\"input_modalities\":",
       "vendor_description_source": "openrouter",
       "vendor_description_fetched_at": "2026-04-18"
-    },
-    "spend": {
-      "total_cost_usd": 0.02796,
-      "total_input_mtok": 0.0095,
-      "total_output_mtok": 0.005,
-      "total_cache_read_mtok": 0,
-      "call_count": 3,
-      "avg_cost_per_call_usd": 0.00932,
-      "period_start": "2026-04-24",
-      "period_end": "2026-04-24",
-      "source": "openrouter-api",
-      "imported_at": "2026-04-25 18:20 UTC"
     }
   },
   {
@@ -2802,24 +2701,31 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 1,
+            "schedules_tested": 4,
+            "schedules_correct": 2,
+            "pass_rate": 0.5,
+            "cost_usd_per_page": 0.003,
+            "median_latency_sec": 25,
+            "failure_modes": [
+              "overcount on dense tables (15 FPB vs 13)"
+            ],
+            "verdict": "rejected",
+            "notes": "Not tested further after first round."
+          }
+        ]
       },
       "vendor_description": "Mistral Small 4 is the next major release in the Mistral Small family, unifying the capabilities of several flagship Mistral models into a single system. It combines strong reasoning from Magistral, multimodal understanding from Pixtral, and agentic coding capabilities from Devstral, enabling one model to handle complex analysis, software development, and visual tasks within the same workflow.",
       "vendor_description_source": "openrouter",
       "vendor_description_fetched_at": "2026-04-18"
-    },
-    "spend": {
-      "total_cost_usd": 0.002986,
-      "total_input_mtok": 0.0024,
-      "total_output_mtok": 0.0044,
-      "total_cache_read_mtok": 0,
-      "call_count": 1,
-      "avg_cost_per_call_usd": 0.002986,
-      "period_start": "2026-04-24",
-      "period_end": "2026-04-24",
-      "source": "openrouter-api",
-      "imported_at": "2026-04-25 18:20 UTC"
     }
   },
   {
@@ -2866,7 +2772,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "GPT-5.4 Pro is OpenAI's most advanced model, building on GPT-5.4's unified architecture with enhanced reasoning capabilities for complex, high-stakes tasks. It features a 1M+ token context window (922K input, 128K output) with support for text and image inputs. Optimized for step-by-step reasoning, instruction following, and accuracy, GPT-5.4 Pro excels at agentic coding, long-context workflows, and multi-step problem solving.\",\"model_version_group_id\":null,\"context_length\":1050000,\"input_modalities\":",
@@ -2917,24 +2823,33 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 5,
+            "schedules_tested": 35,
+            "schedules_correct": 23,
+            "pass_rate": 0.657,
+            "cost_usd_per_page": 0.08,
+            "median_latency_sec": 47,
+            "failure_modes": [
+              "dropped schedules entirely on dense pages",
+              "tag-label drift vs Opus on some tags",
+              "JSON parse error on dense page"
+            ],
+            "verdict": "rejected",
+            "notes": "Nailed first two easy pages but collapsed on Mech3 p.41 (1/10) and crashed on p.42. Tag labels sometimes differ from Opus (EF-4 vs EF-A, FLR/AC-1B vs FURN/CU-18) \u2014 may indicate character-level misreading rather than structural understanding."
+          }
+        ]
       },
       "vendor_description": "GPT-5.4 is OpenAI\u2019s latest frontier model, unifying the Codex and GPT lines into a single system. It features a 1M+ token context window (922K input, 128K output) with support for text and image inputs, enabling high-context reasoning, coding, and multimodal analysis within the same workflow.\\n\\nThe model delivers improved performance in coding, document understanding, tool use, and instruction following. It is designed as a strong default for both general-purpose tasks and software engineering, capable of generating production-quality code, synthesizing information across multiple sources, and executing complex multi-step workflows with fewer iterations and greater token efficiency.\",\"model_version_group_id\":null,\"context_length\":1050000,\"input_modalities\":",
       "vendor_description_source": "openrouter",
       "vendor_description_fetched_at": "2026-04-18"
-    },
-    "spend": {
-      "total_cost_usd": 0.312969,
-      "total_input_mtok": 0.0157,
-      "total_output_mtok": 0.0182,
-      "total_cache_read_mtok": 0,
-      "call_count": 5,
-      "avg_cost_per_call_usd": 0.062594,
-      "period_start": "2026-04-24",
-      "period_end": "2026-04-24",
-      "source": "openrouter-api",
-      "imported_at": "2026-04-25 18:20 UTC"
     }
   },
   {
@@ -2984,24 +2899,33 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 5,
+            "schedules_tested": 41,
+            "schedules_correct": 29,
+            "pass_rate": 0.707,
+            "cost_usd_per_page": 0.006,
+            "median_latency_sec": 12,
+            "failure_modes": [
+              "systematic undercount by 1 on medium-dense schedules",
+              "misses entire schedules on complex pages (e.g. Duct ID Schedule)",
+              "major undercount on densest schedule (Terminal Unit 15 vs 24)"
+            ],
+            "verdict": "rejected_as_primary_hybrid_candidate",
+            "notes": "Initial tests on easy pages gave 100% and looked like the winner at 80x cheaper than Opus 4.7. Stress test on dense pages revealed systematic undercounting. Still the best cheap option if used in hybrid with Opus 4.7 escalation when visual_row_count disagrees with emitted rows."
+          }
+        ]
       },
       "vendor_description": "Gemini 3.1 Flash Lite Preview is Google's high-efficiency model optimized for high-volume use cases. It outperforms Gemini 2.5 Flash Lite on overall quality and approaches Gemini 2.5 Flash performance across key capabilities. Improvements span audio input/ASR, RAG snippet ranking, translation, data extraction, and code completion. Supports full thinking levels (minimal, low, medium, high) for fine-grained cost/performance trade-offs. Priced at half the cost of Gemini 3 Flash.\",\"model_version_group_id\":null,\"context_length\":1048576,\"input_modalities\":",
       "vendor_description_source": "openrouter",
       "vendor_description_fetched_at": "2026-04-18"
-    },
-    "spend": {
-      "total_cost_usd": 0.049205,
-      "total_input_mtok": 0.0129,
-      "total_output_mtok": 0.0307,
-      "total_cache_read_mtok": 0,
-      "call_count": 10,
-      "avg_cost_per_call_usd": 0.00492,
-      "period_start": "2026-04-24",
-      "period_end": "2026-04-24",
-      "source": "openrouter-api",
-      "imported_at": "2026-04-25 18:20 UTC"
     }
   },
   {
@@ -3051,7 +2975,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "Gemini 3.1 Pro Preview Custom Tools is a variant of Gemini 3.1 Pro that improves tool selection behavior by preventing overuse of a general bash tool when more efficient third-party or user-defined functions are available. This specialized preview endpoint significantly increases function calling reliability and ensures the model selects the most appropriate tool in coding agents and complex, multi-tool workflows.\\n\\nIt retains the core strengths of Gemini 3.1 Pro, including multimodal reasoning across text, image, video, audio, and code, a 1M-token context window, and strong software engineering performance.\",\"model_version_group_id\":null,\"context_length\":1048576,\"input_modalities\":",
@@ -3104,7 +3028,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "GPT-5.3-Codex is OpenAI\u2019s most advanced agentic coding model, combining the frontier software engineering performance of GPT-5.2-Codex with the broader reasoning and professional knowledge capabilities of GPT-5.2. It achieves state-of-the-art results on SWE-Bench Pro and strong performance on Terminal-Bench 2.0 and OSWorld-Verified, reflecting improved multi-language coding, terminal proficiency, and real-world computer-use skills. The model is optimized for long-running, tool-using workflows and supports interactive steering during execution, making it suitable for complex development tasks, debugging, deployment, and iterative product work.\n\nBeyond coding, GPT-5.3-Codex performs strongly on structured knowledge-work benchmarks such as GDPval, supporting tasks like document drafting, spreadsheet analysis, slide creation, and operational research across domains. It is trained with enhanced cybersecurity awareness, including vulnerability identification capabilities, and deployed with additional safeguards for high-risk use cases. Compared to prior Codex models, it is more token-efficient and approximately 25% faster, targeting professional end-to-end workflows that span reasoning, execution, and computer interaction.",
@@ -3371,144 +3295,42 @@
             "session_id": "18c863ed-55de-43f7-99b5-a809ab5c2598",
             "run_id": "18c863ed-55de-43f7-99b5-a809ab5c2598",
             "notes": "2 actions across message,shell; 10798s"
-          },
-          {
-            "date": "2026-04-22",
-            "agent": "build",
-            "agent_role": "builder",
-            "result": "fail",
-            "failure_point": "FP2",
-            "reason": "no_assistant_text",
-            "session_id": "321437ce-caba-4b79-889d-ed2a1e7561f5",
-            "run_id": "321437ce-caba-4b79-889d-ed2a1e7561f5",
-            "notes": "2 actions across message,shell; 48261s"
-          },
-          {
-            "date": "2026-04-22",
-            "agent": "build",
-            "agent_role": "builder",
-            "result": "fail",
-            "failure_point": "FP2",
-            "reason": "no_assistant_text",
-            "session_id": "0465d3d8-de85-4241-88c7-529d1c0984dd",
-            "run_id": "0465d3d8-de85-4241-88c7-529d1c0984dd",
-            "notes": "2 actions across message,shell; 51861s"
-          },
-          {
-            "date": "2026-04-23",
-            "agent": "build",
-            "agent_role": "builder",
-            "result": "fail",
-            "failure_point": "FP2",
-            "reason": "no_assistant_text",
-            "session_id": "d8a67704-16f5-4ffd-b57e-580406096d1a",
-            "run_id": "d8a67704-16f5-4ffd-b57e-580406096d1a",
-            "notes": "2 actions across message,shell; 69862s"
-          },
-          {
-            "date": "2026-04-23",
-            "agent": "build",
-            "agent_role": "builder",
-            "result": "fail",
-            "failure_point": "FP2",
-            "reason": "no_assistant_text",
-            "session_id": "6ab8af15-2d5d-424c-a183-77f105bcc39b",
-            "run_id": "6ab8af15-2d5d-424c-a183-77f105bcc39b",
-            "notes": "2 actions across message,shell; 84262s"
-          },
-          {
-            "date": "2026-04-23",
-            "agent": "build",
-            "agent_role": "builder",
-            "result": "fail",
-            "failure_point": "FP2",
-            "reason": "no_assistant_text",
-            "session_id": "194a83e7-a5f7-4c1a-83eb-d431359e2ff3",
-            "run_id": "194a83e7-a5f7-4c1a-83eb-d431359e2ff3",
-            "notes": "7 actions across message,shell; 157805s"
-          },
-          {
-            "date": "2026-04-23",
-            "agent": "build",
-            "agent_role": "builder",
-            "result": "fail",
-            "failure_point": "FP2",
-            "reason": "no_assistant_text",
-            "session_id": "957b35c8-0590-45a6-9799-c2679e8908fc",
-            "run_id": "957b35c8-0590-45a6-9799-c2679e8908fc",
-            "notes": "2 actions across message,shell; 25198s"
-          },
-          {
-            "date": "2026-04-23",
-            "agent": "build",
-            "agent_role": "builder",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "1134e0bd-0ffb-4c10-aaa0-b0834b4a4849",
-            "run_id": "1134e0bd-0ffb-4c10-aaa0-b0834b4a4849",
-            "notes": "13 actions across filesystem,shell; 200995s"
-          },
-          {
-            "date": "2026-04-24",
-            "agent": "build",
-            "agent_role": "builder",
-            "result": "fail",
-            "failure_point": "FP2",
-            "reason": "no_assistant_text",
-            "session_id": "bec5b421-82e5-4e6d-ba8e-d7a0d7fce66d",
-            "run_id": "bec5b421-82e5-4e6d-ba8e-d7a0d7fce66d",
-            "notes": "2 actions across message,shell; 61198s"
-          },
-          {
-            "date": "2026-04-24",
-            "agent": "build",
-            "agent_role": "builder",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "500ca9b1-705f-4664-9188-3e773d26128d",
-            "run_id": "500ca9b1-705f-4664-9188-3e773d26128d",
-            "notes": "6 actions across filesystem,shell; 244199s"
-          },
-          {
-            "date": "2026-04-24",
-            "agent": "build",
-            "agent_role": "builder",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "910c34b6-ee54-497c-8f14-d5c7575d590d",
-            "run_id": "910c34b6-ee54-497c-8f14-d5c7575d590d",
-            "notes": "8 actions across filesystem,shell; 258612s"
           }
         ],
         "pass_rate": {
-          "builder": 0.367,
+          "builder": 0.4,
           "strategy": null,
           "gm": null,
           "sage": null,
-          "overall": 0.367,
-          "sample_size": 30,
+          "overall": 0.4,
+          "sample_size": 20,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 5,
+            "schedules_tested": 35,
+            "schedules_correct": 31,
+            "pass_rate": 0.886,
+            "cost_usd_per_page": 0.08,
+            "median_latency_sec": 61,
+            "failure_modes": [
+              "off-by-one on dense schedules",
+              "JSON parse error on page with 15+ row schedule"
+            ],
+            "verdict": "discovery_hybrid_candidate",
+            "notes": "Strong on simple and medium-dense schedules. Crashed JSON on Mech3 p.42 (densest page with 24-row Terminal Unit Schedule). Off-by-one failures on Unit Heater / Ductless Split. 6x cheaper than Opus 4.7."
+          }
+        ]
       },
       "vendor_description": "Gemini 3.1 Pro Preview is Google\u2019s frontier reasoning model, delivering enhanced software engineering performance, improved agentic reliability, and more efficient token usage across complex workflows. Building on the multimodal foundation of the Gemini 3 series, it combines high-precision reasoning across text, image, video, audio, and code with a 1M-token context window. Reasoning Details must be preserved when using multi-turn tool calling, see our docs here: https://openrouter.ai/docs/use-cases/reasoning-tokens#preserving-reasoning. The 3.1 update introduces measurable gains in SWE benchmarks and real-world coding environments, along with stronger autonomous task execution in structured domains such as finance and spreadsheet-based workflows.\n\nDesigned for advanced development and agentic systems, Gemini 3.1 Pro Preview improves long-horizon stability and tool orchestration while increasing token efficiency. It introduces a new medium thinking level to better balance cost, speed, and performance. The model excels in agentic coding, structured planning, multimodal analysis, and workflow automation, making it well-suited for autonomous agents, financial modeling, spreadsheet automation, and high-context enterprise tasks.",
       "vendor_description_source": "openrouter",
       "vendor_description_fetched_at": "2026-04-18"
-    },
-    "spend": {
-      "total_cost_usd": 0.523172,
-      "total_input_mtok": 0.0064,
-      "total_output_mtok": 0.0425,
-      "total_cache_read_mtok": 0,
-      "call_count": 5,
-      "avg_cost_per_call_usd": 0.104634,
-      "period_start": "2026-04-24",
-      "period_end": "2026-04-24",
-      "source": "openrouter-api",
-      "imported_at": "2026-04-25 18:20 UTC"
     }
   },
   {
@@ -3554,7 +3376,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "MiniMax-M2.5 is a SOTA large language model designed for real-world productivity. Trained in a diverse range of complex real-world digital working environments, M2.5 builds upon the coding expertise of M2.1 to extend into general office work, reaching fluency in generating and operating Word, Excel, and Powerpoint files, context switching between diverse software environments, and working across different agent and human teams. Scoring 80.2% on SWE-Bench Verified, 51.3% on Multi-SWE-Bench, and 76.3% on BrowseComp, M2.5 is also more token efficient than previous generations, having been trained to optimize its actions and output through planning.\",\"model_version_group_id\":null,\"context_length\":196608,\"input_modalities\":",
@@ -3604,24 +3426,33 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 5,
+            "schedules_tested": 41,
+            "schedules_correct": 27,
+            "pass_rate": 0.659,
+            "cost_usd_per_page": 0.11,
+            "median_latency_sec": 70,
+            "failure_modes": [
+              "misses DOAS/sub-schedules on dense pages",
+              "over/undercount by 1-3 on medium schedules",
+              "major undercount on densest tables (Terminal Unit 20 vs 24)"
+            ],
+            "verdict": "rejected_despite_prior_perfect",
+            "notes": "Looked perfect after easy pages (11/11). Stress test revealed 53% on dense pages \u2014 not production-viable for schedule extraction. Do NOT trust early test rounds that only exercise simple schedules."
+          }
+        ]
       },
       "vendor_description": "Opus 4.6 is Anthropic\u2019s strongest model for coding and long-running professional tasks. It is built for agents that operate across entire workflows rather than single prompts, making it especially effective for large codebases, complex refactors, and multi-step debugging that unfolds over time. The model shows deeper contextual understanding, stronger problem decomposition, and greater reliability on hard engineering tasks than prior generations.\\n\\nBeyond coding, Opus 4.6 excels at sustained knowledge work. It produces near-production-ready documents, plans, and analyses in a single pass, and maintains coherence across very long outputs and extended sessions. This makes it a strong default for tasks that require persistence, judgment, and follow-through, such as technical design, migration planning, and end-to-end project execution.\\n\\nFor users upgrading from earlier Opus versions, see our [official migration guide here](https://openrouter.ai/docs/guides/guides/model-migrations/claude-4-6-opus)\\n\",\"model_version_group_id\":null,\"context_length\":1000000,\"input_modalities\":",
       "vendor_description_source": "openrouter",
       "vendor_description_fetched_at": "2026-04-18"
-    },
-    "spend": {
-      "total_cost_usd": 0.593635,
-      "total_input_mtok": 0.0089,
-      "total_output_mtok": 0.022,
-      "total_cache_read_mtok": 0,
-      "call_count": 5,
-      "avg_cost_per_call_usd": 0.118727,
-      "period_start": "2026-04-24",
-      "period_end": "2026-04-24",
-      "source": "openrouter-api",
-      "imported_at": "2026-04-25 18:20 UTC"
     }
   },
   {
@@ -3669,24 +3500,32 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 2,
+            "schedules_tested": 11,
+            "schedules_correct": 2,
+            "pass_rate": 0.182,
+            "cost_usd_per_page": 0.026,
+            "median_latency_sec": 33,
+            "failure_modes": [
+              "doesn't find most schedules on page",
+              "reasoning model misinterprets task"
+            ],
+            "verdict": "rejected",
+            "notes": "Reasoning model does not adapt well to structured table extraction from vision input."
+          }
+        ]
       },
       "vendor_description": "OpenAI o4-mini is a compact reasoning model in the o-series, optimized for fast, cost-efficient performance while retaining strong multimodal and agentic capabilities. It supports tool use and demonstrates competitive reasoning and coding performance across benchmarks like AIME (99.5% with Python) and SWE-bench, outperforming its predecessor o3-mini and even approaching o3 in some domains.\\n\\nDespite its smaller size, o4-mini exhibits high accuracy in STEM tasks, visual problem solving (e.g., MathVista, MMMU), and code editing. It is especially well-suited for high-throughput scenarios where latency or cost is critical. Thanks to its efficient architecture and refined reinforcement learning training, o4-mini can chain tools, generate structured outputs, and solve multi-step tasks with minimal delay\u2014often in under a minute.\",\"model_version_group_id\":null,\"context_length\":200000,\"input_modalities\":",
       "vendor_description_source": "openrouter",
       "vendor_description_fetched_at": "2026-04-18"
-    },
-    "spend": {
-      "total_cost_usd": 0.031358,
-      "total_input_mtok": 0.0056,
-      "total_output_mtok": 0.0057,
-      "total_cache_read_mtok": 0,
-      "call_count": 2,
-      "avg_cost_per_call_usd": 0.015679,
-      "period_start": "2026-04-24",
-      "period_end": "2026-04-24",
-      "source": "openrouter-api",
-      "imported_at": "2026-04-25 18:20 UTC"
     }
   },
   {
@@ -3733,7 +3572,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "OpenAI o3-mini-high is the same model as [o3-mini](/openai/o3-mini) with reasoning_effort set to high. \\n\\no3-mini is a cost-efficient language model optimized for STEM reasoning tasks, particularly excelling in science, mathematics, and coding. The model features three adjustable reasoning effort levels and supports key developer capabilities including function calling, structured outputs, and streaming, though it does not include vision processing capabilities.\\n\\nThe model demonstrates significant improvements over its predecessor, with expert testers preferring its responses 56% of the time and noting a 39% reduction in major errors on complex questions. With medium reasoning effort settings, o3-mini matches the performance of the larger o1 model on challenging reasoning evaluations like AIME and GPQA, while maintaining lower latency and cost.\",\"model_version_group_id\":null,\"context_length\":200000,\"input_modalities\":",
@@ -3782,7 +3621,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "vendor_description": "DeepSeek R1 is here: Performance on par with [OpenAI o1](/openai/o1), but open-sourced and with fully open reasoning tokens. It's 671B parameters in size, with 37B active in an inference pass.\n\nFully open-source model & [technical report](https://api-docs.deepseek.com/news/news250120).\n\nMIT licensed: Distill & commercialize freely!",

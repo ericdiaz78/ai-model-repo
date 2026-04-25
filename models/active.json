@@ -73,8 +73,28 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 2,
+            "schedules_tested": 11,
+            "schedules_correct": 8,
+            "pass_rate": 0.727,
+            "cost_usd_per_page": 0.06,
+            "median_latency_sec": 46,
+            "failure_modes": [
+              "over-counts VAV on Michelin",
+              "over/under on air distribution and louvers"
+            ],
+            "verdict": "rejected",
+            "notes": "Current-gen Sonnet did not improve over 4.5 for this task. Off by 1 on multiple schedules. If we need Anthropic mid-tier, Opus 4.7 is the only reliable option."
+          }
+        ]
       },
       "industry_notes": [
         {
@@ -711,215 +731,17 @@
             "session_id": "989b1861-4530-4623-9d8c-fc7df40991f3",
             "run_id": "989b1861-4530-4623-9d8c-fc7df40991f3",
             "notes": "14 actions across filesystem,shell; 779421s"
-          },
-          {
-            "date": "2026-04-22",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "a74a0ecd-7884-4d28-b2c4-74cec4f436cd",
-            "run_id": "a74a0ecd-7884-4d28-b2c4-74cec4f436cd",
-            "notes": "8 actions across filesystem,shell; 259180s"
-          },
-          {
-            "date": "2026-04-21",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "fail",
-            "failure_point": "FP4",
-            "reason": "stale_2646min_status_running",
-            "session_id": "69cdd3f0-75af-488b-842e-bdcb14def6bb",
-            "run_id": "69cdd3f0-75af-488b-842e-bdcb14def6bb",
-            "notes": "19 actions across filesystem,shell; 14327s"
-          },
-          {
-            "date": "2026-04-23",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "1a449546-1b28-4fcb-9006-de9989db2b1d",
-            "run_id": "1a449546-1b28-4fcb-9006-de9989db2b1d",
-            "notes": "9 actions across filesystem,shell; 864004s"
-          },
-          {
-            "date": "2026-04-23",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "019dbbbc-2445-77d4-b2f7-044805e36dbd",
-            "run_id": "019dbbbc-2445-77d4-b2f7-044805e36dbd",
-            "notes": "7 actions across message,shell; 21s"
-          },
-          {
-            "date": "2026-04-23",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "84f332e0-4368-4194-9bdf-30464e574b22",
-            "run_id": "84f332e0-4368-4194-9bdf-30464e574b22",
-            "notes": "7 actions across filesystem,shell; 345583s"
-          },
-          {
-            "date": "2026-04-24",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "019dbcea-7bfe-73c8-9220-7df3004a64db",
-            "run_id": "019dbcea-7bfe-73c8-9220-7df3004a64db",
-            "notes": "5 actions across message,shell; 9s"
-          },
-          {
-            "date": "2026-04-24",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "b8b82a7f-373c-4bd2-9f3f-62d9aa23e894",
-            "run_id": "b8b82a7f-373c-4bd2-9f3f-62d9aa23e894",
-            "notes": "46 actions across filesystem,shell"
-          },
-          {
-            "date": "2026-04-24",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "fee7b1d3-468c-4225-b2d7-9d994519214c",
-            "run_id": "fee7b1d3-468c-4225-b2d7-9d994519214c",
-            "notes": "7 actions across filesystem,shell; 950404s"
-          },
-          {
-            "date": "2026-04-24",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "019dbf81-bbfb-751c-a003-80b185b5a89b",
-            "run_id": "019dbf81-bbfb-751c-a003-80b185b5a89b",
-            "notes": "46 actions across filesystem,shell; 5s"
-          },
-          {
-            "date": "2026-04-24",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "2395fa9c-cf93-4930-86ab-d224acabe0d2",
-            "run_id": "2395fa9c-cf93-4930-86ab-d224acabe0d2",
-            "notes": "6 actions across filesystem,shell; 431982s"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "019dc216-aca5-779e-854e-ae43c240566b",
-            "run_id": "019dc216-aca5-779e-854e-ae43c240566b",
-            "notes": "45 actions across filesystem,shell"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "78e0884b-b6b3-4019-8e8f-567eb7098355",
-            "run_id": "78e0884b-b6b3-4019-8e8f-567eb7098355",
-            "notes": "23 actions across filesystem,shell; 9s"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "523f85a3-cf86-42e1-8438-8e26cb664a44",
-            "run_id": "523f85a3-cf86-42e1-8438-8e26cb664a44",
-            "notes": "24 actions across filesystem,shell"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "strategy",
-            "agent_role": "strategy",
-            "result": "fail",
-            "failure_point": "FP4",
-            "reason": "stale_35min_status_running",
-            "session_id": "cb76b69f-734a-4c68-b856-a05ba87e3162",
-            "run_id": "cb76b69f-734a-4c68-b856-a05ba87e3162",
-            "notes": "8 actions across filesystem,shell; 39s"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "f0d31249-7911-46a8-8f1f-fc23e11f3c0f",
-            "run_id": "f0d31249-7911-46a8-8f1f-fc23e11f3c0f",
-            "notes": "50 actions across filesystem,shell; 321s"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "79714687-8e7f-49c4-b976-f58528bef2b5",
-            "run_id": "79714687-8e7f-49c4-b976-f58528bef2b5",
-            "notes": "22 actions across filesystem,shell,subagent; 53s"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "1300da48-7ed5-4252-88b5-0a5543235301",
-            "run_id": "1300da48-7ed5-4252-88b5-0a5543235301",
-            "notes": "13 actions across filesystem,shell; 181s"
-          },
-          {
-            "date": "2026-04-25",
-            "agent": "general",
-            "agent_role": "gm",
-            "result": "pass",
-            "failure_point": null,
-            "reason": "loop_closed",
-            "session_id": "69ba00ff-e946-4787-83f9-c965c9adaceb",
-            "run_id": "69ba00ff-e946-4787-83f9-c965c9adaceb",
-            "notes": "36 actions across filesystem,shell; 134s"
           }
         ],
         "pass_rate": {
           "builder": null,
-          "strategy": 0.7,
-          "gm": 0.5,
+          "strategy": 0.583,
+          "gm": 0.382,
           "sage": null,
-          "overall": 0.562,
-          "sample_size": 64,
+          "overall": 0.435,
+          "sample_size": 46,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "industry_notes": [
@@ -1094,7 +916,7 @@
           "overall": 0.0,
           "sample_size": 4,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "industry_notes": [
@@ -1494,7 +1316,7 @@
           "overall": 0.077,
           "sample_size": 26,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "industry_notes": [
@@ -1604,8 +1426,29 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 2,
+            "schedules_tested": 11,
+            "schedules_correct": 8,
+            "pass_rate": 0.727,
+            "cost_usd_per_page": 0.003,
+            "median_latency_sec": 19,
+            "failure_modes": [
+              "hallucinates tag sequences (invented EF-B..E from seeing EF-A)",
+              "duplicates rows",
+              "misses last row of grouped schedules"
+            ],
+            "verdict": "rejected",
+            "notes": "Extremely cheap but unreliable pattern-matcher. Invents sequential tags when it sees the start of a series."
+          }
+        ]
       },
       "industry_notes": [
         {
@@ -2280,8 +2123,27 @@
           "overall": 0.02,
           "sample_size": 50,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 1,
+            "schedules_tested": 4,
+            "schedules_correct": 4,
+            "pass_rate": 1.0,
+            "cost_usd_per_page": 0.017,
+            "median_latency_sec": 24,
+            "failure_modes": [
+              "untested on dense pages"
+            ],
+            "verdict": "untested_on_dense",
+            "notes": "Passed the easy page but not stress-tested on DEI2/Mech3 dense schedules. Given Gemini 3.1 FL Preview's 71% on stress, unlikely to hold up."
+          }
+        ]
       },
       "industry_notes": [
         {
@@ -2402,7 +2264,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-22"
         }
       },
       "industry_notes": [
@@ -2512,8 +2374,29 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
-        }
+          "computed_at": "2026-04-22"
+        },
+        "task_benchmarks": [
+          {
+            "date": "2026-04-23",
+            "task_id": "bid-triage-hvac-schedule-extraction-2026-04-23",
+            "task": "HVAC mechanical drawing schedule extraction (vision)",
+            "source": "bid-triage/backend/app/services/pdf_parser.py vision benchmark",
+            "pages_tested": 1,
+            "schedules_tested": 4,
+            "schedules_correct": 1,
+            "pass_rate": 0.25,
+            "cost_usd_per_page": 0.019,
+            "median_latency_sec": 21,
+            "failure_modes": [
+              "misses RTUs",
+              "major undercount on FPB (10 vs 13)",
+              "overcount VAV (19 vs 18)"
+            ],
+            "verdict": "rejected",
+            "notes": "Not reliable for schedule extraction. Acceptable for cheap text tasks but not vision-intensive tables."
+          }
+        ]
       },
       "industry_notes": [
         {
