@@ -73,7 +73,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-27"
         },
         "task_benchmarks": [
           {
@@ -896,17 +896,105 @@
             "session_id": "4ce8e0a2-ecb0-41cc-9931-6f75fbf9823e",
             "run_id": "4ce8e0a2-ecb0-41cc-9931-6f75fbf9823e",
             "notes": "30 actions across filesystem,shell; 181s"
+          },
+          {
+            "date": "2026-04-26",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "f857703e-a9e0-4c5e-9d7a-570f17e8d87c",
+            "run_id": "f857703e-a9e0-4c5e-9d7a-570f17e8d87c",
+            "notes": "42 actions across filesystem,shell; 131s"
+          },
+          {
+            "date": "2026-04-26",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "07e7dfff-a47c-44d1-9418-5c78168eed28",
+            "run_id": "07e7dfff-a47c-44d1-9418-5c78168eed28",
+            "notes": "14 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-04-26",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "80188a2c-d23a-49fc-9a21-188afc0bf6a8",
+            "run_id": "80188a2c-d23a-49fc-9a21-188afc0bf6a8",
+            "notes": "11 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-04-26",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP5",
+            "reason": "consecutive_duplicate_send",
+            "session_id": "f53c2a4f-dcb6-4415-9dfb-57e8b51a860d",
+            "run_id": "f53c2a4f-dcb6-4415-9dfb-57e8b51a860d",
+            "notes": "457 actions across filesystem,message,shell,subagent; 117s"
+          },
+          {
+            "date": "2026-04-26",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "fail",
+            "failure_point": "FP5",
+            "reason": "consecutive_duplicate_send",
+            "session_id": "1bb49878-a143-495a-950d-45e24dd2fb93",
+            "run_id": "1bb49878-a143-495a-950d-45e24dd2fb93",
+            "notes": "3 actions across message,shell"
+          },
+          {
+            "date": "2026-04-27",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "fc661795-d9b6-4134-a3cf-6a68e0b59ab9",
+            "run_id": "fc661795-d9b6-4134-a3cf-6a68e0b59ab9",
+            "notes": "56 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-04-27",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "359d404d-bfed-4bba-9ec6-744259851587",
+            "run_id": "359d404d-bfed-4bba-9ec6-744259851587",
+            "notes": "29 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-04-27",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "64b4c764-f483-40bd-9f58-b8e8299224f7",
+            "run_id": "64b4c764-f483-40bd-9f58-b8e8299224f7",
+            "notes": "20 actions across filesystem,shell"
           }
         ],
         "pass_rate": {
           "builder": null,
-          "strategy": 0.647,
-          "gm": 0.455,
+          "strategy": 0.684,
+          "gm": 0.48,
           "sage": null,
-          "overall": 0.508,
-          "sample_size": 61,
+          "overall": 0.536,
+          "sample_size": 69,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-27"
         }
       },
       "industry_notes": [
@@ -1081,7 +1169,7 @@
           "overall": 0.0,
           "sample_size": 4,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-27"
         }
       },
       "industry_notes": [
@@ -1481,7 +1569,7 @@
           "overall": 0.077,
           "sample_size": 26,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-27"
         }
       },
       "industry_notes": [
@@ -1591,7 +1679,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-27"
         },
         "task_benchmarks": [
           {
@@ -2288,7 +2376,7 @@
           "overall": 0.02,
           "sample_size": 50,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-27"
         },
         "task_benchmarks": [
           {
@@ -2429,7 +2517,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-27"
         }
       },
       "industry_notes": [
@@ -2539,7 +2627,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-04-25"
+          "computed_at": "2026-04-27"
         },
         "task_benchmarks": [
           {
