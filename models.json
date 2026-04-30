@@ -161,7 +161,7 @@
       "period_start": "2026-03-13",
       "period_end": "2026-04-29",
       "source": "openrouter-api",
-      "imported_at": "2026-04-30 18:22 UTC"
+      "imported_at": "2026-04-30 22:22 UTC"
     }
   },
   {
@@ -1117,15 +1117,26 @@
             "session_id": "1d6e7df1-5e0b-4893-b99d-cb3f9f7e5586",
             "run_id": "1d6e7df1-5e0b-4893-b99d-cb3f9f7e5586",
             "notes": "12 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-04-30",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "161fe4b9-e455-4a27-aa93-994236fbdfac",
+            "run_id": "161fe4b9-e455-4a27-aa93-994236fbdfac",
+            "notes": "9 actions across filesystem,shell"
           }
         ],
         "pass_rate": {
           "builder": null,
-          "strategy": 0.769,
+          "strategy": 0.778,
           "gm": 0.527,
           "sage": null,
-          "overall": 0.605,
-          "sample_size": 81,
+          "overall": 0.61,
+          "sample_size": 82,
           "window_days": 30,
           "computed_at": "2026-04-30"
         }
@@ -1185,7 +1196,7 @@
       "period_start": "2026-03-30",
       "period_end": "2026-04-29",
       "source": "openrouter-api",
-      "imported_at": "2026-04-30 18:22 UTC"
+      "imported_at": "2026-04-30 22:22 UTC"
     }
   },
   {
@@ -1345,7 +1356,7 @@
       "period_start": "2026-03-30",
       "period_end": "2026-04-29",
       "source": "openrouter-api",
-      "imported_at": "2026-04-30 18:22 UTC"
+      "imported_at": "2026-04-30 22:22 UTC"
     }
   },
   {
@@ -1890,7 +1901,7 @@
       "period_start": "2026-03-13",
       "period_end": "2026-04-29",
       "source": "openrouter-api",
-      "imported_at": "2026-04-30 18:22 UTC"
+      "imported_at": "2026-04-30 22:22 UTC"
     }
   },
   {
@@ -2585,7 +2596,7 @@
       "period_start": "2026-03-19",
       "period_end": "2026-04-28",
       "source": "openrouter-api",
-      "imported_at": "2026-04-30 18:22 UTC"
+      "imported_at": "2026-04-30 22:22 UTC"
     }
   },
   {
@@ -2842,7 +2853,7 @@
       "period_start": "2026-03-17",
       "period_end": "2026-04-29",
       "source": "openrouter-api",
-      "imported_at": "2026-04-30 18:22 UTC"
+      "imported_at": "2026-04-30 22:22 UTC"
     }
   },
   {
@@ -2978,7 +2989,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-04-30 18:22 UTC"
+      "imported_at": "2026-04-30 22:22 UTC"
     }
   },
   {
@@ -3063,7 +3074,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-04-30 18:22 UTC"
+      "imported_at": "2026-04-30 22:22 UTC"
     }
   },
   {
@@ -3146,7 +3157,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-04-30 18:22 UTC"
+      "imported_at": "2026-04-30 22:22 UTC"
     }
   },
   {
@@ -3282,7 +3293,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-04-30 18:22 UTC"
+      "imported_at": "2026-04-30 22:22 UTC"
     }
   },
   {
@@ -3370,7 +3381,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-04-30 18:22 UTC"
+      "imported_at": "2026-04-30 22:22 UTC"
     }
   },
   {
@@ -3787,7 +3798,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-04-30 18:22 UTC"
+      "imported_at": "2026-04-30 22:22 UTC"
     }
   },
   {
@@ -3921,7 +3932,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-04-30 18:22 UTC"
+      "imported_at": "2026-04-30 22:22 UTC"
     }
   },
   {
@@ -4006,7 +4017,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-04-30 18:22 UTC"
+      "imported_at": "2026-04-30 22:22 UTC"
     }
   },
   {
