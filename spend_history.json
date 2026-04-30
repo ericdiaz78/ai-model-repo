@@ -449,6 +449,13 @@
       "input_tokens": 3427217,
       "output_tokens": 21068,
       "calls": 51
+    },
+    {
+      "date": "2026-04-29",
+      "cost_usd": 2.234244,
+      "input_tokens": 3242671,
+      "output_tokens": 21531,
+      "calls": 46
     }
   ],
   "google/gemini-2.5-flash-lite": [
@@ -766,6 +773,13 @@
       "input_tokens": 15923233,
       "output_tokens": 149504,
       "calls": 228
+    },
+    {
+      "date": "2026-04-29",
+      "cost_usd": 0.154603,
+      "input_tokens": 1834258,
+      "output_tokens": 11421,
+      "calls": 31
     }
   ],
   "minimax/minimax-m2.7-20260318": [
@@ -957,6 +971,13 @@
       "input_tokens": 5397839,
       "output_tokens": 41119,
       "calls": 223
+    },
+    {
+      "date": "2026-04-29",
+      "cost_usd": 2.290394,
+      "input_tokens": 13302592,
+      "output_tokens": 66566,
+      "calls": 571
     }
   ],
   "anthropic/claude-4.5-sonnet-20250929": [
@@ -1120,6 +1141,13 @@
       "input_tokens": 141359,
       "output_tokens": 33354,
       "calls": 41
+    },
+    {
+      "date": "2026-04-29",
+      "cost_usd": 0.85323,
+      "input_tokens": 123700,
+      "output_tokens": 32142,
+      "calls": 38
     }
   ],
   "anthropic/claude-4.5-haiku-20251001": [
@@ -1269,6 +1297,13 @@
       "input_tokens": 339888,
       "output_tokens": 36864,
       "calls": 18
+    },
+    {
+      "date": "2026-04-29",
+      "cost_usd": 0.450029,
+      "input_tokens": 315004,
+      "output_tokens": 27005,
+      "calls": 15
     }
   ],
   "xiaomi/mimo-v2-pro-20260318": [
@@ -1425,6 +1460,13 @@
       "input_tokens": 2551409,
       "output_tokens": 11144,
       "calls": 122
+    },
+    {
+      "date": "2026-04-29",
+      "cost_usd": 1.954056,
+      "input_tokens": 2878440,
+      "output_tokens": 12564,
+      "calls": 133
     }
   ],
   "google/gemini-3-flash-preview-20251217": [
@@ -1637,6 +1679,13 @@
       "input_tokens": 100607,
       "output_tokens": 63938,
       "calls": 21
+    },
+    {
+      "date": "2026-04-29",
+      "cost_usd": 1.072615,
+      "input_tokens": 56668,
+      "output_tokens": 31571,
+      "calls": 12
     }
   ],
   "mistralai/mistral-small-2603": [
