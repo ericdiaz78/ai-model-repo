@@ -1138,15 +1138,26 @@
             "session_id": "5f90fef9-91dd-4190-b828-b15e077edd29",
             "run_id": "5f90fef9-91dd-4190-b828-b15e077edd29",
             "notes": "5 actions across filesystem,shell; 37s"
+          },
+          {
+            "date": "2026-05-01",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "308a6cd3-60ab-471b-b6b0-894ddc23dbca",
+            "run_id": "308a6cd3-60ab-471b-b6b0-894ddc23dbca",
+            "notes": "8 actions across filesystem,shell"
           }
         ],
         "pass_rate": {
           "builder": null,
-          "strategy": 0.786,
+          "strategy": 0.793,
           "gm": 0.527,
           "sage": null,
-          "overall": 0.614,
-          "sample_size": 83,
+          "overall": 0.619,
+          "sample_size": 84,
           "window_days": 30,
           "computed_at": "2026-05-01"
         }
