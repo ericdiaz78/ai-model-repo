@@ -73,7 +73,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-01"
+          "computed_at": "2026-05-02"
         },
         "task_benchmarks": [
           {
@@ -1160,17 +1160,72 @@
             "session_id": "d0897a95-b397-4fd6-8fb0-5d10db0be49d",
             "run_id": "d0897a95-b397-4fd6-8fb0-5d10db0be49d",
             "notes": "42 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-02",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "0df1b099-6544-4202-9bcb-fab600214c7e",
+            "run_id": "0df1b099-6544-4202-9bcb-fab600214c7e",
+            "notes": "22 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-02",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "f0291c7f-68bd-4c67-96db-7c5ccb3bd4ec",
+            "run_id": "f0291c7f-68bd-4c67-96db-7c5ccb3bd4ec",
+            "notes": "12 actions across filesystem,shell,subagent; 99s"
+          },
+          {
+            "date": "2026-05-02",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "03989dcd-ed94-47af-aef1-f330120dbc5e",
+            "run_id": "03989dcd-ed94-47af-aef1-f330120dbc5e",
+            "notes": "32 actions across filesystem,shell; 367s"
+          },
+          {
+            "date": "2026-05-02",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "22e0bfa5-1c1a-414e-a027-a708199349c3",
+            "run_id": "22e0bfa5-1c1a-414e-a027-a708199349c3",
+            "notes": "8 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-02",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "0a78dae0-2f03-4971-9f2f-ee5d2b28a796",
+            "run_id": "0a78dae0-2f03-4971-9f2f-ee5d2b28a796",
+            "notes": "8 actions across filesystem,shell"
           }
         ],
         "pass_rate": {
           "builder": null,
-          "strategy": 0.793,
-          "gm": 0.536,
+          "strategy": 0.818,
+          "gm": 0.544,
           "sage": null,
-          "overall": 0.624,
-          "sample_size": 85,
+          "overall": 0.644,
+          "sample_size": 90,
           "window_days": 30,
-          "computed_at": "2026-05-01"
+          "computed_at": "2026-05-02"
         }
       },
       "industry_notes": [
@@ -1345,7 +1400,7 @@
           "overall": 0.0,
           "sample_size": 4,
           "window_days": 30,
-          "computed_at": "2026-05-01"
+          "computed_at": "2026-05-02"
         }
       },
       "industry_notes": [
@@ -1745,7 +1800,7 @@
           "overall": 0.077,
           "sample_size": 26,
           "window_days": 30,
-          "computed_at": "2026-05-01"
+          "computed_at": "2026-05-02"
         }
       },
       "industry_notes": [
@@ -1855,7 +1910,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-01"
+          "computed_at": "2026-05-02"
         },
         "task_benchmarks": [
           {
@@ -2545,14 +2600,14 @@
           }
         ],
         "pass_rate": {
-          "builder": 0.045,
+          "builder": 0.048,
           "strategy": 0.0,
           "gm": null,
           "sage": null,
-          "overall": 0.02,
-          "sample_size": 50,
+          "overall": 0.021,
+          "sample_size": 48,
           "window_days": 30,
-          "computed_at": "2026-05-01"
+          "computed_at": "2026-05-02"
         },
         "task_benchmarks": [
           {
@@ -2693,7 +2748,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-01"
+          "computed_at": "2026-05-02"
         }
       },
       "industry_notes": [
@@ -2803,7 +2858,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-01"
+          "computed_at": "2026-05-02"
         },
         "task_benchmarks": [
           {
