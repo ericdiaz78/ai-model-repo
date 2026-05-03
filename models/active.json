@@ -73,7 +73,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-02"
+          "computed_at": "2026-05-03"
         },
         "task_benchmarks": [
           {
@@ -1225,7 +1225,7 @@
           "overall": 0.644,
           "sample_size": 90,
           "window_days": 30,
-          "computed_at": "2026-05-02"
+          "computed_at": "2026-05-03"
         }
       },
       "industry_notes": [
@@ -1400,7 +1400,7 @@
           "overall": 0.0,
           "sample_size": 4,
           "window_days": 30,
-          "computed_at": "2026-05-02"
+          "computed_at": "2026-05-03"
         }
       },
       "industry_notes": [
@@ -1795,12 +1795,12 @@
         "pass_rate": {
           "builder": null,
           "strategy": null,
-          "gm": 0.077,
+          "gm": 0.083,
           "sage": null,
-          "overall": 0.077,
-          "sample_size": 26,
+          "overall": 0.083,
+          "sample_size": 24,
           "window_days": 30,
-          "computed_at": "2026-05-02"
+          "computed_at": "2026-05-03"
         }
       },
       "industry_notes": [
@@ -1910,7 +1910,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-02"
+          "computed_at": "2026-05-03"
         },
         "task_benchmarks": [
           {
@@ -2605,9 +2605,9 @@
           "gm": null,
           "sage": null,
           "overall": 0.021,
-          "sample_size": 48,
+          "sample_size": 47,
           "window_days": 30,
-          "computed_at": "2026-05-02"
+          "computed_at": "2026-05-03"
         },
         "task_benchmarks": [
           {
@@ -2748,7 +2748,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-02"
+          "computed_at": "2026-05-03"
         }
       },
       "industry_notes": [
@@ -2858,7 +2858,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-02"
+          "computed_at": "2026-05-03"
         },
         "task_benchmarks": [
           {
