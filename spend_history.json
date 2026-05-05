@@ -188,6 +188,20 @@
       "input_tokens": 2264921,
       "output_tokens": 16062,
       "calls": 64
+    },
+    {
+      "date": "2026-05-03",
+      "cost_usd": 0.065368,
+      "input_tokens": 632604,
+      "output_tokens": 6857,
+      "calls": 33
+    },
+    {
+      "date": "2026-05-04",
+      "cost_usd": 0.143086,
+      "input_tokens": 559874,
+      "output_tokens": 12800,
+      "calls": 29
     }
   ],
   "anthropic/claude-4.6-sonnet-20260217": [
@@ -484,6 +498,20 @@
       "input_tokens": 4402050,
       "output_tokens": 18542,
       "calls": 46
+    },
+    {
+      "date": "2026-05-03",
+      "cost_usd": 2.446256,
+      "input_tokens": 2616928,
+      "output_tokens": 14721,
+      "calls": 37
+    },
+    {
+      "date": "2026-05-04",
+      "cost_usd": 2.020754,
+      "input_tokens": 3352594,
+      "output_tokens": 13092,
+      "calls": 38
     }
   ],
   "google/gemini-2.5-flash-lite": [
@@ -829,6 +857,20 @@
       "input_tokens": 407220,
       "output_tokens": 278,
       "calls": 14
+    },
+    {
+      "date": "2026-05-03",
+      "cost_usd": 0.06217,
+      "input_tokens": 657795,
+      "output_tokens": 4543,
+      "calls": 25
+    },
+    {
+      "date": "2026-05-04",
+      "cost_usd": 0.075649,
+      "input_tokens": 791128,
+      "output_tokens": 2785,
+      "calls": 24
     }
   ],
   "minimax/minimax-m2.7-20260318": [
@@ -1048,6 +1090,20 @@
       "input_tokens": 13278654,
       "output_tokens": 46459,
       "calls": 696
+    },
+    {
+      "date": "2026-05-03",
+      "cost_usd": 3.121163,
+      "input_tokens": 14267894,
+      "output_tokens": 50950,
+      "calls": 752
+    },
+    {
+      "date": "2026-05-04",
+      "cost_usd": 3.329584,
+      "input_tokens": 17074757,
+      "output_tokens": 67996,
+      "calls": 815
     }
   ],
   "anthropic/claude-4.5-sonnet-20250929": [
@@ -1558,6 +1614,20 @@
       "input_tokens": 3161458,
       "output_tokens": 18765,
       "calls": 141
+    },
+    {
+      "date": "2026-05-03",
+      "cost_usd": 1.571681,
+      "input_tokens": 2365315,
+      "output_tokens": 8697,
+      "calls": 116
+    },
+    {
+      "date": "2026-05-04",
+      "cost_usd": 5.230738,
+      "input_tokens": 18254358,
+      "output_tokens": 74789,
+      "calls": 319
     }
   ],
   "google/gemini-3-flash-preview-20251217": [
