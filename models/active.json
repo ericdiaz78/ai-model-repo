@@ -75,6 +75,17 @@
             "session_id": "685fdc71-8e3c-43c0-a28a-1a8fd9aa20ef",
             "run_id": "685fdc71-8e3c-43c0-a28a-1a8fd9aa20ef",
             "notes": "47 actions across filesystem,plan,shell"
+          },
+          {
+            "date": "2026-05-07",
+            "agent": "sage",
+            "agent_role": "sage",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "cea25432-9a42-4ef5-9d71-61929339318e",
+            "run_id": "cea25432-9a42-4ef5-9d71-61929339318e",
+            "notes": "42 actions across filesystem,plan,shell"
           }
         ],
         "pass_rate": {
@@ -83,7 +94,7 @@
           "gm": null,
           "sage": 1.0,
           "overall": 1.0,
-          "sample_size": 1,
+          "sample_size": 2,
           "window_days": 30,
           "computed_at": "2026-05-07"
         },
@@ -1458,15 +1469,37 @@
             "session_id": "46948f21-9c6d-482d-9cbe-42ae5ee113b2",
             "run_id": "46948f21-9c6d-482d-9cbe-42ae5ee113b2",
             "notes": "14 actions across filesystem,shell; 106s"
+          },
+          {
+            "date": "2026-05-07",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "cb1576df-5c31-43e9-8da7-103f1c9bb5e7",
+            "run_id": "cb1576df-5c31-43e9-8da7-103f1c9bb5e7",
+            "notes": "14 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-07",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "3c4a2d2f-8212-4cbf-a539-777e69fc6098",
+            "run_id": "3c4a2d2f-8212-4cbf-a539-777e69fc6098",
+            "notes": "12 actions across filesystem,shell"
           }
         ],
         "pass_rate": {
           "builder": null,
-          "strategy": 0.87,
+          "strategy": 0.875,
           "gm": 0.6,
           "sage": null,
-          "overall": 0.712,
-          "sample_size": 111,
+          "overall": 0.717,
+          "sample_size": 113,
           "window_days": 30,
           "computed_at": "2026-05-07"
         }
