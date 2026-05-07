@@ -202,6 +202,20 @@
       "input_tokens": 559874,
       "output_tokens": 12800,
       "calls": 29
+    },
+    {
+      "date": "2026-05-05",
+      "cost_usd": 0.159762,
+      "input_tokens": 546182,
+      "output_tokens": 14424,
+      "calls": 32
+    },
+    {
+      "date": "2026-05-06",
+      "cost_usd": 0.279462,
+      "input_tokens": 1134308,
+      "output_tokens": 17587,
+      "calls": 95
     }
   ],
   "anthropic/claude-4.6-sonnet-20260217": [
@@ -512,6 +526,20 @@
       "input_tokens": 3352594,
       "output_tokens": 13092,
       "calls": 38
+    },
+    {
+      "date": "2026-05-05",
+      "cost_usd": 3.139069,
+      "input_tokens": 4269672,
+      "output_tokens": 16625,
+      "calls": 46
+    },
+    {
+      "date": "2026-05-06",
+      "cost_usd": 3.264973,
+      "input_tokens": 3880884,
+      "output_tokens": 18274,
+      "calls": 54
     }
   ],
   "google/gemini-2.5-flash-lite": [
@@ -871,6 +899,20 @@
       "input_tokens": 791128,
       "output_tokens": 2785,
       "calls": 24
+    },
+    {
+      "date": "2026-05-05",
+      "cost_usd": 0.197061,
+      "input_tokens": 1937064,
+      "output_tokens": 42111,
+      "calls": 26
+    },
+    {
+      "date": "2026-05-06",
+      "cost_usd": 0.062929,
+      "input_tokens": 692337,
+      "output_tokens": 11657,
+      "calls": 13
     }
   ],
   "minimax/minimax-m2.7-20260318": [
@@ -1104,6 +1146,20 @@
       "input_tokens": 17074757,
       "output_tokens": 67996,
       "calls": 815
+    },
+    {
+      "date": "2026-05-05",
+      "cost_usd": 3.141492,
+      "input_tokens": 14377456,
+      "output_tokens": 48970,
+      "calls": 753
+    },
+    {
+      "date": "2026-05-06",
+      "cost_usd": 3.500739,
+      "input_tokens": 18914988,
+      "output_tokens": 94097,
+      "calls": 868
     }
   ],
   "anthropic/claude-4.5-sonnet-20250929": [
@@ -1274,6 +1330,13 @@
       "input_tokens": 123700,
       "output_tokens": 32142,
       "calls": 38
+    },
+    {
+      "date": "2026-05-06",
+      "cost_usd": 0.922428,
+      "input_tokens": 126131,
+      "output_tokens": 36269,
+      "calls": 38
     }
   ],
   "anthropic/claude-4.5-haiku-20251001": [
@@ -1430,6 +1493,13 @@
       "input_tokens": 315004,
       "output_tokens": 27005,
       "calls": 15
+    },
+    {
+      "date": "2026-05-06",
+      "cost_usd": 0.533126,
+      "input_tokens": 369286,
+      "output_tokens": 32768,
+      "calls": 16
     }
   ],
   "xiaomi/mimo-v2-pro-20260318": [
@@ -1628,6 +1698,20 @@
       "input_tokens": 18254358,
       "output_tokens": 74789,
       "calls": 319
+    },
+    {
+      "date": "2026-05-05",
+      "cost_usd": 0.67806,
+      "input_tokens": 2710053,
+      "output_tokens": 13345,
+      "calls": 127
+    },
+    {
+      "date": "2026-05-06",
+      "cost_usd": 0.679804,
+      "input_tokens": 2775758,
+      "output_tokens": 11071,
+      "calls": 127
     }
   ],
   "google/gemini-3-flash-preview-20251217": [
@@ -1847,6 +1931,13 @@
       "input_tokens": 56668,
       "output_tokens": 31571,
       "calls": 12
+    },
+    {
+      "date": "2026-05-06",
+      "cost_usd": 1.409405,
+      "input_tokens": 90926,
+      "output_tokens": 38191,
+      "calls": 22
     }
   ],
   "mistralai/mistral-small-2603": [
@@ -1917,6 +2008,15 @@
       "input_tokens": 533,
       "output_tokens": 0,
       "calls": 3
+    }
+  ],
+  "openai/gpt-4o-mini": [
+    {
+      "date": "2026-05-06",
+      "cost_usd": 0.000239,
+      "input_tokens": 795,
+      "output_tokens": 201,
+      "calls": 1
     }
   ]
 }

@@ -64,16 +64,28 @@
         "openrouter_stats": {}
       },
       "our_observations": {
-        "trials": [],
+        "trials": [
+          {
+            "date": "2026-05-06",
+            "agent": "sage",
+            "agent_role": "sage",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "685fdc71-8e3c-43c0-a28a-1a8fd9aa20ef",
+            "run_id": "685fdc71-8e3c-43c0-a28a-1a8fd9aa20ef",
+            "notes": "47 actions across filesystem,plan,shell"
+          }
+        ],
         "pass_rate": {
           "builder": null,
           "strategy": null,
           "gm": null,
-          "sage": null,
-          "overall": null,
-          "sample_size": 0,
+          "sage": 1.0,
+          "overall": 1.0,
+          "sample_size": 1,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -152,16 +164,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 1220.292803,
-      "total_input_mtok": 858.4691,
-      "total_output_mtok": 5.7237,
+      "total_cost_usd": 1226.696845,
+      "total_input_mtok": 866.6196,
+      "total_output_mtok": 5.7586,
       "total_cache_read_mtok": 0,
-      "call_count": 17020,
-      "avg_cost_per_call_usd": 0.071698,
+      "call_count": 17120,
+      "avg_cost_per_call_usd": 0.071653,
       "period_start": "2026-03-13",
-      "period_end": "2026-05-04",
+      "period_end": "2026-05-06",
       "source": "openrouter-api",
-      "imported_at": "2026-05-05 22:09 UTC"
+      "imported_at": "2026-05-07 10:09 UTC"
     }
   },
   {
@@ -1370,17 +1382,94 @@
             "session_id": "bce376f4-9563-411d-a44b-87dbfa33195f",
             "run_id": "bce376f4-9563-411d-a44b-87dbfa33195f",
             "notes": "20 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-05",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "0d666f44-f9ab-4529-933a-893c44a6ecb4",
+            "run_id": "0d666f44-f9ab-4529-933a-893c44a6ecb4",
+            "notes": "7 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-06",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "aaab5656-2ec2-4239-850d-2eb2507a6044",
+            "run_id": "aaab5656-2ec2-4239-850d-2eb2507a6044",
+            "notes": "15 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-06",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "8d518d25-0eb6-4d62-87b9-e3d702652d14",
+            "run_id": "8d518d25-0eb6-4d62-87b9-e3d702652d14",
+            "notes": "24 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-06",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "b2fe1b03-e7cf-42df-8b1c-cac631eec7e0",
+            "run_id": "b2fe1b03-e7cf-42df-8b1c-cac631eec7e0",
+            "notes": "12 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-06",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "df76f997-f4e7-4cf7-8318-ad44c81d4339",
+            "run_id": "df76f997-f4e7-4cf7-8318-ad44c81d4339",
+            "notes": "10 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-06",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "1ec1076e-55d2-4112-81a2-d00f4f6f3a0c",
+            "run_id": "1ec1076e-55d2-4112-81a2-d00f4f6f3a0c",
+            "notes": "35 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-06",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "46948f21-9c6d-482d-9cbe-42ae5ee113b2",
+            "run_id": "46948f21-9c6d-482d-9cbe-42ae5ee113b2",
+            "notes": "14 actions across filesystem,shell; 106s"
           }
         ],
         "pass_rate": {
           "builder": null,
-          "strategy": 0.86,
-          "gm": 0.574,
+          "strategy": 0.87,
+          "gm": 0.6,
           "sage": null,
-          "overall": 0.692,
-          "sample_size": 104,
+          "overall": 0.712,
+          "sample_size": 111,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "needs_review": false,
@@ -1429,16 +1518,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 55.44888,
-      "total_input_mtok": 415.4504,
-      "total_output_mtok": 2.244,
+      "total_cost_usd": 62.091111,
+      "total_input_mtok": 448.7428,
+      "total_output_mtok": 2.3871,
       "total_cache_read_mtok": 0,
-      "call_count": 12274,
-      "avg_cost_per_call_usd": 0.004518,
+      "call_count": 13895,
+      "avg_cost_per_call_usd": 0.004469,
       "period_start": "2026-03-30",
-      "period_end": "2026-05-04",
+      "period_end": "2026-05-06",
       "source": "openrouter-api",
-      "imported_at": "2026-05-05 22:09 UTC"
+      "imported_at": "2026-05-07 10:09 UTC"
     }
   },
   {
@@ -1556,7 +1645,7 @@
           "overall": 0.0,
           "sample_size": 4,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "needs_review": false,
@@ -1589,16 +1678,16 @@
       "vendor_description_fetched_at": "2026-04-18"
     },
     "spend": {
-      "total_cost_usd": 60.151802,
-      "total_input_mtok": 506.5188,
-      "total_output_mtok": 1.4997,
+      "total_cost_usd": 61.509666,
+      "total_input_mtok": 512.0046,
+      "total_output_mtok": 1.5241,
       "total_cache_read_mtok": 0,
-      "call_count": 11597,
-      "avg_cost_per_call_usd": 0.005187,
+      "call_count": 11851,
+      "avg_cost_per_call_usd": 0.00519,
       "period_start": "2026-03-30",
-      "period_end": "2026-05-04",
+      "period_end": "2026-05-06",
       "source": "openrouter-api",
-      "imported_at": "2026-05-05 22:09 UTC"
+      "imported_at": "2026-05-07 10:09 UTC"
     }
   },
   {
@@ -1957,7 +2046,7 @@
           "overall": 0.087,
           "sample_size": 23,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "needs_review": false,
@@ -2068,7 +2157,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -2134,16 +2223,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 32.436107,
-      "total_input_mtok": 685.935,
-      "total_output_mtok": 4.7348,
+      "total_cost_usd": 32.696097,
+      "total_input_mtok": 688.5644,
+      "total_output_mtok": 4.7885,
       "total_cache_read_mtok": 0,
-      "call_count": 13385,
-      "avg_cost_per_call_usd": 0.002423,
+      "call_count": 13424,
+      "avg_cost_per_call_usd": 0.002436,
       "period_start": "2026-03-13",
-      "period_end": "2026-05-04",
+      "period_end": "2026-05-06",
       "source": "openrouter-api",
-      "imported_at": "2026-05-05 22:09 UTC"
+      "imported_at": "2026-05-07 10:09 UTC"
     }
   },
   {
@@ -2766,7 +2855,7 @@
           "overall": 0.022,
           "sample_size": 45,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -2829,16 +2918,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 3.894034,
-      "total_input_mtok": 21.6208,
-      "total_output_mtok": 0.3112,
+      "total_cost_usd": 4.333258,
+      "total_input_mtok": 23.3013,
+      "total_output_mtok": 0.3432,
       "total_cache_read_mtok": 0,
-      "call_count": 1096,
-      "avg_cost_per_call_usd": 0.003553,
+      "call_count": 1223,
+      "avg_cost_per_call_usd": 0.003543,
       "period_start": "2026-03-19",
-      "period_end": "2026-05-04",
+      "period_end": "2026-05-06",
       "source": "openrouter-api",
-      "imported_at": "2026-05-05 22:09 UTC"
+      "imported_at": "2026-05-07 10:09 UTC"
     }
   },
   {
@@ -2908,7 +2997,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "needs_review": false,
@@ -3019,7 +3108,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -3086,16 +3175,16 @@
       "researched_at": "2026-04-13"
     },
     "spend": {
-      "total_cost_usd": 15.339284,
-      "total_input_mtok": 11.0414,
-      "total_output_mtok": 0.8596,
+      "total_cost_usd": 15.87241,
+      "total_input_mtok": 11.4107,
+      "total_output_mtok": 0.8923,
       "total_cache_read_mtok": 0,
-      "call_count": 612,
-      "avg_cost_per_call_usd": 0.025064,
+      "call_count": 628,
+      "avg_cost_per_call_usd": 0.025275,
       "period_start": "2026-03-17",
-      "period_end": "2026-04-29",
+      "period_end": "2026-05-06",
       "source": "openrouter-api",
-      "imported_at": "2026-05-05 22:09 UTC"
+      "imported_at": "2026-05-07 10:09 UTC"
     }
   },
   {
@@ -3142,7 +3231,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "vendor_description": "Fast-mode variant of [Opus 4.6](/anthropic/claude-opus-4.6) - identical capabilities with higher output speed at premium 6x pricing.\\n\\nLearn more in Anthropic's docs: https://platform.claude.com/docs/en/build-with-claude/fast-mode\",\"model_version_group_id\":null,\"context_length\":1000000,\"input_modalities\":",
@@ -3193,7 +3282,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -3231,7 +3320,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-05-05 22:09 UTC"
+      "imported_at": "2026-05-07 10:09 UTC"
     }
   },
   {
@@ -3280,7 +3369,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -3316,7 +3405,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-05-05 22:09 UTC"
+      "imported_at": "2026-05-07 10:09 UTC"
     }
   },
   {
@@ -3363,7 +3452,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -3399,7 +3488,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-05-05 22:09 UTC"
+      "imported_at": "2026-05-07 10:09 UTC"
     }
   },
   {
@@ -3446,7 +3535,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "vendor_description": "GPT-5.4 Pro is OpenAI's most advanced model, building on GPT-5.4's unified architecture with enhanced reasoning capabilities for complex, high-stakes tasks. It features a 1M+ token context window (922K input, 128K output) with support for text and image inputs. Optimized for step-by-step reasoning, instruction following, and accuracy, GPT-5.4 Pro excels at agentic coding, long-context workflows, and multi-step problem solving.\",\"model_version_group_id\":null,\"context_length\":1050000,\"input_modalities\":",
@@ -3497,7 +3586,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -3535,7 +3624,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-05-05 22:09 UTC"
+      "imported_at": "2026-05-07 10:09 UTC"
     }
   },
   {
@@ -3585,7 +3674,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -3623,7 +3712,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-05-05 22:09 UTC"
+      "imported_at": "2026-05-07 10:09 UTC"
     }
   },
   {
@@ -3673,7 +3762,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "vendor_description": "Gemini 3.1 Pro Preview Custom Tools is a variant of Gemini 3.1 Pro that improves tool selection behavior by preventing overuse of a general bash tool when more efficient third-party or user-defined functions are available. This specialized preview endpoint significantly increases function calling reliability and ensures the model selects the most appropriate tool in coding agents and complex, multi-tool workflows.\\n\\nIt retains the core strengths of Gemini 3.1 Pro, including multimodal reasoning across text, image, video, audio, and code, a 1M-token context window, and strong software engineering performance.\",\"model_version_group_id\":null,\"context_length\":1048576,\"input_modalities\":",
@@ -3726,7 +3815,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "vendor_description": "GPT-5.3-Codex is OpenAI\u2019s most advanced agentic coding model, combining the frontier software engineering performance of GPT-5.2-Codex with the broader reasoning and professional knowledge capabilities of GPT-5.2. It achieves state-of-the-art results on SWE-Bench Pro and strong performance on Terminal-Bench 2.0 and OSWorld-Verified, reflecting improved multi-language coding, terminal proficiency, and real-world computer-use skills. The model is optimized for long-running, tool-using workflows and supports interactive steering during execution, making it suitable for complex development tasks, debugging, deployment, and iterative product work.\n\nBeyond coding, GPT-5.3-Codex performs strongly on structured knowledge-work benchmarks such as GDPval, supporting tasks like document drafting, spreadsheet analysis, slide creation, and operational research across domains. It is trained with enhanced cybersecurity awareness, including vulnerability identification capabilities, and deployed with additional safeguards for high-risk use cases. Compared to prior Codex models, it is more token-efficient and approximately 25% faster, targeting professional end-to-end workflows that span reasoning, execution, and computer interaction.",
@@ -4003,7 +4092,7 @@
           "overall": 0.4,
           "sample_size": 20,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -4040,7 +4129,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-05-05 22:09 UTC"
+      "imported_at": "2026-05-07 10:09 UTC"
     }
   },
   {
@@ -4086,7 +4175,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "vendor_description": "MiniMax-M2.5 is a SOTA large language model designed for real-world productivity. Trained in a diverse range of complex real-world digital working environments, M2.5 builds upon the coding expertise of M2.1 to extend into general office work, reaching fluency in generating and operating Word, Excel, and Powerpoint files, context switching between diverse software environments, and working across different agent and human teams. Scoring 80.2% on SWE-Bench Verified, 51.3% on Multi-SWE-Bench, and 76.3% on BrowseComp, M2.5 is also more token efficient than previous generations, having been trained to optimize its actions and output through planning.\",\"model_version_group_id\":null,\"context_length\":196608,\"input_modalities\":",
@@ -4136,7 +4225,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -4174,7 +4263,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-05-05 22:09 UTC"
+      "imported_at": "2026-05-07 10:09 UTC"
     }
   },
   {
@@ -4222,7 +4311,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -4259,7 +4348,7 @@
       "period_start": "2026-04-24",
       "period_end": "2026-04-24",
       "source": "openrouter-api",
-      "imported_at": "2026-05-05 22:09 UTC"
+      "imported_at": "2026-05-07 10:09 UTC"
     }
   },
   {
@@ -4306,7 +4395,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "vendor_description": "OpenAI o3-mini-high is the same model as [o3-mini](/openai/o3-mini) with reasoning_effort set to high. \\n\\no3-mini is a cost-efficient language model optimized for STEM reasoning tasks, particularly excelling in science, mathematics, and coding. The model features three adjustable reasoning effort levels and supports key developer capabilities including function calling, structured outputs, and streaming, though it does not include vision processing capabilities.\\n\\nThe model demonstrates significant improvements over its predecessor, with expert testers preferring its responses 56% of the time and noting a 39% reduction in major errors on complex questions. With medium reasoning effort settings, o3-mini matches the performance of the larger o1 model on challenging reasoning evaluations like AIME and GPQA, while maintaining lower latency and cost.\",\"model_version_group_id\":null,\"context_length\":200000,\"input_modalities\":",
@@ -4355,7 +4444,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "vendor_description": "DeepSeek R1 is here: Performance on par with [OpenAI o1](/openai/o1), but open-sourced and with fully open reasoning tokens. It's 671B parameters in size, with 37B active in an inference pass.\n\nFully open-source model & [technical report](https://api-docs.deepseek.com/news/news250120).\n\nMIT licensed: Distill & commercialize freely!",

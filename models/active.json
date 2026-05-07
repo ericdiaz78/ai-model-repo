@@ -64,16 +64,28 @@
         "openrouter_stats": {}
       },
       "our_observations": {
-        "trials": [],
+        "trials": [
+          {
+            "date": "2026-05-06",
+            "agent": "sage",
+            "agent_role": "sage",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "685fdc71-8e3c-43c0-a28a-1a8fd9aa20ef",
+            "run_id": "685fdc71-8e3c-43c0-a28a-1a8fd9aa20ef",
+            "notes": "47 actions across filesystem,plan,shell"
+          }
+        ],
         "pass_rate": {
           "builder": null,
           "strategy": null,
           "gm": null,
-          "sage": null,
-          "overall": null,
-          "sample_size": 0,
+          "sage": 1.0,
+          "overall": 1.0,
+          "sample_size": 1,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -1369,17 +1381,94 @@
             "session_id": "bce376f4-9563-411d-a44b-87dbfa33195f",
             "run_id": "bce376f4-9563-411d-a44b-87dbfa33195f",
             "notes": "20 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-05",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "0d666f44-f9ab-4529-933a-893c44a6ecb4",
+            "run_id": "0d666f44-f9ab-4529-933a-893c44a6ecb4",
+            "notes": "7 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-06",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "aaab5656-2ec2-4239-850d-2eb2507a6044",
+            "run_id": "aaab5656-2ec2-4239-850d-2eb2507a6044",
+            "notes": "15 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-06",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "8d518d25-0eb6-4d62-87b9-e3d702652d14",
+            "run_id": "8d518d25-0eb6-4d62-87b9-e3d702652d14",
+            "notes": "24 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-06",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "b2fe1b03-e7cf-42df-8b1c-cac631eec7e0",
+            "run_id": "b2fe1b03-e7cf-42df-8b1c-cac631eec7e0",
+            "notes": "12 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-06",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "df76f997-f4e7-4cf7-8318-ad44c81d4339",
+            "run_id": "df76f997-f4e7-4cf7-8318-ad44c81d4339",
+            "notes": "10 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-06",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "1ec1076e-55d2-4112-81a2-d00f4f6f3a0c",
+            "run_id": "1ec1076e-55d2-4112-81a2-d00f4f6f3a0c",
+            "notes": "35 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-06",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "46948f21-9c6d-482d-9cbe-42ae5ee113b2",
+            "run_id": "46948f21-9c6d-482d-9cbe-42ae5ee113b2",
+            "notes": "14 actions across filesystem,shell; 106s"
           }
         ],
         "pass_rate": {
           "builder": null,
-          "strategy": 0.86,
-          "gm": 0.574,
+          "strategy": 0.87,
+          "gm": 0.6,
           "sage": null,
-          "overall": 0.692,
-          "sample_size": 104,
+          "overall": 0.712,
+          "sample_size": 111,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "industry_notes": [
@@ -1554,7 +1643,7 @@
           "overall": 0.0,
           "sample_size": 4,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "industry_notes": [
@@ -1954,7 +2043,7 @@
           "overall": 0.087,
           "sample_size": 23,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "industry_notes": [
@@ -2064,7 +2153,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -2761,7 +2850,7 @@
           "overall": 0.022,
           "sample_size": 45,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
@@ -2902,7 +2991,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         }
       },
       "industry_notes": [
@@ -3012,7 +3101,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-05"
+          "computed_at": "2026-05-07"
         },
         "task_benchmarks": [
           {
