@@ -97,6 +97,17 @@
             "session_id": "88a2ceea-06be-487d-bee9-f3900bf81355",
             "run_id": "88a2ceea-06be-487d-bee9-f3900bf81355",
             "notes": "49 actions across filesystem,plan,shell"
+          },
+          {
+            "date": "2026-05-09",
+            "agent": "sage",
+            "agent_role": "sage",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "8f835842-01e7-4c19-9a0e-0cd180eca5e4",
+            "run_id": "8f835842-01e7-4c19-9a0e-0cd180eca5e4",
+            "notes": "43 actions across filesystem,plan,shell"
           }
         ],
         "pass_rate": {
@@ -105,7 +116,7 @@
           "gm": null,
           "sage": 1.0,
           "overall": 1.0,
-          "sample_size": 3,
+          "sample_size": 4,
           "window_days": 30,
           "computed_at": "2026-05-09"
         },
@@ -1546,15 +1557,48 @@
             "session_id": "c37d6c43-6959-4b2d-bb6e-e8d3ff42f62b",
             "run_id": "c37d6c43-6959-4b2d-bb6e-e8d3ff42f62b",
             "notes": "30 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-09",
+            "agent": "general",
+            "agent_role": "gm",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "fe385792-3e2d-4df2-8bd1-b7a02cdb7aea",
+            "run_id": "fe385792-3e2d-4df2-8bd1-b7a02cdb7aea",
+            "notes": "31 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-09",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "d65912f7-a698-421d-a3f0-ca6beb56ffe2",
+            "run_id": "d65912f7-a698-421d-a3f0-ca6beb56ffe2",
+            "notes": "22 actions across filesystem,shell"
+          },
+          {
+            "date": "2026-05-09",
+            "agent": "strategy",
+            "agent_role": "strategy",
+            "result": "pass",
+            "failure_point": null,
+            "reason": "loop_closed",
+            "session_id": "5088f37d-2034-4559-893e-4bd481b056a4",
+            "run_id": "5088f37d-2034-4559-893e-4bd481b056a4",
+            "notes": "7 actions across filesystem,shell"
           }
         ],
         "pass_rate": {
           "builder": null,
-          "strategy": 0.882,
-          "gm": 0.606,
+          "strategy": 0.887,
+          "gm": 0.612,
           "sage": null,
-          "overall": 0.726,
-          "sample_size": 117,
+          "overall": 0.733,
+          "sample_size": 120,
           "window_days": 30,
           "computed_at": "2026-05-09"
         }
