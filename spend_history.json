@@ -265,6 +265,13 @@
       "input_tokens": 33888,
       "output_tokens": 986,
       "calls": 40
+    },
+    {
+      "date": "2026-05-14",
+      "cost_usd": 0.01048,
+      "input_tokens": 27193,
+      "output_tokens": 936,
+      "calls": 49
     }
   ],
   "anthropic/claude-4.6-sonnet-20260217": [
@@ -638,6 +645,13 @@
       "input_tokens": 2426985,
       "output_tokens": 25435,
       "calls": 36
+    },
+    {
+      "date": "2026-05-14",
+      "cost_usd": 3.594331,
+      "input_tokens": 5443566,
+      "output_tokens": 20298,
+      "calls": 53
     }
   ],
   "google/gemini-2.5-flash-lite": [
@@ -1321,6 +1335,13 @@
       "input_tokens": 9675434,
       "output_tokens": 37272,
       "calls": 491
+    },
+    {
+      "date": "2026-05-14",
+      "cost_usd": 3.145246,
+      "input_tokens": 14934641,
+      "output_tokens": 50878,
+      "calls": 771
     }
   ],
   "anthropic/claude-4.5-sonnet-20250929": [
@@ -1992,6 +2013,13 @@
       "input_tokens": 4214181,
       "output_tokens": 23105,
       "calls": 121
+    },
+    {
+      "date": "2026-05-14",
+      "cost_usd": 0.75914,
+      "input_tokens": 3080210,
+      "output_tokens": 10512,
+      "calls": 142
     }
   ],
   "google/gemini-3-flash-preview-20251217": [

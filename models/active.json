@@ -173,7 +173,7 @@
           "overall": 1.0,
           "sample_size": 9,
           "window_days": 30,
-          "computed_at": "2026-05-14"
+          "computed_at": "2026-05-15"
         },
         "task_benchmarks": [
           {
@@ -1875,7 +1875,7 @@
           "overall": 0.771,
           "sample_size": 140,
           "window_days": 30,
-          "computed_at": "2026-05-14"
+          "computed_at": "2026-05-15"
         }
       },
       "industry_notes": [
@@ -2050,7 +2050,7 @@
           "overall": 0.0,
           "sample_size": 4,
           "window_days": 30,
-          "computed_at": "2026-05-14"
+          "computed_at": "2026-05-15"
         }
       },
       "industry_notes": [
@@ -2450,7 +2450,7 @@
           "overall": 0.143,
           "sample_size": 14,
           "window_days": 30,
-          "computed_at": "2026-05-14"
+          "computed_at": "2026-05-15"
         }
       },
       "industry_notes": [
@@ -2560,7 +2560,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-14"
+          "computed_at": "2026-05-15"
         },
         "task_benchmarks": [
           {
@@ -3250,14 +3250,14 @@
           }
         ],
         "pass_rate": {
-          "builder": 0.077,
+          "builder": 0.091,
           "strategy": 0.0,
           "gm": null,
           "sage": null,
-          "overall": 0.037,
-          "sample_size": 27,
+          "overall": 0.042,
+          "sample_size": 24,
           "window_days": 30,
-          "computed_at": "2026-05-14"
+          "computed_at": "2026-05-15"
         },
         "task_benchmarks": [
           {
@@ -3398,7 +3398,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-14"
+          "computed_at": "2026-05-15"
         }
       },
       "industry_notes": [
@@ -3508,7 +3508,7 @@
           "overall": null,
           "sample_size": 0,
           "window_days": 30,
-          "computed_at": "2026-05-14"
+          "computed_at": "2026-05-15"
         },
         "task_benchmarks": [
           {
